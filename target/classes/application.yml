@@ -1,0 +1,12 @@
+spring:
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/spec
+        username: spec
+        password: spec
+    view:
+        prefix: /WEB-INF/views/
+        suffix: .jsp
+security:
+  basic:
+    enabled: false
