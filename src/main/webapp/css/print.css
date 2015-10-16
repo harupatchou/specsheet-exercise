@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+
+@media print {
+	.noPrint {
+		display: none;
+	} /* 印刷しない */
+}
+
+@media screen {
+	.noScreen {
+		display: none;
+	} /* 画面に表示しない */
+}
+
+
+th.avoid {
+	page-break-inside: avoid;
+}
+
+tr.avoid {
+	page-break-inside: avoid;
+}
+
+td.avoid {
+	page-break-inside: avoid;
+}
+
+.avoid {
+	page-break-inside: avoid;
+}
+
+.always {
+	page-break-before: always;
+}
