@@ -9,7 +9,12 @@
 		
 <%--ここから下にコンテンツを挿入 --%>
 
-
+	 <h1>ログイン画面</h1>
+	 <form:form>
+	 	<p>スタッフID：<form:input path="staffId"/></p>
+	 	<p>パスワード：<form:input path="password"/></p><br>
+	 	<input type="submit" value="ログイン" />
+	 </form:form>
 
 <%--ここから上にコンテンツを挿入 --%>
 
