@@ -7,24 +7,22 @@
 
 
 		<%--ここから下にコンテンツを挿入 --%>
-		<form:form modelAttribute="specEditForm" action="/edit"
+		<form:form modelAttribute="specForm" action="/spec/regist"
 			name="SpecForm">
-			<h1 id="title">スペックシート更新</h1>
+			<h1 id="title">スペックシート登録</h1>
 
-			<p>名前：<form:input path="name" value="${spec.name}" /></p>
+			<p>姓：<form:input path="firstName" value="${user.firstName}" /></p>
+			<p>名：<form:input path="lastName" value="${user.lastName}" /></p>
 
-			<p>
-				待機：<form:select path="stateFlagStr">
-					<option value="0">待機</option>
-					<option value="1">現場</option>
-					</form:select>
-						<br>
+			<p>状況：
+			<form:select path="stateFlag">
+				<option value="0">現場</option>
+				<option value="1">待機</option>
+			</form:select><br>
 			</p>
 
-			<p>
-				編集時のコメント：
-				<textarea>
-				</textarea>
+			<p>編集時のコメント：
+			<form:textarea path="comment" value="${spec.comment}" placeholder="(例)初期登録" />
 			</p>
 
 			<table class="speckDetailTable formMini">
@@ -49,7 +47,7 @@
 					<td>男性</td>
 
 					<th>最寄駅</th>
-					<td><input class="inputMiddle" type="text" />駅</td>
+					<td><form:input id="inputMini" path="nearestStation" value="${spec.nearestStation}" />駅</td>
 
 					<th>稼働開始日</th>
 					<td>応相談</td>
@@ -61,18 +59,28 @@
 			<table class="speckDetailTable">
 				<tr>
 					<th rowspan="2">IT全体経験</th>
-					<td rowspan="2" colspan="2"><input id="inputMini" type="text" />年<input id="inputMini" type="text" />ヵ月</td>
+					<td rowspan="2" colspan="2">
+					<form:input id="inputMini" path="allExpYear"   value="${experience.allExpYear}"/>年
+					<form:input id="inputMini" path="allExpMonth"  value="${experience.allExpMonth}"/>ヵ月</td> 
 					<th rowspan="2">内訳</th>
 					<th>サーバ・NW経験</th>
-					<td colspan="2"><input id="inputMini" type="text" />年<input id="inputMini" type="text" />ヵ月</td>
+					<td colspan="2">
+					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${experience.serverNetworkExpYear}"/>年
+					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${experience.serverNetworkExpMonth}"/>ヵ月</td> 
 					<th>SE経験</th>
-					<td colspan="2"><input id="inputMini" type="text" />年<input id="inputMini" type="text" />ヵ月</td>
+	 				<td colspan="2">
+	 				<form:input id="inputMini" path="seExpYear" value="${experience.seExpYear}"/>年
+	 				<form:input id="inputMini" path="seExpMonth" value="${experience.seExpMonth}"/>ヵ月</td> 
 				</tr>
 				<tr>
 					<th>システム開発経験</th>
-					<td colspan="2"><input id="inputMini" type="text" />年<input id="inputMini" type="text" />ヵ月</td>
-					<th>PG・作業員経験</th>
-					<td colspan="2"><input id="inputMini" type="text" />年<input id="inputMini" type="text" />ヵ月</td>
+				<td colspan="2">
+				<form:input id="inputMini" path="developmentExpYear"  value="${experience.developmentExpYear}"/>年
+				<form:input id="inputMini" path="developmentExpMonth"  value="${experience.developmentExpMonth}"/>ヵ月</td> 
+				<th>PG・作業員経験</th>
+				<td colspan="2">
+				<form:input id="inputMini" path="pgOperatorExpYear" value="${experience.pgOperatorExpYear}"/>年
+				<form:input id="inputMini" path="pgOperatorExpMonth" value="${experience.pgOperatorExpMonth}"/>ヵ月</td> 
 				</tr>
 			</table>
 
@@ -120,7 +128,7 @@
 					<th>アピールポイント</th>
 				</tr>
 				<tr class="tallHeight">
-					<td><textarea class="appeal"></textarea></td>
+					<td><form:textarea path="appeal" class="appeal" rows="8" cols="107"></form:textarea></td>
 				</tr>
 			</table>
 			
@@ -145,41 +153,74 @@
 						<th>規模</th>
 					</tr>
 					<tr>
-						<td rowspan="5"><input id="inputNumber" type="text" /></td>
-						<td rowspan="2"><input id="inputSpan" type="text" /></td>
-						<td rowspan="4"><textarea id="inputProject"></textarea></td>
+					
+					<!-- プロジェクト番号 -->
+						<td rowspan="5">1</td>
+						
+					<!-- 開発時期 -->
+						<td rowspan="4">
+						<form:input path="startDay" /><br>
+						～<br>
+						<form:input path="finishDay" />
+						</td>
+						
+					<!-- プロジェクト概要 -->
+						<td rowspan="4">
+						<form:textarea path="overView" rows="10" cols="12" />
+						</td>
+						
+					<!-- OS -->
 						<th>OS</th>
 						<td><input type="button" value="OS選択" id="btnMini"
-							onclick="location.href='selectOS.html'" /></td>
-						<td rowspan="4"><textarea id="inputResponsible"></textarea></td>
-						<td rowspan="4"><textarea id="inputResponsible"></textarea></td>
+							onclick="location.href='selectOS.html'" />
+						</td>
+					
+					<!-- 担当工程 -->
+						<td rowspan="4">
+						<input type="button" value="担当工程" id="btnMini"
+							onclick="location.href='selectOS.html'" />
+						</td>
+						
+					<!-- 担当役割 -->
+						<td rowspan="4">
+						<form:textarea path="role" id="inputResponsible"></form:textarea>
+						</td>
+			
 						<th>チーム</th>
 					</tr>
+					
 					<tr>
+					<!-- 言語 -->
 						<th>言語</th>
 						<td><input type="button" value="言語選択" id="btnMini"
-							onclick="location.href='selectLanguage.html'" /></td>
-						<td><input type="text" id="inputMini" />人</td>
+							onclick="location.href='selectLanguage.html'" />
+						</td>
+						
+					<!-- チーム人数 -->
+						<td><form:input path="teamNum" id="inputMini" />人</td>
 					</tr>
+					
 					<tr>
-						<td rowspan="2"><input id="inputSpan" type="text" /></td>
-						<th rowspan="2">その他</th>
-						<td rowspan="2"><textarea id="inputOther"></textarea></td>
+					<!-- 開発関連技術 -->
+						<th rowspan="2">開発関連技術</th>
+						<td rowspan="2"><form:textarea path="other" id="inputOther"></form:textarea></td>
 						<th>開発全体</th>
 					</tr>
 					<tr>
-						<td><input type="text" id="inputMini" />人</td>
+						<td><form:input path="allNum" id="inputMini" />人</td>
 					</tr>
 					<tr>
 						<th class="tallHeight">作業内容</th>
-						<td colspan="6"><textarea id="inputWorkDetail"></textarea></td>
+						<td colspan="6"><form:textarea path="content" id="inputWorkDetail"></form:textarea></td>
 					</tr>
 				</table>
 			</div>
+			<br>
 
-			<!-- 		繰り返し -->
+			<%-- <!-- 		繰り返し -->
 			<div class="inputExperience">
 				<table class="speckDetailTable">
+				
 					<tr>
 						<th>No.</th>
 						<th>期間</th>
@@ -189,39 +230,66 @@
 						<th>担当役割</th>
 						<th>規模</th>
 					</tr>
+					
 					<tr>
-						<td rowspan="5"><input id="inputNumber" type="text" /></td>
-						<td rowspan="2"><input id="inputSpan" type="text" /></td>
-						<td rowspan="4"><textarea id="inputProject"></textarea></td>
+						<!-- プロジェクトNO -->
+						<td rowspan="5">
+						<input id="inputNumber" type="text" />
+						</td>
+						
+						<!-- 開発期間 -->
+						<td rowspan="2">
+						～
+						</td>
+						
+						<!-- プロジェクト概要 -->
+						<td rowspan="4">
+						</td>
+						
+						<!-- OS -->
 						<th>OS</th>
-						<td><input type="button" value="OS選択" id="btnMini"
-							onclick="location.href='selectOS.html'" /></td>
-						<td rowspan="4"><textarea id="inputResponsible"></textarea></td>
-						<td rowspan="4"><textarea id="inputResponsible"></textarea></td>
+						<td>
+						</td>
+						
+						<!-- 担当工程 -->
+						<td rowspan="4">
+						<textarea id="inputResponsible"></textarea>
+						</td>
+						
+						<!-- 担当役割 -->
+						<td rowspan="4">
+						<textarea id="inputResponsible"></textarea>
+						</td>
+						
 						<th>チーム</th>
 					</tr>
+					
 					<tr>
+						<!-- 言語 -->
 						<th>言語</th>
 						<td><input type="button" value="言語選択" id="btnMini"
 							onclick="location.href='selectLanguage.html'" /></td>
-						<td><input type="text" id="inputMini" />人</td>
+						<td><form:input path="teamNum"/>人</td>
 					</tr>
+					
 					<tr>
 						<td rowspan="2"><input id="inputSpan" type="text" /></td>
 						<th rowspan="2">その他</th>
 						<td rowspan="2"><textarea id="inputOther"></textarea></td>
 						<th>開発全体</th>
 					</tr>
+					
 					<tr>
 						<td><input type="text" id="inputMini" />人</td>
 					</tr>
+					
 					<tr>
 						<th class="tallHeight">作業内容</th>
 						<td colspan="6"><textarea id="inputWorkDetail"></textarea></td>
 					</tr>
 				</table>
 			</div>
-			<br>
+			<br> --%>
 
 
 			<!-- 		資格要約 -->
@@ -260,6 +328,7 @@
 			</div>
 			<br>
 
+		<input type="submit" value="登録内容確認"/>
 
 		</form:form>
 		<%--ここから上にコンテンツを挿入 --%>

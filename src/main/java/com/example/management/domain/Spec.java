@@ -2,6 +2,10 @@ package com.example.management.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,13 +18,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name="spec")
 public class Spec {
 	/**スタッフID */
+	@Id
 	private String staffId;
-	/**名字 */
+	/**名字 *//*
 	private String firstName;
-	/**名前 */
-	private String lastName;
+	*//**名前 *//*
+	private String lastName;*/
+	
+	private String name;
 	/**年代ID */
 	private Integer ageId;
 	/**性別 */
@@ -36,7 +45,7 @@ public class Spec {
 	/**最寄駅 */
 	private String nearestStation;
 	/**サーバ・NW経験 */
-	private Integer severNerworkExp;
+	private Integer serverNetworkExp;
 	/**システム開発経験 */
 	private Integer developmentExp;
 	/**SE経験 */

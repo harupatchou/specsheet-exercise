@@ -1,3 +1,4 @@
+
 package com.example.management.controller;
 
 import java.util.ArrayList;
@@ -51,18 +52,5 @@ public class SpecSearchController {
 		return "spec/searchTest";
 	}
 
-//	/**
-//	 * 条件に一致したユーザ情報を取得.
-//	 * @param form
-//	 * @param model
-//	 * @return　一致したユーザ情報
-//	 */
-//	@RequestMapping(value="user")
-//	public String serchUser(SpecSearchForm form,BindingResult result, Model model){
-//		model.addAttribute("searchData",form);
-//		List<SpecSearchChildPage> specList = specSearchService.findAll(form);
-//		model.addAttribute("specList", specList);
-//		return search(model);
-//	}
-//	
-}
+}	
+
