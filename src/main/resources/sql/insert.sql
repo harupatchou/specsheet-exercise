@@ -65,10 +65,11 @@ INSERT INTO exp_breakdown_define VALUES('4','PG・作業員経験');
 /*ここまで定義テーブル*/
 
 --ユーザーテーブル
-INSERT INTO users VALUES('AP-202-0715','工藤康平','工藤','康平','クドウ','コウヘイ',1,'boost2000');
-INSERT INTO users VALUES('AP-202-0717','佐藤拓海','佐藤','拓海','サトウ','タクミ',1,'boost2000');
-INSERT INTO users VALUES('AP-202-0736','鈴木綾夏','鈴木','綾夏','スズキ','アヤカ',1,'boost2000');
-INSERT INTO users VALUES('AP-000-0000','大矢修嗣','大矢','修嗣','オオヤ','ナオツギ',2,'boost2000');
+INSERT INTO users VALUES('AP-202-0715','男','工藤','康平','クドウ','コウヘイ',1,'boost2000');
+INSERT INTO users VALUES('AP-000-0716','男','黒澤','祐','クロサワ','ユウ',1,'boost2000');
+INSERT INTO users VALUES('AP-202-0717','男','佐藤','拓海','サトウ','タクミ',1,'boost2000');
+INSERT INTO users VALUES('AP-202-0736','女','鈴木','綾夏','スズキ','アヤカ',1,'boost2000');
+INSERT INTO users VALUES('AP-000-0000','男','大矢','修嗣','オオヤ','ナオツギ',2,'boost2000');
 
 -- プロジェクトテーブル
 /*
@@ -81,9 +82,9 @@ INSERT INTO project VALUES('AP-202-0736',5,'2015-02-05','2015-08-05','プロジ�
 -- プロジェクトテーブル
 INSERT INTO project VALUES('AP-202-0715',1,'2015-02-01','2015-08-01','プロジェクト概要','5','20','PG','開発','eclipse');
 INSERT INTO project VALUES('AP-202-0715',2,'2015-02-02','2015-08-02','プロジェクト概要','6','21','テスター','テスト','junit');
-INSERT INTO project VALUES('AP-202-0736',3,'2015-02-03','2015-08-03','プロジェクト概要','7','22','PG','実装','teraterm');
-INSERT INTO project VALUES('AP-202-0736',4,'2015-02-04','2015-08-04','プロジェクト概要','8','23','PM,SE','UT','remoteconect');
-INSERT INTO project VALUES('AP-202-0736',5,'2015-02-05','2015-08-05','プロジェクト概要','9','24','PG','IT','padedosa');
+INSERT INTO project VALUES('AP-202-0736',1,'2015-02-03','2015-08-03','プロジェクト概要','7','22','PG','実装','teraterm');
+INSERT INTO project VALUES('AP-202-0736',2,'2015-02-04','2015-08-04','プロジェクト概要','8','23','PM/SE','UT','remoteconect');
+INSERT INTO project VALUES('AP-202-0736',3,'2015-02-05','2015-08-05','プロジェクト概要','9','24','PG','IT','padedosa');
 
 
 -- プロジェクト担当工程テーブル（工藤のデータ）
@@ -141,10 +142,10 @@ INSERT INTO exp_breakdown VALUES('AP-202-0717',4,2);
 
 
 -- スペックテーブル
-INSERT INTO spec VALUES('AP-202-0715','工藤康平','1',0,0,'2','Spring','アピールポイント','渋谷',1,1,1,'1','誤字修正','2015-09-01','更新者名16文字');
-INSERT INTO spec VALUES('AP-202-0736','鈴木綾夏','2',1,0,'2','Ajax','アピールポイント','新宿',1,1,1,'1','経歴追加','2015-09-01','更新者名16文字');
-INSERT INTO spec VALUES('AP-202-0717','佐藤拓海','3',0,0,'2','JavaScript','アピールポイント','池袋',1,1,1,'1','初版作成','2015-09-01','更新者名16文字');
-INSERT INTO spec VALUES('AP-000-0000','大矢修嗣','4',0,0,'44','Spring','アピールポイント','渋谷',11,11,11,'11','誤字修正','2015-09-01','更新者名16文字');
+INSERT INTO spec VALUES('AP-202-0715',1,0,2,'Spring','アピールポイント','渋谷','誤字修正','2015-09-01','更新者名16文字');
+INSERT INTO spec VALUES('AP-202-0736',1,0,2,'Ajax','アピールポイント','新宿','経歴追加','2015-09-01','更新者名16文字');
+INSERT INTO spec VALUES('AP-202-0717',1,0,2,'JavaScript','アピールポイント','池袋','初版作成','2015-09-01','更新者名16文字');
+INSERT INTO spec VALUES('AP-000-0000',1,0,44,'Spring','アピールポイント','渋谷','誤字修正','2015-09-01','更新者名16文字');
 
 -- INSERT INTO spec VALUES('AP-202-0737','1',0,0,'2','AngularJS','アピールポイント','六本木',1,1,1,'1','アピールポイント','2015-09-01','更新者名16文字');
 -- INSERT INTO spec VALUES('AP-202-0738','2',0,0,'2','JUnit','アピールポイント','銀座',1,1,1,'1','更新','2015-09-01','更新者名16文字');
