@@ -2,14 +2,11 @@ package com.example.management.domain;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
 
-import com.example.management.keyId.UsersLicenseKeyId;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 取得資格
@@ -17,15 +14,12 @@ import lombok.Data;
  *
  */
 @Data
-@IdClass(value=UsersLicenseKeyId.class)
-@Entity
-@Table(name="usersLicense")
+@NoArgsConstructor
+@AllArgsConstructor
 public class UsersLicense {
 	/** スタッフID */
-	@Id
 	private String staffId;
 	/** 取得資格No */
-	@Id
 	private Integer usersLicenceNo;
 	/** 資格名 */
 	private String name;

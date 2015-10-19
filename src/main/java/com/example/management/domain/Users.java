@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="users")
 
-public class User {
+public class Users {
 
 	/**スタッフID */
 	@Id
