@@ -9,17 +9,12 @@ drop table if exists spec cascade;
 
 create table spec (
   staff_id character varying(16) not null
-  , name character varying(16)
   , age_id integer not null
   , state_flag integer
   , all_exp integer
   , related_tech character varying(1024)
   , appeal character varying(1024)
   , nearest_station character varying(16)
-  , server_network_exp integer
-  , development_exp integer
-  , se_exp integer
-  , pg_operator_exp integer
   , comment character varying(1024)
   , update_date timestamp
   , update_name character varying(16)
@@ -186,7 +181,6 @@ drop table if exists users cascade;
 
 create table users (
   staff_id character varying(16) not null
-  , name character varying(16)
   , sex character varying(8)
   , first_name character varying(16)
   , last_name character varying(16)
@@ -280,17 +274,12 @@ alter table users_license
 
 comment on table spec is 'スペックテーブル	 スペックシート上部部分の情報を保持するテーブル';
 comment on column spec.staff_id is 'スタッフID';
-comment on column spec.name is '名前';
 comment on column spec.age_id is '年代ID';
 comment on column spec.state_flag is '状態フラグ';
 comment on column spec.all_exp is 'IT全体経験';
 comment on column spec.related_tech is '開発関連技術';
 comment on column spec.appeal is 'アピールポイント';
 comment on column spec.nearest_station is '最寄駅';
-comment on column spec.server_network_exp is 'サーバ・NW経験';
-comment on column spec.development_exp is 'システム開発経験';
-comment on column spec.se_exp is 'SE経験';
-comment on column spec.pg_operator_exp is 'PG・作業員経験';
 comment on column spec.comment is '変更コメント';
 comment on column spec.update_date is '更新日時';
 comment on column spec.update_name is '更新者名';
@@ -351,7 +340,6 @@ comment on column project_language.language_exp_no is '言語経験No';
 
 comment on table users is 'ユーザーテーブル	 ログインユーザの情報を保持する';
 comment on column users.staff_id is 'スタッフID';
-comment on column users.name is '名前';
 comment on column users.sex is '性別';
 comment on column users.first_name is '姓';
 comment on column users.last_name is '名';
