@@ -1,5 +1,5 @@
 -- Project Name : ER図_2
--- Date/Time    : 2015/10/16 16:06:20
+-- Date/Time    : 2015/10/19 11:02:59
 -- Author       : rksuser
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -11,7 +11,6 @@ create table spec (
   staff_id character varying(16) not null
   , name character varying(16)
   , age_id integer not null
-  , sex integer
   , state_flag integer
   , all_exp integer
   , related_tech character varying(1024)
@@ -188,6 +187,7 @@ drop table if exists users cascade;
 create table users (
   staff_id character varying(16) not null
   , name character varying(16)
+  , sex character varying(8)
   , first_name character varying(16)
   , last_name character varying(16)
   , first_phonetic character varying(16)
@@ -282,7 +282,6 @@ comment on table spec is 'スペックテーブル	 スペックシート上部�
 comment on column spec.staff_id is 'スタッフID';
 comment on column spec.name is '名前';
 comment on column spec.age_id is '年代ID';
-comment on column spec.sex is '性別';
 comment on column spec.state_flag is '状態フラグ';
 comment on column spec.all_exp is 'IT全体経験';
 comment on column spec.related_tech is '開発関連技術';
@@ -353,6 +352,7 @@ comment on column project_language.language_exp_no is '言語経験No';
 comment on table users is 'ユーザーテーブル	 ログインユーザの情報を保持する';
 comment on column users.staff_id is 'スタッフID';
 comment on column users.name is '名前';
+comment on column users.sex is '性別';
 comment on column users.first_name is '姓';
 comment on column users.last_name is '名';
 comment on column users.first_phonetic is '姓(ﾌﾘｶﾞﾅ)';
