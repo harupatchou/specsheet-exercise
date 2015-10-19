@@ -85,7 +85,7 @@ drop table if exists project cascade;
 
 create table project (
   staff_id character varying(16) not null
-  , no serial
+  , no integer not null
   , start_date date
   , finish_date date
   , overview character varying(64)

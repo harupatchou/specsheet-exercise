@@ -1,5 +1,9 @@
 package com.example.management.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,8 +16,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name="users")
 public class Users {
 	/**スタッフID */
+	@Id
 	private String staffId;
 	/**名前 */
 	private String name;
@@ -26,7 +33,7 @@ public class Users {
 	/**名(ﾌﾘｶﾞﾅ) */
 	private String lastPhonetic;
 	/**権限ID */
-	private Integer authority;
+	private Integer authorityId;
 	/**パスワード */
 	private String password;	
 }

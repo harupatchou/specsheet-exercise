@@ -48,9 +48,12 @@ public class SpecForm {
 		/**PG経験月*/
 		private Integer pgOperatorExpMonth;
 		
+	/** 開発経験テーブル */
 	//人数
 		/**チーム人数*/
 		private Integer teamNum;
+		/**全体人数*/
+		private Integer allNum;
 		
 	//開発期間
 		/**開始日時*/
@@ -58,10 +61,21 @@ public class SpecForm {
 		/**終了日時*/
 		private String finishDay;
 		
-	//プロジェクト内容
-		
-		
+	//プロジェクト詳細		
 		/**プロジェクト概要*/
 		private String overView;
-
+		/**OS*/
+		private String os;
+		/**言語*/
+		private String lang;
+		/**開発関連技術*/
+		private String other;
+		/**担当役割*/
+		private String role;
+		/**担当工程*/
+		private String process;
+		/**作業内容*/
+		private String content;
+		
+		
 }

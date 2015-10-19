@@ -11,8 +11,8 @@
 			name="SpecForm">
 			<h1 id="title">スペックシート登録</h1>
 
-			<p>姓：<form:input path="firstName" value="" /></p>
-			<p>名：<form:input path="lastName" value="" /></p>
+			<p>姓：<form:input path="firstName" value="${user.firstName}" /></p>
+			<p>名：<form:input path="lastName" value="${user.lastName}" /></p>
 
 			<p>状況：
 			<form:select path="stateFlag">
@@ -128,7 +128,7 @@
 					<th>アピールポイント</th>
 				</tr>
 				<tr class="tallHeight">
-					<td><form:textarea path="appeal" class="appeal" rows="8" cols="109.5"></form:textarea></td>
+					<td><form:textarea path="appeal" class="appeal" rows="8" cols="107"></form:textarea></td>
 				</tr>
 			</table>
 			
@@ -183,7 +183,7 @@
 						
 					<!-- 担当役割 -->
 						<td rowspan="4">
-						<textarea id="inputResponsible"></textarea>
+						<form:textarea path="role" id="inputResponsible"></form:textarea>
 						</td>
 			
 						<th>チーム</th>
@@ -197,21 +197,21 @@
 						</td>
 						
 					<!-- チーム人数 -->
-						<td><input type="text" id="inputMini" />人</td>
+						<td><form:input path="teamNum" id="inputMini" />人</td>
 					</tr>
 					
 					<tr>
-					<!-- その他 -->
-						<th rowspan="2">その他</th>
-						<td rowspan="2"><textarea id="inputOther"></textarea></td>
+					<!-- 開発関連技術 -->
+						<th rowspan="2">開発関連技術</th>
+						<td rowspan="2"><form:textarea path="other" id="inputOther"></form:textarea></td>
 						<th>開発全体</th>
 					</tr>
 					<tr>
-						<td><input type="text" id="inputMini" />人</td>
+						<td><form:input path="allNum" id="inputMini" />人</td>
 					</tr>
 					<tr>
 						<th class="tallHeight">作業内容</th>
-						<td colspan="6"><textarea id="inputWorkDetail"></textarea></td>
+						<td colspan="6"><form:textarea path="content" id="inputWorkDetail"></form:textarea></td>
 					</tr>
 				</table>
 			</div>

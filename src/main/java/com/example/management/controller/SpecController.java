@@ -11,6 +11,7 @@ import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
 import com.example.management.logic.SpecLogic;
+import com.example.management.logic.UserLogic;
 
 @Controller
 @Transactional
@@ -19,6 +20,8 @@ public class SpecController {
 	
 	@Autowired
 	private SpecLogic specLogic;
+	@Autowired
+	private UserLogic userLogic;
 	
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
@@ -43,15 +46,13 @@ public class SpecController {
 	 */
 	@RequestMapping(value = "/registIndex")
 	public String registIndex(Model model){
-
-		//情報格納用
-		Spec spec = new Spec();
 		
 		//決め打ち
 		String test = "AP-202-0715";
-		spec = selectByStaffId(test);
+		selectByStaffId(test);
 		//情報を画面に送信
 		model.addAttribute("spec",spec);
+		model.addAttribute("user",user);
 		
 		return "spec/regist/specRegist";
 	}
@@ -65,16 +66,14 @@ public class SpecController {
 	@RequestMapping(value = "/regist")
 	public String regist(Model model,SpecForm specForm){
 
-		//情報格納用
-		Spec spec = new Spec();
-		
 		//決め打ち
 		String test = "AP-202-0715";
-		spec = selectByStaffId(test);
-		
+		selectByStaffId(test);
+		//情報を画面に送信
 		model.addAttribute("spec",spec);
+		model.addAttribute("user",user);
 		
-		return "spec/regist/specRegist";
+		return "spec/regist/specRegistCheck";
 	}
 	
 	/**
@@ -86,14 +85,7 @@ public class SpecController {
 	@RequestMapping(value = "/check")
 	public String resistCheck(Model model,SpecForm specForm){
 
-		//情報格納用
-		Spec spec = new Spec();
 		
-		//決め打ち
-		String test = "AP-202-0715";
-		spec = selectByStaffId(test);
-		
-		model.addAttribute("spec",spec);
 		
 		return "spec/regist/specRegistCheck";
 	}
@@ -131,7 +123,7 @@ public class SpecController {
 		user = new Users();
 		//データの取得
 		spec = specLogic.selectByStaffId(staffId);
-		user = null;
+		user = userLogic.selectByStaffId(staffId);
 		return true;
 	}
 	
