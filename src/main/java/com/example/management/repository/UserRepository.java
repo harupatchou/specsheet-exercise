@@ -42,7 +42,7 @@ public class UserRepository {
 	 * スペックシートデータ全件取得.
 	 * @return スペックシートデータ
 	 */
-	public List<Spec> findAll() {
+	public List<Spec> findAllSpec() {
 		List<Spec> specList = jdbcTemplate.query("SELECT s.staff_id, s.age_id, s.sex, u.name, s.state_flag, s.all_exp,ld.name AS lang_name,  a.age_range, "
 				+ "s.related_tech,s.appeal,s.nearest_station, s.server_network_exp, s.development_exp, "
 				+ "s.se_exp,s.pg_operator_exp,s.comment, s.update_date, s.update_name FROM users u "

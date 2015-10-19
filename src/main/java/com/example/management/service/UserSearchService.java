@@ -14,7 +14,7 @@ public class UserSearchService {
 	private UserRepository userRepository;
 	
 	public List<Spec> findAll() {
-		return userRepository.findAll();
+		return userRepository.findAllSpec();
 	}
 
 }
