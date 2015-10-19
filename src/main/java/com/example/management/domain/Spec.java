@@ -34,7 +34,7 @@ public class Spec {
 	/**最寄駅 */
 	private String nearestStation;
 	/**サーバ・NW経験 */
-	private Integer severNerworkExp;
+	private Integer serverNetworkExp;
 	/**システム開発経験 */
 	private Integer developmentExp;
 	/**SE経験 */

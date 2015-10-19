@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users {
+public class User {
 	/**スタッフID */
 	private String staffId;
 	/**名前 */
