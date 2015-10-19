@@ -2,26 +2,33 @@ package com.example.management.domain;
 
 import java.util.Date;
 
-import lombok.AllArgsConstructor;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
+
+import com.example.management.keyId.UsersLicenseKeyId;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
- * 取得資格.
- * @author okamoto
+ * 取得資格
+ * @author takumi.sato
  *
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@IdClass(value=UsersLicenseKeyId.class)
+@Entity
+@Table(name="usersLicense")
 public class UsersLicense {
-	/**スタッフID */
+	/** スタッフID */
+	@Id
 	private String staffId;
-	/**取得資格No */
+	/** 取得資格No */
+	@Id
 	private Integer usersLicenceNo;
-	/**資格者 */
+	/** 資格名 */
 	private String name;
-	/**習得年月日 */
-	private Date date;
-
+	/** 所得年月日*/
+	private Date acquireDate;
 }
