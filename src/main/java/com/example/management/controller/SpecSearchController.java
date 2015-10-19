@@ -1,9 +1,6 @@
 package com.example.management.controller;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.management.common.AgeEnum;
-import com.example.management.common.StateEnum;
 import com.example.management.domain.LanguageDefine;
 import com.example.management.domain.Spec;
+import com.example.management.logic.EnumLogic;
 import com.example.management.service.LanguageDefineService;
-import com.example.management.service.UserSearchService;
+import com.example.management.service.SpecSearchService;
 
 /**
  * スペック関連Controller
@@ -26,9 +22,9 @@ import com.example.management.service.UserSearchService;
 @Controller
 @Transactional
 @RequestMapping(value="search")
-public class UserSearchController {
+public class SpecSearchController {
 	@Autowired
-	private UserSearchService userSearchService;
+	private SpecSearchService userSearchService;
 	@Autowired
 	private LanguageDefineService languageDefineService;
 
@@ -47,12 +43,10 @@ public class UserSearchController {
 	public String search(Model model){
 		ArrayList<LanguageDefine> languageList = (ArrayList<LanguageDefine>)languageDefineService.findAll();
 		model.addAttribute("languageList", languageList);
+		model.addAttribute("stateMap", EnumLogic.getState());
+		model.addAttribute("ageMap", EnumLogic.getAge());
 		ArrayList<Spec> specList = (ArrayList<Spec>)userSearchService.findAll();
 		model.addAttribute("specList", specList);
-		
-		stateList(model);
-		
-		ageList(model);
 		
 		return "spec/searchTest";
 	}
@@ -71,35 +65,4 @@ public class UserSearchController {
 //		return search(model);
 //	}
 //	
-	/**
-	 * 状態フラグリスト.
-	 * @param model
-	 */
-	public void stateList(Model model) {
-		Map<Integer, String> stateMap = new LinkedHashMap<Integer, String>();
-		stateMap.put(null, "---");
-		stateMap.put(StateEnum.WAITING.getKey(), StateEnum.WAITING.getValue());
-		stateMap.put(StateEnum.SITE.getKey(), StateEnum.SITE.getValue());
-		stateMap.put(StateEnum.RETIREMENT.getKey() , StateEnum.RETIREMENT.getValue());
-		model.addAttribute("stateMap", stateMap);
-	}
-	
-	/**
-	 * 年代を取得する.
-	 * 
-	 * @param model
-	 */
-	public void ageList(Model model) {
-		Map<Integer, String> ageMap = new LinkedHashMap<Integer, String>();
-		ageMap.put(null, "---");
-		ageMap.put(AgeEnum.EARLY_TWENTIES.getKey(), AgeEnum.EARLY_TWENTIES.getValue());
-		ageMap.put(AgeEnum.LATE_TWENTIES.getKey(), AgeEnum.LATE_TWENTIES.getValue());
-		ageMap.put(AgeEnum.EARLY_THIRTIES.getKey(), AgeEnum.EARLY_THIRTIES.getValue());
-		ageMap.put(AgeEnum.LATE_THIRTIES.getKey(), AgeEnum.LATE_THIRTIES.getValue());
-		ageMap.put(AgeEnum.EARLY_FORTIES.getKey(), AgeEnum.EARLY_FORTIES.getValue());
-		ageMap.put(AgeEnum.LATE_FORTIES.getKey(), AgeEnum.LATE_FORTIES.getValue());
-		ageMap.put(AgeEnum.EARLY_FIFTIES.getKey(), AgeEnum.EARLY_FIFTIES.getValue());
-		ageMap.put(AgeEnum.LATE_FIFTIES.getKey(), AgeEnum.LATE_FIFTIES.getValue());
-		model.addAttribute("ageMap", ageMap);
-	}
 }
