@@ -11,7 +11,8 @@
 			name="SpecForm">
 			<h1 id="title">スペックシート登録</h1>
 
-			<p>名前：<form:input path="name" value="${spec.name}" /></p>
+			<p>姓：<form:input path="firstName" value="" /></p>
+			<p>名：<form:input path="lastName" value="" /></p>
 
 			<p>状況：
 			<form:select path="stateFlag">
@@ -158,8 +159,8 @@
 						
 					<!-- 開発時期 -->
 						<td rowspan="4">
-						<form:input path="startDay" />
-						～
+						<form:input path="startDay" /><br>
+						～<br>
 						<form:input path="finishDay" />
 						</td>
 						
@@ -176,7 +177,8 @@
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<textarea id="inputResponsible"></textarea>
+						<input type="button" value="担当工程" id="btnMini"
+							onclick="location.href='selectOS.html'" />
 						</td>
 						
 					<!-- 担当役割 -->
@@ -213,6 +215,7 @@
 					</tr>
 				</table>
 			</div>
+			<br>
 
 			<%-- <!-- 		繰り返し -->
 			<div class="inputExperience">

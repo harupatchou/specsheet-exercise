@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.management.domain.Spec;
+import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
 import com.example.management.logic.SpecLogic;
 
@@ -18,6 +19,11 @@ public class SpecController {
 	
 	@Autowired
 	private SpecLogic specLogic;
+	
+	//IDから取得したSpec情報格納
+	Spec spec = new Spec();
+	//IDから取得したUser情報格納
+	Users user = new Users();
 	
 	/**
 	 * SpecEditForm初期化
@@ -106,7 +112,7 @@ public class SpecController {
 		
 		//決め打ち
 		String test = "AP-202-0715";
-		spec = selectByStaffId(test);
+		selectByStaffId(test);
 		
 		model.addAttribute("spec",spec);
 		
@@ -120,11 +126,13 @@ public class SpecController {
 	 * @return
 	 * @throws Exception
 	 */
-	private Spec selectByStaffId(String staffId) {
-		Spec spec = new Spec();
+	private Boolean selectByStaffId(String staffId) {
+		spec = new Spec();
+		user = new Users();
 		//データの取得
 		spec = specLogic.selectByStaffId(staffId);
-		return spec;
+		user = null;
+		return true;
 	}
 	
 

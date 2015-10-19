@@ -14,7 +14,9 @@ public class SpecForm {
 	/**スタッフID*/
 	private String staffId;
 	/**氏名*/
-	private String name;
+	private String firstName;
+	/**氏名*/
+	private String lastName;
 	/**現場/待機フラグ*/
 	private Integer stateFlag;
 	/**編集時コメント*/
@@ -51,10 +53,10 @@ public class SpecForm {
 		private Integer teamNum;
 		
 	//開発期間
-		/**開発開始日時*/
-		private Date startDay;
-		/**開発終了日時*/
-		private Date finishDay;
+		/**開始日時*/
+		private String startDay;
+		/**終了日時*/
+		private String finishDay;
 		
 	//プロジェクト内容
 		
