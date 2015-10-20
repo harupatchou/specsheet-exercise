@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.management.domain.Users;
 import com.example.management.form.UserRegistForm;
 import com.example.management.logic.UserLogic;
-import com.example.management.service.UserRegistService;
+import com.example.management.service.UserEditService;
 
 /**
  * ユーザー登録関連コントローラー.
@@ -21,7 +21,7 @@ import com.example.management.service.UserRegistService;
 @RequestMapping(value = "userRegist")
 public class UserRegistController {
 	@Autowired
-	private UserRegistService userRegistService;
+	private UserEditService userEditService;
 	@Autowired
 	private UserLogic userLogic;
 	
@@ -72,7 +72,7 @@ public class UserRegistController {
 	@RequestMapping(value = "create")
 	public String create(UserRegistForm form, String flag, Model model){
 		if(flag.equals("はい")){
-			userRegistService.insert(form);
+			userEditService.insert(form);
 			return "/user/userRegistFinished";
 		}
 		return "/user/userRegist";

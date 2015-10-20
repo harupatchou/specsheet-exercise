@@ -11,7 +11,7 @@ import com.example.management.repository.UserRepository;
  * @author ueno
  */
 @Service
-public class UserRegistService {
+public class UserEditService {
 	@Autowired
 	private UserRepository userRepository;
 	
