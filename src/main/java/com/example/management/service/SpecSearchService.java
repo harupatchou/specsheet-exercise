@@ -190,7 +190,7 @@ public class SpecSearchService {
 			resultPage.setFullName(spec.getFirstName() + spec.getLastName());
 			resultPage.setStateFlag(EnumLogic.getState().get(spec.getStateFlag()));
 			resultPage.setRelatedTech(spec.getRelatedTech());
-			resultPage.setDivision(allExpResult(spec.getAllExp()));
+//			resultPage.setDivision(allExpResult(spec.getAllExp()));
 
 			resultPage.setLangList(getLanguageList(specList, spec.getStaffId()));
 			resultPage.setAgeRange(EnumLogic.getAge().get(spec.getAgeId()));
@@ -214,7 +214,7 @@ public class SpecSearchService {
 		String tempId = null;
 		for (Spec spec : specList) {
 			if (spec.getStaffId().equals(staffId)) {
-				languageList.add(spec.getLanguage());
+//				languageList.add(spec.getLanguage());
 				tempId = staffId;
 				continue;
 			}
@@ -233,14 +233,14 @@ public class SpecSearchService {
 	 * @param allExp
 	 * @return
 	 */
-	public Division allExpResult(Integer allExp) {
-		Integer allExpQuotient = allExp / 12;
-		Integer allExpOver = allExp % 12;
-
-		Division division = new Division();
-		division.setQuotient(allExpQuotient);
-		division.setOver(allExpOver);
-		return division;
-	}
+//	public Division allExpResult(Integer allExp) {
+//		Integer allExpQuotient = allExp / 12;
+//		Integer allExpOver = allExp % 12;
+//
+//		Division division = new Division();
+//		division.setQuotient(allExpQuotient);
+//		division.setOver(allExpOver);
+//		return division;
+//	}
 
 }
