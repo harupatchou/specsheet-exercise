@@ -1,5 +1,6 @@
 package com.example.management.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,5 @@ public class ProcessDefine {
 	private Integer id;
 	/**担当工程名 */
 	private String name;
+	
 }

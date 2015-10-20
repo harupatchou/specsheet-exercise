@@ -1,5 +1,6 @@
 package com.example.management.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OsDefine {
-	/**OSID */
+	/** OSID */
 	private Integer osId;
-	/**OS名 */
+	/** OS名 */
 	private String osName;
 }

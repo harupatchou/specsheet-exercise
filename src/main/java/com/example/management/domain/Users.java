@@ -16,9 +16,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 @Entity
 @Table(name="users")
+
 public class Users {
+
 	/**スタッフID */
 	@Id
 	private String staffId;

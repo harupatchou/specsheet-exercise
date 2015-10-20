@@ -1,5 +1,6 @@
 package com.example.management.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectLanguage {
-	/**スタッフID */
+	/** スタッフID */
 	private String staffId;
-	/**プロジェクトNo */
+	/** プロジェクトNo */
 	private Integer projectNo;
-	/**言語経験 */
+	/** 言語経験No */
 	private Integer languageExpNo;
+	
+	
 }

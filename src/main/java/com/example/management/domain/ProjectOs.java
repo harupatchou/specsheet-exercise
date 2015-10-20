@@ -1,5 +1,7 @@
 package com.example.management.domain;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +21,5 @@ public class ProjectOs {
 	private Integer	projectNo;
 	/**OS経験No */
 	private Integer osExpNo;
+	
 }
