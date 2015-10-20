@@ -28,6 +28,8 @@ public class SpecSearchController {
 	private SpecSearchService userSearchService;
 	@Autowired
 	private LanguageDefineService languageDefineService;
+	@Autowired
+	private EnumLogic enumLogic;
 
 	
 //	@ModelAttribute
@@ -44,8 +46,8 @@ public class SpecSearchController {
 	public String search(Model model){
 		ArrayList<LanguageDefine> languageList = (ArrayList<LanguageDefine>)languageDefineService.findAll();
 		model.addAttribute("languageList", languageList);
-		model.addAttribute("stateMap", EnumLogic.getState());
-		model.addAttribute("ageMap", EnumLogic.getAge());
+		model.addAttribute("stateMap", enumLogic.getStateMap());
+		model.addAttribute("ageMap", enumLogic.getAgeMap());
 		ArrayList<Spec> specList = (ArrayList<Spec>)userSearchService.findAll();
 		model.addAttribute("specList", specList);
 		

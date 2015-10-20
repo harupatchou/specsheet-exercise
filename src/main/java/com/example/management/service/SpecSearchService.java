@@ -1,15 +1,11 @@
 package com.example.management.service;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.management.common.AgeEnum;
-import com.example.management.common.StateEnum;
 import com.example.management.domain.LanguageDefine;
 import com.example.management.domain.Spec;
 import com.example.management.form.SpecSearchForm;
@@ -23,9 +19,12 @@ import com.example.management.repository.SpecSearchRepository;
 public class SpecSearchService {
 	@Autowired
 	private SpecSearchRepository specSearchRepository;
-	
 	@Autowired
 	private LanguageDefineRepository languageDefineRepository;
+	@Autowired
+	private EnumLogic enumLogic;
+	@Autowired
+	private ArrayListLogic arrayListLogic;
 	
 	/**
 	 * スペック情報全件取得
@@ -108,7 +107,7 @@ public class SpecSearchService {
 			langIdList.add(form.getLang1());
 			langIdList.add(form.getLang2());
 			langIdList.add(form.getLang3());
-			langIdList = ArrayListLogic.hIntCompact(langIdList);
+			langIdList = arrayListLogic.hIntCompact(langIdList);
 			ArrayList<String> langNameList = new ArrayList<>();
 			List<LanguageDefine> langList = languageDefineRepository.findAll();
 			for (LanguageDefine langDefine : langList) {
@@ -130,9 +129,9 @@ public class SpecSearchService {
 					}
 				}
 			}
-			return ArrayListLogic.hUnique((ArrayList<SpecSearchResultPage>)returnSpec);
+			return arrayListLogic.hSearchResultUnique((ArrayList<SpecSearchResultPage>)returnSpec);
 		}
-		return ArrayListLogic.hUnique((ArrayList<SpecSearchResultPage>)generatePage(specList));
+		return arrayListLogic.hSearchResultUnique((ArrayList<SpecSearchResultPage>)generatePage(specList));
 	}
 
 	// 開発関連技術
@@ -188,12 +187,12 @@ public class SpecSearchService {
 			resultPage.setFirstName(spec.getFirstName());
 			resultPage.setLastName(spec.getLastName());
 			resultPage.setFullName(spec.getFirstName() + spec.getLastName());
-			resultPage.setStateFlag(EnumLogic.getState().get(spec.getStateFlag()));
+			resultPage.setStateFlag(enumLogic.getStateMap().get(spec.getStateFlag()));
 			resultPage.setRelatedTech(spec.getRelatedTech());
-//			resultPage.setDivision(allExpResult(spec.getAllExp()));
+			resultPage.setDivision(allExpResult(spec.getAllExp()));
 
 			resultPage.setLangList(getLanguageList(specList, spec.getStaffId()));
-			resultPage.setAgeRange(EnumLogic.getAge().get(spec.getAgeId()));
+			resultPage.setAgeRange(enumLogic.getAgeMap().get(spec.getAgeId()));
 			resultPage.setUpdateDate(spec.getUpdateDate());
 			userSpecList.add(resultPage);
 
@@ -214,7 +213,7 @@ public class SpecSearchService {
 		String tempId = null;
 		for (Spec spec : specList) {
 			if (spec.getStaffId().equals(staffId)) {
-//				languageList.add(spec.getLanguage());
+				languageList.add(spec.getLanguage());
 				tempId = staffId;
 				continue;
 			}

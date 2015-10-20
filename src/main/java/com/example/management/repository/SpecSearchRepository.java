@@ -31,15 +31,15 @@ public class SpecSearchRepository {
 		String relatedTech = rs.getString("related_tech");
 		String appeal = rs.getString("appeal");
 		String nearestStation = rs.getString("nearest_station");
-		Integer serverNetworkExp = rs.getInt("server_network_exp");
-		Integer developmentExp = rs.getInt("development_exp");
-		Integer seExp = rs.getInt("se_exp");
-		Integer pgOperatorExp = rs.getInt("pg_operator_exp");
+//		Integer serverNetworkExp = rs.getInt("server_network_exp");
+//		Integer developmentExp = rs.getInt("development_exp");
+//		Integer seExp = rs.getInt("se_exp");
+//		Integer pgOperatorExp = rs.getInt("pg_operator_exp");
 		String comment = rs.getString("comment");
 		Date updateDate = rs.getDate("update_date");
 		String updateName = rs.getString("update_name");
 		return new Spec(staffId, firstName, lastName, ageId, sex, stateFlag, allExp, relatedTech ,appeal, nearestStation, 
-				serverNetworkExp, developmentExp, seExp, pgOperatorExp, comment, updateDate, updateName);
+				comment, updateDate, updateName);
 	};
 	
 	/**
@@ -47,14 +47,14 @@ public class SpecSearchRepository {
 	 * @return スペックシートデータ
 	 */
 	public List<Spec> findAllSpec() {
-		List<Spec> specList = jdbcTemplate.query("SELECT s.staff_id, s.age_id, u.sex, u.name, "
+		List<Spec> specList = jdbcTemplate.query("SELECT s.staff_id, s.age_id, u.sex, "
 				+ "u.first_name, u.last_name, s.state_flag, s.all_exp,ld.name AS lang_name,  a.age_range, "
-				+ "s.related_tech,s.appeal,s.nearest_station, s.server_network_exp, s.development_exp, "
-				+ "s.se_exp,s.pg_operator_exp,s.comment, s.update_date, s.update_name FROM users u "
+				+ "s.related_tech,s.appeal,s.nearest_station,s.comment, s.update_date, s.update_name "
+				+ "FROM users u "
 				+ "LEFT OUTER JOIN spec s ON s.staff_id=u.staff_id "
 				+ "LEFT OUTER JOIN age a ON s.age_id=a.id "
 				+ "LEFT OUTER JOIN language_exp le ON s.staff_id=le.staff_id "
-				+ "LEFT OUTER JOIN language_define ld ON le.no=ld.id ORDER BY u.name", SPEC_ROW_MAPPER);
+				+ "LEFT OUTER JOIN language_define ld ON le.no=ld.id ORDER BY u.first_name", SPEC_ROW_MAPPER);
 		return specList;
 	}
 	

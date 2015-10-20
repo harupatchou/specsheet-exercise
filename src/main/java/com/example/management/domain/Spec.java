@@ -42,14 +42,14 @@ public class Spec {
 	private String appeal;
 	/**最寄駅 */
 	private String nearestStation;
-	/**サーバ・NW経験 */
-	private Integer serverNetworkExp;
-	/**システム開発経験 */
-	private Integer developmentExp;
-	/**SE経験 */
-	private Integer seExp;
-	/**PG・作業員経験 */
-	private Integer pgOperatorExp;
+//	/**サーバ・NW経験 */
+//	private Integer serverNetworkExp;
+//	/**システム開発経験 */
+//	private Integer developmentExp;
+//	/**SE経験 */
+//	private Integer seExp;
+//	/**PG・作業員経験 */
+//	private Integer pgOperatorExp;
 	/**変更コメント */
 	private String comment;
 	/**更新日時 */
