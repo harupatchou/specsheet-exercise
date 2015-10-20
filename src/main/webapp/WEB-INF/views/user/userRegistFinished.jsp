@@ -9,13 +9,10 @@
 		
 <%--ここから下にコンテンツを挿入 --%>
 
-	 <h1>ログイン画面</h1>
-	 <p style="color: red"><form:errors path="userLoginForm" /></p>
-	 <form:form modelAttribute="userLoginForm" action="/userLogin/login">
-	 	<p>スタッフID：<form:input path="staffId"/></p>
-	 	<p>パスワード：<form:password path="password"/></p><br>
-	 	<input type="submit" value="ログイン" />
-	 </form:form>
+	<h1>ユーザー情報登録画面</h1>
+		
+	<h2>登録完了しました</h2>
+	<input type="button" value="メニューに戻る" onclick="location.href='/userLogin/flowMenu'"/>
 
 <%--ここから上にコンテンツを挿入 --%>
 

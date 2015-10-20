@@ -9,13 +9,9 @@
 		
 <%--ここから下にコンテンツを挿入 --%>
 
-	 <h1>ログイン画面</h1>
-	 <p style="color: red"><form:errors path="userLoginForm" /></p>
-	 <form:form modelAttribute="userLoginForm" action="/userLogin/login">
-	 	<p>スタッフID：<form:input path="staffId"/></p>
-	 	<p>パスワード：<form:password path="password"/></p><br>
-	 	<input type="submit" value="ログイン" />
-	 </form:form>
+メニュー
+
+<a href="/userRegist/">ユーザー新規登録</a>
 
 <%--ここから上にコンテンツを挿入 --%>
 

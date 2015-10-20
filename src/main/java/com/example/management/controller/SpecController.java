@@ -14,7 +14,6 @@ import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
 
 @Controller
-@Transactional
 @RequestMapping(value = "/spec")
 public class SpecController {
 	
