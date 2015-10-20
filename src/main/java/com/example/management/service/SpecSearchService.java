@@ -30,8 +30,8 @@ public class SpecSearchService {
 	 * スペック情報全件取得
 	 * @return
 	 */
-	public List<Spec> findAll() {
-		return specSearchRepository.findAllSpec();
+	public List<SpecSearchResultPage> findAll() {
+		return generatePage(specSearchRepository.findAllSpec());
 	}
 
 	/**
