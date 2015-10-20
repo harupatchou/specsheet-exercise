@@ -24,16 +24,14 @@ public class Spec {
 	/**スタッフID */
 	@Id
 	private String staffId;
-	/**名字 *//*
+	/**名字 */
 	private String firstName;
-	*//**名前 *//*
-	private String lastName;*/
-	
-	private String name;
+	/**名前 */
+	private String lastName;
 	/**年代ID */
 	private Integer ageId;
 	/**性別 */
-	private Integer sex;
+	private String sex;
 	/**状態フラグ */
 	private Integer stateFlag;
 	/**IT全体経験 */

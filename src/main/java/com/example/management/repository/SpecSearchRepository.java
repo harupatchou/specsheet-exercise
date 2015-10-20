@@ -25,7 +25,7 @@ public class SpecSearchRepository {
 		String firstName = rs.getString("first_name");
 		String lastName = rs.getString("last_name");
 		Integer ageId = rs.getInt("age_id");
-		Integer sex = rs.getInt("sex");
+		String sex = rs.getString("sex");
 		Integer stateFlag = rs.getInt("state_flag");
 		Integer allExp = rs.getInt("all_exp");
 		String relatedTech = rs.getString("related_tech");
@@ -47,8 +47,8 @@ public class SpecSearchRepository {
 	 * @return スペックシートデータ
 	 */
 	public List<Spec> findAllSpec() {
-		List<Spec> specList = jdbcTemplate.query("SELECT s.staff_id, s.age_id, u.sex, u.name, s.state_flag, "
-				+ "s.all_exp,ld.name AS lang_name,  a.age_range, "
+		List<Spec> specList = jdbcTemplate.query("SELECT s.staff_id, s.age_id, u.sex, u.name, "
+				+ "u.first_name, u.last_name, s.state_flag, s.all_exp,ld.name AS lang_name,  a.age_range, "
 				+ "s.related_tech,s.appeal,s.nearest_station, s.server_network_exp, s.development_exp, "
 				+ "s.se_exp,s.pg_operator_exp,s.comment, s.update_date, s.update_name FROM users u "
 				+ "LEFT OUTER JOIN spec s ON s.staff_id=u.staff_id "
