@@ -10,21 +10,38 @@
 <%--ここから下にコンテンツを挿入 --%>
 
 		<h1>ユーザー新規登録画面</h1>
-		<form:form>
+		 <p style="color: red"><form:errors path="userRegistForm" /></p>
+		<form:form modelAttribute="userRegistForm" action="/userRegist/flowConfirmation">
 			<p>姓：<form:input path="firstName"/></p>
 			<p>名：<form:input path="lastName"/></p>
 			<p>セイ：<form:input path="firstPhonetic"/></p>
 			<p>メイ：<form:input path="lastPhonetic"/></p>
-			<p>性別：<form:input path="gender"/></p>
+			<p>性別：
+				<form:select path="sex">
+					<option value="男">男</option>
+					<c:if test="${userRegistForm.sex != '女'}">
+						<option value="女">女</option>
+					</c:if>
+					<c:if test="${userRegistForm.sex == '女'}">
+						<option value="女" selected>女</option>
+					</c:if>
+				</form:select>
+			</p>
 		 	<p>スタッフID：<form:input path="staffId"/></p>
 	 		<p>権限：
 	 			<form:select path="authorityId">
-					<option>管理者</option>
-					<option>ユーザー</option>
+					<option value="1">ユーザー</option>
+					<c:if test="${userRegistForm.authorityId != 2}">
+						<option value="2">管理者</option>
+					</c:if>
+					<c:if test="${userRegistForm.authorityId == 2}">
+						<option value="2" selected>管理者</option>
+					</c:if>
 				</form:select><br>
 			</p>
-	 		<input type="button" value="登録" onclick="location.href='menu.html'"/>
-			<input class="button" type="button" value="メニューに戻る" onclick="location.href='/loginUser/toTheMenu'"/>
+				<input type="submit" value="登録">
+	 <%-- 		<input type="button" value="登録" onclick="location.href='/userRegist/flowConfirmation'"/> --%>
+			<input class="button" type="button" value="メニューに戻る" onclick="location.href='/userLogin/flowMenu'"/>
 		</form:form>		
 		
 <%--ここから上にコンテンツを挿入 --%>

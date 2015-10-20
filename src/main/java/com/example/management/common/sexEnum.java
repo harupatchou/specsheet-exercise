@@ -7,20 +7,20 @@ package com.example.management.common;
  */
 public enum sexEnum {
 	// 定数一覧、DayOfWeekのコンストラクタを使用
-	MAN(0, "男"),
-    WOMAN(1,"女"),
+	MAN("男", "男"),
+    WOMAN("女","女"),
     ;
 
 	// 定数に含めるフィールド、コンストラクタ、メソッドを定義
 	/** key値 */
-	private final int key;
+	private final String key;
 	/** value値 */
     private final String value;
     
     /**
      * コンストラクタ。
      */
-    private sexEnum(final int key, final String value) {
+    private sexEnum(final String key, final String value) {
         this.key = key;
         this.value = value;
     }
@@ -37,7 +37,7 @@ public enum sexEnum {
      * 定数に含まれるkey値を返します。
      * @return key値
      */
-    public int getKey() {
+    public String getKey() {
         return key;
     }
     
@@ -46,7 +46,7 @@ public enum sexEnum {
      * @param key key
      * @return 渡されたkeyを含むenum
      */
-    public static sexEnum of(int key){
+    public static sexEnum of(String key){
 		for (sexEnum dayOfWeek : sexEnum.values()) {
 			if (dayOfWeek.key == key) {
 				return dayOfWeek;
