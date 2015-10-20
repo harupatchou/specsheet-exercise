@@ -2,7 +2,7 @@ package com.example.management.common;
 
 /**
  * 年齢を表す列挙型.
- * @author ueno
+ * @author okamoto
  *
  */
 public enum AgeEnum {
