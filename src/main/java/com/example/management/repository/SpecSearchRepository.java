@@ -31,10 +31,6 @@ public class SpecSearchRepository {
 		String relatedTech = rs.getString("related_tech");
 		String appeal = rs.getString("appeal");
 		String nearestStation = rs.getString("nearest_station");
-//		Integer serverNetworkExp = rs.getInt("server_network_exp");
-//		Integer developmentExp = rs.getInt("development_exp");
-//		Integer seExp = rs.getInt("se_exp");
-//		Integer pgOperatorExp = rs.getInt("pg_operator_exp");
 		String comment = rs.getString("comment");
 		Date updateDate = rs.getDate("update_date");
 		String updateName = rs.getString("update_name");
