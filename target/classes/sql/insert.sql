@@ -37,7 +37,7 @@ INSERT INTO language_define VALUES('7','C++');
 INSERT INTO language_define VALUES('8','C');
 */
 INSERT INTO language_define VALUES('0','その他');
-INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'JAVA');
+INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'Java');
 INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'PHP');
 INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'Ruby');
 INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'Scala');

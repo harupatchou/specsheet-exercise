@@ -15,6 +15,7 @@ public class EnumLogicImpl implements EnumLogic {
 	@Override
 	public Map<Integer, String> getStateMap() {
 		Map<Integer, String> stateMap = new LinkedHashMap<Integer, String>();
+		stateMap.put(null, "---");
 		stateMap.put(StateEnum.WAITING.getKey(), StateEnum.WAITING.getValue());
 		stateMap.put(StateEnum.SITE.getKey(), StateEnum.SITE.getValue());
 		stateMap.put(StateEnum.RETIREMENT.getKey(), StateEnum.RETIREMENT.getValue());
@@ -24,6 +25,7 @@ public class EnumLogicImpl implements EnumLogic {
 	@Override
 	public Map<Integer, String> getAgeMap() {
 		Map<Integer, String> ageMap = new LinkedHashMap<Integer, String>();
+		ageMap.put(null, "---");
 		ageMap.put(AgeEnum.EARLY_TWENTIES.getKey(), AgeEnum.EARLY_TWENTIES.getValue());
 		ageMap.put(AgeEnum.LATE_TWENTIES.getKey(), AgeEnum.LATE_TWENTIES.getValue());
 		ageMap.put(AgeEnum.EARLY_THIRTIES.getKey(), AgeEnum.EARLY_THIRTIES.getValue());
