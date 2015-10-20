@@ -25,8 +25,8 @@ public class Users {
 	/**スタッフID */
 	@Id
 	private String staffId;
-	/**名前 */
-	private String name;
+	/**性別 */
+	private String sex;
 	/**姓 */
 	private String firstName;
 	/**名 */
