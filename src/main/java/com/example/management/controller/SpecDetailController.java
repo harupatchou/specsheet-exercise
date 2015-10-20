@@ -54,7 +54,7 @@ public class SpecDetailController {
 	 */
 	@RequestMapping(value = "findByStaffId"/*, method = RequestMethod.POST*/)
 	public String findByStaffId(String staffId,Model model){
-		//1件のスペックシート情報が返ってくる
+		//1件のspec型、スペックシート情報が返ってくる
 		Spec spec = specDetailService.findByStaffId(staffId);
 		
 		//↑がnullだった場合、エラー文を入れてフォワード
@@ -66,7 +66,7 @@ public class SpecDetailController {
 		model.addAttribute("spec",spec);
 
 		ageList(model, spec);
-//		sexList(model, spec);
+//		sexList(model, user);
 //		model.addAttribute("allExpDivision", specDetailService.allExpResult(staffId));
 //		model.addAttribute("serverNetworkExpDivision", specDetailService.serverNetworkExpResult(staffId));
 //		model.addAttribute("developmentExpDivision", specDetailService.developmentExpResult(staffId));
@@ -94,12 +94,12 @@ public class SpecDetailController {
 	 * @param model
 	 * @param spec
 	 */
-//	private void sexList(Model model, Spec spec) {
+//	private void sexList(Model model, Users users) {
 //		Map<String, String> sexMap = new LinkedHashMap<String, String>();
 //		sexMap.put(sexEnum.MAN.getKey(), sexEnum.MAN.getValue());
 //		sexMap.put(sexEnum.WOMAN.getKey(), sexEnum.WOMAN.getValue());
 //		
-//		model.addAttribute("sex", sexMap.get(spec.getSex()));
+//		model.addAttribute("sex", sexMap.get(users.getSex()));
 //	}
 
 	/**
