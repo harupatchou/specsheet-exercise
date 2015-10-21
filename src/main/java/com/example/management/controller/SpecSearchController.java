@@ -34,7 +34,6 @@ public class SpecSearchController {
 	private LanguageDefineService languageDefineService;
 	@Autowired
 	private EnumLogic enumLogic;
-
 	
 	@ModelAttribute
 	public SpecSearchForm setUpForm(){

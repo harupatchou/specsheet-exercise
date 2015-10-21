@@ -153,6 +153,10 @@ public class SpecSearchService {
 		}
 		List<SpecSearchResultPage> tempSpecList = new ArrayList<>();
 		for (SpecSearchResultPage spec : specList) {
+			if (spec.getUpdateDate() == null) {
+				//スペックシート未登録の場合次のループへ
+				continue;
+			}
 			// 開発関連技術をリストに変換
 			ArrayList<String> techList = new ArrayList<>();
 			String userTech = spec.getRelatedTech();
@@ -210,11 +214,11 @@ public class SpecSearchService {
 	}
 
 	/**
-	 * 言語取得
+	 * 対象スタッフIDの経験言語をリスト化する
 	 * 
 	 * @param specList
 	 * @param staffId
-	 * @return 言語
+	 * @return 経験言語リスト
 	 */
 	private ArrayList<String> generateLanguageList(List<SpecSearchResultPage> specList, String staffId) {
 		ArrayList<String> languageList = new ArrayList<>();
