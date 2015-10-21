@@ -9,9 +9,29 @@
 		
 <%--ここから下にコンテンツを挿入 --%>
 
-メニュー
+<h2>メニュー</h2>
 
-<a href="/userRegist/">ユーザー新規登録</a>
+		<c:if test="${user.authorityId  != null}">
+
+<%-- 			<li><a href="/specedit/?staffId=${user.staffId}">スペックシート登録・編集</a><br></li> --%>
+			<li><a href="/spec/registIndex">スペックシート登録・編集</a><br></li>
+			<li><a href="/detail/?staffId=${user.staffId}">スペックシート詳細</a><br></li>
+
+		</c:if>
+
+		<c:if test="${user.authorityId  == 2}">
+			<li><a href="/search/">スペックシート検索</a><br></li>
+			<li><a href="/system/">システム編集</a><br></li>
+			<li><a href="/userRegist/">ユーザー新規登録</a><br></li>
+		</c:if>
+
+		<c:if test="${user.authorityId  != null}">
+			<li><a href="/userEdit/">ユーザー編集</a><br></li>
+		</c:if>
+
+		<c:if test="${user != null}">
+			<li><a href="javascript:disp()" >ログアウト</a></li>
+		</c:if>
 
 <%--ここから上にコンテンツを挿入 --%>
 

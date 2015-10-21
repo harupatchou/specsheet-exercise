@@ -112,7 +112,6 @@
 			</tr>
 			<c:forEach var="spec" items="${specList}">
 			<tr>
-<%-- 			<td><c:out value="${spec}"/></td> --%>
 				<c:if test="${spec.updateDate == null}">
 					<td><c:out value="${spec.fullName}"/></td>
 					<td colspan="6" align="center">※スペックシート未登録※</td>
