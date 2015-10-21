@@ -95,7 +95,10 @@
 	 	</form:form>
 	 	
 	 	<!-- 		検索結果 -->
-	 	<h2>検索結果</h2>     全<c:out value="${specList.size()}"/>件
+	 	<h2>検索結果</h2>
+<%-- 	 	<c:if test="${specList != null && specList.size() >= 0}" --%>
+	 		全　<c:out value="${specList.size()}"/>　件
+<%-- 	 	</c:if> --%>
 		<table class="speckDetailTable">
 			<tr>
 				<th>名前 </th>
@@ -110,41 +113,55 @@
 			<c:forEach var="spec" items="${specList}">
 			<tr>
 <%-- 			<td><c:out value="${spec}"/></td> --%>
-				<td><a href="/detail/?serchStaffId=${spec.staffId}"><c:out value="${spec.fullName}"/></a></td>
-				<td><c:out value="${spec.state}"/></td>
-				<td>
-				<c:forEach var="lang" items="${spec.langList}" varStatus="langStatus">
-					<c:out value="${lang}"/>
-					<c:if test="${langStatus.last == false}">
-					,				
-					</c:if>
-				</c:forEach>
-				
-				 </td>
-				<td><c:out value="${spec.relatedTech}"/> </td>
-				<td>
-				<c:if test="${spec.allExpArray[0] > 0 && spec.allExpArray[1] > 0}">
-				<c:out value="${spec.allExpArray[0]}"/>年<c:out value="${spec.allExpArray[1]}"/>か月
+				<c:if test="${spec.updateDate == null}">
+					<td><c:out value="${spec.fullName}"/></td>
+					<td colspan="6" align="center">※スペックシート未登録※</td>
+					<td>
+						<form:form action="/userEdit/select?id=${spec.staffId}" method="post">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<input type="submit" name="form" value="ユーザー編集" />
+						</form:form>
+						<form:form >
+							<input type="submit" name="form" value="スペック編集" disabled="disabled"/>
+						</form:form>
+					</td>
 				</c:if>
-				<c:if test="${spec.allExpArray[0] > 0 && spec.allExpArray[1] == 0}">
-				<c:out value="${spec.allExpArray[0]}"/>年
+				<c:if test="${spec.updateDate != null}">
+					<td><a href="/detail/?serchStaffId=${spec.staffId}"><c:out value="${spec.fullName}"/></a></td>
+					<td><c:out value="${spec.state}"/></td>
+					<td>
+						<c:forEach var="lang" items="${spec.langList}" varStatus="langStatus">
+							<c:out value="${lang}"/>
+							<c:if test="${langStatus.last == false}">
+								,
+							</c:if>
+						</c:forEach>		
+					</td>
+					<td><c:out value="${spec.relatedTech}"/> </td>
+					<td>
+						<c:if test="${spec.allExpArray[0] > 0 && spec.allExpArray[1] > 0}">
+							<c:out value="${spec.allExpArray[0]}"/>年<c:out value="${spec.allExpArray[1]}"/>か月
+						</c:if>
+						<c:if test="${spec.allExpArray[0] > 0 && spec.allExpArray[1] == 0}">
+							<c:out value="${spec.allExpArray[0]}"/>年
+						</c:if>
+						<c:if test="${spec.allExpArray[0] == 0}">
+							<c:out value="${spec.allExpArray[1]}"/>か月
+						</c:if> 
+					</td>
+					<td><c:out value="${spec.ageRange}"/> </td>
+					<td><c:out value="${spec.updateDate}"/> </td>
+					<td>
+						<form:form action="/userEdit/select?id=${spec.staffId}" method="post">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<input type="submit" name="form" value="ユーザー編集" />
+						</form:form>
+						<form:form action="/specedit/editFlow?staffId=${spec.staffId}" method="post">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<input type="submit" name="form" value="スペック編集" />
+						</form:form>
+					</td>
 				</c:if>
-				<c:if test="${spec.allExpArray[0] == 0}">
-				<c:out value="${spec.allExpArray[1]}"/>か月
-				</c:if> 
-				</td>
-				<td><c:out value="${spec.ageRange}"/> </td>
-				<td><c:out value="${spec.updateDate}"/> </td>
-				<td>
-				<form:form action="/userEdit/select?id=${spec.staffId}" method="post">
-				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-				<input type="submit" name="form" value="ユーザー編集" />
-				</form:form>
-				<form:form action="/specedit/editFlow?staffId=${spec.staffId}" method="post">
-				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-				<input type="submit" name="form" value="スペック編集" />
-				</form:form>
-				</td>
 			</tr>
 		</c:forEach>
 		</table><br>
