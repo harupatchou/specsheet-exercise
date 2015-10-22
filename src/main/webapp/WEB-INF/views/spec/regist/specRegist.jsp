@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<script src="/js/SpecSheet.js"></script>
+<script src="/js/spec/SpecSheet.js"></script>
+<script src="/js/spec/windowsOpen.js"></script>
+<script src="/js/lib/jquery-2.1.4.min.js"></script>
 <c:import url="/WEB-INF/views/common/layout.jsp">
 	<c:param name="content">
 
@@ -90,7 +92,7 @@
 			<!-- スキル要約 -->
 			<div class="inputSkill">
 				<table class="speckDetailTable">
-					<tr>
+					<tr class="InputTr">
 						<th colspan="9">スキル要約 <input type="button" value="行追加" /> <input
 							type="button" value="最終行削除" />
 						</th>
@@ -137,12 +139,18 @@
 			<!--開発経験 -->
 			<!--繰り返し -->
 
-			<div class="inputExperience">
 				<table class="speckDetailTable">
 					<tr>
-						<th colspan="8">開発経験 <input type="button" value="行追加" id="detailAdd" /><input type="button" value="行削除" />
+						<th colspan="8">
+						開発経験 
+						<input type="button" value="行追加" id="detailAdd" 
+						onclick="AddDetail('speckTable')" />
+						<input type="button" value="行削除" id="deleteAdd" 
+						onclick="DeleteDetail('speckTable')" />
 						</th>
 					</tr>
+				</table>
+				<table class="speckDetailTable">
 					<tr>
 						<th>No.</th>
 						<th>期間</th>
@@ -152,10 +160,13 @@
 						<th>担当役割</th>
 						<th>規模</th>
 					</tr>
-					<tr>
+				</table>
+				<table id="speckTable" class="speckDetailTable">
+				<tbody class="speckDetailTable">
+					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
-						<td rowspan="5">1</td>
-						
+						<td rowspan="5" class="proNo">1</td>
+						<form:input type="hidden" path="projectNo" value="1" />
 					<!-- 開発時期 -->
 						<td rowspan="4">
 						<form:input path="startDay" /><br>
@@ -165,13 +176,13 @@
 						
 					<!-- プロジェクト概要 -->
 						<td rowspan="4">
-						<form:textarea path="overView" rows="10" cols="12" />
+						<form:textarea path="overview" rows="10" cols="12" />
 						</td>
 						
 					<!-- OS -->
 						<th>OS</th>
 						<td><input type="button" value="OS選択" id="btnMini"
-							onclick="location.href='selectOS.html'" />
+							onclick="return openWin('/spec/osWindow')" />
 						</td>
 					
 					<!-- 担当工程 -->
@@ -212,8 +223,9 @@
 						<th class="tallHeight">作業内容</th>
 						<td colspan="6"><form:textarea path="content" id="inputWorkDetail"></form:textarea></td>
 					</tr>
+				</tbody>
+				
 				</table>
-			</div>
 			<br>
 
 			<!-- 		資格要約 -->

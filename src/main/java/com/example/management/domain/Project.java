@@ -1,6 +1,14 @@
 package com.example.management.domain;
 
-import java.sql.Date;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +32,7 @@ public class Project {
 	/**終了期間 */
 	private Date finishDate;
 	/**プロジェクト概要 */
-	private String overtview;
+	private String overview;
 	/**チーム人数 */
 	private String teamNum;
 	/**全体人数 */

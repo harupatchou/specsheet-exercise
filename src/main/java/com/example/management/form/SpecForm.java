@@ -50,9 +50,9 @@ public class SpecForm {
 	/** 開発経験テーブル */
 	//人数
 		/**チーム人数*/
-		private Integer teamNum;
+		private String teamNum;
 		/**全体人数*/
-		private Integer allNum;
+		private String allNum;
 		
 	//開発期間
 		/**開始日時*/
@@ -61,8 +61,10 @@ public class SpecForm {
 		private String finishDay;
 		
 	//プロジェクト詳細		
+		/**ポロジェクト番号*/
+		private String projectNo;
 		/**プロジェクト概要*/
-		private String overView;
+		private String overview;
 		/**OS*/
 		private String os;
 		/**言語*/

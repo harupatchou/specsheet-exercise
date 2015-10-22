@@ -8,13 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
-import com.example.management.page.SpecDetailDevelopmentRelatedTechnologyPage;
 import com.example.management.page.SpecDetailExpBreakdownPage;
-import com.example.management.page.SpecDetailLanguagePage;
 import com.example.management.page.SpecDetailLicensePage;
-import com.example.management.page.SpecDetailOsPage;
-import com.example.management.page.SpecDetailProcessPage;
-import com.example.management.page.SpecDetailSkillsSummaryPage;
 import com.example.management.repository.SpecDetailRepository;
 
 /**
