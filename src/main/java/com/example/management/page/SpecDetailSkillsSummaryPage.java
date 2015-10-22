@@ -1,22 +1,17 @@
-package com.example.management.domain;
-
+package com.example.management.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 担当工程定義.
+ * スキル要約を表示するためのクラス.
  * @author okamoto
- *
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProcessDefine {
-	/**担当工程ID */
-	private Integer id;
-	/**担当工程名 */
+public class SpecDetailSkillsSummaryPage {
+	/**スキル要約名 */
 	private String name;
-	
 }

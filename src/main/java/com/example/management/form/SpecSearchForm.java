@@ -15,16 +15,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SpecSearchForm {
-	/**氏名*/
-	private String name;
+	/**氏*/
+	private String firstName;
+	/**名*/
+	private String lastName;
 	/**現場・待機フラグ*/
 	private Integer stateFlag;
 	/**経験言語*/
-	private Integer langList;
+	private Integer lang1;
 	/**開発関連技術*/
-	private Integer langList2;
+	private Integer lang2;
 	/**開発関連技術*/
-	private Integer langList3;
+	private Integer lang3;
 	/**開発関連技術*/
 	private String techList;
 	/**開発関連技術のリスト*/
@@ -34,9 +36,9 @@ public class SpecSearchForm {
 	/**年代ID*/
 	private Integer id;
 	/**開発技術1*/
-	private String techFirst;
+	private String tech1;
 	/**開発技術2*/
-	private String techSecond;
+	private String tech2;
 	/**開発技術3*/
-	private String techThird;
+	private String tech3;
 }

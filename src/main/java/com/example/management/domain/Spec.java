@@ -42,4 +42,9 @@ public class Spec {
 	private Date updateDate;
 	/**更新者名 */
 	private String updateName;
+	
+	/**IT全体経験の年数 */
+	private Integer year;
+	/**IT全体経験の月数 */
+	private Integer month;
 }

@@ -8,4 +8,5 @@ import com.example.management.domain.Spec;
 @Repository
 public interface SpecRepository extends JpaRepository<Spec,String> {
 
+	
 }

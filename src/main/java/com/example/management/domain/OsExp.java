@@ -1,5 +1,6 @@
 package com.example.management.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,10 +9,11 @@ import lombok.NoArgsConstructor;
  * OS経験.
  * @author okamoto
  *
+ *
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+ @NoArgsConstructor
+ @AllArgsConstructor
 public class OsExp {
 	/**スタッフID */
 	private String staffId;
@@ -23,4 +25,5 @@ public class OsExp {
 	private String other;
 	/**経験月数 */
 	private Integer monthOfExp;
+	
 }

@@ -1,5 +1,7 @@
 package com.example.management.domain;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,4 +27,5 @@ public class LanguageExp {
 	private Integer expFlag;
 	/**経験月数 */
 	private Integer monthOfExp;
+	
 }
