@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.management.domain.Users;
-import com.example.management.form.UserLoginForm;
 import com.example.management.logic.UserLogic;
 import com.example.management.service.UserService;
 
@@ -24,8 +23,8 @@ public class UserLogicImpl implements UserLogic{
 	
 	 //スタッフID・パスワードが一致する個人情報取得
 	@Override
-    public Users selectByStaffIdAndPassword(UserLoginForm form){
-		Users user = userService.selectByStaffIdAndPassword(form);
+    public Users selectByStaffIdAndPassword(String staffId, String password){
+		Users user = userService.selectByStaffIdAndPassword(staffId, password);
 		return user;
 	}
 

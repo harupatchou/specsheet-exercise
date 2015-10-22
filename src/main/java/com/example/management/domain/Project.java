@@ -24,7 +24,7 @@ public class Project {
 	/**終了期間 */
 	private Date finishDate;
 	/**プロジェクト概要 */
-	private String overtview;
+	private String overview;
 	/**チーム人数 */
 	private String teamNum;
 	/**全体人数 */

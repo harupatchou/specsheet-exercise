@@ -9,7 +9,7 @@
 		
 <%--ここから下にコンテンツを挿入 --%>
 
-<h2>メニュー</h2>
+		<h2>メニュー</h2>
 
 		<c:if test="${user.authorityId  != null}">
 
@@ -26,12 +26,13 @@
 		</c:if>
 
 		<c:if test="${user.authorityId  != null}">
-			<li><a href="/userEdit/">ユーザー編集</a><br></li>
+			<li><a href="/userEdit/?staffId=${user.staffId}">ユーザー編集</a><br></li>
 		</c:if>
 
 		<c:if test="${user != null}">
 			<li><a href="javascript:disp()" >ログアウト</a></li>
 		</c:if>
+
 
 <%--ここから上にコンテンツを挿入 --%>
 

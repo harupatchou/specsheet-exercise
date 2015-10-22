@@ -19,7 +19,7 @@ import com.example.management.logic.UserLogic;
  */
 @Controller
 @SessionAttributes("user")
-@RequestMapping(value = "userLogin")
+@RequestMapping(value = "/")
 public class UserLoginController {
 	@Autowired
 	private UserLogic userLogic;
@@ -51,7 +51,7 @@ public class UserLoginController {
 			return index();
 		}
 		//ユーザー情報取得
-		Users user = userLogic.selectByStaffIdAndPassword(form);
+		Users user = userLogic.selectByStaffIdAndPassword(form.getStaffId(), form.getPassword());
 		//null時(不一致)にエラーメッセージ
 		if(user == null){
 			ObjectError error = new ObjectError("loginError", "メールアドレスまたはパスワードが違います。");

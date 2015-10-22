@@ -11,7 +11,7 @@
 
 		<h1>ユーザー新規登録画面</h1>
 		 <p style="color: red"><form:errors path="userRegistForm" /></p>
-		<form:form modelAttribute="userRegistForm" action="/userRegist/flowConfirmation">
+		<form:form modelAttribute="userRegistForm" action="/userRegist/flowConfirm">
 			<p>姓：<form:input path="firstName"/></p>
 			<p>名：<form:input path="lastName"/></p>
 			<p>セイ：<form:input path="firstPhonetic"/></p>
@@ -39,9 +39,8 @@
 					</c:if>
 				</form:select><br>
 			</p>
-				<input type="submit" value="登録">
-	 <%-- 		<input type="button" value="登録" onclick="location.href='/userRegist/flowConfirmation'"/> --%>
-			<input class="button" type="button" value="メニューに戻る" onclick="location.href='/userLogin/flowMenu'"/>
+			<input type="submit" value="登録">
+			<input class="button" type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 		</form:form>		
 		
 <%--ここから上にコンテンツを挿入 --%>

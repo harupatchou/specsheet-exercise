@@ -3,6 +3,7 @@ package com.example.management.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.management.form.UserEditForm;
 import com.example.management.form.UserRegistForm;
 import com.example.management.repository.UserRepository;
 
@@ -24,5 +25,13 @@ public class UserEditService {
 	public void insert(UserRegistForm form){
 		//ユーザー情報登録
 		userRepository.insert(form);
+	}
+	
+	/**
+	 * ユーザー情報更新.
+	 * @author ueno
+	 */
+	public void update(UserEditForm form){
+		userRepository.update(form);
 	}
 }

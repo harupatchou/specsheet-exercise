@@ -10,33 +10,33 @@ import lombok.NoArgsConstructor;
 
 /**
  * ユーザ.
+ * 
  * @author okamoto
  *
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
-@Table(name="users")
-
+@Table(name = "users")
 public class Users {
 
-	/**スタッフID */
+	/** スタッフID */
 	@Id
 	private String staffId;
-	/**性別 */
+	/** 性別 */
 	private String sex;
-	/**姓 */
+	/** 姓 */
 	private String firstName;
-	/**名 */
+	/** 名 */
 	private String lastName;
-	/**姓(ﾌﾘｶﾞﾅ) */
+	/** 姓(ﾌﾘｶﾞﾅ) */
 	private String firstPhonetic;
-	/**名(ﾌﾘｶﾞﾅ) */
+	/** 名(ﾌﾘｶﾞﾅ) */
 	private String lastPhonetic;
-	/**権限ID */
+	/** 権限ID */
 	private Integer authorityId;
-	/**パスワード */
-	private String password;	
+	/** パスワード */
+	private String password;
+
 }
