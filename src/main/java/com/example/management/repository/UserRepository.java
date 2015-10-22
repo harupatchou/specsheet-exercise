@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.management.domain.Users;
-import com.example.management.form.UserLoginForm;
+import com.example.management.form.UserEditForm;
 import com.example.management.form.UserRegistForm;
 
 /**
@@ -37,7 +37,6 @@ public class UserRepository {
 	
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
-	
 	
 	/**
 	 * ユーザー情報全件取得.
@@ -69,9 +68,9 @@ public class UserRepository {
 	 * @author ueno
 	 * @return ユーザー情報
 	 */
-	public Users findByStaffIdAndPassword(UserLoginForm form){
+	public Users findByStaffIdAndPassword(String staffId, String password){
 		try{
-			SqlParameterSource param = new BeanPropertySqlParameterSource(form);
+			SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId).addValue("password", password);
 			Users user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE staff_id=:staffId AND password=:password", param, USER_ROW_MAPPER);
 			return user;
 		}catch(DataAccessException e){
@@ -82,11 +81,20 @@ public class UserRepository {
 	/**
 	 * ユーザー情報新規登録.
 	 * @author ueno
-	 * @param form
 	 */
 	public void insert(UserRegistForm form){
-			SqlParameterSource param = new BeanPropertySqlParameterSource(form);
-			jdbcTemplate.update("INSERT INTO users(staff_id, sex, first_name, last_name, first_phonetic, last_phonetic, authority_id, password)"
-					+ " values(:staffId, :sex, :firstName, :lastName, :firstPhonetic, :lastPhonetic, :authorityId,'boost2000') ", param);
+		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
+		jdbcTemplate.update("INSERT INTO users(staff_id, sex, first_name, last_name, first_phonetic, last_phonetic, authority_id, password)"
+				+ " values(:staffId, :sex, :firstName, :lastName, :firstPhonetic, :lastPhonetic, :authorityId,'boost2000') ", param);
+	}
+	
+	/**
+	 * ユーザー情報更新.
+	 * @author ueno
+	 */
+	public void update(UserEditForm form){
+		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
+		jdbcTemplate.update("UPDATE users SET staff_id=:staffId, sex=:sex, first_name=:firstName, last_name=:lastName, first_Phonetic=:firstPhonetic,"
+				+ "last_Phonetic=:lastPhonetic, authority_id=:authorityId, password=:newPassword WHERE staff_id=:tempStaffId", param);
 	}
 }

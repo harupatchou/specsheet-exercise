@@ -81,10 +81,10 @@ public class SpecDetailRepository {
 
 	
 	public static RowMapper<String> SPECDETAILLANGUAGEPAGE_ROW_MAPPER = (rs,i) -> {
-	 String name = rs.getString("name");
+		String name = rs.getString("name");
 	
-	return new String(name);
-};
+		return new String(name);
+	};
 		
 	public static RowMapper<String> SPECDETAILOS_ROW_MAPPER = (rs,i) -> {
 		 String osName = rs.getString("os_name");
@@ -98,7 +98,7 @@ public class SpecDetailRepository {
 		return new String(name);
 	};
 
-	public static RowMapper<String> SPECDETAILSKILLSSUMMARYPAGE_ROW_MAPPER = (rs,i) ->{
+	public static RowMapper<String> SPECDETAILSKILLSSUMMARYPAGE_ROW_MAPPER = (rs,i) -> {
 		String other = rs.getString("other");
 		
 		return new String(other);

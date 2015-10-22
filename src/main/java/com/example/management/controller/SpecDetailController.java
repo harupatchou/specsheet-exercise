@@ -38,7 +38,7 @@ public class SpecDetailController {
 			Model model){
 		
 		//決め打ち
-		String searchStaffId = "AP-202-0715";
+		String searchStaffId = "AP-202-0717";
 		
 		model.addAttribute("staffId",searchStaffId);
 		findByStaffId(searchStaffId,model);

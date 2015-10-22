@@ -30,8 +30,8 @@ public class UserService {
 	 * @author ueno
 	 * @return ユーザー情報
 	 */
-	public Users selectByStaffIdAndPassword(UserLoginForm form){
-		Users user = userRepository.findByStaffIdAndPassword(form);
+	public Users selectByStaffIdAndPassword(String staffId, String password){
+		Users user = userRepository.findByStaffIdAndPassword(staffId, password);
 		return user;
 	}
 	

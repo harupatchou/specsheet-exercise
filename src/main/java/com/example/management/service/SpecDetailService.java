@@ -165,19 +165,14 @@ public class SpecDetailService {
 		//表示のためにひとつの配列に2個ずつ格納、要素がなくなるまで繰り返し、空の場合は空文字（null？）を入れておく
 		ArrayList<String> SkillsSummary = new ArrayList<>();
 		
-		//回す回数を求める＝MaximumElementCount3が奇数のとき+1、偶数のときはそのままの数字が回す回数
-		int rotation;//回転数
-		if(MaximumElementCount3 % 2 == 0){
-			rotation = MaximumElementCount3;
-		}else{
-			rotation = (MaximumElementCount3 + 1);
-		}
+		//回す回数を求める＝MaximumElementCount3　2個づつ表示なので最大要素数÷2回になる
+		int rotation = MaximumElementCount3 / 2;//回転数
 		
-		for(int i = 0 ; i < rotation /2 ; i++){
+		for(int i = 0 ; i < rotation ; i++){
 			//言語から2個入れる、空の場合は空文字を入れる
 			for(int lang = 0 ; lang < 2 ; lang++){
 				if(languageList.size() >= (lang + i*2 +1)){
-				SkillsSummary.add(languageList.get(lang + i*2));
+					SkillsSummary.add(languageList.get(lang + i*2));
 				}else{
 					SkillsSummary.add("");
 				}
@@ -185,7 +180,7 @@ public class SpecDetailService {
 			//開発関連技術から2個入れる、空の場合は空文字を入れる
 			for(int dev = 0 ; dev < 2 ; dev++){
 				if(developmentRelatedTechnologyList.size() >= (dev + i*2 +1)){
-				SkillsSummary.add(developmentRelatedTechnologyList.get(dev + i*2));
+					SkillsSummary.add(developmentRelatedTechnologyList.get(dev + i*2));
 				}else{
 					SkillsSummary.add("");
 				}
@@ -193,7 +188,7 @@ public class SpecDetailService {
 			//OSから2個入れる、空の場合は空文字を入れる
 			for(int os = 0 ; os < 2 ; os++){
 				if(osList.size() >= (os + i*2 +1)){
-				SkillsSummary.add(osList.get(os + i*2));
+					SkillsSummary.add(osList.get(os + i*2));
 				}else{
 					SkillsSummary.add("");
 				}
@@ -201,16 +196,13 @@ public class SpecDetailService {
 			//業務工程から2個入れる、空の場合は空文字を入れる
 			for(int pro = 0 ; pro < 2 ; pro++){
 				if(processList.size() >= (pro + i*2 +1)){
-				SkillsSummary.add(processList.get(pro + i*2));
+					SkillsSummary.add(processList.get(pro + i*2));
 				}else{
 					SkillsSummary.add("");
 				}
 			}
 			
 		}
-
-
-		
 		return SkillsSummary;
 	}
 	
