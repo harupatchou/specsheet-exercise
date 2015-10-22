@@ -44,8 +44,8 @@ public class UserRegistController {
 	 * 登録確認画面に遷移
 	 * @return 確認画面
 	 */
-	@RequestMapping(value = "flowConfirmation")
-	public String flowConfirmation(UserRegistForm form, BindingResult result, Model model){
+	@RequestMapping(value = "flowConfirm")
+	public String flowConfirm(UserRegistForm form, BindingResult result, Model model){
 		//エラーチェック
 		if(result.hasErrors()){
 			return index(model);
@@ -59,7 +59,7 @@ public class UserRegistController {
 			return index(model);
 		}
 		model.addAttribute("userRegistForm", form);
-		return "/user/userRegistConfirmation";
+		return "/user/userRegistConfirm";
 	}
 	
 	/**

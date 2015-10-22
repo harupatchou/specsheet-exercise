@@ -9,9 +9,8 @@
 		
 <%--ここから下にコンテンツを挿入 --%>
 
-メニュー
-
-<a href="/userRegist/">ユーザー新規登録</a>
+<a href="/userRegist/">ユーザー新規登録</a><br>
+<a href="/userEdit/?staffId=${user.staffId}">ユーザー編集</a><br>
 
 <%--ここから上にコンテンツを挿入 --%>
 
