@@ -16,6 +16,8 @@ create table spec (
   , appeal character varying(1024)
   , nearest_station character varying(16)
   , comment character varying(1024)
+  , month integer
+  , year integer
   , update_date timestamp
   , update_name character varying(16)
 ) ;
