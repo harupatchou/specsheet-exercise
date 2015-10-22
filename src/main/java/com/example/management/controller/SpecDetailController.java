@@ -1,6 +1,7 @@
 package com.example.management.controller;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.management.common.AgeEnum;
+import com.example.management.common.sexEnum;
 import com.example.management.domain.Spec;
+import com.example.management.domain.Users;
+import com.example.management.page.SpecDetailExpBreakdownPage;
+import com.example.management.page.SpecDetailLicensePage;
 import com.example.management.service.SpecDetailService;
 
 @Controller
@@ -33,7 +38,7 @@ public class SpecDetailController {
 			Model model){
 		
 		//決め打ち
-		String searchStaffId = "AP-000-0000";
+		String searchStaffId = "AP-202-0715";
 		
 		model.addAttribute("staffId",searchStaffId);
 		findByStaffId(searchStaffId,model);
@@ -49,19 +54,36 @@ public class SpecDetailController {
 	 */
 	@RequestMapping(value = "findByStaffId"/*, method = RequestMethod.POST*/)
 	public String findByStaffId(String staffId,Model model){
-		//1件のspec型、スペックシート情報が返ってくる
-		Spec spec = specDetailService.findByStaffId(staffId);
+		//1件のSpec型、スペックシート情報が返ってくる
+		Spec spec = specDetailService.findSpecByStaffId(staffId);
+		
+		//1件のUsers型、スペックシート情報が返ってくる
+		Users users = specDetailService.findUsersByStaffId(staffId);
 		
 		//↑がnullだった場合、エラー文を入れてフォワード
-		if(spec == null) {
+		if(spec == null || users == null) {
 			model.addAttribute("errorMessage","検索されたスタッフIDは見つかりません");
 			return "forward:/spec/specedit";
 		}
 		
 		model.addAttribute("spec",spec);
+		model.addAttribute("users",users);
 
-		ageList(model, spec);
-//		sexList(model, user);
+		ageList(model, spec);//年齢取得
+		sexList(model, users);//性別取得
+		
+		//IT経験取得
+		SpecDetailExpBreakdownPage specDetailExpBreakdownPage = specDetailService.findExpBreakdownByStaffId(staffId);
+		model.addAttribute("specDetailExpBreakdownPage",specDetailExpBreakdownPage);
+		
+		//資格情報取得
+		List<SpecDetailLicensePage> specDetailLicensePageList = specDetailService.findLicenseByStaffId(staffId);
+		model.addAttribute("specDetailLicensePageList",specDetailLicensePageList);
+		
+		//スキル要約欄の言語・開発関連技術・OS・業務工程の情報取得
+		List<String> skillsSummary = specDetailService.findSkillsSummaryByStaffId(staffId);
+		model.addAttribute("skillsSummary",skillsSummary);
+		
 //		model.addAttribute("allExpDivision", specDetailService.allExpResult(staffId));
 //		model.addAttribute("serverNetworkExpDivision", specDetailService.serverNetworkExpResult(staffId));
 //		model.addAttribute("developmentExpDivision", specDetailService.developmentExpResult(staffId));
@@ -89,13 +111,13 @@ public class SpecDetailController {
 	 * @param model
 	 * @param spec
 	 */
-//	private void sexList(Model model, Users users) {
-//		Map<String, String> sexMap = new LinkedHashMap<String, String>();
-//		sexMap.put(sexEnum.MAN.getKey(), sexEnum.MAN.getValue());
-//		sexMap.put(sexEnum.WOMAN.getKey(), sexEnum.WOMAN.getValue());
-//		
-//		model.addAttribute("sex", sexMap.get(users.getSex()));
-//	}
+	private void sexList(Model model, Users users) {
+		Map<String, String> sexMap = new LinkedHashMap<String, String>();
+		sexMap.put(sexEnum.MAN.getKey(), sexEnum.MAN.getValue());
+		sexMap.put(sexEnum.WOMAN.getKey(), sexEnum.WOMAN.getValue());
+		
+		model.addAttribute("sex", sexMap.get(users.getSex()));
+	}
 
 	/**
 	 * 年代リストを取得する.

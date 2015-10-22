@@ -43,6 +43,7 @@ public class SpecSearchRepository {
 		Date updateDate = rs.getDate("update_date");
 		return new SpecSearchResultPage(staffId, firstName, lastName,"", stateFlag, "", allExp, null, 
 				langName, null, ageId, ageRange, relatedTech, updateDate);
+
 	};
 	
 	/**
