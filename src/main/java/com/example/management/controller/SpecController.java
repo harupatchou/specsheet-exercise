@@ -48,7 +48,7 @@ public class SpecController {
 	public String registIndex(Model model){
 		
 		//決め打ち
-		String test = "AP-202-0715";
+		String test = "AP-202-0716";
 		selectByStaffId(test);
 		//情報を画面に送信
 		model.addAttribute("spec",spec);
@@ -67,7 +67,7 @@ public class SpecController {
 	public String regist(Model model,SpecForm specForm){
 
 		//決め打ち
-		String test = "AP-202-0715";
+		String test = "AP-202-0716";
 		selectByStaffId(test);
 		//情報を画面に送信
 		model.addAttribute("spec",spec);
@@ -103,7 +103,7 @@ public class SpecController {
 		Spec spec = new Spec();
 		
 		//決め打ち
-		String test = "AP-202-0715";
+		String test = "AP-202-0716";
 		selectByStaffId(test);
 		
 		model.addAttribute("spec",spec);

@@ -66,7 +66,7 @@ INSERT INTO exp_breakdown_define VALUES('4','PG・作業員経験');
 
 --ユーザーテーブル
 INSERT INTO users VALUES('AP-202-0715','男','工藤','康平','クドウ','コウヘイ',1,'boost2000');
-INSERT INTO users VALUES('AP-000-0716','男','黒澤','祐','クロサワ','ユウ',1,'boost2000');
+INSERT INTO users VALUES('AP-202-0716','男','黒澤','祐','クロサワ','ユウ',1,'boost2000');
 INSERT INTO users VALUES('AP-202-0717','男','佐藤','拓海','サトウ','タクミ',1,'boost2000');
 INSERT INTO users VALUES('AP-202-0736','女','鈴木','綾夏','スズキ','アヤカ',1,'boost2000');
 INSERT INTO users VALUES('AP-000-0000','男','大矢','修嗣','オオヤ','ナオツギ',2,'boost2000');

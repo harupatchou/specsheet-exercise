@@ -24,16 +24,8 @@ public class Spec {
 	/**スタッフID */
 	@Id
 	private String staffId;
-	/**名字 *//*
-	private String firstName;
-	*//**名前 *//*
-	private String lastName;*/
-	
-	private String name;
 	/**年代ID */
 	private Integer ageId;
-	/**性別 */
-	private Integer sex;
 	/**状態フラグ */
 	private Integer stateFlag;
 	/**IT全体経験 */
@@ -44,14 +36,6 @@ public class Spec {
 	private String appeal;
 	/**最寄駅 */
 	private String nearestStation;
-	/**サーバ・NW経験 */
-	private Integer serverNetworkExp;
-	/**システム開発経験 */
-	private Integer developmentExp;
-	/**SE経験 */
-	private Integer seExp;
-	/**PG・作業員経験 */
-	private Integer pgOperatorExp;
 	/**変更コメント */
 	private String comment;
 	/**更新日時 */

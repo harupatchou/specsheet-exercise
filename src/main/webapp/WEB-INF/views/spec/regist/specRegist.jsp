@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<script src="/js/SpecSheet.js"></script>
 <c:import url="/WEB-INF/views/common/layout.jsp">
 	<c:param name="content">
 
@@ -10,25 +11,26 @@
 		<form:form modelAttribute="specForm" action="/spec/regist"
 			name="SpecForm">
 			<h1 id="title">スペックシート登録</h1>
-
+			<!-- 名前 -->
 			<p>姓：<form:input path="firstName" value="${user.firstName}" /></p>
 			<p>名：<form:input path="lastName" value="${user.lastName}" /></p>
-
+			<!-- 勤務状況 -->
 			<p>状況：
 			<form:select path="stateFlag">
 				<option value="0">現場</option>
 				<option value="1">待機</option>
 			</form:select><br>
 			</p>
-
+			<!-- コメント -->
 			<p>編集時のコメント：
 			<form:textarea path="comment" value="${spec.comment}" placeholder="(例)初期登録" />
 			</p>
 
+			<!-- 基本情報 -->
 			<table class="speckDetailTable formMini">
 				<tr>
 					<th>スタッフID</th>
-					<td><form:input path="staffId" value="${spec.staffId}" /></td>
+					<td><form:input path="staffId" value="${user.staffId}" /></td>
 
 					<th>年齢</th>
 					<td><select>
@@ -43,11 +45,10 @@
 					</select><br></td>
 
 					<th>性別</th>
-					<!-- 決め打ち -->
-					<td>男性</td>
+					<td>${user.sex}</td>
 
 					<th>最寄駅</th>
-					<td><form:input id="inputMini" path="nearestStation" value="${spec.nearestStation}" />駅</td>
+					<td><form:input id="inputMini" path="nearestStation" />駅</td>
 
 					<th>稼働開始日</th>
 					<td>応相談</td>
@@ -56,6 +57,7 @@
 
 			</table>
 
+			<!-- 経験年数 -->
 			<table class="speckDetailTable">
 				<tr>
 					<th rowspan="2">IT全体経験</th>
@@ -85,7 +87,7 @@
 			</table>
 
 			<br>
-
+			<!-- スキル要約 -->
 			<div class="inputSkill">
 				<table class="speckDetailTable">
 					<tr>
@@ -95,9 +97,8 @@
 					</tr>
 					<tr>
 						<th colspan="3">言語</th>
-						<th colspan="2">開発関連技術</th>
+						<th>開発関連技術</th>
 						<th colspan="2">環境(OS等)</th>
-						<th colspan="2">業務範囲(工程)</th>
 					</tr>
 					<tr>
 						<td><select>
@@ -116,7 +117,6 @@
 								<option>その他</option>
 						</select><br></td>
 						<td><input id="inputMini" type="text">ヵ月</td>
-						<td><input type="text" /></td>
 					</tr>
 				</table>
 			</div>
@@ -134,13 +134,13 @@
 			
 			<br>
 			
-			<!-- 		開発経験 -->
-			<!-- 		繰り返し -->
+			<!--開発経験 -->
+			<!--繰り返し -->
 
 			<div class="inputExperience">
 				<table class="speckDetailTable">
 					<tr>
-						<th colspan="8">開発経験 <input type="button" value="行追加" /><input type="button" value="行削除" />
+						<th colspan="8">開発経験 <input type="button" value="行追加" id="detailAdd" /><input type="button" value="行削除" />
 						</th>
 					</tr>
 					<tr>
@@ -153,7 +153,6 @@
 						<th>規模</th>
 					</tr>
 					<tr>
-					
 					<!-- プロジェクト番号 -->
 						<td rowspan="5">1</td>
 						
@@ -216,81 +215,6 @@
 				</table>
 			</div>
 			<br>
-
-			<%-- <!-- 		繰り返し -->
-			<div class="inputExperience">
-				<table class="speckDetailTable">
-				
-					<tr>
-						<th>No.</th>
-						<th>期間</th>
-						<th>プロジェクト概要</th>
-						<th colspan="2">環境、ツールなど</th>
-						<th>担当工程</th>
-						<th>担当役割</th>
-						<th>規模</th>
-					</tr>
-					
-					<tr>
-						<!-- プロジェクトNO -->
-						<td rowspan="5">
-						<input id="inputNumber" type="text" />
-						</td>
-						
-						<!-- 開発期間 -->
-						<td rowspan="2">
-						～
-						</td>
-						
-						<!-- プロジェクト概要 -->
-						<td rowspan="4">
-						</td>
-						
-						<!-- OS -->
-						<th>OS</th>
-						<td>
-						</td>
-						
-						<!-- 担当工程 -->
-						<td rowspan="4">
-						<textarea id="inputResponsible"></textarea>
-						</td>
-						
-						<!-- 担当役割 -->
-						<td rowspan="4">
-						<textarea id="inputResponsible"></textarea>
-						</td>
-						
-						<th>チーム</th>
-					</tr>
-					
-					<tr>
-						<!-- 言語 -->
-						<th>言語</th>
-						<td><input type="button" value="言語選択" id="btnMini"
-							onclick="location.href='selectLanguage.html'" /></td>
-						<td><form:input path="teamNum"/>人</td>
-					</tr>
-					
-					<tr>
-						<td rowspan="2"><input id="inputSpan" type="text" /></td>
-						<th rowspan="2">その他</th>
-						<td rowspan="2"><textarea id="inputOther"></textarea></td>
-						<th>開発全体</th>
-					</tr>
-					
-					<tr>
-						<td><input type="text" id="inputMini" />人</td>
-					</tr>
-					
-					<tr>
-						<th class="tallHeight">作業内容</th>
-						<td colspan="6"><textarea id="inputWorkDetail"></textarea></td>
-					</tr>
-				</table>
-			</div>
-			<br> --%>
-
 
 			<!-- 		資格要約 -->
 			<div class="inputSkill">
