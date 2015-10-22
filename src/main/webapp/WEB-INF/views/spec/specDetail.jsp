@@ -20,6 +20,8 @@
 </head>
 <body>
 
+
+
 <div class="printDemo noPrint">
 		<div id="headerArea">
 		<span id="heading" style="color: white">スペックシート詳細画面</span><br>
@@ -75,77 +77,84 @@
 				<th>稼働開始日</th>
 				<td>応相談</td>
 			</tr>
-			<tr>
+<tr>
 				<th rowspan="2">IT全体経験</th>
-				<c:if test="${allExpDivision.quotient > 0 && allExpDivision.over > 0}">
+				<c:if test="${spec.year > 0 && spec.month > 0}">
 				<td rowspan="2" colspan="2">　
-				<c:out value="${allExpDivision.quotient}"/>年　<c:out value="${allExpDivision.over}"/>か月</td>
+				<c:out value="${spec.year}"/>年　<c:out value="${spec.month}"/>か月</td>
 				</c:if>
-				<c:if test="${allExpDivision.quotient > 0 && allExpDivision.over == 0}">
+				<c:if test="${spec.year > 0 && spec.month == 0}">
 				<td rowspan="2" colspan="2">　
-				<c:out value="${allExpDivision.quotient}"/>年</td>
+				<c:out value="${spec.year}"/>年</td>
 				</c:if>
-				<c:if test="${allExpDivision.quotient == 0}">
+				<c:if test="${spec.year == 0}">
 				<td rowspan="2" colspan="2">　
-				<c:out value="${allExpDivision.over}"/>か月</td>
+				<c:out value="${spec.month}"/>か月</td>
 				</c:if> 
 				<th rowspan="2">内訳</th>
 				<th>サーバ・NW経験</th>
-				<c:if test="${serverNetworkExpDivision.quotient > 0 && serverNetworkExpDivision.over > 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[1] > 0 && specDetailExpBreakdownPage.month[1] > 0}">
 				<td colspan="2">　
-				<c:out value="${serverNetworkExpDivision.quotient}"/>年　<c:out value="${serverNetworkExpDivision.over}"/>か月</td>
+				<c:out value="${specDetailExpBreakdownPage.year[1]}"/>年　<c:out value="${specDetailExpBreakdownPage.month[1]}"/>か月</td>
 				</c:if>
-				<c:if test="${serverNetworkExpDivision.quotient > 0 && serverNetworkExpDivision.over == 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[1] > 0 && specDetailExpBreakdownPage.month[1] == 0}">
 				<td colspan="2">　
-				<c:out value="${serverNetworkExpDivision.quotient}"/>年</td>
+				<c:out value="${specDetailExpBreakdownPage.year[1]}"/>年</td>
 				</c:if>
-				<c:if test="${serverNetworkExpDivision.quotient == 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[1] == 0}">
 				<td colspan="2">　
-				<c:out value="${serverNetworkExpDivision.over}"/>か月</td>
+				<c:out value="${specDetailExpBreakdownPage.month[1]}"/>か月</td>
 				</c:if>
 				<th>SE経験</th>
-				<c:if test="${seExpDivision.quotient > 0 && seExpDivision.over > 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[3] > 0 && specDetailExpBreakdownPage.month[3] > 0}">
 				<td colspan="2">　
-				<c:out value="${seExpDivision.quotient}"/>年　<c:out value="${seExpDivision.over}"/>か月</td>
+				<c:out value="${specDetailExpBreakdownPage.year[3]}"/>年　<c:out value="${specDetailExpBreakdownPage.month[3]}"/>か月</td>
 				</c:if>
-				<c:if test="${seExpDivision.quotient > 0 && seExpDivision.over == 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[3] > 0 && specDetailExpBreakdownPage.month[3] == 0}">
 				<td colspan="2">　
-				<c:out value="${seExpDivision.quotient}"/>年</td>
+				<c:out value="${specDetailExpBreakdownPage.year[3]}"/>年</td>
 				</c:if>
-				<c:if test="${seExpDivision.quotient == 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[3] == 0}">
 				<td colspan="2">　
-				<c:out value="${seExpDivision.over}"/>か月</td>
+				<c:out value="${specDetailExpBreakdownPage.month[3]}"/>か月</td>
 				</c:if>
 			</tr>
 			<tr>
 				<th>システム開発経験</th>
-				<c:if test="${developmentExpDivision.quotient > 0 && developmentExpDivision.over > 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[2] > 0 && specDetailExpBreakdownPage.month[2] > 0}">
 				<td colspan="2">　
-				<c:out value="${developmentExpDivision.quotient}"/>年　<c:out value="${developmentExpDivision.over}"/>か月</td>
+				<c:out value="${specDetailExpBreakdownPage.year[2]}"/>年　<c:out value="${specDetailExpBreakdownPage.month[2]}"/>か月</td>
 				</c:if>
-				<c:if test="${developmentExpDivision.quotient > 0 && developmentExpDivision.over == 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[2] > 0 && specDetailExpBreakdownPage.month[2] == 0}">
 				<td colspan="2">　
-				<c:out value="${developmentExpDivision.quotient}"/>年</td>
+				<c:out value="${specDetailExpBreakdownPage.year[2]}"/>年</td>
 				</c:if>
-				<c:if test="${developmentExpDivision.quotient == 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[2] == 0}">
 				<td colspan="2">　
-				<c:out value="${developmentExpDivision.over}"/>か月</td>
+				<c:out value="${specDetailExpBreakdownPage.month[2]}"/>か月</td>
 				</c:if>
 				<th>PG・作業員経験</th>
-				<c:if test="${pgOperatorExpDivision.quotient > 0 && pgOperatorExpDivision.over > 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[4] > 0 && specDetailExpBreakdownPage.month[4] > 0}">
 				<td colspan="2">　
-				<c:out value="${pgOperatorExpDivision.quotient}"/>年　<c:out value="${pgOperatorExpDivision.over}"/>か月</td>
+				<c:out value="${specDetailExpBreakdownPage.year[4]}"/>年　<c:out value="${specDetailExpBreakdownPage.month[4]}"/>か月</td>
 				</c:if>
-				<c:if test="${pgOperatorExpDivision.quotient > 0 && pgOperatorExpDivision.over == 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[4] > 0 && specDetailExpBreakdownPage.month[4] == 0}">
 				<td colspan="2">　
-				<c:out value="${pgOperatorExpDivision.quotient}"/>年</td>
+				<c:out value="${specDetailExpBreakdownPage.year[4]}"/>年</td>
 				</c:if>
-				<c:if test="${pgOperatorExpDivision.quotient == 0}">
+				<c:if test="${specDetailExpBreakdownPage.year[4] == 0}">
 				<td colspan="2">　
-				<c:out value="${pgOperatorExpDivision.over}"/>か月</td>
+				<c:out value="${specDetailExpBreakdownPage.month[4]}"/>か月</td>
 				</c:if>
 			</tr>
 		</table><br>
+
+<!-- ここらへんテスト用 -->		
+<c:forEach items="${specDetailPageList }" var="specDetailPage">
+<c:out value="${specDetailPage.breakdownName }" />
+</c:forEach>
+
+
 		
 
 		<!-- 		スキル要約 -->
@@ -161,8 +170,16 @@
 				<th colspan="2">業務範囲(工程)</th>
 			</tr>
 
-			<c:if test="${page.allContents.size() != 0}">
-				<c:forEach var="skills" items="${page.allContents}" varStatus="status">
+<%-- 			<c:if test="${page.allContents.size() != 0}"> --%>
+<%-- 				<c:forEach var="skills" items="${page.allContents}" varStatus="status"> --%>
+<%-- 					<td width="100"><c:out value="${skills}" /></td> --%>
+<%-- 					<c:if test="${status.index % 8 == 7}"> --%>
+<!-- 			 			<tr></tr>  -->
+<%-- 					</c:if> --%>
+<%-- 				</c:forEach> --%>
+<%-- 			</c:if> --%>
+				<c:if test="${skillsSummary.size() != 0}">
+				<c:forEach var="skills" items="${skillsSummary}" varStatus="status">
 					<td width="100"><c:out value="${skills}" /></td>
 					<c:if test="${status.index % 8 == 7}">
 			 			<tr></tr> 
@@ -294,7 +311,34 @@
 		</table><br>
 
 
-		<!-- 	資格	 -->
+<!-- <!-- 	資格	 -->
+<!-- 		<table class="speckDetailTable"> -->
+<!-- 			<tr> -->
+<!-- 				<th colspan="6">資格</th> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<th>資格名</th> -->
+<!-- 				<th>取得日</th> -->
+<!-- 				<th>資格名</th> -->
+<!-- 				<th>取得日</th> -->
+<!-- 				<th>資格名</th> -->
+<!-- 				<th>取得日</th> -->
+<!-- 			</tr> -->
+<%-- 			<c:forEach var="license" items="${specDetailLicensePageList}" varStatus="i"> --%>
+<%-- 				<c:if test="${i.index%3==0}"> --%>
+<!-- 					<tr> -->
+<%-- 				</c:if> --%>
+<!-- 				<td> -->
+<%-- 					<c:out value="${license.name}"/> --%>
+<!-- 				</td> -->
+<!-- 				<td> -->
+<%-- 					<fmt:formatDate value="${license.acquireDate }" pattern="yyyy/MM/dd"/> --%>
+<!-- 				</td> -->
+<%-- 				<c:if test="${i.index%3==2}"> --%>
+<%-- 				</c:if> --%>
+<%-- 			</c:forEach> --%>
+<!-- 		</table> -->
+<!-- 	資格	 -->
 		<table class="speckDetailTable">
 			<tr>
 				<th colspan="6">資格</th>
@@ -304,11 +348,9 @@
 				<th>取得日</th>
 				<th>資格名</th>
 				<th>取得日</th>
-				<th>資格名</th>
-				<th>取得日</th>
 			</tr>
-			<c:forEach var="license" items="${sLicenseList}" varStatus="i">
-				<c:if test="${i.index%3==0}">
+			<c:forEach var="license" items="${specDetailLicensePageList}" varStatus="i">
+				<c:if test="${i.index%2==0}">
 					<tr>
 				</c:if>
 				<td>

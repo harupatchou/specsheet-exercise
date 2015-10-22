@@ -35,7 +35,7 @@ public class SpecSearchRepository {
 		Date updateDate = rs.getDate("update_date");
 		String updateName = rs.getString("update_name");
 		return new Spec(staffId, ageId, stateFlag, allExp, relatedTech ,appeal, nearestStation, 
-				comment, updateDate, updateName);
+				comment, updateDate, updateName,null,null);
 	};
 	
 	/**
