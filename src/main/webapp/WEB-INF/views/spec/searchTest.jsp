@@ -36,36 +36,46 @@
 				<th>最終更新日</th>
 				<th>編集</th>
 			</tr>
-			<c:forEach var="spec" items="${specList}">
+		<c:forEach var="spec" items="${specList}">
 			<tr>
-			<td><c:out value="${spec}"/></td>
-<%-- 				<td><a href="/detail/?serchStaffId=${spec.staffId}"><c:out value="${spec.name}"/></a></td> --%>
-<%-- 				<td><c:out value="${spec.stateFlag}"/></td> --%>
-<!-- 				<td> -->
-<%-- 				<c:forEach var="lang" items="${spec.language}" varStatus="langStatus"> --%>
-<%-- 					<c:out value="${spec.langName}"/> --%>
-<%-- 					<c:if test="${langStatus.last == false}"> --%>
-<!-- 					,				 -->
-<%-- 					</c:if> --%>
-<%-- 				</c:forEach> --%>
-				
-<!-- 				 </td> -->
-<%-- 				<td><c:out value="${spec.techList}"/> </td> --%>
-<!-- 				<td> -->
-<%-- 				<c:if test="${spec.division.quotient > 0 && spec.division.over > 0}"> --%>
-<%-- 				<c:out value="${spec.division.quotient}"/>年<c:out value="${spec.division.over}"/>か月 --%>
-<%-- 				</c:if> --%>
-<%-- 				<c:if test="${spec.division.quotient > 0 && spec.division.over == 0}"> --%>
-<%-- 				<c:out value="${spec.division.quotient}"/>年 --%>
-<%-- 				</c:if> --%>
-<%-- 				<c:if test="${spec.division.quotient == 0}"> --%>
-<%-- 				<c:out value="${spec.division.over}"/>か月 --%>
-<%-- 				</c:if>  --%>
-<!-- 				</td> -->
-<%-- 				<td><c:out value="${spec.age}"/> </td> --%>
-<%-- 				<td><c:out value="${spec.date}"/> </td> --%>
-			</tr>
+<%-- 			<td><c:out value="${spec}"/></td> --%>
+				<td><a href="/detail/?serchStaffId=${spec.staffId}"><c:out value="${spec.fullName}"/></a></td>
+				<td><c:out value="${spec.state}"/></td>
+				<td>
+				<c:forEach var="lang" items="${spec.langList}" varStatus="langStatus">
+					<c:out value="${lang}"/>
+					<c:if test="${langStatus.last == false}">
+					,				
+					</c:if>
 				</c:forEach>
+				
+				 </td>
+				<td><c:out value="${spec.relatedTech}"/> </td>
+				<td>
+				<c:if test="${spec.allExpArray[0] > 0 && spec.allExpArray[1] > 0}">
+				<c:out value="${spec.allExpArray[0]}"/>年<c:out value="${spec.allExpArray[1]}"/>か月
+				</c:if>
+				<c:if test="${spec.allExpArray[0] > 0 && spec.allExpArray[1] == 0}">
+				<c:out value="${spec.allExpArray[0]}"/>年
+				</c:if>
+				<c:if test="${spec.allExpArray[0] == 0}">
+				<c:out value="${spec.allExpArray[1]}"/>か月
+				</c:if> 
+				</td>
+				<td><c:out value="${spec.ageRange}"/> </td>
+				<td><c:out value="${spec.updateDate}"/> </td>
+				<td>
+				<form:form action="/userEdit/select?id=${spec.staffId}" method="post">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				<input type="submit" name="form" value="ユーザー編集" />
+				</form:form>
+				<form:form action="/specedit/editFlow?staffId=${spec.staffId}" method="post">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				<input type="submit" name="form" value="スペック編集" />
+				</form:form>
+				</td>
+			</tr>
+		</c:forEach>
 		</table><br>
 </body>
 

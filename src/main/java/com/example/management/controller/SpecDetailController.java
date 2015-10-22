@@ -4,19 +4,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.management.common.AgeEnum;
-import com.example.management.common.sexEnum;
 import com.example.management.domain.Spec;
-import com.example.management.domain.Users;
 import com.example.management.service.SpecDetailService;
 
 @Controller

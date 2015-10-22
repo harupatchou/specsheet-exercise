@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.management.domain.LanguageDefine;
-import com.example.management.domain.Spec;
 import com.example.management.form.SpecSearchForm;
 import com.example.management.logic.ArrayListLogic;
 import com.example.management.logic.EnumLogic;
@@ -30,8 +29,8 @@ public class SpecSearchService {
 	 * スペック情報全件取得
 	 * @return
 	 */
-	public List<Spec> findAll() {
-		return specSearchRepository.findAllSpec();
+	public List<SpecSearchResultPage> findAll() {
+		return generatePage(specSearchRepository.findAllSpec());
 	}
 
 	/**
@@ -42,8 +41,11 @@ public class SpecSearchService {
 	public List<SpecSearchResultPage> searchAll(SpecSearchForm form) {
 		StringBuilder sb = new StringBuilder();
 		//空文字をnullに変換
-		if (form.getName() == "") {
-			form.setName(null);
+		if (form.getFirstName() == "") {
+			form.setFirstName(null);
+		}
+		if (form.getLastName() == "") {
+			form.setLastName(null);
 		}
 		if (form.getTech1() == "") {
 			form.setTech1(null);
@@ -68,17 +70,20 @@ public class SpecSearchService {
 		}
 		
 		// specの要素が全てnullの時に全件検索
-		if ((form.getName() == null) && (form.getStateFlag() == null) && (form.getLang1() == null)
+		if ((form.getFirstName() == null) && (form.getLastName() == null) && (form.getStateFlag() == null) && (form.getLang1() == null)
 				 && (form.getLang2() == null) && (form.getLang3() == null)
 				&&  (form.getTech1() == null) && (form.getTech2() == null) && (form.getTech3() == null)
 				&& (form.getAllExp() == null) && (form.getId() == null)) {
-			List<Spec> searchSpecList = specSearchRepository.findAllSpec();
+			List<SpecSearchResultPage> searchSpecList = specSearchRepository.findAllSpec();
 			return generatePage(searchSpecList);
 		} else {
 			sb.append(" WHERE 1=1 ");
 			//名前がnullでない時SQL文追加
-			if (form.getName() != null) {
-				sb.append("AND u.name ILIKE '%' || :name || '%' ");
+			if (form.getFirstName() != null) {
+				sb.append("AND u.first_name ILIKE '%' || :firstName || '%' ");
+			}
+			if (form.getLastName() != null) {
+				sb.append("AND u.last_name ILIKE '%' || :lastName || '%' ");
 			}
 			//状況がnullでない時SQL文追加
 			if (form.getStateFlag() != null) {
@@ -92,14 +97,14 @@ public class SpecSearchService {
 			if (form.getId() != null) {
 				sb.append("AND s.age_id=:id ");
 			}
-			sb.append("ORDER BY u.name");
+			sb.append("ORDER BY u.first_name");
 
 		}
 		//一致するスペック情報取得
-		List<Spec> specList = specSearchRepository.searchAll(form, sb);
+		List<SpecSearchResultPage> specList = specSearchRepository.searchAll(form, sb);
 		
 		//開発関連技術で絞る
-		specList = searchTech(techSearchList, specList);
+		specList = searchByTech(techSearchList, specList);
 		
 		// 言語名取得
 		if (form.getLang1() != null || form.getLang2() != null || form.getLang3() != null) {
@@ -121,7 +126,7 @@ public class SpecSearchService {
 			// 検索する言語と一致したものを返す
 			List<SpecSearchResultPage> returnSpec = new ArrayList<>();
 			for (SpecSearchResultPage page : generatePage(specList)) {
-				for (String lang : page.getLangList()) {
+				for (String lang : arrayListLogic.hStrCompact(page.getLangList())) {
 					for (String langName : langNameList) {
 						if (lang.equals(langName)) {
 							returnSpec.add(page);
@@ -142,12 +147,16 @@ public class SpecSearchService {
 	 * @param specList スペック一覧
 	 * @return 条件と一致したスペック一覧
 	 */
-	public List<Spec> searchTech(List<String> techSearchList, List<Spec> specList) {
+	private List<SpecSearchResultPage> searchByTech(List<String> techSearchList, List<SpecSearchResultPage> specList) {
 		if (techSearchList.size() == 0) {
 			return specList;
 		}
-		List<Spec> tempSpecList = new ArrayList<>();
-		for (Spec spec : specList) {
+		List<SpecSearchResultPage> tempSpecList = new ArrayList<>();
+		for (SpecSearchResultPage spec : specList) {
+			if (spec.getUpdateDate() == null) {
+				//スペックシート未登録の場合次のループへ
+				continue;
+			}
 			// 開発関連技術をリストに変換
 			ArrayList<String> techList = new ArrayList<>();
 			String userTech = spec.getRelatedTech();
@@ -174,24 +183,27 @@ public class SpecSearchService {
 	 * @param specList
 	 * @return スペックページ
 	 */
-	public List<SpecSearchResultPage> generatePage(List<Spec> specList) {
+	private List<SpecSearchResultPage> generatePage(List<SpecSearchResultPage> specList) {
 		List<SpecSearchResultPage> userSpecList = new ArrayList<>();
 		String tempId = null;
-		for (Spec spec : specList) {
+		for (SpecSearchResultPage spec : specList) {
 			SpecSearchResultPage resultPage = new SpecSearchResultPage();
 			if (!(spec.getStaffId() == null) && spec.getStaffId().equals(tempId)) {
-
+				//スタッフIDが変わったタイミング以外はすっ飛ばす
 				continue;
 			}
 			resultPage.setStaffId(spec.getStaffId());
 			resultPage.setFirstName(spec.getFirstName());
 			resultPage.setLastName(spec.getLastName());
 			resultPage.setFullName(spec.getFirstName() + spec.getLastName());
-			resultPage.setStateFlag(enumLogic.getStateMap().get(spec.getStateFlag()));
+			resultPage.setState(enumLogic.getStateMap().get(spec.getStateFlag()));
 			resultPage.setRelatedTech(spec.getRelatedTech());
-			resultPage.setDivision(allExpResult(spec.getAllExp()));
-
-			resultPage.setLangList(getLanguageList(specList, spec.getStaffId()));
+			//年月計算
+			Integer y = spec.getAllExp() / 12;
+			Integer m = spec.getAllExp() % 12;
+			Integer[] ym = {y, m};
+			resultPage.setAllExpArray(ym);
+			resultPage.setLangList(generateLanguageList(specList, spec.getStaffId()));
 			resultPage.setAgeRange(enumLogic.getAgeMap().get(spec.getAgeId()));
 			resultPage.setUpdateDate(spec.getUpdateDate());
 			userSpecList.add(resultPage);
@@ -202,18 +214,18 @@ public class SpecSearchService {
 	}
 
 	/**
-	 * 言語取得
+	 * 対象スタッフIDの経験言語をリスト化する
 	 * 
 	 * @param specList
 	 * @param staffId
-	 * @return 言語
+	 * @return 経験言語リスト
 	 */
-	public List<String> getLanguageList(List<Spec> specList, String staffId) {
-		List<String> languageList = new ArrayList<>();
+	private ArrayList<String> generateLanguageList(List<SpecSearchResultPage> specList, String staffId) {
+		ArrayList<String> languageList = new ArrayList<>();
 		String tempId = null;
-		for (Spec spec : specList) {
+		for (SpecSearchResultPage spec : specList) {
 			if (spec.getStaffId().equals(staffId)) {
-				languageList.add(spec.getLanguage());
+				languageList.add(spec.getLangName());
 				tempId = staffId;
 				continue;
 			}
@@ -225,21 +237,5 @@ public class SpecSearchService {
 
 		return languageList;
 	}
-
-	/**
-	 * IT全体経験を取得.
-	 * 
-	 * @param allExp
-	 * @return
-	 */
-//	public Division allExpResult(Integer allExp) {
-//		Integer allExpQuotient = allExp / 12;
-//		Integer allExpOver = allExp % 12;
-//
-//		Division division = new Division();
-//		division.setQuotient(allExpQuotient);
-//		division.setOver(allExpOver);
-//		return division;
-//	}
 
 }

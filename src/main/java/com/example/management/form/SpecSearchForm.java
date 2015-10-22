@@ -15,8 +15,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SpecSearchForm {
-	/**氏名*/
-	private String name;
+	/**氏*/
+	private String firstName;
+	/**名*/
+	private String lastName;
 	/**現場・待機フラグ*/
 	private Integer stateFlag;
 	/**経験言語*/
