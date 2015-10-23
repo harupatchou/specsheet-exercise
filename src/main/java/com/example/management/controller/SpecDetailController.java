@@ -43,7 +43,7 @@ public class SpecDetailController {
 //		String searchStaffId = "AP-202-0717";
 		String searchStaffId = staffId;
 
-		
+
 		model.addAttribute("staffId",searchStaffId);
 		String move = findByStaffId(searchStaffId,model);
 		
