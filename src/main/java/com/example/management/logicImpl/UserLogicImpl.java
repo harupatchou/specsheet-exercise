@@ -1,10 +1,13 @@
 package com.example.management.logicImpl;
 
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.management.domain.Users;
+import com.example.management.form.UserEditForm;
 import com.example.management.logic.UserLogic;
 import com.example.management.service.UserService;
 
@@ -26,6 +29,18 @@ public class UserLogicImpl implements UserLogic{
     public Users selectByStaffIdAndPassword(String staffId, String password){
 		Users user = userService.selectByStaffIdAndPassword(staffId, password);
 		return user;
+	}
+	
+	//スタッフIDパーツを結合
+	@Override
+	public UserEditForm setStaffId(UserEditForm form){
+		ArrayList<String> staffIdPartsList = new ArrayList<>();
+		String staffId = form.getStaffId();
+		String[] staffIdList = staffId.split("\\-");
+		for (String staffIdParts : staffIdList) {
+			staffIdPartsList.add(staffIdParts);
+		}
+		return form;
 	}
 
 }

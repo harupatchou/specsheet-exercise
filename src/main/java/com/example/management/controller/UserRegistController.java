@@ -72,6 +72,8 @@ public class UserRegistController {
 	@RequestMapping(value = "create")
 	public String create(UserRegistForm form, String flag, Model model){
 		if(flag.equals("はい")){
+			//スタッフIDパーツを結合後insert
+			form.setStaffId(form.getStaffIdFirst() + "-" + form.getStaffIdSecond() + "-" + form.getStaffIdThird());
 			userEditService.insert(form);
 			return "/user/userRegistFinished";
 		}
