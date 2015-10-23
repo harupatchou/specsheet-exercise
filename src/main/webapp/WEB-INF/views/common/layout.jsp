@@ -8,8 +8,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../css/specDetail.css">
-<link rel="stylesheet" href="../css/specSystem.css">
+<link rel="stylesheet" href="/css/specDetail.css">
+<link rel="stylesheet" href="/css/specSystem.css">
+<link rel="stylesheet" href="/css/validationEngine.jquery.css ">
+<script src="/js/lib/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script src="/js/lib/jquery.validationEngine.js" type="text/javascript"></script>
+<script src="/js/lib/jquery.validationEngine-ja.js" type="text/javascript"></script>
+<script>
+jQuery(document).ready(function($){
+	jQuery("#formId").validationEngine();
+});
+</script>
 <title>spec管理</title>
 </head>
 <body>

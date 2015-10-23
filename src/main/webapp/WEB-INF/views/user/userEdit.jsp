@@ -11,15 +11,15 @@
 
 		<h1>ユーザー情報編集画面</h1>
 		<p style="color: red"><form:errors path="userEditForm" /></p>
-		<form:form modelAttribute="userEditForm" action="/userEdit/flowConfirm">
+		<form:form id="formId" modelAttribute="userEditForm" action="/userEdit/flowConfirm">
 		
 							<%--　　　　 管理者のみ表示 　　　　--%>
 							
 			<c:if test="${user.authorityId == 2}">			
-				<p>姓：<form:input path="firstName" value="${userData.firstName}"/></p>
-				<p>名：<form:input path="lastName" value="${userData.lastName}"/></p>
-				<p>セイ：<form:input path="firstPhonetic" value="${userData.firstPhonetic}"/></p>
-				<p>メイ：<form:input path="lastPhonetic" value="${userData.lastPhonetic}"/></p>
+				<p>姓：<form:input path="firstName" value="${userData.firstName}" class="validate[required,maxSize[16]]"/></p>
+				<p>名：<form:input path="lastName" value="${userData.lastName}" class="validate[required,maxSize[16]]"/></p>
+				<p>セイ：<form:input path="firstPhonetic" value="${userData.firstPhonetic}" class="validate[required,maxSize[16]]"/></p>
+				<p>メイ：<form:input path="lastPhonetic" value="${userData.lastPhonetic}" class="validate[required,maxSize[16]]"/></p>
 				<p>性別：
 					<form:select path="sex">
 						<option value="男">男</option>
@@ -31,7 +31,7 @@
 						</c:if>
 					</form:select>
 				</p>
-		 		<p>スタッフID：<form:input path="staffId" value="${userData.staffId}"/></p>
+		 		<p>スタッフID：<form:input path="staffId" value="${userData.staffId}" class="validate[required,maxSize[16]]"/></p>
 	 			<p>権限：
 	 				<form:select path="authorityId">
 						<option value="1">ユーザー</option>
@@ -47,9 +47,9 @@
 			
 							<%--　　　　 ここまで管理者のみ表示 　　　　--%>
 			
-		 	<p>現在のパスワード：<form:password path="password"/></p>
-			<p>新しいパスワード：<form:password path="newPassword"/></p>
-			<p>新しいパスワード(再入力)：<form:password path="confirmPassword"/></p>
+		 	<p>現在のパスワード：<form:password path="password" class="validate[required,maxSize[16]]"/></p>
+			<p>新しいパスワード：<form:password path="newPassword" class="validate[required] text-input"/></p>
+			<p>新しいパスワード(再入力)：<form:password path="confirmPassword" class="validate[required,equals[newPassword]] text-input"/></p>
 			<form:hidden path="tempStaffId" value="${userData.staffId}"/>
 			<input type="hidden" name="user" value="${user}">
 	 		<input type="submit" value="登録"/>

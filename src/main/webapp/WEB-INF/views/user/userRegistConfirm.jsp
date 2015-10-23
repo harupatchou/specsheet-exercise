@@ -10,8 +10,7 @@
 <%--ここから下にコンテンツを挿入 --%>
 
 <p>下記の情報で新規登録してよろしいですか？</p>
-
-スタッフID：<c:out value="${userRegistForm.staffId }"/><br>
+スタッフID：<c:out value="${userRegistForm.staffIdFirst}"/>-<c:out value="${userRegistForm.staffIdSecond}"/>-<c:out value="${userRegistForm.staffIdThird}"/><br>
 姓：<c:out value="${userRegistForm.firstName }"/><br>
 名：<c:out value="${userRegistForm.lastName }"/><br>
 姓（フリガナ）：<c:out value="${userRegistForm.firstPhonetic }"/><br>
@@ -22,7 +21,9 @@
 <c:if test="${!flg }">ユーザー</c:if><br>
 
 <form:form  modelAttribute="userRegistForm" action="/userRegist/create/">
-	<form:hidden path="staffId" value="${userRegistForm.staffId}"/>
+	<form:hidden path="staffIdFirst" value="${userRegistForm.staffIdFirst}"/>
+	<form:hidden path="staffIdSecond" value="${userRegistForm.staffIdSecond}"/>
+	<form:hidden path="staffIdThird" value="${userRegistForm.staffIdThird}"/>
 	<form:hidden path="firstName" value="${userRegistForm.firstName }"/>
 	<form:hidden path="lastName" value="${userRegistForm.lastName }"/>
 	<form:hidden path="firstPhonetic" value="${userRegistForm.firstPhonetic}"/>

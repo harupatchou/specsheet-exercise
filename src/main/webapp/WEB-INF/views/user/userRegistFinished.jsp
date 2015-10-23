@@ -12,7 +12,7 @@
 	<h1>ユーザー情報登録画面</h1>
 		
 	<h2>登録完了しました</h2>
-	<input type="button" value="メニューに戻る" onclick="location.href='/userLogin/flowMenu'"/>
+	<input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 
 <%--ここから上にコンテンツを挿入 --%>
 
