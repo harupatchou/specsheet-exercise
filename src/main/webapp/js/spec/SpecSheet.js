@@ -9,12 +9,14 @@ function AddDetail(tableIdName){
 			"<tbody class='speckDetailTable'><tr><th>No.</th><th>期間</th><th>プロジェクト概要</th>" +
 			"<th colspan='2'>環境、ツールなど</th><th>担当工程</th><th>担当役割</th><th>規模</th></tr>" +
 			"<tr class='InputTr'><td rowspan='5' id='proNo'>" +
-			"<input type='hidden' name='projectNo' value='"+ no +"' />"
+			"<input type='hidden' name='projectNo' value='"+ no +"'/>"
 			+ no +
 			"</td>" +
 			"<td rowspan='4'><input name='startDay' /><br>～<br><input name='finishDay' /></td>" +
 			"<td rowspan='4'><textarea name='overview' rows='10' cols='12' /></td><th>OS</th>" +
-			"<td><input type='button' value='OS選択' id='btnMini' onclick='location.href='selectOS.html'' /></td>" +
+			"<td><input name='os" +
+			no +
+			"'/><input type='button' value='OS選択' id='btnMini' onclick=\"return openWin('/spec/osWindow')\" /></td>" +
 			"<td rowspan='4'><input type='button' value='担当工程' id='btnMini' onclick='location.href='selectOS.html'' /></td>" +
 			"<td rowspan='4'><textarea name='role' id='inputResponsible'></textarea></td><th>チーム</th></tr>" +
 			"<tr><th>言語</th><td><input type='button' value='言語選択' id='btnMini' onclick='location.href='selectLanguage.html'' /></td>" +

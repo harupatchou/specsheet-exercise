@@ -67,6 +67,8 @@ public class SpecForm {
 		private String overview;
 		/**OS*/
 		private String os;
+		private String os2;
+		private String os3;
 		/**言語*/
 		private String lang;
 		/**開発関連技術*/

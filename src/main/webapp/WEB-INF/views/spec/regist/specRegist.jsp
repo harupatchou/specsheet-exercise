@@ -181,7 +181,9 @@
 						
 					<!-- OS -->
 						<th>OS</th>
-						<td><input type="button" value="OS選択" id="btnMini"
+						<td>
+						<form:input path="os"/>
+						<input type="button" value="OS選択" id="btnMini"
 							onclick="return openWin('/spec/osWindow')" />
 						</td>
 					

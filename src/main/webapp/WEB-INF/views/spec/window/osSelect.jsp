@@ -4,11 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<script src="/js/spec/windowsOpen.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
+<form>
 <h1>OS選択</h1>
-a
-
+<c:forEach var="os" items="${osList}">
+<p>
+<label><input type="checkbox" name="os" value="${os.osName}"><c:out value="${os.osName}"/></label>
+</p>
+</c:forEach>
+<p><input type="button" value="選択完了" onclick="goBackOs(${proNo});"></p>
+</form>
 </body>
 </html>

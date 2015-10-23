@@ -8,15 +8,16 @@ function openWin(url) {
 	return (false);
 }
 
-function goBack(){
-	var ckList=document.getElementsByName("cast");
+function goBackOs(proNo){
+	var osList=document.getElementsByName("os");
+	var test = "os"+proNo;
 	var value = "";
-	for(var i=0;i<ckList.length;i++){
-	if(ckList[i].checked)
-	value+=(ckList[i].value)+",";
-	}
+	for(var i=0;i<osList.length;i++){
+		if(osList[i].checked)
+			value+=(osList[i].value)+"/";
+		}
 	value = value.substr( 0 , (value.length-1) );
-	window.opener.document.EventForm.cast.value=value;
+	window.opener.document.SpecForm.test.value=value;
 	window.close();
 	
 }

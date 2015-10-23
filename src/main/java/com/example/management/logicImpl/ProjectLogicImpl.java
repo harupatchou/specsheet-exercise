@@ -2,13 +2,16 @@ package com.example.management.logicImpl;
 
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.management.domain.OsDefine;
 import com.example.management.domain.Project;
 import com.example.management.form.SpecForm;
 import com.example.management.logic.ProjectLogic;
+import com.example.management.service.OsDefineService;
 import com.example.management.service.ProjectService;
 
 @Component
@@ -16,6 +19,8 @@ public class ProjectLogicImpl implements ProjectLogic{
 	
 	@Autowired
 	private ProjectService projectService;
+	@Autowired
+	private OsDefineService osDefineServise;
 
 	@Override
 	public Boolean insertProject(String staffId, SpecForm specForm) throws Exception {
@@ -53,9 +58,9 @@ public class ProjectLogicImpl implements ProjectLogic{
 	}
 
 	@Override
-	public Boolean getOS() {
-		
-		return null;
+	public List<OsDefine> getOS() {
+		List<OsDefine> osList = osDefineServise.findAll();
+		return osList;
 	}
 	
 	
