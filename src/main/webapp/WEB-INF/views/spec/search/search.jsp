@@ -91,7 +91,7 @@
 		</p>
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	 	<input type="submit" value="検索" ng-disabled="SystemForm.$invalid"/>
-	 	　<input type="button" value="メニューに戻る" onclick="location.href='/loginUser/toTheMenu'"/><br><br>
+	 	　<input type="button" value="メニューに戻る" onclick="location.href='/menu/'"/><br><br>
 	 	</form:form>
 	 	
 	 	<!-- 		検索結果 -->
