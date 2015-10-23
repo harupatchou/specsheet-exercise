@@ -14,13 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
+import com.example.management.page.SpecDetailDevelopmentExperiencePage;
 import com.example.management.page.SpecDetailExpBreakdownPage;
-import com.example.management.page.SpecDetailLanguagePage;
 import com.example.management.page.SpecDetailLicensePage;
-import com.example.management.page.SpecDetailOsPage;
-import com.example.management.page.SpecDetailProcessPage;
-import com.example.management.page.SpecDetailDevelopmentRelatedTechnologyPage;
-import com.example.management.service.SpecDetailService;
 
 
 
@@ -36,7 +32,7 @@ public class SpecDetailRepository {
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
 	public static final RowMapper<Spec> SPEC_ROW_MAPPER = (rs,i) -> {
-		String staffId = rs.getString("staff_id"); //★もしかしたら↓の重複と関係してエラー出るかも
+		String staffId = rs.getString("staff_id");
 		Integer ageId = rs.getInt("age_id");
 		Integer stateFlag = rs.getInt("state_flag");
 		Integer allExp = rs.getInt("all_exp");
@@ -52,7 +48,7 @@ public class SpecDetailRepository {
 	};
 	
 	public static final RowMapper<Users> USERS_ROW_MAPPER = (rs,i) -> {
-		String staffId = rs.getString("staff_id"); //★もしかしたら上の重複と関係してエラー出るかも
+		String staffId = rs.getString("staff_id");
 		String sex = rs.getString("sex");
 		String firstName = rs.getString("first_name");
 		String lastName = rs.getString("last_name");
@@ -83,13 +79,32 @@ public class SpecDetailRepository {
 		return new SpecDetailLicensePage(staffId,usersLicenceNo,name,acquireDate);
 	};
 	
+	
+
+	public static RowMapper<SpecDetailDevelopmentExperiencePage> SPECDETAILDEVELOPMENTEXPERIENCEPAGE_ROW_MAPPER = (rs,i) -> {
+		 Integer no = rs.getInt("no");
+		 Date startDate = rs.getDate("start_date");
+		 Date finishDate = rs.getDate("finish_date");
+		 String overview = rs.getString("overview");
+		 String osName = rs.getString("os_name");
+		 String languageName = rs.getString("language_name");
+		 String other = rs.getString("other");
+		 String processName = rs.getString("process_name");
+		 String role = rs.getString("role");
+		 String teamNum = rs.getString("team_num");
+		 String allNum = rs.getString("all_num");
+		 String content = rs.getString("content");
+		
+		return new SpecDetailDevelopmentExperiencePage(no, startDate, finishDate,
+				overview, osName, null, languageName, null, other, null, processName, null, role, null, teamNum, allNum, content, null );
+	};
 
 	
 	public static RowMapper<String> SPECDETAILLANGUAGEPAGE_ROW_MAPPER = (rs,i) -> {
 	 String name = rs.getString("name");
 	
 	return new String(name);
-};
+	};
 		
 	public static RowMapper<String> SPECDETAILOS_ROW_MAPPER = (rs,i) -> {
 		 String osName = rs.getString("os_name");
@@ -113,23 +128,23 @@ public class SpecDetailRepository {
 	
 	
 	
-	/**
-	 * スペックシートデータ全件取得.
-	 * @return スペックシートデータ全件
-	 */
-	public List<Spec> findAll(){
-		List<Spec> specList = jdbcTemplate.query(
-				"SELECT s.staff_id , u.name, s.age_id, s.sex, s.state_flag, s.all_exp,"
-				+ " ld.name AS lang_name, a.age_range, s.comment, s.update_date "
-				+ "FROM spec s "
-				+ "LEFT OUTER JOIN users u ON s.staff_id=u.staff_id "
-				+ "LEFT OUTER JOIN age a ON s.age_id=a.id "
-				+ "LEFT OUTER JOIN language_exp le ON s.staff_id=le.staff_id "
-				+ "LEFT OUTER JOIN language_define ld ON le.no=ld.id "
-				+ "ORDER BY u.name" ,
-				SPEC_ROW_MAPPER);
-		return specList;
-	}
+//	/**
+//	 * スペックシートデータ全件取得.
+//	 * @return スペックシートデータ全件
+//	 */
+//	public List<Spec> findAll(){
+//		List<Spec> specList = jdbcTemplate.query(
+//				"SELECT s.staff_id , u.name, s.age_id, s.sex, s.state_flag, s.all_exp,"
+//				+ " ld.name AS lang_name, a.age_range, s.comment, s.update_date "
+//				+ "FROM spec s "
+//				+ "LEFT OUTER JOIN users u ON s.staff_id=u.staff_id "
+//				+ "LEFT OUTER JOIN age a ON s.age_id=a.id "
+//				+ "LEFT OUTER JOIN language_exp le ON s.staff_id=le.staff_id "
+//				+ "LEFT OUTER JOIN language_define ld ON le.no=ld.id "
+//				+ "ORDER BY u.name" ,
+//				SPEC_ROW_MAPPER);
+//		return specList;
+//	}
 
 	/**
 	 * スペックシートデータ1件取得(Spec).
@@ -216,6 +231,31 @@ public class SpecDetailRepository {
 		}
 	}
 	
+	//★ここらへん
+	/**
+	 * スペックシート開発経験データ取得.
+	 * @param staffId スタッフID
+	 * @return　スペックシート開発経験データ
+	 */
+	public List<SpecDetailDevelopmentExperiencePage> findDevelopmentExperienceByStaffId(String staffId){
+		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
+			List<SpecDetailDevelopmentExperiencePage> specDetailDevelopmentExperiencePageList = jdbcTemplate.query(
+					"SELECT  p.no, start_date, finish_date, overview, od.os_name AS os_name, "
+					+ " ld.name AS language_name, p.other , pd.name AS process_name, role, team_num, all_num, content  "
+					+ " FROM project p "
+					+ " LEFT OUTER JOIN language_exp    le ON p.staff_id  =    le.staff_id "
+					+ " LEFT OUTER JOIN language_define ld ON le.language_id = ld.id "
+					+ " LEFT OUTER JOIN os_exp    oe ON p.staff_id = oe.staff_id "
+					+ " LEFT OUTER JOIN os_define od ON oe.os_id = od.os_id "
+					+ " LEFT OUTER JOIN project_process pp ON p.staff_id = pp.staff_id "
+					+ " LEFT OUTER JOIN process_define pd ON pp.process_id = pd.id "
+					+ " WHERE p.staff_id = :staffId",
+					param,
+					SPECDETAILDEVELOPMENTEXPERIENCEPAGE_ROW_MAPPER);
+			return specDetailDevelopmentExperiencePageList;
+			//★戒め　：　try catchは後から書きましょう
+	}
+	
 	/**
 	 * スペックシートスキル要約の言語取得.
 	 * @param staffId スタッフID
@@ -298,6 +338,7 @@ public class SpecDetailRepository {
 		return null;
 	}
 }
+	
 	
 	
 	

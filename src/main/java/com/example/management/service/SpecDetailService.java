@@ -1,6 +1,8 @@
 package com.example.management.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
-import com.example.management.page.SpecDetailDevelopmentRelatedTechnologyPage;
+import com.example.management.logic.ArrayListLogic;
+import com.example.management.page.SpecDetailDevelopmentExperiencePage;
 import com.example.management.page.SpecDetailExpBreakdownPage;
-import com.example.management.page.SpecDetailLanguagePage;
 import com.example.management.page.SpecDetailLicensePage;
-import com.example.management.page.SpecDetailOsPage;
-import com.example.management.page.SpecDetailProcessPage;
-import com.example.management.page.SpecDetailSkillsSummaryPage;
 import com.example.management.repository.SpecDetailRepository;
 
 /**
@@ -26,6 +25,8 @@ import com.example.management.repository.SpecDetailRepository;
 public class SpecDetailService {
 	@Autowired
 	private SpecDetailRepository specDetailRepository; 
+	@Autowired
+	private ArrayListLogic arrayListLogic;
 //	@Autowired
 //	private LanguageExpRepository languageExpRepository;
 //	
@@ -142,6 +143,8 @@ public class SpecDetailService {
 		return specDetailProcessPageList;
 	}
 	
+	
+
 	/**
 	 * スペックシートスキル要約の全ての情報取得.
 	 * @param staffId スタッフID
@@ -165,7 +168,7 @@ public class SpecDetailService {
 		int MaximumElementCount3= Math.max(MaximumElementCount,MaximumElementCount2);
 		
 		//表示するデータの行数　いらないかも？？
-		int lines = (MaximumElementCount3 + 1 )/2;
+//		int lines = (MaximumElementCount3 + 1 )/2;
 		
 		//表示のためにひとつの配列に2個ずつ格納、要素がなくなるまで繰り返し、空の場合は空文字（null？）を入れておく
 		ArrayList<String> SkillsSummary = new ArrayList<>();
@@ -211,13 +214,102 @@ public class SpecDetailService {
 					SkillsSummary.add("");
 				}
 			}
-			
 		}
-
-
-		
 		return SkillsSummary;
 	}
+	
+	
+	//開発経験
+	public List<SpecDetailDevelopmentExperiencePage> findDevelopmentExperienceByStaffId(String staffId){
+		//送る為の空のリストを作る
+		List<SpecDetailDevelopmentExperiencePage> developmentExperienceList = new ArrayList<>();
+		List<SpecDetailDevelopmentExperiencePage> returnList = new ArrayList<>();
+		
+		//重複を削除
+		ArrayList<SpecDetailDevelopmentExperiencePage> specDetailDevelopmentExperiencePageList = 
+				(ArrayList<SpecDetailDevelopmentExperiencePage>) specDetailRepository.findDevelopmentExperienceByStaffId(staffId);
+		
+		developmentExperienceList = arrayListLogic.hSpecDetailDevelopmentExperiencePageUnique(specDetailDevelopmentExperiencePageList);
+		
+		//開発経験のOS・言語・その他・担当工程・担当役割のリストを作る（１対多だから
+		ArrayList<String> osNameList = new ArrayList<>();
+		ArrayList<String> languageNameList = new ArrayList<>();
+		ArrayList<String> otherList = new ArrayList<>();
+		ArrayList<String> processNameList = new ArrayList<>();
+		ArrayList<String> roleList = new ArrayList<>();
+
+		Integer no = developmentExperienceList.get(0).getNo();
+		int count = 0;
+		for(SpecDetailDevelopmentExperiencePage i : developmentExperienceList) {
+			if(no != i.getNo() || count == (developmentExperienceList.size() - 1)) {
+				i.setOsNameList(arrayListLogic.hStrUnique(osNameList));
+				i.setLanguageNameList(arrayListLogic.hStrUnique(languageNameList));
+				i.setOtherList(arrayListLogic.hStrUnique(otherList));
+				i.setProcessNameList(arrayListLogic.hStrUnique(processNameList));
+				i.setRoleList(arrayListLogic.hStrUnique(roleList));
+				returnList.add(i);
+				
+				osNameList.clear();
+				languageNameList.clear();
+				otherList.clear();
+				processNameList.clear();
+				roleList.clear();
+			}
+			osNameList.add(i.getOsName());
+			languageNameList.add(i.getLanguageName());
+			otherList.add(i.getOther());
+			processNameList.add(i.getProcessName());
+			roleList.add(i.getRole());
+			++count;
+			no = i.getNo();//←キモ
+		}
+		
+		//期間取りだす
+		for(SpecDetailDevelopmentExperiencePage i : returnList){
+			Date startDate = i.getStartDate();
+			Date finishDate = i.getFinishDate();
+			
+			int ret = differenceMonth(finishDate,startDate);
+		
+			i.setPeriod(ret);
+		}
+		
+		return returnList;
+	}
+	
+
+	
+	//ロジックに切り分けましょう
+	/**
+	 * 開始期間と終了期間の差分を算出.
+	 * @param date1
+	 * @param date2
+	 * @return　開始期間と終了期間の差分
+	 */
+	public static int differenceMonth(Date date1, Date date2) {
+	    Calendar cal1 = Calendar.getInstance();
+	    cal1.setTime(date1);
+	    cal1.set(Calendar.DATE, 1);
+	    Calendar cal2 = Calendar.getInstance(); 
+	    cal2.setTime(date2);
+	    cal2.set(Calendar.DATE, 1);
+	    int count = 0;
+	    if (cal1.before(cal2)) {
+	        while (cal1.before(cal2)) {
+	            cal1.add(Calendar.MONTH, 1);
+	            count--;
+	        }
+	    } else {
+	        count--;
+	        while (!cal1.before(cal2)) {
+	            cal1.add(Calendar.MONTH, -1);
+	            count++;
+	        }
+	    }
+	    return count;
+	}
+
+
 	
 //	/**
 //	 * 全体経験取得.
