@@ -19,8 +19,9 @@
 			<!-- 勤務状況 -->
 			<p>状況：
 			<form:select path="stateFlag">
-				<option value="0">現場</option>
-				<option value="1">待機</option>
+				<c:forEach items="${stateMap}" var="state">
+					<option><c:out value="${state}" /></option>
+				</c:forEach>
 			</form:select><br>
 			</p>
 			<!-- コメント -->
@@ -36,14 +37,9 @@
 
 					<th>年齢</th>
 					<td><select>
-							<option>20代前半</option>
-							<option>20代後半</option>
-							<option>30代前半</option>
-							<option>30代後半</option>
-							<option>40代前半</option>
-							<option>40代後半</option>
-							<option>50代前半</option>
-							<option>50代後半</option>
+						<c:forEach items="${ageMap}" var="age">	
+							<option><c:out value="${age}" /></option>
+						</c:forEach>
 					</select><br></td>
 
 					<th>性別</th>
