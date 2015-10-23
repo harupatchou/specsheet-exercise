@@ -216,9 +216,8 @@
 				<th>担当役割</th>
 				<th>規模</th>
 			</tr>
-
-			<c:if test="${fn:length(sDevelopDtoList) > 0 }" >
-				<c:forEach var="dto" items="${sDevelopDtoList}" varStatus="i">
+<c:if test="${fn:length(developmentExperience) > 0 }" >
+				<c:forEach var="dto" items="${developmentExperience}" varStatus="i">
 					<tr>
 						<!--　No -->
 						<td rowspan="5">${i.count}</td>
@@ -235,18 +234,18 @@
 						</td>
 						<!-- プロジェクト概要 -->
 						<td rowspan="4">
-							<c:out value="${dto.overView}"/>
+							<c:out value="${dto.overview}"/>
 						</td>
 						<th>OS</th>
 						<td>
-							<c:forEach var="os" items="${dto.osList}" varStatus="j">
+							<c:forEach var="os" items="${dto.osNameList}" varStatus="j">
 								<c:out value="${os}"/>
 								<c:if test="${j.last == false }">/</c:if>
 							</c:forEach>
 						</td>
 						<!-- 担当工程 -->
 						<td rowspan="4">
-							<c:forEach var="process" items="${dto.processList}" varStatus="j">
+							<c:forEach var="process" items="${dto.processNameList}" varStatus="j">
 								<c:out value="${process }"/>
 								<c:if test="${j.last == false}">
 									<br>
@@ -265,7 +264,7 @@
 					<tr>
 						<th>言語</th>
 						<td>
-							<c:forEach var="language" items="${dto.languageList}" varStatus="j">
+							<c:forEach var="language" items="${dto.languageNameList}" varStatus="j">
 								<c:out value="${language}"/>
 								<c:if test="${j.last == false}">/</c:if>
 							</c:forEach>
@@ -278,10 +277,10 @@
 					<tr>
 						<td rowspan="2">
 							<!-- 開発期間 -->
-							<c:if test="${dto.projectPeriod / 12 >= 1}">
-								<fmt:formatNumber value="${dto.projectPeriod / 12}" pattern="###"/>年
+							<c:if test="${dto.period / 12 >= 1}">
+								<fmt:formatNumber value="${dto.period / 12}" pattern="###"/>年
 							</c:if>
-							<c:out value="${dto.projectPeriod % 12}"/>カ月
+							<c:out value="${dto.period % 12}"/>カ月
 						</td>
 						<th rowspan="2">その他</th>
 						<td rowspan="2">
@@ -302,6 +301,8 @@
 						<th class="tallHeight">作業内容</th>
 						<td colspan="6">
 							<c:out value="${dto.content}"/>
+							
+				
 <%--　　★とりあえずの印刷改ページ処理　⇒ --%><c:if test="${i.count % 3 == 0}"><div class="always"></div></c:if>
 						</td>
 					</tr>
@@ -311,33 +312,6 @@
 		</table><br>
 
 
-<!-- <!-- 	資格	 -->
-<!-- 		<table class="speckDetailTable"> -->
-<!-- 			<tr> -->
-<!-- 				<th colspan="6">資格</th> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<th>資格名</th> -->
-<!-- 				<th>取得日</th> -->
-<!-- 				<th>資格名</th> -->
-<!-- 				<th>取得日</th> -->
-<!-- 				<th>資格名</th> -->
-<!-- 				<th>取得日</th> -->
-<!-- 			</tr> -->
-<%-- 			<c:forEach var="license" items="${specDetailLicensePageList}" varStatus="i"> --%>
-<%-- 				<c:if test="${i.index%3==0}"> --%>
-<!-- 					<tr> -->
-<%-- 				</c:if> --%>
-<!-- 				<td> -->
-<%-- 					<c:out value="${license.name}"/> --%>
-<!-- 				</td> -->
-<!-- 				<td> -->
-<%-- 					<fmt:formatDate value="${license.acquireDate }" pattern="yyyy/MM/dd"/> --%>
-<!-- 				</td> -->
-<%-- 				<c:if test="${i.index%3==2}"> --%>
-<%-- 				</c:if> --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</table> -->
 <!-- 	資格	 -->
 		<table class="speckDetailTable">
 			<tr>

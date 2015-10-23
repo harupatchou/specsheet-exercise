@@ -1,5 +1,6 @@
 package com.example.management.controller;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import com.example.management.common.AgeEnum;
 import com.example.management.common.sexEnum;
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
+import com.example.management.page.SpecDetailDevelopmentExperiencePage;
 import com.example.management.page.SpecDetailExpBreakdownPage;
 import com.example.management.page.SpecDetailLicensePage;
 import com.example.management.service.SpecDetailService;
@@ -83,6 +85,11 @@ public class SpecDetailController {
 		//スキル要約欄の言語・開発関連技術・OS・業務工程の情報取得
 		List<String> skillsSummary = specDetailService.findSkillsSummaryByStaffId(staffId);
 		model.addAttribute("skillsSummary",skillsSummary);
+		
+		//開発経験欄の情報を取得
+		List<SpecDetailDevelopmentExperiencePage> developmentExperience = specDetailService.findDevelopmentExperienceByStaffId(staffId);
+		model.addAttribute("developmentExperience",developmentExperience);
+		System.out.println("★developmentExperience　＝　"+developmentExperience);
 		
 //		model.addAttribute("allExpDivision", specDetailService.allExpResult(staffId));
 //		model.addAttribute("serverNetworkExpDivision", specDetailService.serverNetworkExpResult(staffId));

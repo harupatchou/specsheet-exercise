@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 import com.example.management.logic.ArrayListLogic;
+import com.example.management.page.SpecDetailDevelopmentExperiencePage;
 import com.example.management.page.SpecSearchResultPage;
 
 @Component
@@ -19,7 +20,8 @@ public class ArrayListLogicImpl implements ArrayListLogic {
 				ret.add(x);
 			}
 		}
-		return ret;}
+		return ret;
+		}
 	
 	@Override
 	public ArrayList<SpecSearchResultPage> hSearchResultCompact(ArrayList<SpecSearchResultPage> arg0) {
@@ -81,5 +83,16 @@ public class ArrayListLogicImpl implements ArrayListLogic {
 		return ret;
 	}
 
+	@Override
+	public ArrayList<SpecDetailDevelopmentExperiencePage> hSpecDetailDevelopmentExperiencePageUnique(ArrayList<SpecDetailDevelopmentExperiencePage> arg0) {
+		ArrayList<SpecDetailDevelopmentExperiencePage> ret = new ArrayList<>();
+		for (int i = 0; i < arg0.size(); i++) {
+			SpecDetailDevelopmentExperiencePage x = arg0.get(i);
+			if (!ret.contains(x)) {
+				ret.add(x);
+			}
+		}
+		return ret;
+		}
 
 }

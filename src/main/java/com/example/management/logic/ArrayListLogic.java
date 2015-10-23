@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
+import com.example.management.page.SpecDetailDevelopmentExperiencePage;
 import com.example.management.page.SpecSearchResultPage;
 
 @Component
@@ -25,5 +26,8 @@ public interface ArrayListLogic {
 	
 	/** 文字列のArrayListからnullの要素を削除して返す */
 	public ArrayList<String> hStrCompact(ArrayList<String> arg0);
+	
+	/** 開発経験検索結果のArrayListから重複する要素を削除して返す */
+	public ArrayList<SpecDetailDevelopmentExperiencePage> hSpecDetailDevelopmentExperiencePageUnique(ArrayList<SpecDetailDevelopmentExperiencePage> arg0);
 	
 }
