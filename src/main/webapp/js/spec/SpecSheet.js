@@ -16,7 +16,9 @@ function AddDetail(tableIdName){
 			"<td rowspan='4'><textarea name='overview' rows='10' cols='12' /></td><th>OS</th>" +
 			"<td><input name='os" +
 			no +
-			"'/><input type='button' value='OS選択' id='btnMini' onclick=\"return openWin('/spec/osWindow')\" /></td>" +
+			"'/><input type='button' value='OS選択' id='btnMini' onclick=\"return openWin('/spec/osWindow?projectNo="
+			+ no +
+			"')\" /></td>" +
 			"<td rowspan='4'><input type='button' value='担当工程' id='btnMini' onclick='location.href='selectOS.html'' /></td>" +
 			"<td rowspan='4'><textarea name='role' id='inputResponsible'></textarea></td><th>チーム</th></tr>" +
 			"<tr><th>言語</th><td><input type='button' value='言語選択' id='btnMini' onclick='location.href='selectLanguage.html'' /></td>" +

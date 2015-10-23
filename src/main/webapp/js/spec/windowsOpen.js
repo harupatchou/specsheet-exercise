@@ -17,7 +17,7 @@ function goBackOs(proNo){
 			value+=(osList[i].value)+"/";
 		}
 	value = value.substr( 0 , (value.length-1) );
-	window.opener.document.SpecForm.test.value=value;
+	window.opener.document.SpecForm.elements[test].value=value;
 	window.close();
 	
 }

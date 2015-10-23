@@ -91,9 +91,6 @@ public class SpecController {
 	 */
 	@RequestMapping(value = "/check")
 	public String resistCheck(Model model,SpecForm specForm){
-
-		
-		
 		return "spec/regist/specRegistCheck";
 	}
 	
@@ -125,12 +122,14 @@ public class SpecController {
 	 * @return
 	 */
 	@RequestMapping(value = "/osWindow")
-	public String osWindow(Model model,SpecForm specForm){
+	public String osWindow(Model model,String projectNo){
 		List<OsDefine> osList = projectLogic.getOS();
-		model.addAttribute("proNo",specForm.getProjectNo());
+		model.addAttribute("proNo",projectNo);
 		model.addAttribute("osList",osList);
 		return "spec/window/osSelect";
 	}
+	
+	
 	
 	
 	/**

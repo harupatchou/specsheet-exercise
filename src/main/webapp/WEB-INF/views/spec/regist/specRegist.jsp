@@ -182,9 +182,9 @@
 					<!-- OS -->
 						<th>OS</th>
 						<td>
-						<form:input path="os"/>
+						<form:input path="os1"/>
 						<input type="button" value="OS選択" id="btnMini"
-							onclick="return openWin('/spec/osWindow')" />
+							onclick="return openWin('/spec/osWindow?projectNo=1')" />
 						</td>
 					
 					<!-- 担当工程 -->
@@ -267,7 +267,7 @@
 			<br>
 
 		<input type="submit" value="登録内容確認"/>
-
+		<input class="button" type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 		</form:form>
 		<%--ここから上にコンテンツを挿入 --%>
 
