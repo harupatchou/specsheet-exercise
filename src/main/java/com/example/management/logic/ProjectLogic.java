@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.example.management.domain.LanguageDefine;
 import com.example.management.domain.OsDefine;
 import com.example.management.form.SpecForm;
 
@@ -16,5 +17,8 @@ public interface ProjectLogic {
     
     //os選択用値取得
     public List<OsDefine> getOS();
+
+    //lang選択用値取得
+	public List<LanguageDefine> getLang();
 
 }

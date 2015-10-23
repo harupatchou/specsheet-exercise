@@ -204,8 +204,10 @@
 					<tr>
 					<!-- 言語 -->
 						<th>言語</th>
-						<td><input type="button" value="言語選択" id="btnMini"
-							onclick="location.href='selectLanguage.html'" />
+						<td>
+						<form:input path="lang1"/>
+						<input type="button" value="言語選択" id="btnMini"
+							onclick="return openWin('/spec/langWindow?projectNo=1')" />
 						</td>
 						
 					<!-- チーム人数 -->
