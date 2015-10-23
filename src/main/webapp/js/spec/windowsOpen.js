@@ -1,7 +1,7 @@
 var w = window;
 function openWin(url) {
 	if ((w == window) || w.closed) {
-		w = open(url, "_blank", "width=300,height=300");
+		w = open(url, "_blank", "width=500,height=500");
 	} else {
 		w.focus();
 	}
@@ -18,6 +18,18 @@ function goBackOs(proNo){
 		}
 	value = value.substr( 0 , (value.length-1) );
 	window.opener.document.SpecForm.elements[test].value=value;
+	window.close();	
+}
+
+function goBackLang(proNo){
+	var langList=document.getElementsByName("lang");
+	var test = "lang"+proNo;
+	var value = "";
+	for(var i=0;i<langList.length;i++){
+		if(langList[i].checked)
+			value+=(langList[i].value)+"/";
+		}
+	value = value.substr( 0 , (value.length-1) );
+	window.opener.document.SpecForm.elements[test].value=value;
 	window.close();
-	
 }
