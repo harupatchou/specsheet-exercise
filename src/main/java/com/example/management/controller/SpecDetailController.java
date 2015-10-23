@@ -40,7 +40,7 @@ public class SpecDetailController {
 			Model model){
 		
 		//決め打ち
-		String searchStaffId = "AP-202-0717";
+		String searchStaffId = "AP-000-0000";
 		
 		model.addAttribute("staffId",searchStaffId);
 		findByStaffId(searchStaffId,model);

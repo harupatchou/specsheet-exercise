@@ -83,7 +83,7 @@
 				
 								<%--　　　　 ここまで管理者のみ表示 　　　　--%>
 				
-				<c:if test="${userData.password != userEditForm.newPassword}">
+				<c:if test="${userEditForm.newPassword != '' && userData.password != userEditForm.newPassword}">
 					<tr>
 						<td>パスワード：</td>
 						<td>表示されません</td>

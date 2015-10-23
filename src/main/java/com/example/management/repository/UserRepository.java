@@ -94,7 +94,12 @@ public class UserRepository {
 	 */
 	public void update(UserEditForm form){
 		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
-		jdbcTemplate.update("UPDATE users SET staff_id=:staffId, sex=:sex, first_name=:firstName, last_name=:lastName, first_Phonetic=:firstPhonetic,"
-				+ "last_Phonetic=:lastPhonetic, authority_id=:authorityId, password=:newPassword WHERE staff_id=:tempStaffId", param);
+		if(form.getNewPassword() != ""){
+			jdbcTemplate.update("UPDATE users SET staff_id=:staffId, sex=:sex, first_name=:firstName, last_name=:lastName, first_Phonetic=:firstPhonetic,"
+					+ "last_Phonetic=:lastPhonetic, authority_id=:authorityId, password=:newPassword WHERE staff_id=:tempStaffId", param);			
+		} else {
+			jdbcTemplate.update("UPDATE users SET staff_id=:staffId, sex=:sex, first_name=:firstName, last_name=:lastName, first_Phonetic=:firstPhonetic,"
+					+ "last_Phonetic=:lastPhonetic, authority_id=:authorityId WHERE staff_id=:tempStaffId", param);	
+		}
 	}
 }

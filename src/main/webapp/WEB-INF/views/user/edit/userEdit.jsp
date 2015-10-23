@@ -34,7 +34,15 @@
 		 	<%-- 	<p>スタッフID：<form:input path="staffId" value="${userData.staffId}" class="validate[required,maxSize[16]]"/></p> --%>
 		 		<p>
 		 			スタッフID:
-		 			<form:input path="staffIdFirst" value="${userData.staffIdFirst}" size="2"/>-
+		 			<form:select path="staffIdFirst">
+		 				<option value="AP">AP</option>
+		 			<c:if test="${userData.staffIdFirst != 'NW'}">
+						<option value="NW">NW</option>
+					</c:if>
+					<c:if test="${userData.staffIdFirst == 'NW'}">
+						<option value="NW" selected>NW</option>
+					</c:if>
+		 			</form:select>-
 		 			<form:input path="staffIdSecond" value="${userData.staffIdSecond}" size="4"/>-
 		 			<form:input path="staffIdThird" value="${userData.staffIdThird}" size="4"/>
 		 		</p>

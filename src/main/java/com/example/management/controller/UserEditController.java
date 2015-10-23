@@ -43,7 +43,7 @@ public class UserEditController {
 		//staffIdがnull値の時フォームをモデルに格納(パスワード不一致時の処理)
 		if(staffId == null){
 			model.addAttribute("userData", form);
-			return "/user/userEdit";
+			return "/user/edit/userEdit";
 		}
 			//staffId値のユーザー情報をモデルに格納
 			Users user = userLogic.selectByStaffId(staffId);
@@ -52,7 +52,7 @@ public class UserEditController {
 			//staffIdを分割してstaffIdパーツに格納
 			UserEditForm userData = userLogic.setStaffId(form);
 			model.addAttribute("userData", userData);
-		return "/user/userEdit";
+		return "/user/edit/userEdit";
 	}
 	
 	/**
@@ -86,7 +86,7 @@ public class UserEditController {
 		//編集後データ
 		form.setStaffId(form.getStaffIdFirst() + "-" + form.getStaffIdSecond() + "-" + form.getStaffIdThird());
 		model.addAttribute("userEditForm",form);
-		return "/user/userEditConfirm";
+		return "/user/edit/userEditConfirm";
 	}
 	
 	/**
@@ -101,7 +101,7 @@ public class UserEditController {
 			//スタッフIDパーツを結合後update
 			form.setStaffId(form.getStaffIdFirst() + "-" + form.getStaffIdSecond() + "-" + form.getStaffIdThird());
 			userEditService.update(form);
-			return "/user/userEditFinished";
+			return "/user/edit/userEditFinished";
 		}
 		//flag "修正する" ⇒ 編集画面へ
 		return index(null, form, model);
