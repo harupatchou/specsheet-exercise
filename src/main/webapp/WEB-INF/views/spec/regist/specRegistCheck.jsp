@@ -7,13 +7,15 @@
 
 
 		<%--ここから下にコンテンツを挿入 --%>
-		<form:form modelAttribute="specForm" action="/spec/regist"
-			name="SpecForm">
-			<h1 id="title">下記の内容で登録してよろしいですか？</h1>
+<%-- 		<form:form modelAttribute="specForm" action="/spec/regist" --%>
+<%-- 			name="SpecForm"> --%>
+<!-- 			<h1 id="title">下記の内容で登録してよろしいですか？</h1> -->
 
-		<input type="submit" value="登録"/>
+<!-- 		<input type="submit" value="登録"/> -->
 
-		</form:form>
+<%-- 		</form:form> --%>
+<h1>登録しました</h1>
+<input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 		<%--ここから上にコンテンツを挿入 --%>
 
 	</c:param>
