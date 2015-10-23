@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.management.domain.LanguageDefine;
 import com.example.management.domain.OsDefine;
+import com.example.management.domain.ProcessDefine;
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
@@ -141,6 +142,20 @@ public class SpecController {
 		model.addAttribute("proNo",projectNo);
 		model.addAttribute("langList",langList);
 		return "spec/window/langSelect";
+	}
+	
+	
+	/**
+	 * 開発工程選択小窓表示
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/processWindow")
+	public String processWindow(Model model,String projectNo){
+		List<ProcessDefine> processList = projectLogic.getProcess();
+		model.addAttribute("proNo",projectNo);
+		model.addAttribute("processList",processList);
+		return "spec/window/processSelect";
 	}
 	
 	

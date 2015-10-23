@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.management.domain.LanguageDefine;
 import com.example.management.domain.OsDefine;
+import com.example.management.domain.ProcessDefine;
 import com.example.management.form.SpecForm;
 
 @Component
@@ -20,5 +21,7 @@ public interface ProjectLogic {
 
     //lang選択用値取得
 	public List<LanguageDefine> getLang();
+
+	public List<ProcessDefine> getProcess();
 
 }

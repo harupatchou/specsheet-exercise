@@ -33,3 +33,16 @@ function goBackLang(proNo){
 	window.opener.document.SpecForm.elements[test].value=value;
 	window.close();
 }
+
+function goBackProcess(proNo){
+	var processList=document.getElementsByName("process");
+	var test = "process"+proNo;
+	var value = "";
+	for(var i=0;i<processList.length;i++){
+		if(processList[i].checked)
+			value+=(processList[i].value)+"/";
+		}
+	value = value.substr( 0 , (value.length-1) );
+	window.opener.document.SpecForm.elements[test].value=value;
+	window.close();
+}

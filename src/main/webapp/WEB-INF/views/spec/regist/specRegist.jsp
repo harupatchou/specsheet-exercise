@@ -189,8 +189,9 @@
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
+						<form:input path="process1" size="10"/>
 						<input type="button" value="担当工程" id="btnMini"
-							onclick="location.href='selectOS.html'" />
+							onclick="return openWin('/spec/processWindow?projectNo=1')" />
 						</td>
 						
 					<!-- 担当役割 -->

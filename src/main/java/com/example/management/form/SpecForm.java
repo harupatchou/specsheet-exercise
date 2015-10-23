@@ -82,7 +82,11 @@ public class SpecForm {
 		/**担当役割*/
 		private String role;
 		/**担当工程*/
-		private String process;
+		private String process1;
+		private String process2;
+		private String process3;
+		private String process4;
+		private String process5;
 		/**作業内容*/
 		private String content;
 		
