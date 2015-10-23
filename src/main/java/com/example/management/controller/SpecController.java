@@ -64,8 +64,8 @@ public class SpecController {
 		//情報を画面に送信
 		model.addAttribute("spec",spec);
 		model.addAttribute("user",user);
-		model.addAttribute("stateMap", enumLogic.getStateMap());
-		model.addAttribute("ageMap", enumLogic.getAgeMap());
+		model.addAttribute("stateMap", enumLogic.getStateMap().values());
+		model.addAttribute("ageMap", enumLogic.getAgeMap().values());
 		
 		return "spec/regist/specRegist";
 	}
