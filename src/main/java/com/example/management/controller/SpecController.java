@@ -1,14 +1,18 @@
 package com.example.management.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.management.domain.OsDefine;
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
+import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
 
@@ -20,11 +24,14 @@ public class SpecController {
 	private SpecLogic specLogic;
 	@Autowired
 	private UserLogic userLogic;
+	@Autowired
+	private ProjectLogic projectLogic;
 	
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
 	//IDから取得したUser情報格納
 	Users user = new Users();
+
 	
 	/**
 	 * SpecEditForm初期化
@@ -35,6 +42,7 @@ public class SpecController {
 		SpecForm specForm = new SpecForm();
 		return specForm;
 	}
+	
 	
 	/**
 	 * 登録画面初期表示.
@@ -55,24 +63,25 @@ public class SpecController {
 		return "spec/regist/specRegist";
 	}
 	
+	
 	/**
 	 * 登録処理.
 	 * @param model 
 	 * @author kurosawa
 	 * @return 登録画面
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/regist")
-	public String regist(Model model,SpecForm specForm){
+	public String regist(Model model,SpecForm specForm) throws Exception{
 
 		//決め打ち
 		String test = "AP-202-0716";
-		selectByStaffId(test);
-		//情報を画面に送信
-		model.addAttribute("spec",spec);
-		model.addAttribute("user",user);
+		
+		insertProject(test,specForm);
 		
 		return "spec/regist/specRegistCheck";
 	}
+	
 	
 	/**
 	 * 登録内容確認.
@@ -87,6 +96,7 @@ public class SpecController {
 		
 		return "spec/regist/specRegistCheck";
 	}
+	
 	
 	/**
 	 * 編集画面初期表示.
@@ -110,6 +120,20 @@ public class SpecController {
 	}
 	
 	/**
+	 * OS選択小窓表示
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/osWindow")
+	public String osWindow(Model model,SpecForm specForm){
+		List<OsDefine> osList = projectLogic.getOS();
+		model.addAttribute("proNo",specForm.getProjectNo());
+		model.addAttribute("osList",osList);
+		return "spec/window/osSelect";
+	}
+	
+	
+	/**
 	 * spec情報取得のためのメソッド
 	 * @param res
 	 * @author kurosawa
@@ -125,5 +149,17 @@ public class SpecController {
 		return true;
 	}
 	
+	
+	/**
+	 * spec情報取得のためのメソッド
+	 * @param res
+	 * @author kurosawa
+	 * @return
+	 * @throws Exception
+	 */
+	private Boolean insertProject(String staffId,SpecForm specForm) throws Exception {
+		projectLogic.insertProject(staffId,specForm);
+		return true;
+	}
 
 }
