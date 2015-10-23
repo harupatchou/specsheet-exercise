@@ -30,7 +30,7 @@
 		</c:if>
 
 		<c:if test="${user != null}">
-			<li><a href="javascript:disp()" >ログアウト</a></li>
+			<li><a href="/userLogout" >ログアウト</a></li>
 		</c:if>
 
 
