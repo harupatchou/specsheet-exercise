@@ -16,7 +16,7 @@
 							<%--　　　　 管理者のみ表示 　　　　--%>
 							
 		<table>
-			<c:if test="${userData.authorityId == 2}">
+			<c:if test="${user.authorityId == 2}">
 				<c:if test="${userData.firstName != userEditForm.firstName}">
 					<tr>
 						<td>姓：</td>
