@@ -31,7 +31,13 @@
 						</c:if>
 					</form:select>
 				</p>
-		 		<p>スタッフID：<form:input path="staffId" value="${userData.staffId}" class="validate[required,maxSize[16]]"/></p>
+		 	<%-- 	<p>スタッフID：<form:input path="staffId" value="${userData.staffId}" class="validate[required,maxSize[16]]"/></p> --%>
+		 		<p>
+		 			スタッフID:
+		 			<form:input path="staffIdFirst" value="${userData.staffIdFirst}" size="2"/>-
+		 			<form:input path="staffIdSecond" value="${userData.staffIdSecond}" size="4"/>-
+		 			<form:input path="staffIdThird" value="${userData.staffIdThird}" size="4"/>
+		 		</p>
 	 			<p>権限：
 	 				<form:select path="authorityId">
 						<option value="1">ユーザー</option>
@@ -43,13 +49,19 @@
 						</c:if>
 					</form:select><br>
 				</p>
+		 		<p>現在のパスワード：<form:password path="password" class="validate[required,maxSize[16]]"/></p>
+				<p>新しいパスワード：<form:password path="newPassword" class="text-input"/></p>
+				<p>新しいパスワード(再入力)：<form:password path="confirmPassword" class="validate[equals[newPassword]] text-input"/></p>
 			</c:if>
 			
 							<%--　　　　 ここまで管理者のみ表示 　　　　--%>
 			
-		 	<p>現在のパスワード：<form:password path="password" class="validate[required,maxSize[16]]"/></p>
-			<p>新しいパスワード：<form:password path="newPassword" class="validate[required] text-input"/></p>
-			<p>新しいパスワード(再入力)：<form:password path="confirmPassword" class="validate[required,equals[newPassword]] text-input"/></p>
+			<c:if test="${user.authorityId == 1}">				
+				<p>現在のパスワード：<form:password path="password" class="validate[required,maxSize[16]]"/></p>
+				<p>新しいパスワード：<form:password path="newPassword" class="validate[required] text-input"/></p>
+				<p>新しいパスワード(再入力)：<form:password path="confirmPassword" class="validate[required, equals[newPassword]] text-input"/></p>
+			</c:if>
+			
 			<form:hidden path="tempStaffId" value="${userData.staffId}"/>
 			<input type="hidden" name="user" value="${user}">
 	 		<input type="submit" value="登録"/>

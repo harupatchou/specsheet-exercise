@@ -1,5 +1,6 @@
 package com.example.management.controller;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +46,11 @@ public class UserEditController {
 			return "/user/userEdit";
 		}
 			//staffId値のユーザー情報をモデルに格納
-			Users userData = userLogic.selectByStaffId(staffId);
+			Users user = userLogic.selectByStaffId(staffId);
+			//user情報をフォームにコピー
+			BeanUtils.copyProperties(user, form);
+			//staffIdを分割してstaffIdパーツに格納
+			UserEditForm userData = userLogic.setStaffId(form);
 			model.addAttribute("userData", userData);
 		return "/user/userEdit";
 	}
@@ -79,6 +84,7 @@ public class UserEditController {
 		Users tempUserData = userLogic.selectByStaffId(form.getTempStaffId());
 		model.addAttribute("userData", tempUserData);
 		//編集後データ
+		form.setStaffId(form.getStaffIdFirst() + "-" + form.getStaffIdSecond() + "-" + form.getStaffIdThird());
 		model.addAttribute("userEditForm",form);
 		return "/user/userEditConfirm";
 	}
@@ -92,6 +98,8 @@ public class UserEditController {
 	public String update(UserEditForm form, String flag, Model model){
 		//flag "変更" ⇒ ユーザー情報更新
 		if(flag.equals("変更")){
+			//スタッフIDパーツを結合後update
+			form.setStaffId(form.getStaffIdFirst() + "-" + form.getStaffIdSecond() + "-" + form.getStaffIdThird());
 			userEditService.update(form);
 			return "/user/userEditFinished";
 		}
