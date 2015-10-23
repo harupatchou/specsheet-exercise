@@ -31,7 +31,7 @@ public class UserLogicImpl implements UserLogic{
 		return user;
 	}
 	
-	//スタッフIDパーツを結合
+	//スタッフIDをパーツに分割
 	@Override
 	public UserEditForm setStaffId(UserEditForm form){
 		ArrayList<String> staffIdPartsList = new ArrayList<>();

@@ -40,7 +40,7 @@ public class UserEditController {
 	 */
 	@RequestMapping
 	public String index(String staffId, UserEditForm form, Model model){
-		//staffIdがnull値の時フォームをモデルに格納
+		//staffIdがnull値の時フォームをモデルに格納(パスワード不一致時の処理)
 		if(staffId == null){
 			model.addAttribute("userData", form);
 			return "/user/userEdit";
@@ -69,7 +69,7 @@ public class UserEditController {
 			if(tempUser == null){
 				ObjectError error = new ObjectError("passwordError", "現在のパスワードが間違っています");
 				result.addError(error);
-				return index(null,form, model); 
+				return index(null, form, model); 
 			}
 		}
 		//新パスワードチェック
