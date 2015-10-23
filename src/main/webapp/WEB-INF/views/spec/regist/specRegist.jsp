@@ -189,8 +189,9 @@
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
+						<form:input path="process1" size="10"/>
 						<input type="button" value="担当工程" id="btnMini"
-							onclick="location.href='selectOS.html'" />
+							onclick="return openWin('/spec/processWindow?projectNo=1')" />
 						</td>
 						
 					<!-- 担当役割 -->
@@ -204,8 +205,10 @@
 					<tr>
 					<!-- 言語 -->
 						<th>言語</th>
-						<td><input type="button" value="言語選択" id="btnMini"
-							onclick="location.href='selectLanguage.html'" />
+						<td>
+						<form:input path="lang1"/>
+						<input type="button" value="言語選択" id="btnMini"
+							onclick="return openWin('/spec/langWindow?projectNo=1')" />
 						</td>
 						
 					<!-- チーム人数 -->

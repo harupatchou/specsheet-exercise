@@ -7,11 +7,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.management.domain.LanguageDefine;
 import com.example.management.domain.OsDefine;
+import com.example.management.domain.ProcessDefine;
 import com.example.management.domain.Project;
 import com.example.management.form.SpecForm;
 import com.example.management.logic.ProjectLogic;
+import com.example.management.service.LanguageDefineService;
 import com.example.management.service.OsDefineService;
+import com.example.management.service.ProcessDefineService;
 import com.example.management.service.ProjectService;
 
 @Component
@@ -21,6 +25,10 @@ public class ProjectLogicImpl implements ProjectLogic{
 	private ProjectService projectService;
 	@Autowired
 	private OsDefineService osDefineServise;
+	@Autowired
+	private LanguageDefineService languageDefineService;
+	@Autowired
+	private ProcessDefineService processDefineService;
 
 	@Override
 	public Boolean insertProject(String staffId, SpecForm specForm) throws Exception {
@@ -61,6 +69,18 @@ public class ProjectLogicImpl implements ProjectLogic{
 	public List<OsDefine> getOS() {
 		List<OsDefine> osList = osDefineServise.findAll();
 		return osList;
+	}
+
+	@Override
+	public List<LanguageDefine> getLang() {
+		List<LanguageDefine> langList = languageDefineService.findAll();
+		return langList;
+	}
+
+	@Override
+	public List<ProcessDefine> getProcess() {
+		List<ProcessDefine> processList = processDefineService.findAll();
+		return processList;
 	}
 	
 	
