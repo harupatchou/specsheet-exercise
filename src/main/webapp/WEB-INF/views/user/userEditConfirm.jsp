@@ -56,7 +56,7 @@
 					<tr>
 						<td>スタッフID：</td>
 						<td><c:out value="${userData.staffId}"/></td>
-						<td>→<b><c:out value="${userEditForm.staffId}"/></b>					
+						<td>→<b><c:out value="${userEditForm.staffIdFirst}"/>-<c:out value="${userEditForm.staffIdSecond}"/>-<c:out value="${userEditForm.staffIdThird}"/></b>					
 					</tr>
 				</c:if>
 				<c:if test="${userData.authorityId != userEditForm.authorityId}">
@@ -93,7 +93,9 @@
 			</c:if>
 		</table>
 	<form:form modelAttribute="userEditForm" action="/userEdit/update">
-		<form:hidden path="staffId" value="${userEditForm.staffId}"/>
+		<form:hidden path="staffIdFirst" value="${userEditForm.staffIdFirst}"/>
+		<form:hidden path="staffIdSecond" value="${userEditForm.staffIdSecond}"/>
+		<form:hidden path="staffIdThird" value="${userEditForm.staffIdThird}"/>
 		<form:hidden path="firstName" value="${userEditForm.firstName }"/>
 		<form:hidden path="lastName" value="${userEditForm.lastName }"/>
 		<form:hidden path="firstPhonetic" value="${userEditForm.firstPhonetic}"/>
