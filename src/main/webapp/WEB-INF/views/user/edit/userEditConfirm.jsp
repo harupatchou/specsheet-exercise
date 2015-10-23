@@ -16,7 +16,7 @@
 							<%--　　　　 管理者のみ表示 　　　　--%>
 							
 		<table>
-			<c:if test="${userData.authorityId == 2}">
+			<c:if test="${user.authorityId == 2}">
 				<c:if test="${userData.firstName != userEditForm.firstName}">
 					<tr>
 						<td>姓：</td>
@@ -56,7 +56,7 @@
 					<tr>
 						<td>スタッフID：</td>
 						<td><c:out value="${userData.staffId}"/></td>
-						<td>→<b><c:out value="${userEditForm.staffId}"/></b>					
+						<td>→<b><c:out value="${userEditForm.staffIdFirst}"/>-<c:out value="${userEditForm.staffIdSecond}"/>-<c:out value="${userEditForm.staffIdThird}"/></b>					
 					</tr>
 				</c:if>
 				<c:if test="${userData.authorityId != userEditForm.authorityId}">
@@ -83,7 +83,7 @@
 				
 								<%--　　　　 ここまで管理者のみ表示 　　　　--%>
 				
-				<c:if test="${userData.password != userEditForm.newPassword}">
+				<c:if test="${userEditForm.newPassword != '' && userData.password != userEditForm.newPassword}">
 					<tr>
 						<td>パスワード：</td>
 						<td>表示されません</td>
@@ -93,7 +93,9 @@
 			</c:if>
 		</table>
 	<form:form modelAttribute="userEditForm" action="/userEdit/update">
-		<form:hidden path="staffId" value="${userEditForm.staffId}"/>
+		<form:hidden path="staffIdFirst" value="${userEditForm.staffIdFirst}"/>
+		<form:hidden path="staffIdSecond" value="${userEditForm.staffIdSecond}"/>
+		<form:hidden path="staffIdThird" value="${userEditForm.staffIdThird}"/>
 		<form:hidden path="firstName" value="${userEditForm.firstName }"/>
 		<form:hidden path="lastName" value="${userEditForm.lastName }"/>
 		<form:hidden path="firstPhonetic" value="${userEditForm.firstPhonetic}"/>

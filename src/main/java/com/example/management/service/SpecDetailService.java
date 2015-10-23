@@ -176,7 +176,7 @@ public class SpecDetailService {
 		//回す回数を求める＝MaximumElementCount3　2個づつ表示なので最大要素数÷2回になる
 		int rotation = MaximumElementCount3 / 2;//回転数
 		
-		for(int i = 0 ; i < rotation ; i++){
+		for(int i = 0 ; i <= rotation ; i++){
 			//言語から2個入れる、空の場合は空文字を入れる
 			for(int lang = 0 ; lang < 2 ; lang++){
 				if(languageList.size() >= (lang + i*2 +1)){

@@ -48,7 +48,7 @@
 		</td>
 	</tr>
 	</table>
-	<input type="button" value="メニューに戻る" onclick="location.href='/menu/'"/>
+	<input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 
 <%--ここから上にコンテンツを挿入 --%>
 

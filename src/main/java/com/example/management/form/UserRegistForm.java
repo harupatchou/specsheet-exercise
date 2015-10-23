@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class UserRegistForm {
 //	/**スタッフID*/
-//	private String staffId;
+	private String staffId;
 	/**性別*/
 	private String sex;
 	/**姓*/
@@ -24,10 +24,8 @@ public class UserRegistForm {
 	/**スタッフIDパーツ１*/
 	private String staffIdFirst;
 	/**スタッフIDパーツ2*/
-	private Integer staffIdSecond;
+	private String staffIdSecond;
 	/**スタッフIDパーツ3*/
-	private Integer staffIdThird;
-	/**スタッフID*/
-	private String staffId = staffIdFirst + "-" + staffIdSecond + "-" + staffIdThird;
+	private String staffIdThird;
 	
 }

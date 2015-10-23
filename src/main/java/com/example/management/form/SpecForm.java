@@ -72,13 +72,21 @@ public class SpecForm {
 		private String os4;
 		private String os5;
 		/**言語*/
-		private String lang;
+		private String lang1;
+		private String lang2;
+		private String lang3;
+		private String lang4;
+		private String lang5;
 		/**開発関連技術*/
 		private String other;
 		/**担当役割*/
 		private String role;
 		/**担当工程*/
-		private String process;
+		private String process1;
+		private String process2;
+		private String process3;
+		private String process4;
+		private String process5;
 		/**作業内容*/
 		private String content;
 		

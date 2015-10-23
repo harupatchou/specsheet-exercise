@@ -1,5 +1,6 @@
 package com.example.management.controller;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,15 +40,19 @@ public class UserEditController {
 	 */
 	@RequestMapping
 	public String index(String staffId, UserEditForm form, Model model){
-		//staffIdがnull値の時フォームをモデルに格納
+		//staffIdがnull値の時フォームをモデルに格納(パスワード不一致時の処理)
 		if(staffId == null){
 			model.addAttribute("userData", form);
-			return "/user/userEdit";
+			return "/user/edit/userEdit";
 		}
 			//staffId値のユーザー情報をモデルに格納
-			Users userData = userLogic.selectByStaffId(staffId);
+			Users user = userLogic.selectByStaffId(staffId);
+			//user情報をフォームにコピー
+			BeanUtils.copyProperties(user, form);
+			//staffIdを分割してstaffIdパーツに格納
+			UserEditForm userData = userLogic.setStaffId(form);
 			model.addAttribute("userData", userData);
-		return "/user/userEdit";
+		return "/user/edit/userEdit";
 	}
 	
 	/**
@@ -64,7 +69,7 @@ public class UserEditController {
 			if(tempUser == null){
 				ObjectError error = new ObjectError("passwordError", "現在のパスワードが間違っています");
 				result.addError(error);
-				return index(null,form, model); 
+				return index(null, form, model); 
 			}
 		}
 		//新パスワードチェック
@@ -79,8 +84,9 @@ public class UserEditController {
 		Users tempUserData = userLogic.selectByStaffId(form.getTempStaffId());
 		model.addAttribute("userData", tempUserData);
 		//編集後データ
+		form.setStaffId(form.getStaffIdFirst() + "-" + form.getStaffIdSecond() + "-" + form.getStaffIdThird());
 		model.addAttribute("userEditForm",form);
-		return "/user/userEditConfirm";
+		return "/user/edit/userEditConfirm";
 	}
 	
 	/**
@@ -92,8 +98,10 @@ public class UserEditController {
 	public String update(UserEditForm form, String flag, Model model){
 		//flag "変更" ⇒ ユーザー情報更新
 		if(flag.equals("変更")){
+			//スタッフIDパーツを結合後update
+			form.setStaffId(form.getStaffIdFirst() + "-" + form.getStaffIdSecond() + "-" + form.getStaffIdThird());
 			userEditService.update(form);
-			return "/user/userEditFinished";
+			return "/user/edit/userEditFinished";
 		}
 		//flag "修正する" ⇒ 編集画面へ
 		return index(null, form, model);
