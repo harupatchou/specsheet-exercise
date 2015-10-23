@@ -1,6 +1,5 @@
 package com.example.management.controller;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -36,16 +36,19 @@ public class SpecDetailController {
 	@RequestMapping
 	public String detail(//@Param("searchStaffId")String searchStaffId,
 			//@ModelAttribute("userLogin")LoginUserDetails loginUser,
-//			@ModelAttribute("staffId")String staffId,//追加
+			/*@ModelAttribute("staffId")*/String staffId,
 			Model model){
 		
 		//決め打ち
-		String searchStaffId = "AP-202-0717";
+//		String searchStaffId = "AP-202-0717";
+		String searchStaffId = staffId;
+
 		
 		model.addAttribute("staffId",searchStaffId);
-		findByStaffId(searchStaffId,model);
+		String move = findByStaffId(searchStaffId,model);
 		
-		return "spec/specDetail";
+		return move;
+
 	}
 	
 	/**
@@ -108,7 +111,7 @@ public class SpecDetailController {
 //		List<ProjectDevelopDto> dtoList = projectService.getProjectDevelopDtoList(staffId);
 //		model.addAttribute("sDevelopDtoList", dtoList);
 		
-		return "specDetail";
+		return "/spec/detail/specDetail";
 	}
 	
 	
