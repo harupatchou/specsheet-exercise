@@ -92,7 +92,7 @@ public class SpecDetailController {
 		//開発経験欄の情報を取得
 		List<SpecDetailDevelopmentExperiencePage> developmentExperience = specDetailService.findDevelopmentExperienceByStaffId(staffId);
 		model.addAttribute("developmentExperience",developmentExperience);
-		System.out.println("★developmentExperience　＝　"+developmentExperience);
+//		System.out.println("★developmentExperience　＝　"+developmentExperience);
 		
 //		model.addAttribute("allExpDivision", specDetailService.allExpResult(staffId));
 //		model.addAttribute("serverNetworkExpDivision", specDetailService.serverNetworkExpResult(staffId));
