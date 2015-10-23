@@ -42,7 +42,7 @@
 			<input type="hidden" name="staffId" value="${userLogin.staffId }" />
 			</c:if>
 			<input type="submit" value="パスワード初期化"/>
-	 		<input type="button" value="メニューに戻る" onclick="location.href='/loginUser/toTheMenu'"/>
+	 		<input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 	 		<input type="button" value="ログアウト" onclick="javascript:disp()">
 	 		</form:form>
 	 		
