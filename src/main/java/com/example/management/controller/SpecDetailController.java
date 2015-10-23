@@ -94,6 +94,7 @@ public class SpecDetailController {
 		model.addAttribute("developmentExperience",developmentExperience);
 //		System.out.println("★developmentExperience　＝　"+developmentExperience);
 		
+		
 //		model.addAttribute("allExpDivision", specDetailService.allExpResult(staffId));
 //		model.addAttribute("serverNetworkExpDivision", specDetailService.serverNetworkExpResult(staffId));
 //		model.addAttribute("developmentExpDivision", specDetailService.developmentExpResult(staffId));
