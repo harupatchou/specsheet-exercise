@@ -14,7 +14,7 @@ public interface UserLogic {
     //スタッフID・パスワードが一致する個人情報取得
     public Users selectByStaffIdAndPassword(String staffId, String password);
     
-    //スタッフIDパーツを結合
+    //スタッフIDをパーツを分割
     public UserEditForm setStaffId(UserEditForm form);
 
 }
