@@ -1,7 +1,5 @@
 package com.example.management.repository;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,7 +9,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.management.domain.Spec;
 import com.example.management.page.ExpBreakdownPage;
 
 @Transactional
@@ -29,9 +26,9 @@ public class ExpBreakdownRepository {
 	};
 	
 	/**
-	 * スペックシートデータ1件取得(Spec).
+	 * 経験内訳1件取得(ExpBreakdownPage).
 	 * @param staffId スタッフID
-	 * @return 1件のスペックシートデータ、ない場合はnullを返す
+	 * @return 1件の経験内訳、ない場合はnullを返す
 	 */
 	public ExpBreakdownPage findExpBreakdownByStaffId(String staffId) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
