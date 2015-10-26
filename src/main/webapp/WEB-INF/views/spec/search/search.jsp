@@ -91,7 +91,7 @@
 		</p>
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	 	<input type="submit" value="検索" ng-disabled="SystemForm.$invalid"/>
-	 	　<input type="button" value="メニューに戻る" onclick="location.href='/menu/'"/><br><br>
+	 	　<input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/><br><br>
 	 	</form:form>
 	 	
 	 	<!-- 		検索結果 -->
@@ -151,7 +151,7 @@
 					<td><c:out value="${spec.ageRange}"/> </td>
 					<td><c:out value="${spec.updateDate}"/> </td>
 					<td>
-						<form:form action="/userEdit/select?id=${spec.staffId}" method="post">
+						<form:form action="/userEdit/?staffId=${spec.staffId}" method="post">
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 							<input type="submit" name="form" value="ユーザー編集" />
 						</form:form>

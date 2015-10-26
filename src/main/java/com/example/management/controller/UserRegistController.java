@@ -37,7 +37,7 @@ public class UserRegistController {
 	 */
 	@RequestMapping
 	public String index(Model model){
-		return "/user/userRegist";
+		return "/user/regist/userRegist";
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class UserRegistController {
 			return index(model);
 		}
 		model.addAttribute("userRegistForm", form);
-		return "/user/userRegistConfirm";
+		return "/user/regist/userRegistConfirm";
 	}
 	
 	/**
@@ -75,8 +75,8 @@ public class UserRegistController {
 			//スタッフIDパーツを結合後insert
 			form.setStaffId(form.getStaffIdFirst() + "-" + form.getStaffIdSecond() + "-" + form.getStaffIdThird());
 			userEditService.insert(form);
-			return "/user/userRegistFinished";
+			return "/user/regist/userRegistFinished";
 		}
-		return "/user/userRegist";
+		return "/user/regist/userRegist";
 	}
 }

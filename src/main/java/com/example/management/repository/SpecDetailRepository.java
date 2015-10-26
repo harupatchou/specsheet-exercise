@@ -23,7 +23,6 @@ import com.example.management.page.SpecDetailLicensePage;
 /**
  * スペック関連リポジトリクラス.
  * @author okamoto
- *
  */
 @Transactional
 @Repository
@@ -148,6 +147,7 @@ public class SpecDetailRepository {
 
 	/**
 	 * スペックシートデータ1件取得(Spec).
+	 * @author okamoto
 	 * @param staffId スタッフID
 	 * @return 1件のスペックシートデータ、ない場合はnullを返す
 	 */
@@ -170,6 +170,7 @@ public class SpecDetailRepository {
 	
 	/**
 	 * スペックシートデータ1件取得(Users).
+	 * @author okamoto
 	 * @param staffId スタッフID
 	 * @return 1件のスペックシートデータ、ない場合はnullを返す
 	 */
@@ -191,6 +192,7 @@ public class SpecDetailRepository {
 	
 	/**
 	 * スペックシート全体経験の内訳データ取得.
+	 * @author okamoto
 	 * @param staffId スタッフID
 	 * @return　スペックシート全体経験の内訳
 	 */
@@ -213,6 +215,7 @@ public class SpecDetailRepository {
 	
 	/**
 	 * スペックシート資格データ取得.
+	 * @author okamoto
 	 * @param staffId スタッフID
 	 * @return　スペックシート資格データ
 	 */
@@ -231,9 +234,9 @@ public class SpecDetailRepository {
 		}
 	}
 	
-	//★ここらへん
 	/**
 	 * スペックシート開発経験データ取得.
+	 * @author okamoto
 	 * @param staffId スタッフID
 	 * @return　スペックシート開発経験データ
 	 */
@@ -258,6 +261,7 @@ public class SpecDetailRepository {
 	
 	/**
 	 * スペックシートスキル要約の言語取得.
+	 * @author okamoto
 	 * @param staffId スタッフID
 	 * @return スキル要約の言語
 	 */
@@ -279,6 +283,7 @@ public class SpecDetailRepository {
 
 	/**
 	 * スペックシートスキル要約の環境(OS等)取得.
+	 * @author okamoto
 	 * @param staffId スタッフID
 	 * @return スキル要約の環境(OS等)	
 	 */
@@ -300,6 +305,7 @@ public class SpecDetailRepository {
 
 	/**
 	 * スペックシートスキル要約の開発関連技術取得.
+	 * @author okamoto
 	 * @param staffId スタッフID
 	 * @return スキル要約の開発関連技術
 	 */
@@ -320,6 +326,7 @@ public class SpecDetailRepository {
 
 	/**
 	 * スペックシートスキル要約の業務範囲(工程)取得.
+	 * @author okamoto
 	 * @param staffId スタッフID
 	 * @return スキル要約の業務範囲(工程)
 	 */
@@ -338,6 +345,31 @@ public class SpecDetailRepository {
 		return null;
 	}
 }
+	
+	/**
+	 * ★まだ使ってない状態です
+	 * パスワードの初期化.
+	 * @author okamoto
+	 * @param staffId
+	 * @return パスワード初期化告知画面
+	 */
+	static final String PASSWORD = "boost2000";
+	public String passwordInitializationByStaffId (String staffId) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
+		try{
+			//★sql動作確認できたらここに入れる
+		}catch (DataAccessException epasswordInitialization){
+			return null;
+		}
+		
+		jdbcTemplate.update(
+				"UPDATE users SET password = ' " +PASSWORD+ " ' "
+						+ "WHERE staff_id = :staffId ",
+				param
+				);
+		
+		return "★パスを初期化したことを告知する画面URL";
+	}
 	
 	
 	

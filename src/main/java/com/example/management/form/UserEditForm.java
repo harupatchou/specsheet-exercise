@@ -30,4 +30,10 @@ public class UserEditForm {
 	private String confirmPassword;
 	/**一時保存用スタッフID*/
 	private String tempStaffId;
+	/**スタッフIDパーツ１*/
+	private String staffIdFirst;
+	/**スタッフIDパーツ2*/
+	private String staffIdSecond;
+	/**スタッフIDパーツ3*/
+	private String staffIdThird;
 }

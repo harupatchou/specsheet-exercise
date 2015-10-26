@@ -30,7 +30,17 @@
 		 	<%-- <p>スタッフID：<form:input path="staffId" class="validate[required,maxSize[16]]"/></p> --%>
 		 	<p>
 		 		スタッフID:
-		 		<form:input path="staffIdFirst" size="2"/>-<form:input path="staffIdSecond" size="4"/>-<form:input path="staffIdThird" size="4"/>
+		 		<form:select path="staffIdFirst">
+		 			<option value="AP">AP</option>
+		 			<c:if test="${userRegistForm.staffIdFirst != 'NW'}">
+						<option value="NW">NW</option>
+					</c:if>
+					<c:if test="${userRegistForm.staffIdFirst == 'NW'}">
+						<option value="NW" selected>NW</option>
+					</c:if>
+		 		</form:select>
+		 		-<form:input path="staffIdSecond" size="4"/>
+		 		-<form:input path="staffIdThird" size="4"/>
 		 	</p>
 	 		<p>権限：
 	 			<form:select path="authorityId">
