@@ -155,7 +155,7 @@
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
 						<td rowspan="5" id="lastNo">1</td>
-						<form:input type="hidden" path="projectNo" />
+						<form:input type="hidden" path="projectNo" value="1"/>
 					<!-- 開発時期 -->
 						<td rowspan="4">
 						<form:input path="startDay" /><br>
