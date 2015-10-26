@@ -84,7 +84,7 @@ public class SpecController {
 		//決め打ち
 		String test = "AP-202-0716";
 		
-		insertProject(test,specForm);
+		insertExecute(test,specForm);
 		
 		return "spec/regist/specRegistCheck";
 	}
@@ -163,8 +163,9 @@ public class SpecController {
 	 * @return
 	 * @throws Exception
 	 */
-	private Boolean insertProject(String staffId,SpecForm specForm) throws Exception {
-		projectLogic.insertProject(staffId,specForm);
+	private Boolean insertExecute(String staffId,SpecForm form) throws Exception {
+		specLogic.insertSpec(form);
+		projectLogic.insertProject(staffId,form);
 		return true;
 	}
 
