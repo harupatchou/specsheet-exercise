@@ -1,6 +1,8 @@
 package com.example.management.form;
 
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,12 +22,16 @@ public class SpecForm {
 	private Integer stateFlag;
 	/**編集時コメント*/
 	private String comment;
+	/**年齢フラグ*/
+	private Integer ageFlag;
 	/**最寄駅*/
 	private String nearestStation;
 	/**アピールポイント*/
 	private String appeal;
 	
 	//経験年数要素
+		/**IT全体経験(月数換算)*/
+		private Integer allExp;
 		/**IT全体経験年*/
 		private Integer allExpYear;
 		/**IT全体経験月*/
@@ -46,6 +52,13 @@ public class SpecForm {
 		private Integer pgOperatorExpYear;
 		/**PG経験月*/
 		private Integer pgOperatorExpMonth;
+		
+	//スキル要約
+		private String relatedTech;
+		/**更新日時 */
+		private Date updateDate;
+		/**更新者名 */
+		private String updateName;
 		
 	/** 開発経験テーブル */
 	//人数

@@ -18,11 +18,8 @@
 			<p>名：<form:input path="lastName" value="${user.lastName}" /></p>
 			<!-- 勤務状況 -->
 			<p>状況：
-			<form:select path="stateFlag">
-				<c:forEach items="${stateMap}" var="state">
-					<option><c:out value="${state}" /></option>
-				</c:forEach>
-			</form:select><br>
+			<form:select path="stateFlag" items="${stateMap}" value="${spec.stateFlag}" />
+			<br>
 			</p>
 			<!-- コメント -->
 			<p>編集時のコメント：
@@ -36,17 +33,15 @@
 					<td><form:input path="staffId" value="${user.staffId}" /></td>
 
 					<th>年齢</th>
-					<td><select>
-						<c:forEach items="${ageMap}" var="age">	
-							<option><c:out value="${age}" /></option>
-						</c:forEach>
-					</select><br></td>
+					<td>
+					<form:select path="ageFlag" items="${ageMap}" value="${spec.ageId}"/>
+					<br></td>
 
 					<th>性別</th>
-					<td>${user.sex}</td>
+					<td><c:out value="${user.sex}" /></td>
 
 					<th>最寄駅</th>
-					<td><form:input id="inputMini" path="nearestStation" />駅</td>
+					<td><form:input id="inputMini" path="nearestStation" value="${spec.nearestStation}" />駅</td>
 
 					<th>稼働開始日</th>
 					<td>応相談</td>
@@ -60,8 +55,8 @@
 				<tr>
 					<th rowspan="2">IT全体経験</th>
 					<td rowspan="2" colspan="2">
-					<form:input id="inputMini" path="allExpYear"   value="${experience.allExpYear}"/>年
-					<form:input id="inputMini" path="allExpMonth"  value="${experience.allExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="allExpYear"   value="${spec.year}"/>年
+					<form:input id="inputMini" path="allExpMonth"  value="${spec.month}"/>ヵ月</td> 
 					<th rowspan="2">内訳</th>
 					<th>サーバ・NW経験</th>
 					<td colspan="2">
@@ -74,13 +69,13 @@
 				</tr>
 				<tr>
 					<th>システム開発経験</th>
-				<td colspan="2">
-				<form:input id="inputMini" path="developmentExpYear"  value="${experience.developmentExpYear}"/>年
-				<form:input id="inputMini" path="developmentExpMonth"  value="${experience.developmentExpMonth}"/>ヵ月</td> 
-				<th>PG・作業員経験</th>
-				<td colspan="2">
-				<form:input id="inputMini" path="pgOperatorExpYear" value="${experience.pgOperatorExpYear}"/>年
-				<form:input id="inputMini" path="pgOperatorExpMonth" value="${experience.pgOperatorExpMonth}"/>ヵ月</td> 
+					<td colspan="2">
+					<form:input id="inputMini" path="developmentExpYear"  value="${experience.developmentExpYear}"/>年
+					<form:input id="inputMini" path="developmentExpMonth"  value="${experience.developmentExpMonth}"/>ヵ月</td> 
+					<th>PG・作業員経験</th>
+					<td colspan="2">
+					<form:input id="inputMini" path="pgOperatorExpYear" value="${experience.pgOperatorExpYear}"/>年
+					<form:input id="inputMini" path="pgOperatorExpMonth" value="${experience.pgOperatorExpMonth}"/>ヵ月</td> 
 				</tr>
 			</table>
 
@@ -107,7 +102,7 @@
 						</select></td>
 						<td><input type="checkbox" id="check">実務</td>
 						<td><input id="inputMini" type="text">ヵ月</td>
-						<td><input type="text" /></td>
+						<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
 						<td><select>
 								<option>Windows</option>
 								<option>Linux</option>
