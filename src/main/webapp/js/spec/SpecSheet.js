@@ -30,11 +30,12 @@ function AddDetail(addTable){
 			"<input type='button' value='OS選択' id='btnMini' " +
 			"onclick=\"return openWin('/spec/osWindow?projectNo="　+ no +　"')\" /></td>" +
 			"<td rowspan='4'>" +
-			"<input name='process" +　no + "' size='10'/><input type='button' value='担当工程' id='btnMini' " +
+			"<input name='process' id='process" + no + "' />" +
+			"<input type='button' value='担当工程' id='btnMini' " +
 			"onclick=\"return openWin('/spec/processWindow?projectNo="　+ no +　"')\" /></td>" +
 			"<td rowspan='4'><textarea name='role' id='inputResponsible'></textarea></td><th>チーム</th></tr>" +
-			"<tr><th>言語</th><td><input name='lang" +　no +
-			"'/><input type='button' value='言語選択' id='btnMini' " +
+			"<tr><th>言語</th><td><input name='lang' id='lang" + no + "' />" +
+			"<input type='button' value='言語選択' id='btnMini' " +
 			"onclick=\"return openWin('/spec/langWindow?projectNo="　+ no +　"')\" /></td>" +
 			"<td><input name='teamNum' id='inputMini' />人</td></tr><tr><th rowspan='2'>開発関連技術</th>" +
 			"<td rowspan='2'><textarea name='other' id='inputOther'></textarea></td><th>開発全体</th></tr>" +
