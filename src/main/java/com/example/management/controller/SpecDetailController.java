@@ -21,6 +21,10 @@ import com.example.management.page.SpecDetailExpBreakdownPage;
 import com.example.management.page.SpecDetailLicensePage;
 import com.example.management.service.SpecDetailService;
 
+/**
+ * スペックシート詳細画面関連クラス.
+ * @author okamoto
+ */
 @Controller
 @Transactional
 @RequestMapping(value = "/detail")
@@ -38,17 +42,14 @@ public class SpecDetailController {
 			//@ModelAttribute("userLogin")LoginUserDetails loginUser,
 			/*@ModelAttribute("staffId")*/String staffId,
 			Model model){
-		
 		//決め打ち
 //		String searchStaffId = "AP-202-0717";
 		String searchStaffId = staffId;
-
 
 		model.addAttribute("staffId",searchStaffId);
 		String move = findByStaffId(searchStaffId,model);
 		
 		return move;
-
 	}
 	
 	/**
@@ -68,9 +69,8 @@ public class SpecDetailController {
 		//↑がnullだった場合、エラー文を入れてフォワード
 		if(spec == null || users == null) {
 			model.addAttribute("errorMessage","検索されたスタッフIDは見つかりません");
-			return "forward:/spec/specedit";
+			return "/spec/detail/specDetailError";
 		}
-		
 		model.addAttribute("spec",spec);
 		model.addAttribute("users",users);
 
@@ -91,27 +91,12 @@ public class SpecDetailController {
 		
 		//開発経験欄の情報を取得
 		List<SpecDetailDevelopmentExperiencePage> developmentExperience = specDetailService.findDevelopmentExperienceByStaffId(staffId);
+		if(developmentExperience == null){
+			model.addAttribute("errorMessage","検索されたスタッフIDは見つかりません");
+			return "/spec/detail/specDetailError";
+		}
 		model.addAttribute("developmentExperience",developmentExperience);
-//		System.out.println("★developmentExperience　＝　"+developmentExperience);
-		
-		
-//		model.addAttribute("allExpDivision", specDetailService.allExpResult(staffId));
-//		model.addAttribute("serverNetworkExpDivision", specDetailService.serverNetworkExpResult(staffId));
-//		model.addAttribute("developmentExpDivision", specDetailService.developmentExpResult(staffId));
-//		model.addAttribute("seExpDivision", specDetailService.seExpResult(staffId));
-//		model.addAttribute("pgOperatorExpDivision", specDetailService.pgOperatorExpResult(staffId));
 
-		//ログイン結合後まで保持
-//		Users user = new Users(staffId, "性別", "姓", "名", "姓(ﾌﾘｶﾞﾅ)", "名(ﾌﾘｶﾞﾅ)", 2, "boost2000");
-		
-//		model.addAttribute("page", specDetailService.execute(user));
-		
-		//資格情報の取得
-//		model.addAttribute("sLicenseList", getLicenses(staffId));
-		//開発情報の取得
-//		List<ProjectDevelopDto> dtoList = projectService.getProjectDevelopDtoList(staffId);
-//		model.addAttribute("sDevelopDtoList", dtoList);
-		
 		return "/spec/detail/specDetail";
 	}
 	

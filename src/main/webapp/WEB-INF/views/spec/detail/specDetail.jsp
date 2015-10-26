@@ -11,15 +11,14 @@
 <title>スペックシート詳細画面</title>
 <link rel="stylesheet" href="../css/specSystem.css">
 <link rel="stylesheet" href="../css/specDetail.css">
-<link rel="stylesheet" href="/css/print.css">
+<link rel="stylesheet" href="../../css/print.css">
 
 
-<script src="../js/specDetail.js"></script>
-<script src="../js/submitStop.js"></script>
-<script src="../js/logoutConfirmationDialog.js"></script>
+<script src="../../../js/spec/detail/print.js"></script>
+<!-- <script src="../js/submitStop.js"></script> -->
+<!-- <script src="../js/logoutConfirmationDialog.js"></script> -->
 </head>
 <body>
-
 
 
 <div class="printDemo noPrint">
@@ -27,13 +26,16 @@
 		<span id="heading" style="color: white">スペックシート詳細画面</span><br>
 		<c:out value="${userLogin.name}" />さんログイン中<br>
 		
-			<input type="button" value="ファイル出力"/>
-			<input type="submit" value="印刷" onclick="PrintScript();"/>
-			<input type="button" value="編集" onclick="location.href='/specedit/?staffId=${staffId}'"/>
+		<div>
+		<div class="menu-button"></div>
+			<div class="menu-button"><input type="button" value="未実装★ファイル出力"/></div>
+			<div class="menu-button"><input type="submit" value="印刷" onclick="PrintScript();"/></div>
+			<div class="menu-button"><input type="button" value="編集（コントローラがまだ決め打ち）" onclick="location.href='/spec/registIndex/?staffId=${staffId}'"/></div>
 			<c:if test="${userLogin.authorityId == 2}">
-			<input type="submit" value="退職者登録" onclick="location.href='/specDelete/?staffId=${staffId}'"/>
+			<div class="menu-button"><input type="submit" value="未実装★退職者登録" onclick="location.href='/specDelete/?staffId=${staffId}'"/></div>
 			</c:if>
 			
+			<div class="menu-button">
 			<form:form action="/userEdit/initializationConfirmation" >
 			<c:if test="${spec.staffId != null }">
 			<input type="hidden" name="staffId" value="${spec.staffId }" />
@@ -41,11 +43,12 @@
 			<c:if test="${spec.staffId == null }">
 			<input type="hidden" name="staffId" value="${userLogin.staffId }" />
 			</c:if>
-			<input type="submit" value="パスワード初期化"/>
-	 		<input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
-	 		<input type="button" value="ログアウト" onclick="javascript:disp()">
+			<div class="menu-button"><input type="submit" value="未実装★パスワード初期化"/></div>
+	 		<div class="menu-button"><input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/></div>
+	 		<div class="menu-button"><input type="button" value="ログアウト" onclick="location.href='/userLogout'" ></div>
 	 		</form:form>
-	 		
+	 		</div>
+	 	</div>
 		</div>
 <%-- 		<form:form modelAttribute="stationTimeForm" action="/detail/searchTime"> --%>
 <%-- 			<form:input path="arrivalStation" class="inputMiddle"/>駅 --%>
@@ -77,7 +80,7 @@
 				<th>稼働開始日</th>
 				<td>応相談</td>
 			</tr>
-<tr>
+			<tr>
 				<th rowspan="2">IT全体経験</th>
 				<c:if test="${spec.year > 0 && spec.month > 0}">
 				<td rowspan="2" colspan="2">　
@@ -217,35 +220,35 @@
 				<th>規模</th>
 			</tr>
 <c:if test="${fn:length(developmentExperience) > 0 }" >
-				<c:forEach var="dto" items="${developmentExperience}" varStatus="i">
+				<c:forEach var="devExp" items="${developmentExperience}" varStatus="i">
 					<tr>
 						<!--　No -->
 						<td rowspan="5">${i.count}</td>
 						<!-- 開始時期 -->
 						<td rowspan="2">
-							<fmt:formatDate value="${dto.startDate}" pattern="yyyy/MM"/>
+							<fmt:formatDate value="${devExp.startDate}" pattern="yyyy/MM"/>
 							～
-							<c:if test="${dto.finishDate == null}">
+							<c:if test="${devExp.finishDate == null}">
 								現在
 							</c:if>
-							<c:if test="${dto.finishDate != null}">
-								<fmt:formatDate value="${dto.finishDate}" pattern="yyyy/MM"/>
+							<c:if test="${devExp.finishDate != null}">
+								<fmt:formatDate value="${devExp.finishDate}" pattern="yyyy/MM"/>
 							</c:if>
 						</td>
 						<!-- プロジェクト概要 -->
 						<td rowspan="4">
-							<c:out value="${dto.overview}"/>
+							<c:out value="${devExp.overview}"/>
 						</td>
 						<th>OS</th>
 						<td>
-							<c:forEach var="os" items="${dto.osNameList}" varStatus="j">
+							<c:forEach var="os" items="${devExp.osName}" varStatus="j">
 								<c:out value="${os}"/>
 								<c:if test="${j.last == false }">/</c:if>
 							</c:forEach>
 						</td>
 						<!-- 担当工程 -->
 						<td rowspan="4">
-							<c:forEach var="process" items="${dto.processNameList}" varStatus="j">
+							<c:forEach var="process" items="${devExp.processName}" varStatus="j">
 								<c:out value="${process }"/>
 								<c:if test="${j.last == false}">
 									<br>
@@ -254,7 +257,7 @@
 						</td>
 						<!-- 担当役割 -->
 						<td rowspan="4">
-							<c:forEach var="role" items="${dto.roleList}" varStatus="j">
+							<c:forEach var="role" items="${devExp.role}" varStatus="j">
 								<c:out value="${role}"/>
 								<c:if test="${j.last == false}">/</c:if>
 							</c:forEach>
@@ -264,27 +267,27 @@
 					<tr>
 						<th>言語</th>
 						<td>
-							<c:forEach var="language" items="${dto.languageNameList}" varStatus="j">
+							<c:forEach var="language" items="${devExp.languageName}" varStatus="j">
 								<c:out value="${language}"/>
 								<c:if test="${j.last == false}">/</c:if>
 							</c:forEach>
 						</td>
 						<!-- チーム人数 -->
 						<td>
-							<c:out value="${dto.teamNum}"/>
+							<c:out value="${devExp.teamNum}"/>
 						</td>
 					</tr>
 					<tr>
 						<td rowspan="2">
 							<!-- 開発期間 -->
-							<c:if test="${dto.period / 12 >= 1}">
-								<fmt:formatNumber value="${dto.period / 12}" pattern="###"/>年
+							<c:if test="${devExp.period / 12 >= 1}">
+								<fmt:formatNumber value="${devExp.period / 12}" pattern="###"/>年
 							</c:if>
-							<c:out value="${dto.period % 12}"/>カ月
+							<c:out value="${devExp.period % 12}"/>カ月
 						</td>
 						<th rowspan="2">その他</th>
 						<td rowspan="2">
-							<c:forEach var="other" items="${dto.otherList}" varStatus="j">
+							<c:forEach var="other" items="${devExp.other}" varStatus="j">
 								<c:out value="${other}"/>
 								<c:if test="${j.last == false}">/</c:if>
 							</c:forEach>
@@ -294,13 +297,13 @@
 					<tr>
 						<!-- 開発全体 -->
 						<td>
-							<c:out value="${dto.allNum}"/>
+							<c:out value="${devExp.allNum}"/>
 						</td>
 					</tr>
 					<tr>
 						<th class="tallHeight">作業内容</th>
 						<td colspan="6">
-							<c:out value="${dto.content}"/>
+							<c:out value="${devExp.content}"/>
 							
 				
 <%--　　★とりあえずの印刷改ページ処理　⇒ --%><c:if test="${i.count % 3 == 0}"><div class="always"></div></c:if>
