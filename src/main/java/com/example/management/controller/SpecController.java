@@ -1,5 +1,6 @@
 package com.example.management.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import com.example.management.domain.ProcessDefine;
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
+import com.example.management.form.SpecRegistLicenseForm;
 import com.example.management.logic.EnumLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
+import com.example.management.service.SpecRegistService;
 
 @Controller
 @Transactional
@@ -33,6 +36,8 @@ public class SpecController {
 	private ProjectLogic projectLogic;
 	@Autowired
 	private EnumLogic enumLogic;
+	@Autowired
+	private SpecRegistService specRegistService;
 	
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
@@ -195,4 +200,19 @@ public class SpecController {
 		return true;
 	}
 
+	
+	/**
+	 * スペックシート登録（資格）
+	 * @author okamoto
+	 * @param form
+	 */
+	public void insertUsersLicenseByStaffId(String staffId,String name,Date acquireDate){
+		SpecRegistLicenseForm form = new SpecRegistLicenseForm();
+		form.setStaffId(staffId);
+		form.setName(name);
+		form.setAcquireDate(acquireDate);
+		System.out.println("★form = "+form);
+		specRegistService.insertUsersLicenseByStaffId(form);
+	}
+	
 }
