@@ -142,7 +142,7 @@
 				<table id="addTable" class="speckDetailTable">
 				</table>
 				<table id="speckTable" class="speckDetailTable">
-					<tbody class="speckDetailTable">
+					<tbody id="testTable" class="speckDetailTable">
 					<tr>
 						<th>No.</th>
 						<th>期間</th>
@@ -221,7 +221,7 @@
 						<th colspan="9">
 						この開発経験を削除 
 						<input type="button" value="行削除" id="deleteAdd" 
-						onclick="DeleteDetail('speckTable')" />
+						onclick="DeleteDetail('testTable')" />
 						</th>
 					</tr>
 				</tbody>
