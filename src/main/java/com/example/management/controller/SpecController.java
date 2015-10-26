@@ -20,6 +20,7 @@ import com.example.management.logic.ExpBreakdownLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
+import com.example.management.service.ExpBreakdownService;
 
 @Controller
 @Transactional
@@ -36,6 +37,8 @@ public class SpecController {
 	private EnumLogic enumLogic;
 	@Autowired
 	private ExpBreakdownLogic expBreakdownLogic;
+	@Autowired
+	private ExpBreakdownService expBreakdownService;
 	
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
@@ -196,6 +199,7 @@ public class SpecController {
 	 */
 	private Boolean insertExecute(String staffId,SpecForm form) throws Exception {
 		specLogic.insertSpec(form);
+		expBreakdownService.insertBreakdown(form);
 		projectLogic.insertProject(staffId,form);
 		return true;
 	}
