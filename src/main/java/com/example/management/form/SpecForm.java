@@ -67,11 +67,11 @@ public class SpecForm {
 		private String overview;
 		/**OS*/
 		private String os;
-		private String os1;
+		/*private String os1;
 		private String os2;
 		private String os3;
 		private String os4;
-		private String os5;
+		private String os5;*/
 		/**言語*/
 		private String lang1;
 		private String lang2;
@@ -90,6 +90,7 @@ public class SpecForm {
 		private String process5;
 		/**作業内容*/
 		private String content;
-		
+		/**最後のテーブル判別*/
+		private String lastHidden;
 		
 }

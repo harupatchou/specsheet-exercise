@@ -1,5 +1,11 @@
 //プロジェクト番号を指定するカラム
-var no = 2; 
+var no = 1; 
+//最初の行のプロジェクト番号
+var firstNo = 1;
+//現状のプロジェクトの番号
+var testNo = 1;
+//hidden用
+var hiddenNo = 1;
 /**
  * 現在の最終行の後ろに対して、開発経験行の追加を行う
  * @param tableIdName 追加したいテーブルのId名
@@ -7,18 +13,21 @@ var no = 2;
  * @param
  */
 function AddDetail(addTable){
-	no+=1;
+	//追加のためnoを1にする(現状番号振り分けが逆になっている)
+	no += 1;
+	//現状のプロジェクト番号
+	testNo = 1;
+	hiddenNo = 1;
 	//追加したい表示コンテンツを書き込む
 	var appendContent = 
 			"<tbody class='speckDetailTable'><tr><th>No.</th><th>期間</th><th>プロジェクト概要</th><th colspan='2'>環境、ツールなど</th>" +
 			"<th>担当工程</th><th>担当役割</th><th>規模</th></tr>" +
-			"</th></tr><tr class='InputTr'><td rowspan='5' id='proNo'>" +
-			"<input type='hidden' name='projectNo' value='"+ no +"'/>"+ no +　"</td>" +
+			"</th></tr><tr class='InputTr'><td rowspan='5' class='proNo' >"+firstNo+"</td>" +
+			"<input type='hidden' name='projectNo' class='setProNo' value='' />" +
 			"<td rowspan='4'><input name='startDay' /><br>～<br><input name='finishDay' /></td>" +
 			"<td rowspan='4'><textarea name='overview' rows='10' cols='12' /></td><th>OS</th>" +
-			"<td><input name='os" +　no +
-			"' id='osTest" + no +
-			"' /><input type='button' value='OS選択' id='btnMini' " +
+			"<td><input name='os' id='os" + no + "' />" +
+			"<input type='button' value='OS選択' id='btnMini' " +
 			"onclick=\"return openWin('/spec/osWindow?projectNo="　+ no +　"')\" /></td>" +
 			"<td rowspan='4'>" +
 			"<input name='process" +　no + "' size='10'/><input type='button' value='担当工程' id='btnMini' " +
@@ -36,7 +45,7 @@ function AddDetail(addTable){
 			"<tr><td></td></tr></tbody>";
 	
 	$("#"+addTable).prepend(appendContent);
-	setProNo(lastNo);
+	setProNo();
 }
 
 /**
@@ -55,10 +64,20 @@ function DeleteDetail(tableIdName){
  * @param proNo プロジェクト番号を受けとり、采配して返す 
  * 
 */
-
-function setProNo(lastNo){
+function setProNo(){
 	//ボタンを押すたび、番号の割り振り
-	$("lastNo").each(function(){
-		
+	$(".setProNo").each(function(){
+		$(this).attr("value",hiddenNo)
+		hiddenNo+=1;
 	});
+	
+	$(".proNo").each(function(){
+		$(this).text(testNo)
+		testNo+=1;
+	});
+	//最後のプロジェクトにはno（プロジェクト数のカウントしているカラム）を割り振る
+	$("#lastNo").text(no)
+	//最後のプロジェクトにはno（プロジェクト数のカウントしているカラム）を割り振る
+	$("#projectNo").attr("value",no)
+	
 }

@@ -10,7 +10,14 @@ function openWin(url) {
 
 function goBackOs(proNo,te){
 	var osList=document.getElementsByName("os");
-	var test = "osTest"+proNo;
+	//最後のテーブルに持たせたlastHiddenの値1を取得
+	var osId = window.opener.document.getElementById("lastHidden").value;
+	var test = "os"+proNo;
+	//proNoが最後のテーブルの値と同じであればtestの名前をosにする
+	if(parseInt(osId)==proNo){
+		test = "os";
+	}
+	//値をvalueに入れていく
 	var value = "";
 	for(var i=0;i<osList.length;i++){
 		if(osList[i].checked)
