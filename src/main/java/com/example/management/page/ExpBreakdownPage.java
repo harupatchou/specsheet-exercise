@@ -21,4 +21,5 @@ public class ExpBreakdownPage {
 	private Integer monthOfExp;
 	/**経験内訳名 */
 	private String name;
+	
 }
