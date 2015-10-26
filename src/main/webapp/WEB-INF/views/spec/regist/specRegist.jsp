@@ -69,13 +69,13 @@
 				</tr>
 				<tr>
 					<th>システム開発経験</th>
-				<td colspan="2">
-				<form:input id="inputMini" path="developmentExpYear"  value="${experience.developmentExpYear}"/>年
-				<form:input id="inputMini" path="developmentExpMonth"  value="${experience.developmentExpMonth}"/>ヵ月</td> 
-				<th>PG・作業員経験</th>
-				<td colspan="2">
-				<form:input id="inputMini" path="pgOperatorExpYear" value="${experience.pgOperatorExpYear}"/>年
-				<form:input id="inputMini" path="pgOperatorExpMonth" value="${experience.pgOperatorExpMonth}"/>ヵ月</td> 
+					<td colspan="2">
+					<form:input id="inputMini" path="developmentExpYear"  value="${experience.developmentExpYear}"/>年
+					<form:input id="inputMini" path="developmentExpMonth"  value="${experience.developmentExpMonth}"/>ヵ月</td> 
+					<th>PG・作業員経験</th>
+					<td colspan="2">
+					<form:input id="inputMini" path="pgOperatorExpYear" value="${experience.pgOperatorExpYear}"/>年
+					<form:input id="inputMini" path="pgOperatorExpMonth" value="${experience.pgOperatorExpMonth}"/>ヵ月</td> 
 				</tr>
 			</table>
 
