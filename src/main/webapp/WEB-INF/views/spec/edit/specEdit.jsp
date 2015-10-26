@@ -15,8 +15,9 @@
 
 			<p>
 				待機：<form:select path="stateFlagStr">
-					<option value="0">待機</option>
-					<option value="1">現場</option>
+						<c:forEach items="${stateMap}" var="state">	
+							<option>${state}</option>
+						</c:forEach>
 					</form:select>
 						<br>
 			</p>
@@ -33,15 +34,11 @@
 					<td><form:input path="staffId" value="${spec.staffId}" /></td>
 
 					<th>年齢</th>
-					<td><select>
-							<option>20代前半</option>
-							<option>20代後半</option>
-							<option>30代前半</option>
-							<option>30代後半</option>
-							<option>40代前半</option>
-							<option>40代後半</option>
-							<option>50代前半</option>
-							<option>50代後半</option>
+					<td>
+					<select>
+						<c:forEach items="${ageMap}" var="age">	
+							<option>${age}</option>
+						</c:forEach>
 					</select><br></td>
 
 					<th>性別</th>

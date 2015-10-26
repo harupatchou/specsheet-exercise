@@ -39,19 +39,20 @@ public class SpecDetailService {
 	 * @param staffId　スタッフID
 	 * @return　スペックシート（スペックID)詳細
 	 */
-//	public Spec findSpecByStaffId(String staffId) {
-//		return specDetailRepository.findSpecByStaffId(staffId);
-//	}
 	public Spec findSpecByStaffId(String staffId) {
-		Spec spec = specDetailRepository.findSpecByStaffId(staffId);
-		Integer AllExp = spec.getAllExp();
+		try{
+			Spec spec = specDetailRepository.findSpecByStaffId(staffId);
+			Integer AllExp = spec.getAllExp();
 
-		Integer AllExpYear = (AllExp)/12;
-		Integer AllExpMonth = (AllExp)%12;
-		spec.setYear(AllExpYear);
-		spec.setMonth(AllExpMonth);
-		
-		return spec;
+			Integer AllExpYear = (AllExp)/12;
+			Integer AllExpMonth = (AllExp)%12;
+			spec.setYear(AllExpYear);
+			spec.setMonth(AllExpMonth);
+
+			return spec;
+		}catch(NullPointerException e){
+			return null;
+		}
 	}
 	
 	/**
@@ -62,7 +63,6 @@ public class SpecDetailService {
 	public User findUsersByStaffId(String staffId) {
 		return specDetailRepository.findUsersByStaffId(staffId);
 	}
-	
 	
 	/**
 	 * スペックシート(IT経験）詳細取得.
@@ -167,9 +167,6 @@ public class SpecDetailService {
 		int MaximumElementCount2 = Math.max(ECDevelopmentRelatedTechnology,ECProcessList);
 		int MaximumElementCount3= Math.max(MaximumElementCount,MaximumElementCount2);
 		
-		//表示するデータの行数　いらないかも？？
-//		int lines = (MaximumElementCount3 + 1 )/2;
-		
 		//表示のためにひとつの配列に2個ずつ格納、要素がなくなるまで繰り返し、空の場合は空文字（null？）を入れておく
 		ArrayList<String> SkillsSummary = new ArrayList<>();
 		
@@ -233,45 +230,57 @@ public class SpecDetailService {
 		ArrayList<String> processNameList = new ArrayList<>();
 		ArrayList<String> roleList = new ArrayList<>();
 
-		Integer no = developmentExperienceList.get(0).getNo();
-		int count = 0;
-		for(SpecDetailDevelopmentExperiencePage i : developmentExperienceList) {
-			if(no != i.getNo() || count == (developmentExperienceList.size() - 1)) {
-				i.setOsNameList(arrayListLogic.hStrUnique(osNameList));
-				i.setLanguageNameList(arrayListLogic.hStrUnique(languageNameList));
-				i.setOtherList(arrayListLogic.hStrUnique(otherList));
-				i.setProcessNameList(arrayListLogic.hStrUnique(processNameList));
-				i.setRoleList(arrayListLogic.hStrUnique(roleList));
-				returnList.add(i);
-				
-				osNameList.clear();
-				languageNameList.clear();
-				otherList.clear();
-				processNameList.clear();
-				roleList.clear();
+		try{//スペックシートに情報がない場合、nullを返す
+			Integer no = developmentExperienceList.get(0).getNo();
+
+			int count = 0;
+			int count2 = 0;
+
+			for(SpecDetailDevelopmentExperiencePage i : developmentExperienceList){
+				//プロジェクトNOとカウントが不一致のとき、リターンリストに入れて、カウントを加算
+
+				if( no == count || count2 == 0 ){
+					osNameList.add(i.getOsName());
+					languageNameList.add(i.getLanguageName());
+					otherList.add(i.getOther());
+					processNameList.add(i.getProcessName());
+					roleList.add(i.getRole());
+				}
+				if( no != count && count2 != 0 || count2 == developmentExperienceList.size() ){
+					i.setOsNameList(arrayListLogic.hStrUnique(osNameList));
+					i.setLanguageNameList(arrayListLogic.hStrUnique(languageNameList));
+					i.setOtherList(arrayListLogic.hStrUnique(otherList));
+					i.setProcessNameList(arrayListLogic.hStrUnique(processNameList));
+					i.setRoleList(arrayListLogic.hStrUnique(roleList));
+					returnList.add(i);
+					count++;
+
+					osNameList = new ArrayList<>();
+					languageNameList = new ArrayList<>();
+					otherList = new ArrayList<>();
+					processNameList = new ArrayList<>();
+					roleList = new ArrayList<>();
+				}
+				no = i.getNo();
+				count2++;
 			}
-			osNameList.add(i.getOsName());
-			languageNameList.add(i.getLanguageName());
-			otherList.add(i.getOther());
-			processNameList.add(i.getProcessName());
-			roleList.add(i.getRole());
-			++count;
-			no = i.getNo();//←キモ
+
+		}catch(IndexOutOfBoundsException e){
+			return null;
 		}
-		
+
 		//期間取りだす
 		for(SpecDetailDevelopmentExperiencePage i : returnList){
 			Date startDate = i.getStartDate();
 			Date finishDate = i.getFinishDate();
-			
+
 			int ret = differenceMonth(finishDate,startDate);
-		
+
 			i.setPeriod(ret);
 		}
-		
 		return returnList;
 	}
-	
+
 
 	
 	//ロジックに切り分けましょう
