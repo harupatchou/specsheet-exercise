@@ -9,7 +9,8 @@
 		
 <%--ここから下にコンテンツを挿入 --%>
 
-エラー
+閲覧権限がありません。<br>
+<input type="button" onclick="javascript: history.back();" value="戻る">
 
 <%--ここから上にコンテンツを挿入 --%>
 

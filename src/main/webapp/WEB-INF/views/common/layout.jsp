@@ -14,10 +14,14 @@
 <script src="/js/lib/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="/js/lib/jquery.validationEngine.js" type="text/javascript"></script>
 <script src="/js/lib/jquery.validationEngine-ja.js" type="text/javascript"></script>
+<script src="/js/spec/jkl-calendar.js" type="text/javascript" ></script>
 <script>
 jQuery(document).ready(function($){
 	jQuery("#formId").validationEngine();
 });
+</script>
+<script>
+    var cal1 = new JKL.Calendar("calid","formid","colname");
 </script>
 <title>spec管理</title>
 </head>

@@ -61,7 +61,11 @@ public class SpecDetailService {
 	 * @return　スペックシート（スペックID)詳細
 	 */
 	public User findUsersByStaffId(String staffId) {
-		return specDetailRepository.findUsersByStaffId(staffId);
+		try{
+			return specDetailRepository.findUsersByStaffId(staffId);
+		}catch(NullPointerException e){
+			return null;
+		}
 	}
 	
 	/**
