@@ -74,7 +74,7 @@ public class SpecForm {
 		private String finishDay;
 		
 	//プロジェクト詳細		
-		/**ポロジェクト番号*/
+		/**プロジェクト番号*/
 		private String projectNo;
 		/**プロジェクト概要*/
 		private String overview;

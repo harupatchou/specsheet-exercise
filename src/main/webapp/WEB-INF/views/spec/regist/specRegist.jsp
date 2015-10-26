@@ -60,22 +60,22 @@
 					<th rowspan="2">内訳</th>
 					<th>サーバ・NW経験</th>
 					<td colspan="2">
-					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${experience.serverNetworkExpYear}"/>年
-					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${experience.serverNetworkExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${breakdown.serverNetworkExpYear}"/>年
+					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${breakdown.serverNetworkExpMonth}"/>ヵ月</td> 
 					<th>SE経験</th>
 	 				<td colspan="2">
-	 				<form:input id="inputMini" path="seExpYear" value="${experience.seExpYear}"/>年
-	 				<form:input id="inputMini" path="seExpMonth" value="${experience.seExpMonth}"/>ヵ月</td> 
+	 				<form:input id="inputMini" path="seExpYear" value="${breakdown.seExpYear}"/>年
+	 				<form:input id="inputMini" path="seExpMonth" value="${breakdown.seExpMonth}"/>ヵ月</td> 
 				</tr>
 				<tr>
 					<th>システム開発経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="developmentExpYear"  value="${experience.developmentExpYear}"/>年
-					<form:input id="inputMini" path="developmentExpMonth"  value="${experience.developmentExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="developmentExpYear"  value="${breakdown.developmentExpYear}"/>年
+					<form:input id="inputMini" path="developmentExpMonth"  value="${breakdown.developmentExpMonth}"/>ヵ月</td> 
 					<th>PG・作業員経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="pgOperatorExpYear" value="${experience.pgOperatorExpYear}"/>年
-					<form:input id="inputMini" path="pgOperatorExpMonth" value="${experience.pgOperatorExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="pgOperatorExpYear" value="${breakdown.pgOperatorExpYear}"/>年
+					<form:input id="inputMini" path="pgOperatorExpMonth" value="${breakdown.pgOperatorExpMonth}"/>ヵ月</td> 
 				</tr>
 			</table>
 

@@ -68,7 +68,7 @@ function DeleteDetail(tableIdName){
 function setProNo(){
 	//ボタンを押すたび、番号の割り振り
 	$(".setProNo").each(function(){
-		$(this).attr("value",hiddenNo)
+		$(this).attr("value",String(hiddenNo))
 		hiddenNo+=1;
 	});
 	
@@ -82,3 +82,4 @@ function setProNo(){
 	$("#projectNo").attr("value",no)
 	
 }
+9
