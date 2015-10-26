@@ -138,19 +138,20 @@
 			
 			<!--開発経験 -->
 			<!--繰り返し -->
-
 				<table class="speckDetailTable">
-					<tr>
-						<th colspan="8">
-						開発経験 
+				<tr>
+						<th colspan="9">
+						開発経験
 						<input type="button" value="行追加" id="detailAdd" 
-						onclick="AddDetail('speckTable')" />
-						<input type="button" value="行削除" id="deleteAdd" 
-						onclick="DeleteDetail('speckTable')" />
+						onclick="AddDetail('addTable',lastNo)" />
 						</th>
 					</tr>
 				</table>
-				<table class="speckDetailTable">
+				
+				<table id="addTable" class="speckDetailTable">
+				</table>
+				<table id="speckTable" class="speckDetailTable">
+					<tbody class="speckDetailTable">
 					<tr>
 						<th>No.</th>
 						<th>期間</th>
@@ -160,13 +161,10 @@
 						<th>担当役割</th>
 						<th>規模</th>
 					</tr>
-				</table>
-				<table id="speckTable" class="speckDetailTable">
-				<tbody class="speckDetailTable">
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
-						<td rowspan="5" class="proNo">1</td>
-						<form:input type="hidden" path="projectNo" value="1" />
+						<td rowspan="5" class="proNo" id="lastNo">1</td>
+						<form:input type="hidden" path="projectNo" value="" />
 					<!-- 開発時期 -->
 						<td rowspan="4">
 						<form:input path="startDay" /><br>
@@ -182,7 +180,7 @@
 					<!-- OS -->
 						<th>OS</th>
 						<td>
-						<form:input path="os1"/>
+						<form:input path="os"/>
 						<input type="button" value="OS選択" id="btnMini"
 							onclick="return openWin('/spec/osWindow?projectNo=1')" />
 						</td>
@@ -191,7 +189,7 @@
 						<td rowspan="4">
 						<form:input path="process1" size="10"/>
 						<input type="button" value="担当工程" id="btnMini"
-							onclick="return openWin('/spec/processWindow?projectNo=1')" />
+							onclick="return openWin('/spec/processWindow?projectNo=1','osTest')" />
 						</td>
 						
 					<!-- 担当役割 -->
@@ -226,10 +224,16 @@
 					</tr>
 					<tr>
 						<th class="tallHeight">作業内容</th>
-						<td colspan="6"><form:textarea path="content" id="inputWorkDetail"></form:textarea></td>
+						<td colspan="7"><form:textarea path="content" id="inputWorkDetail"></form:textarea></td>
+					</tr>
+					<tr>
+						<th colspan="9">
+						この開発経験を削除 
+						<input type="button" value="行削除" id="deleteAdd" 
+						onclick="DeleteDetail('speckTable')" />
+						</th>
 					</tr>
 				</tbody>
-				
 				</table>
 			<br>
 
