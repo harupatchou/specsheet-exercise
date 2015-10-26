@@ -8,16 +8,16 @@ function openWin(url) {
 	return (false);
 }
 
-function goBackOs(proNo){
+function goBackOs(proNo,te){
 	var osList=document.getElementsByName("os");
-	var test = "os"+proNo;
+	var test = "osTest"+proNo;
 	var value = "";
 	for(var i=0;i<osList.length;i++){
 		if(osList[i].checked)
 			value+=(osList[i].value)+"/";
 		}
 	value = value.substr( 0 , (value.length-1) );
-	window.opener.document.SpecForm.elements[test].value=value;
+	window.opener.document.getElementById(test).value=value;
 	window.close();	
 }
 

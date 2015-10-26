@@ -129,7 +129,7 @@ public class SpecController {
 	 * @return
 	 */
 	@RequestMapping(value = "/osWindow")
-	public String osWindow(Model model,String projectNo){
+	public String osWindow(Model model,String projectNo,SpecForm s){
 		List<OsDefine> osList = projectLogic.getOS();
 		model.addAttribute("proNo",projectNo);
 		model.addAttribute("osList",osList);
