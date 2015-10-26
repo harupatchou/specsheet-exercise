@@ -66,6 +66,7 @@ public class SpecForm {
 		/**プロジェクト概要*/
 		private String overview;
 		/**OS*/
+		private String os;
 		private String os1;
 		private String os2;
 		private String os3;

@@ -14,6 +14,7 @@ import com.example.management.domain.ProcessDefine;
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
+import com.example.management.logic.EnumLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
@@ -28,6 +29,8 @@ public class SpecController {
 	private UserLogic userLogic;
 	@Autowired
 	private ProjectLogic projectLogic;
+	@Autowired
+	private EnumLogic enumLogic;
 	
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
@@ -61,6 +64,8 @@ public class SpecController {
 		//情報を画面に送信
 		model.addAttribute("spec",spec);
 		model.addAttribute("user",user);
+		model.addAttribute("stateMap", enumLogic.getStateMap().values());
+		model.addAttribute("ageMap", enumLogic.getAgeMap().values());
 		
 		return "spec/regist/specRegist";
 	}
@@ -124,7 +129,7 @@ public class SpecController {
 	 * @return
 	 */
 	@RequestMapping(value = "/osWindow")
-	public String osWindow(Model model,String projectNo){
+	public String osWindow(Model model,String projectNo,SpecForm s){
 		List<OsDefine> osList = projectLogic.getOS();
 		model.addAttribute("proNo",projectNo);
 		model.addAttribute("osList",osList);
