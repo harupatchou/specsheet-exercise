@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
 
 @Controller
+@Transactional
 @RequestMapping(value = "/spec")
 public class SpecController {
 	
@@ -62,8 +64,8 @@ public class SpecController {
 		//情報を画面に送信
 		model.addAttribute("spec",spec);
 		model.addAttribute("user",user);
-		model.addAttribute("stateMap", enumLogic.getStateMap().values());
-		model.addAttribute("ageMap", enumLogic.getAgeMap().values());
+		model.addAttribute("stateMap", enumLogic.getStateMap());
+		model.addAttribute("ageMap", enumLogic.getAgeMap());
 		
 		return "spec/regist/specRegist";
 	}
