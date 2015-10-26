@@ -134,7 +134,7 @@
 						<th colspan="9">
 						開発経験
 						<input type="button" value="行追加" id="detailAdd" 
-						onclick="AddDetail('addTable',lastNo)" />
+						onclick="AddDetail('addTable')" />
 						</th>
 					</tr>
 				</table>
@@ -154,8 +154,8 @@
 					</tr>
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
-						<td rowspan="5" class="proNo" id="lastNo">1</td>
-						<form:input type="hidden" path="projectNo" value="" />
+						<td rowspan="5" id="lastNo">1</td>
+						<form:input type="hidden" path="projectNo" />
 					<!-- 開発時期 -->
 						<td rowspan="4">
 						<form:input path="startDay" /><br>
@@ -178,9 +178,9 @@
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<form:input path="process1" size="10"/>
+						<form:input path="process"/>
 						<input type="button" value="担当工程" id="btnMini"
-							onclick="return openWin('/spec/processWindow?projectNo=1','osTest')" />
+							onclick="return openWin('/spec/processWindow?projectNo=1')" />
 						</td>
 						
 					<!-- 担当役割 -->
@@ -195,7 +195,7 @@
 					<!-- 言語 -->
 						<th>言語</th>
 						<td>
-						<form:input path="lang1"/>
+						<form:input path="lang"/>
 						<input type="button" value="言語選択" id="btnMini"
 							onclick="return openWin('/spec/langWindow?projectNo=1')" />
 						</td>
@@ -263,7 +263,7 @@
 				</table>
 			</div>
 			<br>
-
+		<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 		<input type="submit" value="登録内容確認"/>
 		<input class="button" type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 		</form:form>
