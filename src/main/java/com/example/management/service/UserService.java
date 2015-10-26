@@ -3,7 +3,7 @@ package com.example.management.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.form.UserLoginForm;
 import com.example.management.repository.UserRepository;
 
@@ -17,10 +17,10 @@ public class UserService {
 	 * user情報取得
 	 * @return list
 	 */
-	public Users selectByStaffId(String staffId) {
+	public User selectByStaffId(String staffId) {
 		
 		//個人の情報の取得
-		Users user =  userRepository.findOne(staffId);
+		User user =  userRepository.findOne(staffId);
 		
 		return user;
 	}
@@ -30,8 +30,8 @@ public class UserService {
 	 * @author ueno
 	 * @return ユーザー情報
 	 */
-	public Users selectByStaffIdAndPassword(String staffId, String password){
-		Users user = userRepository.findByStaffIdAndPassword(staffId, password);
+	public User selectByStaffIdAndPassword(String staffId, String password){
+		User user = userRepository.findByStaffIdAndPassword(staffId, password);
 		return user;
 	}
 	

@@ -8,7 +8,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.form.UserRegistForm;
 import com.example.management.logic.UserLogic;
 import com.example.management.service.UserEditService;
@@ -51,7 +51,7 @@ public class UserRegistController {
 			return index(model);
 		}
 		//user情報が存在する時エラーメッセージ表示
-		Users user = userLogic.selectByStaffId(form.getStaffId());
+		User user = userLogic.selectByStaffId(form.getStaffId());
 		if(user != null){
 			ObjectError error = new ObjectError("insertError", "すでに登録されているスタッフIDです");
 			result.addError(error);

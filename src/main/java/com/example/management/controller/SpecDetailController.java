@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.example.management.common.AgeEnum;
 import com.example.management.common.sexEnum;
 import com.example.management.domain.Spec;
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.page.SpecDetailDevelopmentExperiencePage;
 import com.example.management.page.SpecDetailExpBreakdownPage;
 import com.example.management.page.SpecDetailLicensePage;
@@ -63,7 +63,7 @@ public class SpecDetailController {
 		Spec spec = specDetailService.findSpecByStaffId(staffId);
 		
 		//1件のUsers型、スペックシート情報が返ってくる
-		Users users = specDetailService.findUsersByStaffId(staffId);
+		User users = specDetailService.findUsersByStaffId(staffId);
 		
 		//↑がnullだった場合、エラー文を入れてフォワード
 		if(spec == null || users == null) {
@@ -121,7 +121,7 @@ public class SpecDetailController {
 	 * @param model
 	 * @param spec
 	 */
-	private void sexList(Model model, Users users) {
+	private void sexList(Model model, User users) {
 		Map<String, String> sexMap = new LinkedHashMap<String, String>();
 		sexMap.put(sexEnum.MAN.getKey(), sexEnum.MAN.getValue());
 		sexMap.put(sexEnum.WOMAN.getKey(), sexEnum.WOMAN.getValue());

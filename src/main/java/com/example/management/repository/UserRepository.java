@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.form.UserEditForm;
 import com.example.management.form.UserRegistForm;
 
@@ -23,7 +23,7 @@ import com.example.management.form.UserRegistForm;
 @Transactional
 @Repository
 public class UserRepository {
-	public static final RowMapper<Users> USER_ROW_MAPPER = (rs, i) -> {
+	public static final RowMapper<User> USER_ROW_MAPPER = (rs, i) -> {
 		String staffId = rs.getString("staff_id");
 		String sex = rs.getString("sex");
 		String firstName = rs.getString("first_name");
@@ -32,7 +32,7 @@ public class UserRepository {
 		String lastPhonetic = rs.getString("last_phonetic");
 		Integer authorityId = rs.getInt("authority_id");
 		String password = rs.getString("password");
-		return new Users(staffId,sex,firstName,lastName,firstPhonetic,lastPhonetic,authorityId,password);
+		return new User(staffId,sex,firstName,lastName,firstPhonetic,lastPhonetic,authorityId,password);
 	};
 	
 	@Autowired
@@ -43,8 +43,8 @@ public class UserRepository {
 	 * @author ueno
 	 * @return ユーザー情報一覧
 	 */
-	public List<Users> findAll(){
-		List<Users> users = jdbcTemplate.query("SELECT * FROM users", USER_ROW_MAPPER);
+	public List<User> findAll(){
+		List<User> users = jdbcTemplate.query("SELECT * FROM users", USER_ROW_MAPPER);
 		return users;
 	}
 	
@@ -53,10 +53,10 @@ public class UserRepository {
 	 * @author ueno
 	 * @return　ユーザー情報
 	 */
-	public Users findOne(String staffId){
+	public User findOne(String staffId){
 		try{
 			SqlParameterSource param = new MapSqlParameterSource().addValue("staff_id", staffId);
-			Users user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE staff_id=:staff_id", param, USER_ROW_MAPPER);
+			User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE staff_id=:staff_id", param, USER_ROW_MAPPER);
 			return user;
 		}catch(DataAccessException e){
 			return null;
@@ -68,10 +68,10 @@ public class UserRepository {
 	 * @author ueno
 	 * @return ユーザー情報
 	 */
-	public Users findByStaffIdAndPassword(String staffId, String password){
+	public User findByStaffIdAndPassword(String staffId, String password){
 		try{
 			SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId).addValue("password", password);
-			Users user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE staff_id=:staffId AND password=:password", param, USER_ROW_MAPPER);
+			User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE staff_id=:staffId AND password=:password", param, USER_ROW_MAPPER);
 			return user;
 		}catch(DataAccessException e){
 			return null;

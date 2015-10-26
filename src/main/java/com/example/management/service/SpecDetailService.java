@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.management.domain.Spec;
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.logic.ArrayListLogic;
 import com.example.management.page.SpecDetailDevelopmentExperiencePage;
 import com.example.management.page.SpecDetailExpBreakdownPage;
@@ -59,7 +59,7 @@ public class SpecDetailService {
 	 * @param staffId　スタッフID
 	 * @return　スペックシート（スペックID)詳細
 	 */
-	public Users findUsersByStaffId(String staffId) {
+	public User findUsersByStaffId(String staffId) {
 		return specDetailRepository.findUsersByStaffId(staffId);
 	}
 	

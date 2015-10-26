@@ -43,8 +43,8 @@
 						<option value="NW" selected>NW</option>
 					</c:if>
 		 			</form:select>-
-		 			<form:input path="staffIdSecond" value="${userData.staffIdSecond}" size="4"/>-
-		 			<form:input path="staffIdThird" value="${userData.staffIdThird}" size="4"/>
+		 			<form:input path="staffIdSecond" value="${userData.staffIdSecond}" class="validate[required,custom[number],minSize[3],maxSize[3]]" size="4"/>-
+		 			<form:input path="staffIdThird" value="${userData.staffIdThird}" class="validate[required,custom[number],minSize[4],maxSize[4]]" size="4"/>
 		 		</p>
 	 			<p>権限：
 	 				<form:select path="authorityId">

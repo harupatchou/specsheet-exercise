@@ -12,7 +12,7 @@ import com.example.management.domain.LanguageDefine;
 import com.example.management.domain.OsDefine;
 import com.example.management.domain.ProcessDefine;
 import com.example.management.domain.Spec;
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.form.SpecForm;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
@@ -32,7 +32,7 @@ public class SpecController {
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
 	//IDから取得したUser情報格納
-	Users user = new Users();
+	User user = new User();
 
 	
 	/**
@@ -168,7 +168,7 @@ public class SpecController {
 	 */
 	private Boolean selectByStaffId(String staffId) {
 		spec = new Spec();
-		user = new Users();
+		user = new User();
 		//データの取得
 		spec = specLogic.selectByStaffId(staffId);
 		user = userLogic.selectByStaffId(staffId);
