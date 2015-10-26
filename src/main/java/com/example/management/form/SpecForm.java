@@ -1,6 +1,8 @@
 package com.example.management.form;
 
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -53,6 +55,10 @@ public class SpecForm {
 		
 	//スキル要約
 		private String relatedTech;
+		/**更新日時 */
+		private Date updateDate;
+		/**更新者名 */
+		private String updateName;
 		
 	/** 開発経験テーブル */
 	//人数

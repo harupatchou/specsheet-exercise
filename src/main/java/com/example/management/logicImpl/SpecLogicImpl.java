@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.management.domain.Spec;
+import com.example.management.form.SpecForm;
 import com.example.management.logic.SpecLogic;
 import com.example.management.service.SpecService;
 
@@ -19,6 +20,12 @@ public class SpecLogicImpl implements SpecLogic{
 	public Spec selectByStaffId(String staffId) {
 		Spec spec = specService.selectByStaffId(staffId);
 		return spec;
+	}
+	
+	//スペック情報の登録
+	@Override
+	public void insertSpec(SpecForm form) {
+		specService.insertSpec(form);
 	}
 	
 
