@@ -20,7 +20,7 @@
 			<p>名：<form:input path="lastName" value="${user.lastName}" /></p>
 			<!-- 勤務状況 -->
 			<p>状況：
-			<form:select path="stateFlag" items="${stateMap}" value="${spec.stateFlag}" />
+			<form:select path="stateFlag" items="${stateMap}" />
 			<br>
 			</p>
 			<!-- コメント -->
@@ -36,14 +36,14 @@
 
 					<th>年齢</th>
 					<td>
-					<form:select path="ageFlag" items="${ageMap}" value="${spec.ageId}"/>
+					<form:select path="ageFlag" items="${ageMap}" />
 					<br></td>
 
 					<th>性別</th>
 					<td><c:out value="${user.sex}" /></td>
 
 					<th>最寄駅</th>
-					<td><form:input id="inputMini" path="nearestStation" value="${spec.nearestStation}" />駅</td>
+					<td><form:input id="inputMini" path="nearestStation" />駅</td>
 
 					<th>稼働開始日</th>
 					<td>応相談</td>
@@ -57,27 +57,27 @@
 				<tr>
 					<th rowspan="2">IT全体経験</th>
 					<td rowspan="2" colspan="2">
-					<form:input id="inputMini" path="allExpYear"   value="${spec.year}"/>年
-					<form:input id="inputMini" path="allExpMonth"  value="${spec.month}"/>ヵ月</td> 
+					<form:input id="inputMini" path="allExpYear" />年
+					<form:input id="inputMini" path="allExpMonth" />ヵ月</td> 
 					<th rowspan="2">内訳</th>
 					<th>サーバ・NW経験</th>
 					<td colspan="2">
-					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${breakdown.serverNetworkExpYear}"/>年
-					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${breakdown.serverNetworkExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini"  path="serverNetworkExpYear" />年
+					<form:input id="inputMini"  path="serverNetworkExpMonth" />ヵ月</td> 
 					<th>SE経験</th>
 	 				<td colspan="2">
-	 				<form:input id="inputMini" path="seExpYear" value="${breakdown.seExpYear}"/>年
-	 				<form:input id="inputMini" path="seExpMonth" value="${breakdown.seExpMonth}"/>ヵ月</td> 
+	 				<form:input id="inputMini" path="seExpYear" />年
+	 				<form:input id="inputMini" path="seExpMonth" />ヵ月</td> 
 				</tr>
 				<tr>
 					<th>システム開発経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="developmentExpYear"  value="${breakdown.developmentExpYear}"/>年
-					<form:input id="inputMini" path="developmentExpMonth"  value="${breakdown.developmentExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="developmentExpYear" />年
+					<form:input id="inputMini" path="developmentExpMonth" />ヵ月</td> 
 					<th>PG・作業員経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="pgOperatorExpYear" value="${breakdown.pgOperatorExpYear}"/>年
-					<form:input id="inputMini" path="pgOperatorExpMonth" value="${breakdown.pgOperatorExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="pgOperatorExpYear" />年
+					<form:input id="inputMini" path="pgOperatorExpMonth" />ヵ月</td> 
 				</tr>
 			</table>
 
@@ -228,7 +228,7 @@
 					</tr>
 				</tbody>
 				</table>
-			<br>
+			<br><input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 
 	
 <div class="inputSkill">
@@ -247,8 +247,6 @@
 						<th>資格名</th>
 						<th>取得日</th>
 					</tr>
-		<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
-    
     <c:if test="${fn:length(sLicenseList.name) > 0}">
 					<c:forEach varStatus="i" begin="0" end="${fn:length(sLicenseList.name)-1 }">
 						<c:if test="${i.index%3==0}">

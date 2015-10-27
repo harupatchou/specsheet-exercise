@@ -14,7 +14,10 @@
 <h1>言語選択</h1>
 <c:forEach var="lang" items="${langList}">
 <p>
-<label><input type="checkbox" name="lang" value="${lang.name}"><c:out value="${lang.name}"/></label>
+<label>
+<input type="checkbox" name="lang" value="${lang.name}"><c:out value="${lang.name}"/>
+<c:if test="${lang.name.equals('その他')}"><input type="text" name="langOther"></c:if>
+</label>
 </p>
 </c:forEach>
 <p><input type="button" value="選択完了" onclick="goBackLang(${proNo});"></p>

@@ -5,16 +5,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/menu")
+@RequestMapping(value = "/user")
 public class MenuController {
 	/**
-	 * 登録画面初期表示.
+	 * 登録と編集を判別する.
 	 * @param model 
 	 * @author kurosawa
 	 * @return 初期画面
 	 */
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/spepMenu")
 	public String menuIndex(Model model){
+		
+		
 		
 		return "/user/menu";
 	}

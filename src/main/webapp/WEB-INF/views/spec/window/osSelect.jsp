@@ -14,7 +14,10 @@
 <h1>OS選択</h1>
 <c:forEach var="os" items="${osList}">
 <p>
-<label><input type="checkbox" name="os" value="${os.osName}"><c:out value="${os.osName}"/></label>
+<label>
+<input type="checkbox" name="os" value="${os.osName}"><c:out value="${os.osName}"/>
+<c:if test="${os.osName.equals('その他')}"><input type="text" name="osOther"></c:if>
+</label>
 </p>
 </c:forEach>
 <p><input type="button" value="選択完了" onclick="goBackOs(${proNo});"></p>
