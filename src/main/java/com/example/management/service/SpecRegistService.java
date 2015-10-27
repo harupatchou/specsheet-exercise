@@ -24,5 +24,13 @@ public class SpecRegistService {
 		specRegistRepository.insertBreakdown(form);
 	}
 	
+	/**
+	 * プロジェクト言語の登録
+	 * @param form
+	 */
+	public void insertProjectOs(SpecForm form) {
+		specRegistRepository.insertProjectOs(form);
+	}
+	
 
 }

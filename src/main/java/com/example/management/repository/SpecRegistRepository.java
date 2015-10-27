@@ -2,6 +2,7 @@ package com.example.management.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,8 @@ import com.example.management.form.SpecForm;
 public class SpecRegistRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
+	@Autowired
+	private OsSearchRepository osSearchRepository;
 	/**
 	 * スペックを保存する
 	 * @param form
@@ -70,12 +73,27 @@ public class SpecRegistRepository {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param form
+	 */
 	public void insertProjectOs(SpecForm form) {
-		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
-		jdbcTemplate.update(
-				"INSERT INTO users_license (staff_id , project_no , os_exp_no) "
-				+ "　VALUES ( :staffId , :projectNo , :acquireDate); ",
-				param);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", form.getStaffId());
+		String[] proNo= form.getProjectNo().split(",");
+		String[] osList= form.getOs().split(",");
+		for (int i = 0; i < proNo.length; ++i) {
+			Integer no = Integer.parseInt(proNo[i]);
+			for (String os : osList[i].split("/")) {
+				param = new MapSqlParameterSource()
+						.addValue("staffId", form.getStaffId())
+						.addValue("projectNo", no)
+						.addValue("osExpNo", osSearchRepository.findIdByName(os));
+				jdbcTemplate.update("INSERT INTO project_os(staff_id, project_no, os_exp_no) "
+						+ "VALUES (:staffId, :projectNo, :osExpNo);",
+						param);
+
+			}
+		}
 		
 	}
 	

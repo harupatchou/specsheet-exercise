@@ -20,7 +20,6 @@ public class ProcessDefineService {
 	@Autowired
 	private ProcessDefineRepository processDefineRepository;
 	
-	
 	public List<ProcessDefine> findAll() {
 		return processDefineRepository.findAll();
 	}
