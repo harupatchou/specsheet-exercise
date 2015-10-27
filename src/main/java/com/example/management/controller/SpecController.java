@@ -198,10 +198,12 @@ public class SpecController {
 	 * @throws Exception
 	 */
 	private Boolean insertExecute(String staffId,SpecForm form) throws Exception {
-//		specLogic.insertSpec(form);
-//		specRegistService.insertBreakdown(form);
+		specLogic.insertSpec(form);
+		specRegistService.insertBreakdown(form);
 		specRegistService.insertProjectOs(form);
-//		projectLogic.insertProject(staffId,form);
+		specRegistService.insertProjectLanguage(form);
+		specRegistService.insertProjectProcess(form);
+		projectLogic.insertProject(staffId,form);
 		return true;
 	}
 

@@ -25,11 +25,27 @@ public class SpecRegistService {
 	}
 	
 	/**
-	 * プロジェクト言語の登録
+	 * プロジェクトOSの登録
 	 * @param form
 	 */
 	public void insertProjectOs(SpecForm form) {
 		specRegistRepository.insertProjectOs(form);
+	}
+	
+	/**
+	 * プロジェクト言語の登録
+	 * @param form
+	 */
+	public void insertProjectLanguage(SpecForm form) {
+		specRegistRepository.insertProjectLanguage(form);
+	}
+	
+	/**
+	 * プロジェクト工程の登録
+	 * @param form
+	 */
+	public void insertProjectProcess(SpecForm form) {
+		specRegistRepository.insertProjectProcess(form);
 	}
 	
 

@@ -18,6 +18,10 @@ public class SpecRegistRepository {
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	@Autowired
 	private OsSearchRepository osSearchRepository;
+	@Autowired
+	private LanguageSearchRepository languageSearchRepository;
+	@Autowired
+	private ProcessSearchRepository processSearchRepository;
 	/**
 	 * スペックを保存する
 	 * @param form
@@ -74,11 +78,11 @@ public class SpecRegistRepository {
 	}
 	
 	/**
-	 * 
+	 * プロジェクトOSの登録
 	 * @param form
 	 */
 	public void insertProjectOs(SpecForm form) {
-		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", form.getStaffId());
+		SqlParameterSource param = new MapSqlParameterSource();
 		String[] proNo= form.getProjectNo().split(",");
 		String[] osList= form.getOs().split(",");
 		for (int i = 0; i < proNo.length; ++i) {
@@ -94,7 +98,52 @@ public class SpecRegistRepository {
 
 			}
 		}
-		
+	}
+	
+	/**
+	 * プロジェクト言語の登録
+	 * @param form
+	 */
+	public void insertProjectLanguage(SpecForm form) {
+		SqlParameterSource param = new MapSqlParameterSource();
+		String[] proNo= form.getProjectNo().split(",");
+		String[] langList= form.getLang().split(",");
+		for (int i = 0; i < proNo.length; ++i) {
+			Integer no = Integer.parseInt(proNo[i]);
+			for (String lang : langList[i].split("/")) {
+				param = new MapSqlParameterSource()
+						.addValue("staffId", form.getStaffId())
+						.addValue("projectNo", no)
+						.addValue("langExpNo", languageSearchRepository.findIdByName(lang));
+				jdbcTemplate.update("INSERT INTO project_language(staff_id, project_no, language_exp_no) "
+						+ "VALUES (:staffId, :projectNo, :langExpNo);",
+						param);
+
+			}
+		}
+	}
+	
+	/**
+	 * プロジェクト工程の登録
+	 * @param form
+	 */
+	public void insertProjectProcess(SpecForm form) {
+		SqlParameterSource param = new MapSqlParameterSource();
+		String[] proNo= form.getProjectNo().split(",");
+		String[] processList= form.getProcess().split(",");
+		for (int i = 0; i < proNo.length; ++i) {
+			Integer no = Integer.parseInt(proNo[i]);
+			for (String process : processList[i].split("/")) {
+				param = new MapSqlParameterSource()
+						.addValue("staffId", form.getStaffId())
+						.addValue("projectNo", no)
+						.addValue("processExpNo", processSearchRepository.findIdByName(process));
+				jdbcTemplate.update("INSERT INTO project_process(staff_id, project_no, process_id) "
+						+ "VALUES (:staffId, :projectNo, :processExpNo);",
+						param);
+
+			}
+		}
 	}
 	
 }

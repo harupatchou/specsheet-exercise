@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.management.domain.OsDefine;
 import com.example.management.repository.OsDefineRepository;
-import com.example.management.repository.OsSearchRepository;
 
 
 /**
@@ -20,8 +19,6 @@ import com.example.management.repository.OsSearchRepository;
 public class OsDefineService {
 	@Autowired
 	private OsDefineRepository osDefineRepository;
-	@Autowired
-	private OsSearchRepository osSearchRepository;
 	
 	public List<OsDefine> findAll() {
 		return osDefineRepository.findAll();
@@ -34,14 +31,5 @@ public class OsDefineService {
 	public List<OsDefine> findAllOrderByIdDesc(){
 		Sort sort = new Sort(Sort.Direction.DESC,"osId");
 		return osDefineRepository.findAll(sort);
-	}
-	
-	/**
-	 * OS名からIDを取得
-	 * @param name
-	 * @return　ID
-	 */
-	public Integer findIdByName(String name) {
-		return osSearchRepository.findIdByName(name);
 	}
 }
