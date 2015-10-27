@@ -1,6 +1,8 @@
 package com.example.management.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,10 +76,25 @@ public class SpecController {
 		model.addAttribute("user",user);
 		model.addAttribute("stateMap", enumLogic.getStateMap());
 		model.addAttribute("ageMap", enumLogic.getAgeMap());
-		//言語一覧をモデルに格納
-		model.addAttribute("langList",projectLogic.getLang());
-		//OS一覧をモデルに格納
-		model.addAttribute("osList",projectLogic.getOS());
+		
+		//言語関連
+		Map<Integer, String> langMap = new LinkedHashMap<Integer, String>();
+		langMap.put(0, "----");
+		//言語一覧を取得してMAPに格納
+		List<LanguageDefine> langList = projectLogic.getLang();
+		for(LanguageDefine lang : langList){
+			langMap.put(lang.getId(), lang.getName());
+		}
+		model.addAttribute("langMap",langMap);
+		
+		//OS一覧を取得してMAPに格納
+		Map<Integer, String> osMap = new LinkedHashMap<Integer, String>();
+		osMap.put(0, "----");
+		List<OsDefine> osList = projectLogic.getOS();
+		for(OsDefine os :osList){
+			osMap.put(os.getOsId(), os.getOsName());
+		}
+		model.addAttribute("osMap",osMap);
 
 		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
 		

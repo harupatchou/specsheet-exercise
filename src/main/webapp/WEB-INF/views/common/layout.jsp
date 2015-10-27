@@ -14,15 +14,12 @@
 <script src="/js/lib/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="/js/lib/jquery.validationEngine.js" type="text/javascript"></script>
 <script src="/js/lib/jquery.validationEngine-ja.js" type="text/javascript"></script>
+<script src="/js/spec/SpecSheetSkill.js" type="text/javascript" ></script>
 <script src="/js/spec/jkl-calendar.js" type="text/javascript" ></script>
 <script>
 jQuery(document).ready(function($){
 	jQuery("#formId").validationEngine();
 });
-</script>
-<script type="text/javascript">
-	var cal1 = new JKL.Calendar("calId1","calId","startDay");
-	var cal2 = new JKL.Calendar("calId2","calId","finishDay");
 </script>
 
 <title>spec管理</title>
