@@ -60,22 +60,22 @@
 					<th rowspan="2">内訳</th>
 					<th>サーバ・NW経験</th>
 					<td colspan="2">
-					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${experience.serverNetworkExpYear}"/>年
-					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${experience.serverNetworkExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${breakdown.serverNetworkExpYear}"/>年
+					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${breakdown.serverNetworkExpMonth}"/>ヵ月</td> 
 					<th>SE経験</th>
 	 				<td colspan="2">
-	 				<form:input id="inputMini" path="seExpYear" value="${experience.seExpYear}"/>年
-	 				<form:input id="inputMini" path="seExpMonth" value="${experience.seExpMonth}"/>ヵ月</td> 
+	 				<form:input id="inputMini" path="seExpYear" value="${breakdown.seExpYear}"/>年
+	 				<form:input id="inputMini" path="seExpMonth" value="${breakdown.seExpMonth}"/>ヵ月</td> 
 				</tr>
 				<tr>
 					<th>システム開発経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="developmentExpYear"  value="${experience.developmentExpYear}"/>年
-					<form:input id="inputMini" path="developmentExpMonth"  value="${experience.developmentExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="developmentExpYear"  value="${breakdown.developmentExpYear}"/>年
+					<form:input id="inputMini" path="developmentExpMonth"  value="${breakdown.developmentExpMonth}"/>ヵ月</td> 
 					<th>PG・作業員経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="pgOperatorExpYear" value="${experience.pgOperatorExpYear}"/>年
-					<form:input id="inputMini" path="pgOperatorExpMonth" value="${experience.pgOperatorExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="pgOperatorExpYear" value="${breakdown.pgOperatorExpYear}"/>年
+					<form:input id="inputMini" path="pgOperatorExpMonth" value="${breakdown.pgOperatorExpMonth}"/>ヵ月</td> 
 				</tr>
 			</table>
 
@@ -140,7 +140,7 @@
 				<table id="addTable" class="speckDetailTable">
 				</table>
 				<table id="speckTable" class="speckDetailTable">
-					<tbody class="speckDetailTable">
+					<tbody id="testTable" class="speckDetailTable">
 					<tr>
 						<th>No.</th>
 						<th>期間</th>
@@ -153,7 +153,7 @@
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
 						<td rowspan="5" id="lastNo">1</td>
-						<form:input type="hidden" path="projectNo" />
+						<form:input type="hidden" path="projectNo" value="1"/>
 					<!-- 開発時期 -->
 						<td rowspan="4">
 						<form:input path="startDay"/><br>
@@ -219,7 +219,7 @@
 						<th colspan="9">
 						この開発経験を削除 
 						<input type="button" value="行削除" id="deleteAdd" 
-						onclick="DeleteDetail('speckTable')" />
+						onclick="DeleteDetail('testTable')" />
 						</th>
 					</tr>
 				</tbody>

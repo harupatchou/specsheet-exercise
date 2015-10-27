@@ -16,9 +16,11 @@ import com.example.management.domain.Spec;
 import com.example.management.domain.User;
 import com.example.management.form.SpecForm;
 import com.example.management.logic.EnumLogic;
+import com.example.management.logic.ExpBreakdownLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
+import com.example.management.service.ExpBreakdownService;
 
 @Controller
 @Transactional
@@ -33,6 +35,10 @@ public class SpecController {
 	private ProjectLogic projectLogic;
 	@Autowired
 	private EnumLogic enumLogic;
+	@Autowired
+	private ExpBreakdownLogic expBreakdownLogic;
+	@Autowired
+	private ExpBreakdownService expBreakdownService;
 	
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
@@ -72,6 +78,8 @@ public class SpecController {
 		model.addAttribute("langList",projectLogic.getLang());
 		//OS一覧をモデルに格納
 		model.addAttribute("osList",projectLogic.getOS());
+
+		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
 		
 		return "spec/regist/specRegist";
 	}
@@ -196,6 +204,7 @@ public class SpecController {
 	 */
 	private Boolean insertExecute(String staffId,SpecForm form) throws Exception {
 		specLogic.insertSpec(form);
+		expBreakdownService.insertBreakdown(form);
 		projectLogic.insertProject(staffId,form);
 		return true;
 	}

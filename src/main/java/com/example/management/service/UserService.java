@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.management.domain.User;
-import com.example.management.form.UserLoginForm;
 import com.example.management.repository.UserRepository;
 
 @Service

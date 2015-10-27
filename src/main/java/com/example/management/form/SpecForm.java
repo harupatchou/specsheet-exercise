@@ -36,22 +36,24 @@ public class SpecForm {
 		private Integer allExpYear;
 		/**IT全体経験月*/
 		private Integer allExpMonth;
+		/**経験月数insert用*/
+		private Integer monthOfExp;
 		/**サーバ・NW経験年*/
-		private Integer serverNetworkExpYear;
+		private Integer serverNetworkExpYear = 0;
 		/**サーバ・NW経験月*/
-		private Integer serverNetworkExpMonth;
+		private Integer serverNetworkExpMonth = 0;
 		/**システム開発経験年*/
-		private Integer developmentExpYear;
+		private Integer developmentExpYear = 0;
 		/**システム開発経験月*/
-		private Integer developmentExpMonth;
+		private Integer developmentExpMonth = 0;
 		/**SE経験年*/
-		private Integer seExpYear;
+		private Integer seExpYear = 0;
 		/**SE経験月*/
-		private Integer seExpMonth;
+		private Integer seExpMonth = 0;
 		/**PG経験年*/
-		private Integer pgOperatorExpYear;
+		private Integer pgOperatorExpYear = 0;
 		/**PG経験月*/
-		private Integer pgOperatorExpMonth;
+		private Integer pgOperatorExpMonth = 0;
 		
 	//スキル要約
 		/**経験言語*/
@@ -85,7 +87,7 @@ public class SpecForm {
 		private String finishDay;
 		
 	//プロジェクト詳細		
-		/**ポロジェクト番号*/
+		/**プロジェクト番号*/
 		private String projectNo;
 		/**プロジェクト概要*/
 		private String overview;
