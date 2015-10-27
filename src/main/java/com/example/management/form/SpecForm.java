@@ -94,5 +94,12 @@ public class SpecForm {
 		private String content;
 		/**最後のテーブル判別*/
 		private String lastHidden;
+	//小窓	
+		/**osその他*/
+		private String osOther;
+		/**言語その他*/
+		private String langOther;
+		/**開発環境その他*/
+		private String processOther;
 		
 }

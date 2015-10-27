@@ -3,6 +3,10 @@ package com.example.management.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,10 +19,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name="project")
 public class Project {
 	/**スタッフID */
 	private String staffId;
 	/**プロジェクトNo */
+	@Id
 	private Integer no;
 	/**開始期間 */
 	private Date startDate;

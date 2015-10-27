@@ -1,5 +1,6 @@
 package com.example.management.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.management.domain.LanguageDefine;
 import com.example.management.domain.OsDefine;
 import com.example.management.domain.ProcessDefine;
+import com.example.management.domain.Project;
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
@@ -44,7 +46,8 @@ public class SpecController {
 	Spec spec = new Spec();
 	//IDから取得したUser情報格納
 	Users user = new Users();
-
+	//IDから取得したProject情報格納
+	List<Project> projectList = new ArrayList<Project>();
 	
 	/**
 	 * SpecEditForm初期化
@@ -117,17 +120,19 @@ public class SpecController {
 	 * @author kurosawa
 	 * @return 初期画面
 	 */
-	@RequestMapping(value = "/edit")
+	@RequestMapping(value = "/editIndex")
 	public String edit(Model model){
-
-		//情報格納用
-		Spec spec = new Spec();
 		
 		//決め打ち
-		String test = "AP-202-0716";
+		String test = "AP-202-0715";
 		selectByStaffId(test);
 		
 		model.addAttribute("spec",spec);
+		model.addAttribute("user",user);
+		model.addAttribute("projectList",projectList);
+		model.addAttribute("stateMap", enumLogic.getStateMap());
+		model.addAttribute("ageMap", enumLogic.getAgeMap());
+		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
 		
 		return "spec/edit/specEdit";
 	}
@@ -183,9 +188,11 @@ public class SpecController {
 	private Boolean selectByStaffId(String staffId) {
 		spec = new Spec();
 		user = new Users();
+		projectList = new ArrayList<Project>();
 		//データの取得
 		spec = specLogic.selectByStaffId(staffId);
 		user = userLogic.selectByStaffId(staffId);
+		projectList = projectLogic.selectByStaffId(staffId);
 		return true;
 	}
 	

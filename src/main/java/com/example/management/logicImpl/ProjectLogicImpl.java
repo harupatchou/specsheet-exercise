@@ -82,6 +82,12 @@ public class ProjectLogicImpl implements ProjectLogic{
 		List<ProcessDefine> processList = processDefineService.findAll();
 		return processList;
 	}
+
+	@Override
+	public List<Project> selectByStaffId(String staffId) {
+		List<Project> projectList = projectService.selectByStaffId(staffId);
+		return projectList;
+	}
 	
 	
 

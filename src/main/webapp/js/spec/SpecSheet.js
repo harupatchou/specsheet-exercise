@@ -6,6 +6,34 @@ var firstNo = 1;
 var testNo = 1;
 //hidden用
 var hiddenNo = 1;
+
+/**
+ * 初期表示時の実行
+ */
+window.onload = function(){
+	$(".overview").each(function(index){
+		var over = document.getElementById("overviewHidden"+index).value;
+		$(this).val(over);
+	});
+	
+	$(".role").each(function(index){
+		var over = document.getElementById("roleHidden"+index).value;
+		$(this).val(over);
+	});
+	
+	$(".other").each(function(index){
+		var over = document.getElementById("otherHidden"+index).value;
+		$(this).val(over);
+	});
+	
+	$(".content").each(function(index){
+		var over = document.getElementById("contentHidden"+index).value;
+		$(this).val(over);
+	});
+	
+}
+
+
 /**
  * 現在の最終行の後ろに対して、開発経験行の追加を行う
  * @param tableIdName 追加したいテーブルのId名
@@ -57,14 +85,21 @@ function DeleteDetail(testTable){
 	//削除した分番号を減らす
 	var work = $("#"+testTable);
 	work.remove();
-	var proId = window.opener.document.getElementById("lastHidden").value;
-	//proNoが最後のテーブルの値と同じであればtestの名前をprocessにする
-	if(parseInt(proId)==testTable){
+	var hiddenId = 　document.getElementById("lastHidden").value;
+	var lastId = 　document.getElementById("lastNo");
+	//proNoが最後のテーブルの値と同じであればそのまま最終行の削除のみする
+	if(parseInt(hiddenId)==parseInt(lastId)){
+		$(".proNo").each(function(){
+			if($(this).text()==no){
+				$(this).attr('id', 'lastNo').value(1);
+			}
+		});	
 		setProNo();
-	}else{
-		no = 1; 
+	} else {
+		firstNo=1;
 		testNo=1;
-		hiddenNo = 1;
+		hiddenNo=1;
+		no-=1;
 		setProNo();
 	}
 }
