@@ -1,7 +1,9 @@
 package com.example.management.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,7 @@ import com.example.management.domain.OsDefine;
 import com.example.management.domain.ProcessDefine;
 import com.example.management.domain.Project;
 import com.example.management.domain.Spec;
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.form.SpecForm;
 import com.example.management.logic.EnumLogic;
 import com.example.management.logic.ExpBreakdownLogic;
@@ -45,7 +47,7 @@ public class SpecController {
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
 	//IDから取得したUser情報格納
-	Users user = new Users();
+	User user = new User();
 	//IDから取得したProject情報格納
 	List<Project> projectList = new ArrayList<Project>();
 	
@@ -77,6 +79,26 @@ public class SpecController {
 		model.addAttribute("user",user);
 		model.addAttribute("stateMap", enumLogic.getStateMap());
 		model.addAttribute("ageMap", enumLogic.getAgeMap());
+		
+		//言語関連
+		Map<Integer, String> langMap = new LinkedHashMap<Integer, String>();
+		langMap.put(0, "----");
+		//言語一覧を取得してMAPに格納
+		List<LanguageDefine> langList = projectLogic.getLang();
+		for(LanguageDefine lang : langList){
+			langMap.put(lang.getId(), lang.getName());
+		}
+		model.addAttribute("langMap",langMap);
+		
+		//OS一覧を取得してMAPに格納
+		Map<Integer, String> osMap = new LinkedHashMap<Integer, String>();
+		osMap.put(0, "----");
+		List<OsDefine> osList = projectLogic.getOS();
+		for(OsDefine os :osList){
+			osMap.put(os.getOsId(), os.getOsName());
+		}
+		model.addAttribute("osMap",osMap);
+
 		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
 		
 		return "spec/regist/specRegist";
@@ -190,7 +212,7 @@ public class SpecController {
 	 */
 	private Boolean selectByStaffId(String staffId) {
 		spec = new Spec();
-		user = new Users();
+		user = new User();
 		projectList = new ArrayList<Project>();
 		//データの取得
 		spec = specLogic.selectByStaffId(staffId);

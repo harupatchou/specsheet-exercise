@@ -8,12 +8,13 @@
 	
 		
 <%--ここから下にコンテンツを挿入 --%>
-
+	
 	 <h1>ログイン画面</h1>
-	 <p style="color: red"><form:errors path="userLoginForm" /></p>
+	 <p style="color: red"><c:out value="${loginError}"/></p>
 	 <form:form id="formId" modelAttribute="userLoginForm" action="/login">
-	 	<p>スタッフID：<form:input path="staffId" class="validate[required]"/></p>
+	 	<p>スタッフID：<form:input path="staffId" value="${loginForm.staffId}" class="validate[required]"/></p>
 	 	<p>パスワード：<form:password path="password" class="validate[required]"/></p><br>
+	 	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	 	<input type="submit" value="ログイン" />
 	 </form:form>
 

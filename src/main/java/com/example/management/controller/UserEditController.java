@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.form.UserEditForm;
 import com.example.management.logic.UserLogic;
 import com.example.management.service.UserEditService;
@@ -46,7 +46,7 @@ public class UserEditController {
 			return "/user/edit/userEdit";
 		}
 			//staffId値のユーザー情報をモデルに格納
-			Users user = userLogic.selectByStaffId(staffId);
+			User user = userLogic.selectByStaffId(staffId);
 			//user情報をフォームにコピー
 			BeanUtils.copyProperties(user, form);
 			//staffIdを分割してstaffIdパーツに格納
@@ -64,7 +64,7 @@ public class UserEditController {
 	public String flowConfirm(UserEditForm form, BindingResult result, Model model){
 		//パスワードチェック
 		if(form.getPassword() != null){
-			Users tempUser = userLogic.selectByStaffIdAndPassword(form.getTempStaffId(), form.getPassword());
+			User tempUser = userLogic.selectByStaffIdAndPassword(form.getTempStaffId(), form.getPassword());
 			//不一致でエラーメッセージ表示
 			if(tempUser == null){
 				ObjectError error = new ObjectError("passwordError", "現在のパスワードが間違っています");
@@ -81,7 +81,7 @@ public class UserEditController {
 		}
 	
 		//編集前データ
-		Users tempUserData = userLogic.selectByStaffId(form.getTempStaffId());
+		User tempUserData = userLogic.selectByStaffId(form.getTempStaffId());
 		model.addAttribute("userData", tempUserData);
 		//編集後データ
 		form.setStaffId(form.getStaffIdFirst() + "-" + form.getStaffIdSecond() + "-" + form.getStaffIdThird());

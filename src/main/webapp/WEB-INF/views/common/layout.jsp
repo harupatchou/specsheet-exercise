@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/css/specDetail.css">
@@ -16,11 +16,15 @@
 <script src="/js/lib/jquery.validationEngine-ja.js" type="text/javascript"></script>
 <script src="/js/spec/SpecSheet.js"></script>
 <script src="/js/spec/windowsOpen.js"></script>
+<script src="/js/spec/SpecSheetSkill.js" type="text/javascript" ></script>
+<script src="/js/spec/jkl-calendar.js" type="text/javascript" ></script>
+
 <script>
 jQuery(document).ready(function($){
 	jQuery("#formId").validationEngine();
 });
 </script>
+
 <title>spec管理</title>
 </head>
 <body>

@@ -57,6 +57,17 @@ public class SpecForm {
 		private Integer pgOperatorExpMonth = 0;
 		
 	//スキル要約
+		/**経験言語*/
+		private String skillLangList;
+		/**実務経験フラグ*/
+		private Integer expFlagInt;
+		/**言語経験月数*/
+		private Integer monthOfLangExp; 
+		/**経験OS*/
+		private String skillOsList;
+		/**OS経験月数*/
+		private Integer monthOfOsExp;
+		/**開発関連技術*/
 		private String relatedTech;
 		/**更新日時 */
 		private Date updateDate;

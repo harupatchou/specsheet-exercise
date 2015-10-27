@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.management.domain.Spec;
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.page.SpecDetailDevelopmentExperiencePage;
 import com.example.management.page.SpecDetailExpBreakdownPage;
 import com.example.management.page.SpecDetailLicensePage;
@@ -46,7 +46,7 @@ public class SpecDetailRepository {
 				nearestStation,comment,updateDate,updateName,null,null);
 	};
 	
-	public static final RowMapper<Users> USERS_ROW_MAPPER = (rs,i) -> {
+	public static final RowMapper<User> USERS_ROW_MAPPER = (rs,i) -> {
 		String staffId = rs.getString("staff_id");
 		String sex = rs.getString("sex");
 		String firstName = rs.getString("first_name");
@@ -56,7 +56,7 @@ public class SpecDetailRepository {
 		Integer authorityId = rs.getInt("authority_id");
 		String password = rs.getString("password");
 		
-		return new Users(staffId,sex,firstName,lastName,
+		return new User(staffId,sex,firstName,lastName,
 				firstPhonetic,lastPhonetic,authorityId,password);
 	};
 	
@@ -174,11 +174,11 @@ public class SpecDetailRepository {
 	 * @param staffId スタッフID
 	 * @return 1件のスペックシートデータ、ない場合はnullを返す
 	 */
-	public Users findUsersByStaffId(String staffId){
+	public User findUsersByStaffId(String staffId){
 		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
 		
 		try{
-			Users users = jdbcTemplate.queryForObject(
+			User users = jdbcTemplate.queryForObject(
 					"SELECT staff_id,sex,first_name,last_name,"
 					+ " first_phonetic,last_phonetic,authority_id,password "
 					+ " FROM users WHERE staff_id=:staffId",

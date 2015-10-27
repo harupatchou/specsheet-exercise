@@ -41,18 +41,22 @@ window.onload = function(){
  * @param
  */
 function AddDetail(addTable){
+	
+
+
 	//追加のためnoを1にする(現状番号振り分けが逆になっている)
 	no += 1;
 	//現状のプロジェクト番号
 	testNo = 1;
 	hiddenNo = 1;
+
 	//追加したい表示コンテンツを書き込む
 	var appendContent = 
 			"<tbody id='testTable" + no + "' class='speckDetailTable'><tr><th>No.</th><th>期間</th><th>プロジェクト概要</th><th colspan='2'>環境、ツールなど</th>" +
 			"<th>担当工程</th><th>担当役割</th><th>規模</th></tr>" +
 			"</th></tr><tr class='InputTr'><td rowspan='5' class='proNo' >"+firstNo+"</td>" +
 			"<input type='hidden' name='projectNo' class='setProNo' value='' />" +
-			"<td rowspan='4'><input name='startDay' /><br>～<br><input name='finishDay' /></td>" +
+			"<td rowspan='4'><input name='startDay'/><br>～<br><input name='finishDay'/></td>" +
 			"<td rowspan='4'><textarea name='overview' rows='10' cols='12' /></td><th>OS</th>" +
 			"<td><input name='os' id='os" + no + "' />" +
 			"<input type='button' value='OS選択' id='btnMini' " +

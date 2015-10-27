@@ -10,7 +10,7 @@
 <%--ここから下にコンテンツを挿入 --%>
 
 		<h2>メニュー</h2>
-
+		<c:out value="${user}"></c:out>
 		<c:if test="${user.authorityId  != null}">
 
 <%-- 			<li><a href="/specedit/?staffId=${user.staffId}">スペックシート登録・編集</a><br></li> --%>

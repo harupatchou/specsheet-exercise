@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.management.domain.Users;
+import com.example.management.domain.User;
 import com.example.management.form.UserEditForm;
 import com.example.management.logic.UserLogic;
 import com.example.management.service.UserService;
@@ -19,15 +19,15 @@ public class UserLogicImpl implements UserLogic{
 
 	//個人の情報の取得
 	@Override
-	public Users selectByStaffId(String staffId) {
-		Users user = userService.selectByStaffId(staffId);
+	public User selectByStaffId(String staffId) {
+		User user = userService.selectByStaffId(staffId);
 		return user;
 	}
 	
 	 //スタッフID・パスワードが一致する個人情報取得
 	@Override
-    public Users selectByStaffIdAndPassword(String staffId, String password){
-		Users user = userService.selectByStaffIdAndPassword(staffId, password);
+    public User selectByStaffIdAndPassword(String staffId, String password){
+		User user = userService.selectByStaffIdAndPassword(staffId, password);
 		return user;
 	}
 	
