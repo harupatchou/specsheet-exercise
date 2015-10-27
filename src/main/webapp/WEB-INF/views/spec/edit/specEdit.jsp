@@ -82,10 +82,11 @@
 			<br>
 			<!-- スキル要約 -->
 			<div class="inputSkill">
-				<table class="speckDetailTable">
+				<table class="speckDetailTable" id="userSkillTable">
 					<tr class="InputTr">
-						<th colspan="9">スキル要約 <input type="button" value="行追加" /> <input
-							type="button" value="最終行削除" />
+						<th colspan="9">スキル要約 <input type="button" value="行追加" id="detailAdd" 
+						onclick="AddSkill('userSkillTable','${langMap}','${osMap}')" /> 
+						<input type="button" value="最終行削除" onclick="DelSkillColumn('userSkillTable')"/>
 						</th>
 					</tr>
 					<tr>
@@ -94,22 +95,12 @@
 						<th colspan="2">環境(OS等)</th>
 					</tr>
 					<tr>
-						<td><select>
-								<option>Java</option>
-								<option>PHP</option>
-								<option>Scala</option>
-								<option>その他</option>
-						</select></td>
-						<td><input type="checkbox" id="check">実務</td>
-						<td><input id="inputMini" type="text">ヵ月</td>
+						<td><form:select path="skillLangList" items="${langMap}"/></td>
+						<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務</td>
+						<td><form:input path="monthOfLangExp" id="inputMini" type="text"/>ヵ月</td>
 						<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
-						<td><select>
-								<option>Windows</option>
-								<option>Linux</option>
-								<option>Mac</option>
-								<option>その他</option>
-						</select><br></td>
-						<td><input id="inputMini" type="text">ヵ月</td>
+						<td><form:select path="skillOsList" items="${osMap}"/><br></td>
+						<td><form:input path="monthOfOsExp" id="inputMini" type="text"/>ヵ月</td>
 					</tr>
 				</table>
 			</div>

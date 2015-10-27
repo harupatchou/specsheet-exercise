@@ -14,7 +14,7 @@
 		<c:if test="${user.authorityId  != null}">
 
 <%-- 			<li><a href="/specedit/?staffId=${user.staffId}">スペックシート登録・編集</a><br></li> --%>
-			<li><a href="/user/specMenu">スペックシート登録・編集</a><br></li>
+			<li><a href="/spec/index?staffId=${user.staffId}">スペックシート登録・編集</a><br></li>
 			<li><a href="/detail/?staffId=${user.staffId}">スペックシート詳細</a><br></li>
 
 		</c:if>

@@ -68,29 +68,78 @@ public class SpecController {
 	 * @author kurosawa
 	 * @return 初期画面
 	 */
-	@RequestMapping(value = "/registIndex")
-	public String registIndex(Model model){
-		
+	@RequestMapping(value = "/index")
+	public String Index(String staffId,Model model){
 		//決め打ち
-		String test = "AP-202-0716";
-		selectByStaffId(test);
-		//情報を画面に送信
+//		String test = "AP-202-0716";
+		spec = new Spec();
+		spec = specLogic.selectByStaffId(staffId);
+		
+		//specデータ無時⇒スペックシート登録へ
+		if(spec == null){
+		
+			selectByStaffId(staffId);
+			//情報を画面に送信
+			model.addAttribute("spec",spec);
+			model.addAttribute("user",user);
+			model.addAttribute("stateMap", enumLogic.getStateMap());
+			model.addAttribute("ageMap", enumLogic.getAgeMap());
+		
+			//言語関連
+
+			//言語一覧を取得してMAPに格納
+			setLangMap(model);
+		
+			//OS一覧を取得してMAPに格納
+			setOsMap(model);
+
+			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
+		
+			return "spec/regist/specRegist";
+		}
+		
+		//specデータ有時⇒スペックシート編集へ
+		selectByStaffId(staffId);
+		
+		//言語一覧を取得してMAPに格納
+		setLangMap(model);
+	
+		//OS一覧を取得してMAPに格納
+		setOsMap(model);
+		
 		model.addAttribute("spec",spec);
 		model.addAttribute("user",user);
+		model.addAttribute("projectList",projectList);
 		model.addAttribute("stateMap", enumLogic.getStateMap());
 		model.addAttribute("ageMap", enumLogic.getAgeMap());
+		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
 		
-		//言語関連
+		return "spec/edit/specEdit";
+		
+		
+	}
+
+
+	/**
+	 * 言語一覧をMAPに格納
+	 * @author ueno
+	 */
+	private void setLangMap(Model model) {
 		Map<Integer, String> langMap = new LinkedHashMap<Integer, String>();
 		langMap.put(0, "----");
-		//言語一覧を取得してMAPに格納
 		List<LanguageDefine> langList = projectLogic.getLang();
 		for(LanguageDefine lang : langList){
 			langMap.put(lang.getId(), lang.getName());
 		}
 		model.addAttribute("langMap",langMap);
-		
-		//OS一覧を取得してMAPに格納
+	}
+
+	
+	/**
+	 * OS一覧をMAPに格納
+	 * @author ueno
+	 */
+	private void setOsMap(Model model) {
 		Map<Integer, String> osMap = new LinkedHashMap<Integer, String>();
 		osMap.put(0, "----");
 		List<OsDefine> osList = projectLogic.getOS();
@@ -98,10 +147,6 @@ public class SpecController {
 			osMap.put(os.getOsId(), os.getOsName());
 		}
 		model.addAttribute("osMap",osMap);
-
-		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
-		
-		return "spec/regist/specRegist";
 	}
 	
 	
@@ -139,28 +184,28 @@ public class SpecController {
 	}
 	
 	
-	/**
-	 * 編集画面初期表示.
-	 * @param model 
-	 * @author kurosawa
-	 * @return 初期画面
-	 */
-	@RequestMapping(value = "/editIndex")
-	public String edit(Model model){
-		
-		//決め打ち
-		String test = "AP-202-0715";
-		selectByStaffId(test);
-		
-		model.addAttribute("spec",spec);
-		model.addAttribute("user",user);
-		model.addAttribute("projectList",projectList);
-		model.addAttribute("stateMap", enumLogic.getStateMap());
-		model.addAttribute("ageMap", enumLogic.getAgeMap());
-		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
-		
-		return "spec/edit/specEdit";
-	}
+//	/**
+//	 * 編集画面初期表示.
+//	 * @param model 
+//	 * @author kurosawa
+//	 * @return 初期画面
+//	 */
+//	@RequestMapping(value = "/editIndex")
+//	public String edit(Model model){
+//		
+//		//決め打ち
+//		String test = "AP-202-0715";
+//		selectByStaffId(test);
+//		
+//		model.addAttribute("spec",spec);
+//		model.addAttribute("user",user);
+//		model.addAttribute("projectList",projectList);
+//		model.addAttribute("stateMap", enumLogic.getStateMap());
+//		model.addAttribute("ageMap", enumLogic.getAgeMap());
+//		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
+//		
+//		return "spec/edit/specEdit";
+//	}
 	
 	/**
 	 * OS選択小窓表示
@@ -211,11 +256,11 @@ public class SpecController {
 	 * @throws Exception
 	 */
 	private Boolean selectByStaffId(String staffId) {
-		spec = new Spec();
+		
 		user = new User();
 		projectList = new ArrayList<Project>();
 		//データの取得
-		spec = specLogic.selectByStaffId(staffId);
+
 		user = userLogic.selectByStaffId(staffId);
 		projectList = projectLogic.selectByStaffId(staffId);
 		return true;
