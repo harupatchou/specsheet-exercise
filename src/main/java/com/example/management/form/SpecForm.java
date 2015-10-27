@@ -2,6 +2,7 @@ package com.example.management.form;
 
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -94,5 +95,17 @@ public class SpecForm {
 		private String content;
 		/**最後のテーブル判別*/
 		private String lastHidden;
+		
+	//資格情報
+		/**資格名*//*
+		private String lisenceName;
+		*//**資格取得日*//*
+		private String strAcquireDate;
+		private Date acquireDate;*/
+		/**資格名*/
+		private List<String> lisenceName;
+		/**資格取得日*/
+		private List<String> strAcquireDate;
+		private List<Date> acquireDate;
 		
 }

@@ -8,8 +8,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.management.form.SpecRegistLicenseForm;
 import com.example.management.form.SpecForm;
+import com.example.management.form.SpecRegistLicenseForm;
 
 @Transactional
 @Repository
@@ -43,9 +43,10 @@ public class SpecRegistRepository {
 	 */
 	public void insertUsersLicenseByStaffId(SpecRegistLicenseForm form){
 		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
+		
 		jdbcTemplate.update(
 				"INSERT INTO users_license (staff_id , name , acquire_date) "
-				+ "　VALUES ( :staffId , :name , :acquireDate); ",
+				+ "VALUES (:staffId,:lisenceName,:acquireDate) ",
 				param);
 	}
 	
@@ -145,5 +146,5 @@ public class SpecRegistRepository {
 			}
 		}
 	}
-	
 }
+
