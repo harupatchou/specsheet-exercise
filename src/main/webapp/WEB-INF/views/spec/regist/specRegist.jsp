@@ -60,22 +60,22 @@
 					<th rowspan="2">内訳</th>
 					<th>サーバ・NW経験</th>
 					<td colspan="2">
-					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${experience.serverNetworkExpYear}"/>年
-					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${experience.serverNetworkExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${breakdown.serverNetworkExpYear}"/>年
+					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${breakdown.serverNetworkExpMonth}"/>ヵ月</td> 
 					<th>SE経験</th>
 	 				<td colspan="2">
-	 				<form:input id="inputMini" path="seExpYear" value="${experience.seExpYear}"/>年
-	 				<form:input id="inputMini" path="seExpMonth" value="${experience.seExpMonth}"/>ヵ月</td> 
+	 				<form:input id="inputMini" path="seExpYear" value="${breakdown.seExpYear}"/>年
+	 				<form:input id="inputMini" path="seExpMonth" value="${breakdown.seExpMonth}"/>ヵ月</td> 
 				</tr>
 				<tr>
 					<th>システム開発経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="developmentExpYear"  value="${experience.developmentExpYear}"/>年
-					<form:input id="inputMini" path="developmentExpMonth"  value="${experience.developmentExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="developmentExpYear"  value="${breakdown.developmentExpYear}"/>年
+					<form:input id="inputMini" path="developmentExpMonth"  value="${breakdown.developmentExpMonth}"/>ヵ月</td> 
 					<th>PG・作業員経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="pgOperatorExpYear" value="${experience.pgOperatorExpYear}"/>年
-					<form:input id="inputMini" path="pgOperatorExpMonth" value="${experience.pgOperatorExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="pgOperatorExpYear" value="${breakdown.pgOperatorExpYear}"/>年
+					<form:input id="inputMini" path="pgOperatorExpMonth" value="${breakdown.pgOperatorExpMonth}"/>ヵ月</td> 
 				</tr>
 			</table>
 
@@ -134,7 +134,7 @@
 						<th colspan="9">
 						開発経験
 						<input type="button" value="行追加" id="detailAdd" 
-						onclick="AddDetail('addTable',lastNo)" />
+						onclick="AddDetail('addTable')" />
 						</th>
 					</tr>
 				</table>
@@ -142,7 +142,7 @@
 				<table id="addTable" class="speckDetailTable">
 				</table>
 				<table id="speckTable" class="speckDetailTable">
-					<tbody class="speckDetailTable">
+					<tbody id="testTable" class="speckDetailTable">
 					<tr>
 						<th>No.</th>
 						<th>期間</th>
@@ -154,8 +154,8 @@
 					</tr>
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
-						<td rowspan="5" class="proNo" id="lastNo">1</td>
-						<form:input type="hidden" path="projectNo" value="" />
+						<td rowspan="5" id="lastNo">1</td>
+						<form:input type="hidden" path="projectNo" value="1"/>
 					<!-- 開発時期 -->
 						<td rowspan="4">
 						<form:input path="startDay" /><br>
@@ -178,9 +178,9 @@
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<form:input path="process1" size="10"/>
+						<form:input path="process"/>
 						<input type="button" value="担当工程" id="btnMini"
-							onclick="return openWin('/spec/processWindow?projectNo=1','osTest')" />
+							onclick="return openWin('/spec/processWindow?projectNo=1')" />
 						</td>
 						
 					<!-- 担当役割 -->
@@ -195,7 +195,7 @@
 					<!-- 言語 -->
 						<th>言語</th>
 						<td>
-						<form:input path="lang1"/>
+						<form:input path="lang"/>
 						<input type="button" value="言語選択" id="btnMini"
 							onclick="return openWin('/spec/langWindow?projectNo=1')" />
 						</td>
@@ -221,7 +221,7 @@
 						<th colspan="9">
 						この開発経験を削除 
 						<input type="button" value="行削除" id="deleteAdd" 
-						onclick="DeleteDetail('speckTable')" />
+						onclick="DeleteDetail('testTable')" />
 						</th>
 					</tr>
 				</tbody>
@@ -263,7 +263,7 @@
 				</table>
 			</div>
 			<br>
-
+		<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 		<input type="submit" value="登録内容確認"/>
 		<input class="button" type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 		</form:form>

@@ -36,22 +36,24 @@ public class SpecForm {
 		private Integer allExpYear;
 		/**IT全体経験月*/
 		private Integer allExpMonth;
+		/**経験月数insert用*/
+		private Integer monthOfExp;
 		/**サーバ・NW経験年*/
-		private Integer serverNetworkExpYear;
+		private Integer serverNetworkExpYear = 0;
 		/**サーバ・NW経験月*/
-		private Integer serverNetworkExpMonth;
+		private Integer serverNetworkExpMonth = 0;
 		/**システム開発経験年*/
-		private Integer developmentExpYear;
+		private Integer developmentExpYear = 0;
 		/**システム開発経験月*/
-		private Integer developmentExpMonth;
+		private Integer developmentExpMonth = 0;
 		/**SE経験年*/
-		private Integer seExpYear;
+		private Integer seExpYear = 0;
 		/**SE経験月*/
-		private Integer seExpMonth;
+		private Integer seExpMonth = 0;
 		/**PG経験年*/
-		private Integer pgOperatorExpYear;
+		private Integer pgOperatorExpYear = 0;
 		/**PG経験月*/
-		private Integer pgOperatorExpMonth;
+		private Integer pgOperatorExpMonth = 0;
 		
 	//スキル要約
 		private String relatedTech;
@@ -74,35 +76,23 @@ public class SpecForm {
 		private String finishDay;
 		
 	//プロジェクト詳細		
-		/**ポロジェクト番号*/
+		/**プロジェクト番号*/
 		private String projectNo;
 		/**プロジェクト概要*/
 		private String overview;
 		/**OS*/
 		private String os;
-		private String os1;
-		private String os2;
-		private String os3;
-		private String os4;
-		private String os5;
 		/**言語*/
-		private String lang1;
-		private String lang2;
-		private String lang3;
-		private String lang4;
-		private String lang5;
+		private String lang;
 		/**開発関連技術*/
 		private String other;
 		/**担当役割*/
 		private String role;
 		/**担当工程*/
-		private String process1;
-		private String process2;
-		private String process3;
-		private String process4;
-		private String process5;
+		private String process;
 		/**作業内容*/
 		private String content;
-		
+		/**最後のテーブル判別*/
+		private String lastHidden;
 		
 }

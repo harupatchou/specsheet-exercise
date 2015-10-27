@@ -60,7 +60,7 @@ public class SpecDetailRepository {
 				firstPhonetic,lastPhonetic,authorityId,password);
 	};
 	
-	public static RowMapper<SpecDetailExpBreakdownPage> SPECDETAILEXPBREAKDOWNPAGE_ROW_MAPPER = (rs,i) -> {
+	public static final RowMapper<SpecDetailExpBreakdownPage> SPECDETAILEXPBREAKDOWNPAGE_ROW_MAPPER = (rs,i) -> {
 		String staffId = rs.getString("staff_id");
 		Integer expBreakdownId = rs.getInt("exp_breakdown_id");
 		Integer monthOfExp = rs.getInt("month_of_exp");
@@ -69,7 +69,7 @@ public class SpecDetailRepository {
 		return new SpecDetailExpBreakdownPage(staffId,expBreakdownId,monthOfExp,breakdownName,null,null);
 	};
 	
-	public static RowMapper<SpecDetailLicensePage> SPECDETAILLICENSEPAGG_ROW_MAPPER = (rs,i) -> {
+	public static final RowMapper<SpecDetailLicensePage> SPECDETAILLICENSEPAGG_ROW_MAPPER = (rs,i) -> {
 		String staffId = rs.getString("staff_id");
 		Integer usersLicenceNo = rs.getInt("users_licence_no");
 		String name = rs.getString("name");
@@ -80,7 +80,7 @@ public class SpecDetailRepository {
 	
 	
 
-	public static RowMapper<SpecDetailDevelopmentExperiencePage> SPECDETAILDEVELOPMENTEXPERIENCEPAGE_ROW_MAPPER = (rs,i) -> {
+	public static final RowMapper<SpecDetailDevelopmentExperiencePage> SPECDETAILDEVELOPMENTEXPERIENCEPAGE_ROW_MAPPER = (rs,i) -> {
 		 Integer no = rs.getInt("no");
 		 Date startDate = rs.getDate("start_date");
 		 Date finishDate = rs.getDate("finish_date");
@@ -99,25 +99,25 @@ public class SpecDetailRepository {
 	};
 
 	
-	public static RowMapper<String> SPECDETAILLANGUAGEPAGE_ROW_MAPPER = (rs,i) -> {
+	public static final RowMapper<String> SPECDETAILLANGUAGEPAGE_ROW_MAPPER = (rs,i) -> {
 		String name = rs.getString("name");
 
 		return new String(name);
 	};
 		
-	public static RowMapper<String> SPECDETAILOS_ROW_MAPPER = (rs,i) -> {
+	public static final RowMapper<String> SPECDETAILOS_ROW_MAPPER = (rs,i) -> {
 		 String osName = rs.getString("os_name");
 		
 		return new String(osName);
 	};
 
-	public static RowMapper<String> SPECDETAILPROCESS_ROW_MAPPER = (rs,i) -> {
+	public static final RowMapper<String> SPECDETAILPROCESS_ROW_MAPPER = (rs,i) -> {
 		 String name = rs.getString("name");
 		
 		return new String(name);
 	};
 
-	public static RowMapper<String> SPECDETAILSKILLSSUMMARYPAGE_ROW_MAPPER = (rs,i) -> {
+	public static final RowMapper<String> SPECDETAILSKILLSSUMMARYPAGE_ROW_MAPPER = (rs,i) -> {
 		String other = rs.getString("other");
 		
 		return new String(other);

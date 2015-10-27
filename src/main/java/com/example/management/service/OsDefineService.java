@@ -20,10 +20,10 @@ public class OsDefineService {
 	@Autowired
 	private OsDefineRepository osDefineRepository;
 	
-	
 	public List<OsDefine> findAll() {
 		return osDefineRepository.findAll();
 	}
+	
 	/**
 	 * 降順でデータを取得
 	 * @return

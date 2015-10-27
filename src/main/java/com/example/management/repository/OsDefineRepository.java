@@ -10,5 +10,5 @@ import com.example.management.domain.OsDefine;
  *
  */
 @Repository
-public interface OsDefineRepository extends JpaRepository<OsDefine, Integer>{
+public interface OsDefineRepository extends JpaRepository<OsDefine, Integer> {
 }

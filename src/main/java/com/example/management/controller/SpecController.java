@@ -18,6 +18,7 @@ import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
 import com.example.management.form.SpecRegistLicenseForm;
 import com.example.management.logic.EnumLogic;
+import com.example.management.logic.ExpBreakdownLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
@@ -36,6 +37,8 @@ public class SpecController {
 	private ProjectLogic projectLogic;
 	@Autowired
 	private EnumLogic enumLogic;
+	@Autowired
+	private ExpBreakdownLogic expBreakdownLogic;
 	@Autowired
 	private SpecRegistService specRegistService;
 	
@@ -73,6 +76,7 @@ public class SpecController {
 		model.addAttribute("user",user);
 		model.addAttribute("stateMap", enumLogic.getStateMap());
 		model.addAttribute("ageMap", enumLogic.getAgeMap());
+		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
 		
 		return "spec/regist/specRegist";
 	}
@@ -197,6 +201,10 @@ public class SpecController {
 	 */
 	private Boolean insertExecute(String staffId,SpecForm form) throws Exception {
 		specLogic.insertSpec(form);
+		specRegistService.insertBreakdown(form);
+		specRegistService.insertProjectOs(form);
+		specRegistService.insertProjectLanguage(form);
+		specRegistService.insertProjectProcess(form);
 		projectLogic.insertProject(staffId,form);
 		return true;
 	}

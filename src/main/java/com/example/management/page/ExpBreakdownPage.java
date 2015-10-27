@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 経験内訳
- * @author okamoto
+ * @author takayuki.honma
  *
  */
 @Data
@@ -21,4 +21,21 @@ public class ExpBreakdownPage {
 	private Integer monthOfExp;
 	/**経験内訳名 */
 	private String name;
+	/** */
+	private Integer serverNetworkExpYear;
+	/** */
+	private Integer serverNetworkExpMonth;
+	/** */
+	private Integer seExpYear;
+	/** */
+	private Integer seExpMonth;
+	/** */
+	private Integer developmentExpYear;
+	/** */
+	private Integer developmentExpMonth;
+	/** */
+	private Integer pgOperatorExpYear;
+	/** */
+	private Integer pgOperatorExpMonth;
+	
 }
