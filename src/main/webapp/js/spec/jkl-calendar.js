@@ -1,18 +1,18 @@
 //  ========================================================
-//  jkl-calendar.js ---- ƒ|ƒbƒvƒAƒbƒvƒJƒŒƒ“ƒ_[•\¦ƒNƒ‰ƒX
+//  jkl-calendar.js ---- ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼è¡¨ç¤ºã‚¯ãƒ©ã‚¹
 //  Copyright 2005-2006 Kawasaki Yusuke <u-suke [at] kawa.net>
 //  Thanks to 2tak <info [at] code-hour.com>
 //  http://www.kawa.net/works/js/jkl/calender.html
-//  2005/04/06 - Å‰‚Ìƒo[ƒWƒ‡ƒ“
-//  2005/04/10 - ŠO•”ƒXƒ^ƒCƒ‹ƒV[ƒg‚ğg—p‚µ‚È‚¢AJKL.Opacity ‚ÍƒIƒvƒVƒ‡ƒ“
-//  2006/10/22 - typoC³Aspliter/min_date/max_dateƒvƒƒpƒeƒBA~ƒ{ƒ^ƒ“’Ç‰Á
-//  2006/10/23 - prototype.js•¹—p‚ÍAEvent.observe()‚ÅƒCƒxƒ“ƒg“o˜^
-//  2006/10/24 - max_date ”ÍˆÍƒoƒOC³
-//  2006/10/25 - ƒtƒH[ƒ€‚É‰Šú’l‚ª‚ ‚ê‚ÎAƒJƒŒƒ“ƒ_[‚Ì‰Šú’l‚ÉÌ—p‚·‚é
+//  2005/04/06 - æœ€åˆã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+//  2005/04/10 - å¤–éƒ¨ã‚¹ã‚¿ã‚¤ãƒ«ã‚·ãƒ¼ãƒˆã‚’ä½¿ç”¨ã—ãªã„ã€JKL.Opacity ã¯ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+//  2006/10/22 - typoä¿®æ­£ã€spliter/min_date/max_dateãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã€Ã—ãƒœã‚¿ãƒ³è¿½åŠ 
+//  2006/10/23 - prototype.jsä½µç”¨æ™‚ã¯ã€Event.observe()ã§ã‚¤ãƒ™ãƒ³ãƒˆç™»éŒ²
+//  2006/10/24 - max_date ç¯„å›²ãƒã‚°ä¿®æ­£
+//  2006/10/25 - ãƒ•ã‚©ãƒ¼ãƒ ã«åˆæœŸå€¤ãŒã‚ã‚Œã°ã€ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã®åˆæœŸå€¤ã«æ¡ç”¨ã™ã‚‹
 //  ========================================================
 
 /***********************************************************
-//  iƒTƒ“ƒvƒ‹jƒ|ƒbƒvƒAƒbƒv‚·‚éƒJƒŒƒ“ƒ_[
+//  ï¼ˆã‚µãƒ³ãƒ—ãƒ«ï¼‰ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ã™ã‚‹ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼
 
   <html>
     <head>
@@ -32,28 +32,28 @@
 
  **********************************************************/
 
-// eƒNƒ‰ƒX
+// è¦ªã‚¯ãƒ©ã‚¹
 
 if ( typeof(JKL) == 'undefined' ) JKL = function() {};
 
-// JKL.Calendar ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ì’è‹`
+// JKL.Calendar ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®å®šç¾©
 
 JKL.Calendar = function ( eid, fid, valname ) {
     this.eid = eid;
     this.formid = fid;
     this.valname = valname;
-    this.__dispelem = null;  // ƒJƒŒƒ“ƒ_[•\¦—“ƒGƒŒƒƒ“ƒg
-    this.__textelem = null;  // ƒeƒLƒXƒg“ü—Í—“ƒGƒŒƒƒ“ƒg
-    this.__opaciobj = null;  // JKL.Opacity ƒIƒuƒWƒFƒNƒg
+    this.__dispelem = null;  // ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼è¡¨ç¤ºæ¬„ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
+    this.__textelem = null;  // ãƒ†ã‚­ã‚¹ãƒˆå…¥åŠ›æ¬„ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
+    this.__opaciobj = null;  // JKL.Opacity ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     this.style = new JKL.Calendar.Style();
     return this;
 };
 
-// ƒo[ƒWƒ‡ƒ“”Ô†
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·
 
 JKL.Calendar.VERSION = "0.13";
 
-// ƒfƒtƒHƒ‹ƒg‚ÌƒvƒƒpƒeƒB
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 JKL.Calendar.prototype.spliter = "/";
 JKL.Calendar.prototype.date = null;
@@ -66,30 +66,30 @@ JKL.Calendar.Style = function() {
     return this;
 };
 
-// ƒfƒtƒHƒ‹ƒg‚ÌƒXƒ^ƒCƒ‹
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¹ã‚¿ã‚¤ãƒ«
 
-JKL.Calendar.Style.prototype.frame_width        = "150px";      // ƒtƒŒ[ƒ€‰¡•
-JKL.Calendar.Style.prototype.frame_color        = "#009900";    // ƒtƒŒ[ƒ€˜g‚ÌF
-JKL.Calendar.Style.prototype.font_size          = "12px";       // •¶šƒTƒCƒY
-JKL.Calendar.Style.prototype.day_bgcolor        = "#F0F0F0";    // ƒJƒŒƒ“ƒ_[‚Ì”wŒiF
-JKL.Calendar.Style.prototype.month_color        = "#FFFFFF";    // ›”N›Œ•”•ª‚Ì”wŒiF
-JKL.Calendar.Style.prototype.month_hover_color  = "#009900";    // ƒ}ƒEƒXƒI[ƒo[‚Ìáâ•¶šF
-JKL.Calendar.Style.prototype.month_hover_bgcolor = "#FFFFCC";   // ƒ}ƒEƒXƒI[ƒo[‚Ìáâ”wŒiF
-JKL.Calendar.Style.prototype.weekday_color      = "#009900";    // Œ—j`‹à—j“úƒZƒ‹‚Ì•¶šF
-JKL.Calendar.Style.prototype.saturday_color     = "#0040D0";    // “y—j“úƒZƒ‹‚Ì•¶šF
-JKL.Calendar.Style.prototype.sunday_color       = "#D00000";    // “ú—j“úƒZƒ‹‚Ì•¶šF
-JKL.Calendar.Style.prototype.others_color       = "#999999";    // ‘¼‚ÌŒ‚Ì“úƒZƒ‹‚Ì•¶šF
-JKL.Calendar.Style.prototype.day_hover_bgcolor  = "#FF9933";    // ƒ}ƒEƒXƒI[ƒo[‚Ì“úƒZƒ‹‚Ì”wŒi
-JKL.Calendar.Style.prototype.cursor             = "pointer";    // ƒ}ƒEƒXƒI[ƒo[‚ÌƒJ[ƒ\ƒ‹Œ`ó
+JKL.Calendar.Style.prototype.frame_width        = "150px";      // ãƒ•ãƒ¬ãƒ¼ãƒ æ¨ªå¹…
+JKL.Calendar.Style.prototype.frame_color        = "#009900";    // ãƒ•ãƒ¬ãƒ¼ãƒ æ ã®è‰²
+JKL.Calendar.Style.prototype.font_size          = "12px";       // æ–‡å­—ã‚µã‚¤ã‚º
+JKL.Calendar.Style.prototype.day_bgcolor        = "#F0F0F0";    // ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã®èƒŒæ™¯è‰²
+JKL.Calendar.Style.prototype.month_color        = "#FFFFFF";    // â—‹å¹´â—‹æœˆéƒ¨åˆ†ã®èƒŒæ™¯è‰²
+JKL.Calendar.Style.prototype.month_hover_color  = "#009900";    // ãƒã‚¦ã‚¹ã‚ªãƒ¼ãƒãƒ¼æ™‚ã®â‰ªâ‰«æ–‡å­—è‰²
+JKL.Calendar.Style.prototype.month_hover_bgcolor = "#FFFFCC";   // ãƒã‚¦ã‚¹ã‚ªãƒ¼ãƒãƒ¼æ™‚ã®â‰ªâ‰«èƒŒæ™¯è‰²
+JKL.Calendar.Style.prototype.weekday_color      = "#009900";    // æœˆæ›œï½é‡‘æ›œæ—¥ã‚»ãƒ«ã®æ–‡å­—è‰²
+JKL.Calendar.Style.prototype.saturday_color     = "#0040D0";    // åœŸæ›œæ—¥ã‚»ãƒ«ã®æ–‡å­—è‰²
+JKL.Calendar.Style.prototype.sunday_color       = "#D00000";    // æ—¥æ›œæ—¥ã‚»ãƒ«ã®æ–‡å­—è‰²
+JKL.Calendar.Style.prototype.others_color       = "#999999";    // ä»–ã®æœˆã®æ—¥ã‚»ãƒ«ã®æ–‡å­—è‰²
+JKL.Calendar.Style.prototype.day_hover_bgcolor  = "#FF9933";    // ãƒã‚¦ã‚¹ã‚ªãƒ¼ãƒãƒ¼æ™‚ã®æ—¥ã‚»ãƒ«ã®èƒŒæ™¯
+JKL.Calendar.Style.prototype.cursor             = "pointer";    // ãƒã‚¦ã‚¹ã‚ªãƒ¼ãƒãƒ¼æ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«å½¢çŠ¶
 
-//  ƒƒ\ƒbƒh
+//  ãƒ¡ã‚½ãƒƒãƒ‰
 
 JKL.Calendar.Style.prototype.set = function(key,val) { this[key] = val; }
 JKL.Calendar.Style.prototype.get = function(key) { return this[key]; }
 JKL.Calendar.prototype.setStyle = function(key,val) { this.style.set(key,val); };
 JKL.Calendar.prototype.getStyle = function(key) { return this.style.get(key); };
 
-// “ú•t‚ğ‰Šú‰»‚·‚é
+// æ—¥ä»˜ã‚’åˆæœŸåŒ–ã™ã‚‹
 
 JKL.Calendar.prototype.initDate = function ( dd ) {
     if ( ! dd ) dd = new Date();
@@ -101,7 +101,7 @@ JKL.Calendar.prototype.initDate = function ( dd ) {
     return this.date;
 }
 
-// “§–¾“xİ’è‚ÌƒIƒuƒWƒFƒNƒg‚ğ•Ô‚·
+// é€æ˜åº¦è¨­å®šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã™
 
 JKL.Calendar.prototype.getOpacityObject = function () {
     if ( this.__opaciobj ) return this.__opaciobj;
@@ -111,7 +111,7 @@ JKL.Calendar.prototype.getOpacityObject = function () {
     return this.__opaciobj;
 };
 
-// ƒJƒŒƒ“ƒ_[•\¦—“‚ÌƒGƒŒƒƒ“ƒg‚ğ•Ô‚·
+// ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼è¡¨ç¤ºæ¬„ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’è¿”ã™
 
 JKL.Calendar.prototype.getCalendarElement = function () {
     if ( this.__dispelem ) return this.__dispelem;
@@ -119,7 +119,7 @@ JKL.Calendar.prototype.getCalendarElement = function () {
     return this.__dispelem;
 };
 
-// ƒeƒLƒXƒg“ü—Í—“‚ÌƒGƒŒƒƒ“ƒg‚ğ•Ô‚·
+// ãƒ†ã‚­ã‚¹ãƒˆå…¥åŠ›æ¬„ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’è¿”ã™
 
 JKL.Calendar.prototype.getFormElement = function () {
     if ( this.__textelem ) return this.__textelem;
@@ -133,7 +133,7 @@ JKL.Calendar.prototype.getFormElement = function () {
     return this.__textelem;
 };
 
-// ƒIƒuƒWƒFƒNƒg‚É“ú•t‚ğ‹L‰¯‚·‚éiYYYY/MM/DDŒ`®‚Åw’è‚·‚éj
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«æ—¥ä»˜ã‚’è¨˜æ†¶ã™ã‚‹ï¼ˆYYYY/MM/DDå½¢å¼ã§æŒ‡å®šã™ã‚‹ï¼‰
 
 JKL.Calendar.prototype.setDateYMD = function (ymd) {
     var splt = ymd.split( this.spliter );
@@ -150,9 +150,9 @@ JKL.Calendar.prototype.setDateYMD = function (ymd) {
     return ymd;
 };
 
-// ƒIƒuƒWƒFƒNƒg‚©‚ç“ú•t‚ğæ‚èo‚·iYYYY/MM/DDŒ`®‚Å•Ô‚éj
-// ˆø”‚É Date ƒIƒuƒWƒFƒNƒg‚Ìw’è‚ª‚ ‚ê‚ÎA
-// ƒIƒuƒWƒFƒNƒg‚Í–³‹‚µ‚ÄAˆø”‚Ì“ú•t‚ğg—p‚·‚éi’P‚È‚éfprint‹@”\j
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰æ—¥ä»˜ã‚’å–ã‚Šå‡ºã™ï¼ˆYYYY/MM/DDå½¢å¼ã§è¿”ã‚‹ï¼‰
+// å¼•æ•°ã« Date ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æŒ‡å®šãŒã‚ã‚Œã°ã€
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ç„¡è¦–ã—ã¦ã€å¼•æ•°ã®æ—¥ä»˜ã‚’ä½¿ç”¨ã™ã‚‹ï¼ˆå˜ãªã‚‹fprintæ©Ÿèƒ½ï¼‰
 
 JKL.Calendar.prototype.getDateYMD = function ( dd ) {
     if ( ! dd ) {
@@ -166,7 +166,7 @@ JKL.Calendar.prototype.getDateYMD = function ( dd ) {
     return dd.getFullYear() + this.spliter + mm + this.spliter + aa;
 };
 
-// ƒeƒLƒXƒg“ü—Í—“‚Ì’l‚ğ•Ô‚·i‚Â‚¢‚Å‚ÉƒIƒuƒWƒFƒNƒg‚àXV‚·‚éj
+// ãƒ†ã‚­ã‚¹ãƒˆå…¥åŠ›æ¬„ã®å€¤ã‚’è¿”ã™ï¼ˆã¤ã„ã§ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚‚æ›´æ–°ã™ã‚‹ï¼‰
 
 JKL.Calendar.prototype.getFormValue = function () {
     var form1 = this.getFormElement();
@@ -175,27 +175,27 @@ JKL.Calendar.prototype.getFormValue = function () {
     return date1;
 };
 
-// ƒtƒH[ƒ€“ü—Í—“‚Éw’è‚µ‚½’l‚ğ‘‚«‚Ş
+// ãƒ•ã‚©ãƒ¼ãƒ å…¥åŠ›æ¬„ã«æŒ‡å®šã—ãŸå€¤ã‚’æ›¸ãè¾¼ã‚€
 
 JKL.Calendar.prototype.setFormValue = function (ymd) {
-    if ( ! ymd ) ymd = this.getDateYMD();   // –³w’è‚ÍƒIƒuƒWƒFƒNƒg‚©‚çH
+    if ( ! ymd ) ymd = this.getDateYMD();   // ç„¡æŒ‡å®šæ™‚ã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ï¼Ÿ
     var form1 = this.getFormElement();
     if ( form1 ) form1.value = ymd;
 };
 
-//  ƒJƒŒƒ“ƒ_[•\¦—“‚ğ•\¦‚·‚é
+//  ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼è¡¨ç¤ºæ¬„ã‚’è¡¨ç¤ºã™ã‚‹
 
 JKL.Calendar.prototype.show = function () {
     this.getCalendarElement().style.display = "";
 };
 
-//  ƒJƒŒƒ“ƒ_[•\¦—“‚ğ‘¦À‚É‰B‚·
+//  ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼è¡¨ç¤ºæ¬„ã‚’å³åº§ã«éš ã™
 
 JKL.Calendar.prototype.hide = function () {
     this.getCalendarElement().style.display = "none";
 };
 
-//  ƒJƒŒƒ“ƒ_[•\¦—“‚ğƒtƒF[ƒhƒAƒEƒg‚·‚é
+//  ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼è¡¨ç¤ºæ¬„ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã™ã‚‹
 
 JKL.Calendar.prototype.fadeOut = function (s) {
     if ( JKL.Opacity ) {
@@ -205,28 +205,28 @@ JKL.Calendar.prototype.fadeOut = function (s) {
     }
 };
 
-// Œ’PˆÊ‚ÅˆÚ“®‚·‚é
+// æœˆå˜ä½ã§ç§»å‹•ã™ã‚‹
 
 JKL.Calendar.prototype.moveMonth = function ( mon ) {
-    // ‘O‚ÖˆÚ“®
+    // å‰ã¸ç§»å‹•
     if ( ! this.date ) this.initDate();
     for( ; mon<0; mon++ ) {
-        this.date.setDate(1);   // –ˆŒ1“ú‚Ì1“ú‘O‚Í•K‚¸‘O‚ÌŒ
+        this.date.setDate(1);   // æ¯æœˆ1æ—¥ã®1æ—¥å‰ã¯å¿…ãšå‰ã®æœˆ
         this.date.setTime( this.date.getTime() - (24*3600*1000) );
     }
-    // Œã‚ÖˆÚ“®
+    // å¾Œã¸ç§»å‹•
     for( ; mon>0; mon-- ) {
-        this.date.setDate(1);   // –ˆŒ1“ú‚Ì32“úŒã‚Í•K‚¸Ÿ‚ÌŒ
+        this.date.setDate(1);   // æ¯æœˆ1æ—¥ã®32æ—¥å¾Œã¯å¿…ãšæ¬¡ã®æœˆ
         this.date.setTime( this.date.getTime() + (24*3600*1000)*32 );
     }
-    this.date.setDate(1);       // “–Œ‚Ì1“ú‚É–ß‚·
-    this.write();    // •`‰æ‚·‚é
+    this.date.setDate(1);       // å½“æœˆã®1æ—¥ã«æˆ»ã™
+    this.write();    // æç”»ã™ã‚‹
 };
 
-// ƒCƒxƒ“ƒg‚ğ“o˜^‚·‚é
+// ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™»éŒ²ã™ã‚‹
 
 JKL.Calendar.prototype.addEvent = function ( elem, ev, func ) {
-//  prototype.js ‚ª‚ ‚ê‚Î—˜—p‚·‚é(IEƒƒ‚ƒŠƒŠ[ƒN‰ñ”ğ)
+//  prototype.js ãŒã‚ã‚Œã°åˆ©ç”¨ã™ã‚‹(IEãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¯å›é¿)
     if ( window.Event && Event.observe ) {
         Event.observe( elem, ev, func, false );
     } else {
@@ -234,19 +234,19 @@ JKL.Calendar.prototype.addEvent = function ( elem, ev, func ) {
     }
 }
 
-// ƒJƒŒƒ“ƒ_[‚ğ•`‰æ‚·‚é
+// ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚’æç”»ã™ã‚‹
 
 JKL.Calendar.prototype.write = function () {
     var date = new Date();
     if ( ! this.date ) this.initDate();
     date.setTime( this.date.getTime() );
 
-    var year = date.getFullYear();          // w’è”N
-    var mon  = date.getMonth();             // w’èŒ
-    var today = date.getDate();             // w’è“ú
+    var year = date.getFullYear();          // æŒ‡å®šå¹´
+    var mon  = date.getMonth();             // æŒ‡å®šæœˆ
+    var today = date.getDate();             // æŒ‡å®šæ—¥
     var form1 = this.getFormElement();
 
-    // ‘I‘ğ‰Â”\‚È“ú•t”ÍˆÍ
+    // é¸æŠå¯èƒ½ãªæ—¥ä»˜ç¯„å›²
     var min;
     if ( this.min_date ) {
         var tmp = new Date( this.min_date.getFullYear(), 
@@ -260,15 +260,15 @@ JKL.Calendar.prototype.write = function () {
         max = tmp.getTime();
     }
 
-    // ’¼‘O‚ÌŒ—j“ú‚Ü‚Å–ß‚·
-    date.setDate(1);                        // 1“ú‚É–ß‚·
-    var wday = date.getDay();               // —j“ú “ú—j(0)`“y—j(6)
+    // ç›´å‰ã®æœˆæ›œæ—¥ã¾ã§æˆ»ã™
+    date.setDate(1);                        // 1æ—¥ã«æˆ»ã™
+    var wday = date.getDay();               // æ›œæ—¥ æ—¥æ›œ(0)ï½åœŸæ›œ(6)
     if ( wday != 1 ) {
         if ( wday == 0 ) wday = 7;
         date.setTime( date.getTime() - (24*3600*1000)*(wday-1) );
     }
 
-    // Å‘å‚Å7“ú~6TŠÔ42“ú•ª‚Ìƒ‹[ƒv
+    // æœ€å¤§ã§7æ—¥Ã—6é€±é–“ï¼42æ—¥åˆ†ã®ãƒ«ãƒ¼ãƒ—
     var list = new Array();
     for( var i=0; i<42; i++ ) {
         var tmp = new Date();
@@ -277,7 +277,7 @@ JKL.Calendar.prototype.write = function () {
         list[list.length] = tmp;
     }
 
-    // ƒXƒ^ƒCƒ‹ƒV[ƒg‚ğ¶¬‚·‚é
+    // ã‚¹ã‚¿ã‚¤ãƒ«ã‚·ãƒ¼ãƒˆã‚’ç”Ÿæˆã™ã‚‹
     var month_table_style = 'width: 100%; ';
     month_table_style += 'background: '+this.style.frame_color+'; ';
     month_table_style += 'border: 1px solid '+this.style.frame_color+';';
@@ -312,24 +312,24 @@ JKL.Calendar.prototype.write = function () {
 
     var days_unselectable = "font-weight: normal;";
 
-    // HTMLƒ\[ƒX‚ğ¶¬‚·‚é
+    // HTMLã‚½ãƒ¼ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
     var src1 = "";
 
     src1 += '<table border="0" cellpadding="0" cellspacing="0" style="'+month_table_style+'"><tr>';
-    src1 += '<td id="__'+this.eid+'_btn_prev" title="‘O‚ÌŒ‚Ö" style="'+month_td_style+'">á</td>';
+    src1 += '<td id="__'+this.eid+'_btn_prev" title="å‰ã®æœˆã¸" style="'+month_td_style+'">â‰ª</td>';
     src1 += '<td style="'+month_td_style+'">&nbsp;</td>';
-    src1 += '<td style="'+month_td_style+'">'+(year)+'”N '+(mon+1)+'Œ</td>';
-    src1 += '<td id="__'+this.eid+'_btn_close" title="•Â‚¶‚é" style="'+month_td_style+'">~</td>';
-    src1 += '<td id="__'+this.eid+'_btn_next" title="Ÿ‚ÌŒ‚Ö" style="'+month_td_style+'">â</td>';
+    src1 += '<td style="'+month_td_style+'">'+(year)+'å¹´ '+(mon+1)+'æœˆ</td>';
+    src1 += '<td id="__'+this.eid+'_btn_close" title="é–‰ã˜ã‚‹" style="'+month_td_style+'">Ã—</td>';
+    src1 += '<td id="__'+this.eid+'_btn_next" title="æ¬¡ã®æœˆã¸" style="'+month_td_style+'">â‰«</td>';
     src1 += "</tr></table>\n";
     src1 += '<table border="0" cellpadding="0" cellspacing="0" style="'+week_table_style+'"><tr>';
-    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">Œ</td>';
-    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">‰Î</td>';
-    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">…</td>';
-    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">–Ø</td>';
-    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">‹à</td>';
-    src1 += '<td style="color: '+this.style.saturday_color+'; '+week_td_style+'">“y</td>';
-    src1 += '<td style="color: '+this.style.sunday_color+'; '+week_td_style+'">“ú</td>';
+    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">æœˆ</td>';
+    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">ç«</td>';
+    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">æ°´</td>';
+    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">æœ¨</td>';
+    src1 += '<td style="color: '+this.style.weekday_color+'; '+week_td_style+'">é‡‘</td>';
+    src1 += '<td style="color: '+this.style.saturday_color+'; '+week_td_style+'">åœŸ</td>';
+    src1 += '<td style="color: '+this.style.sunday_color+'; '+week_td_style+'">æ—¥</td>';
     src1 += "</tr></table>\n";
     src1 += '<table border="0" cellpadding="0" cellspacing="0" style="'+days_table_style+'">';
 
@@ -338,7 +338,7 @@ JKL.Calendar.prototype.write = function () {
         var splt = form1.value.split(this.spliter);
         if ( splt[0] > 0 && splt[2] > 0 ) {
             var curdd = new Date( splt[0]-0, splt[1]-1, splt[2]-0 );
-            curutc = curdd.getTime();                           // ƒtƒH[ƒ€ã‚Ì“–“ú
+            curutc = curdd.getTime();                           // ãƒ•ã‚©ãƒ¼ãƒ ä¸Šã®å½“æ—¥
         }
     }
 
@@ -347,25 +347,25 @@ JKL.Calendar.prototype.write = function () {
         var ww = dd.getDay();
         var mm = dd.getMonth();
         if ( ww == 1 ) {
-            src1 += "<tr>";                                     // Œ—j“ú‚Ì‘O‚És“ª
+            src1 += "<tr>";                                     // æœˆæ›œæ—¥ã®å‰ã«è¡Œé ­
         }
         var cc = days_td_style;
         if ( mon == mm ) {
             if ( ww == 0 ) {
-                cc += "color: "+this.style.sunday_color+";";    // “–Œ‚Ì“ú—j“ú
+                cc += "color: "+this.style.sunday_color+";";    // å½“æœˆã®æ—¥æ›œæ—¥
             } else if ( ww == 6 ) {
-                cc += "color: "+this.style.saturday_color+";";  // “–Œ‚Ì“y—j“ú
+                cc += "color: "+this.style.saturday_color+";";  // å½“æœˆã®åœŸæ›œæ—¥
             } else {
-                cc += "color: "+this.style.weekday_color+";";   // “–Œ‚Ì•½“ú
+                cc += "color: "+this.style.weekday_color+";";   // å½“æœˆã®å¹³æ—¥
             }
         } else {
-            cc += "color: "+this.style.others_color+";";        // ‘OŒ––‚Æ—‚Œ‰‚Ì“ú•t
+            cc += "color: "+this.style.others_color+";";        // å‰æœˆæœ«ã¨ç¿Œæœˆåˆã®æ—¥ä»˜
         }
         var utc = dd.getTime();
         if (( min && min > utc ) || ( max && max < utc )) {
             cc += days_unselectable;
         }
-        if ( utc == curutc ) {                                  // ƒtƒH[ƒ€ã‚Ì“–“ú
+        if ( utc == curutc ) {                                  // ãƒ•ã‚©ãƒ¼ãƒ ä¸Šã®å½“æ—¥
             cc += "background: "+this.style.day_hover_bgcolor+";";
         }
 
@@ -373,19 +373,19 @@ JKL.Calendar.prototype.write = function () {
         var tt = dd.getDate();
         src1 += '<td style="'+cc+'" title='+ss+' id="__'+this.eid+'_td_'+ss+'">'+tt+'</td>';
         if ( ww == 7 ) {
-            src1 += "</tr>\n";                                  // “y—j“ú‚ÌŒã‚És––
+            src1 += "</tr>\n";                                  // åœŸæ›œæ—¥ã®å¾Œã«è¡Œæœ«
         }
     }
     src1 += "</table>\n";
 
-    // ƒJƒŒƒ“ƒ_[‚ğ‘‚«Š·‚¦‚é
+    // ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚’æ›¸ãæ›ãˆã‚‹
     var cal1 = this.getCalendarElement();
     if ( ! cal1 ) return;
     cal1.style.width = this.style.frame_width;
     cal1.style.position = "absolute";
     cal1.innerHTML = src1;
 
-    // ƒCƒxƒ“ƒg‚ğ“o˜^‚·‚é
+    // ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™»éŒ²ã™ã‚‹
     var __this = this;
     var get_src = function (ev) {
         ev  = ev || window.event;
@@ -417,36 +417,36 @@ JKL.Calendar.prototype.write = function () {
         __this.fadeOut( 1.0 );
     };
 
-    // ‘O‚ÌŒ‚Öƒ{ƒ^ƒ“
+    // å‰ã®æœˆã¸ãƒœã‚¿ãƒ³
     var tdprev = document.getElementById( "__"+this.eid+"_btn_prev" );
     tdprev.style.cursor = this.style.cursor;
     this.addEvent( tdprev, "mouseover", month_onmouseover );
     this.addEvent( tdprev, "mouseout", month_onmouseout );
     this.addEvent( tdprev, "click", function(){ __this.moveMonth( -1 ); });
 
-    // •Â‚¶‚éƒ{ƒ^ƒ“
+    // é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³
     var tdclose = document.getElementById( "__"+this.eid+"_btn_close" );
     tdclose.style.cursor = this.style.cursor;
     this.addEvent( tdclose, "mouseover", month_onmouseover );
     this.addEvent( tdclose, "mouseout", month_onmouseout );
     this.addEvent( tdclose, "click", function(){ __this.hide(); });
 
-    // Ÿ‚ÌŒ‚Öƒ{ƒ^ƒ“
+    // æ¬¡ã®æœˆã¸ãƒœã‚¿ãƒ³
     var tdnext = document.getElementById( "__"+this.eid+"_btn_next" );
     tdnext.style.cursor = this.style.cursor;
     this.addEvent( tdnext, "mouseover", month_onmouseover );
     this.addEvent( tdnext, "mouseout", month_onmouseout );
     this.addEvent( tdnext, "click", function(){ __this.moveMonth( +1 ); });
 
-    // ƒZƒ‹‚²‚Æ‚ÌƒCƒxƒ“ƒg‚ğ“o˜^‚·‚é
+    // ã‚»ãƒ«ã”ã¨ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™»éŒ²ã™ã‚‹
     for ( var i=0; i<list.length; i++ ) {
         var dd = list[i];
-        if ( mon != dd.getMonth() ) continue;       // ¡Œ‚ÌƒZƒ‹‚É‚Ì‚İİ’è‚·‚é
+        if ( mon != dd.getMonth() ) continue;       // ä»Šæœˆã®ã‚»ãƒ«ã«ã®ã¿è¨­å®šã™ã‚‹
 
         var utc = dd.getTime();
-        if ( min && min > utc ) continue;           // Ì‰ß‚¬‚é
-        if ( max && max < utc ) continue;           // –¢—ˆ‰ß‚¬‚é
-        if ( utc == curutc ) continue;              // ƒtƒH[ƒ€ã‚Ì“–“ú
+        if ( min && min > utc ) continue;           // æ˜”éãã‚‹
+        if ( max && max < utc ) continue;           // æœªæ¥éãã‚‹
+        if ( utc == curutc ) continue;              // ãƒ•ã‚©ãƒ¼ãƒ ä¸Šã®å½“æ—¥
 
         var ss = this.getDateYMD(dd);
         var cc = document.getElementById( "__"+this.eid+"_td_"+ss );
@@ -458,10 +458,10 @@ JKL.Calendar.prototype.write = function () {
         this.addEvent( cc, "click", day_onclick );
     }
 
-    // •\¦‚·‚é
+    // è¡¨ç¤ºã™ã‚‹
     this.show();
 };
 
-// ‹Œƒo[ƒWƒ‡ƒ“ŒİŠ·itypoj
+// æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³äº’æ›ï¼ˆtypoï¼‰
 JKL.Calendar.prototype.getCalenderElement = JKL.Calendar.prototype.getCalendarElement;
 JKL.Calender = JKL.Calendar;

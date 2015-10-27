@@ -68,6 +68,10 @@ public class SpecController {
 		model.addAttribute("user",user);
 		model.addAttribute("stateMap", enumLogic.getStateMap());
 		model.addAttribute("ageMap", enumLogic.getAgeMap());
+		//言語一覧をモデルに格納
+		model.addAttribute("langList",projectLogic.getLang());
+		//OS一覧をモデルに格納
+		model.addAttribute("osList",projectLogic.getOS());
 		
 		return "spec/regist/specRegist";
 	}

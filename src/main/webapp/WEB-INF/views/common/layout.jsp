@@ -20,9 +20,11 @@ jQuery(document).ready(function($){
 	jQuery("#formId").validationEngine();
 });
 </script>
-<script>
-    var cal1 = new JKL.Calendar("calid","formid","colname");
+<script type="text/javascript">
+	var cal1 = new JKL.Calendar("calId1","calId","startDay");
+	var cal2 = new JKL.Calendar("calId2","calId","finishDay");
 </script>
+
 <title>spec管理</title>
 </head>
 <body>

@@ -11,7 +11,7 @@
 
 		<%--ここから下にコンテンツを挿入 --%>
 		<form:form modelAttribute="specForm" action="/spec/regist"
-			name="SpecForm">
+			name="SpecForm" id="calId">
 			<h1 id="title">スペックシート登録</h1>
 			<!-- 名前 -->
 			<p>姓：<form:input path="firstName" value="${user.firstName}" /></p>
@@ -94,22 +94,20 @@
 						<th colspan="2">環境(OS等)</th>
 					</tr>
 					<tr>
-						<td><select>
-								<option>Java</option>
-								<option>PHP</option>
-								<option>Scala</option>
-								<option>その他</option>
-						</select></td>
-						<td><input type="checkbox" id="check">実務</td>
-						<td><input id="inputMini" type="text">ヵ月</td>
+						<td><form:select path="skillLangList" itemValue="id">
+							<c:forEach var="lang" items="${langList}" varStatus="langStatus">
+								<option value="${lang.id}"><c:out value="${lang.name}"/></option>
+							</c:forEach>
+						</form:select></td>
+						<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務</td>
+						<td><form:input path="monthOfLangExp" id="inputMini" type="text"/>ヵ月</td>
 						<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
-						<td><select>
-								<option>Windows</option>
-								<option>Linux</option>
-								<option>Mac</option>
-								<option>その他</option>
-						</select><br></td>
-						<td><input id="inputMini" type="text">ヵ月</td>
+						<td><form:select path="skillOsList">
+							<c:forEach var="os" items="${osList}" varStatus="osStatus">
+								<option value="${os.osId}"><c:out value="${os.osName}"/></option>
+							</c:forEach>
+						</form:select><br></td>
+						<td><form:input path="monthOfOsExp" id="inputMini" type="text"/>ヵ月</td>
 					</tr>
 				</table>
 			</div>
@@ -158,9 +156,9 @@
 						<form:input type="hidden" path="projectNo" />
 					<!-- 開発時期 -->
 						<td rowspan="4">
-						<form:input path="startDay" /><br>
+						<form:input path="startDay"/><br>
 						～<br>
-						<form:input path="finishDay" />
+						<form:input path="finishDay"/><br>
 						</td>
 						
 					<!-- プロジェクト概要 -->
