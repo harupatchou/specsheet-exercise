@@ -1,5 +1,6 @@
 package com.example.management.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,6 @@ import com.example.management.domain.ProcessDefine;
 import com.example.management.domain.Spec;
 import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
-import com.example.management.form.SpecRegistLicenseForm;
 import com.example.management.logic.EnumLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
@@ -89,9 +89,12 @@ public class SpecController {
 	public String regist(Model model,SpecForm specForm) throws Exception{
 
 		//決め打ち
-		String test = "AP-202-0716";
+//		String test = "AP-202-0716";
+//		
+//		insertExecute(test,specForm);
 		
-		insertExecute(test,specForm);
+	    
+		insertUsersLicenseByStaffId(specForm);
 		
 		return "spec/regist/specRegistCheck";
 	}
@@ -207,13 +210,10 @@ public class SpecController {
 	 * @author okamoto
 	 * @param form
 	 */
-	public void insertUsersLicenseByStaffId(String staffId,String name,Date acquireDate){
-		SpecRegistLicenseForm form = new SpecRegistLicenseForm();
-		form.setStaffId(staffId);
-		form.setName(name);
-		form.setAcquireDate(acquireDate);
-		System.out.println("★form = "+form);
-		specRegistService.insertUsersLicenseByStaffId(form);
+	public void insertUsersLicenseByStaffId(SpecForm specForm){
+		String staffId = specForm.getStaffId();
+		
+		specRegistService.insertUsersLicenseByStaffId(specForm,staffId);
 	}
 	
 }

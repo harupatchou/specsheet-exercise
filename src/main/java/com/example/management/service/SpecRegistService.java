@@ -1,8 +1,16 @@
 package com.example.management.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.management.form.SpecForm;
 import com.example.management.form.SpecRegistLicenseForm;
 import com.example.management.repository.SpecRegistRepository;
 
@@ -17,14 +25,50 @@ public class SpecRegistService {
 	@Autowired
 	private SpecRegistRepository specRegistRepository;
 	
-	
 	/**
 	 * スペックシート登録（資格）
 	 * @author okamoto
 	 * @param form
 	 */
-	public void insertUsersLicenseByStaffId(SpecRegistLicenseForm form){
-		specRegistRepository.insertUsersLicenseByStaffId(form);
+	public void insertUsersLicenseByStaffId(SpecForm form,String staffId){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy'-'MM'-'dd");//指定の型にフォーマット
+		ArrayList<String> strAcquireDateList = (ArrayList<String>) form.getStrAcquireDate();//(2015-05-05,2015-06-06,*****)
+		ArrayList<String> lisenceNameList = (ArrayList<String>) form.getLisenceName();
+		
+		//空文字をリストから削除
+		strAcquireDateList.removeAll(Collections.singleton("")); 
+		lisenceNameList.removeAll(Collections.singleton(""));
+		
+		String lisenceName = null;
+		String strAcquireDate;
+		Date acquireDate = null;
+		//List<Date> acquireDateList = null;
+		for(int i = 0 ; i < strAcquireDateList.size() ; i++){
+			
+			
+			
+			SpecRegistLicenseForm specRegistLicenseForm = new SpecRegistLicenseForm();
+			
+			try {
+				lisenceName = lisenceNameList.get(i);
+				
+				strAcquireDate = strAcquireDateList.get(i);//n番目のDateをStringにいったんいれる
+				acquireDate = sdf.parse(strAcquireDate);//Date型に変換する
+				
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			if( lisenceName != null || acquireDate != null ){
+				System.out.println("lisenceNameまたはacquireDateがｎｕｌｌではなかった時の処理");
+			specRegistLicenseForm.setStaffId(staffId);
+			specRegistLicenseForm.setLisenceName(lisenceName);
+			specRegistLicenseForm.setAcquireDate(acquireDate);
+			
+			specRegistRepository.insertUsersLicenseByStaffId(specRegistLicenseForm);
+			}
+		}
 	}
 	
 }
