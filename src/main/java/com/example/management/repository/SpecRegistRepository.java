@@ -28,7 +28,6 @@ public class SpecRegistRepository {
 				update("INSERT INTO spec VALUES(:staffId, :ageFlag, :stateFlag, :allExp, :relatedTech, "
 						+ ":appeal, :nearestStation, :comment, :allExpYear, :allExpMonth, :updateDate, :updateName)",param);
 	}
-
 	
 	/**
 	 * スペックシート登録（資格）
@@ -41,6 +40,43 @@ public class SpecRegistRepository {
 				"INSERT INTO users_license (staff_id , name , acquire_date) "
 				+ "　VALUES ( :staffId , :name , :acquireDate); ",
 				param);
+	}
+	
+	/**
+	 * 経験内訳の登録
+	 * @param form
+	 */
+	public void insertBreakdown(SpecForm form) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
+		if (form.getServerNetworkExpMonth() != 0 || form.getServerNetworkExpYear() != 0) {
+			form.setMonthOfExp(form.getServerNetworkExpMonth() + form.getServerNetworkExpYear() * 12);
+			param = new BeanPropertySqlParameterSource(form);
+			jdbcTemplate.update("INSERT INTO exp_breakdown VALUES (:staffId, '1', :monthOfExp)", param);
+		}
+		if (form.getDevelopmentExpMonth() != 0 || form.getDevelopmentExpYear() != 0) {
+			form.setMonthOfExp(form.getDevelopmentExpMonth() + form.getDevelopmentExpYear() * 12);
+			param = new BeanPropertySqlParameterSource(form);
+			jdbcTemplate.update("INSERT INTO exp_breakdown VALUES (:staffId, '2', :monthOfExp)", param);
+		}
+		if (form.getSeExpMonth() != 0 || form.getSeExpYear() != 0) {
+			form.setMonthOfExp(form.getSeExpMonth() + form.getSeExpYear() * 12);
+			param = new BeanPropertySqlParameterSource(form);
+			jdbcTemplate.update("INSERT INTO exp_breakdown VALUES (:staffId, '3', :monthOfExp)", param);
+		}
+		if (form.getPgOperatorExpMonth() != 0 || form.getPgOperatorExpYear() != 0) {
+			form.setMonthOfExp(form.getPgOperatorExpMonth() + form.getPgOperatorExpYear() * 12);
+			param = new BeanPropertySqlParameterSource(form);
+			jdbcTemplate.update("INSERT INTO exp_breakdown VALUES (:staffId, '4', :monthOfExp)", param);
+		}
+	}
+	
+	public void insertProjectOs(SpecForm form) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
+		jdbcTemplate.update(
+				"INSERT INTO users_license (staff_id , project_no , os_exp_no) "
+				+ "　VALUES ( :staffId , :projectNo , :acquireDate); ",
+				param);
+		
 	}
 	
 }
