@@ -49,7 +49,8 @@ public class SpecRegistService {
 	 * @param form
 	 */
 	public void insertSkill(SpecForm form) {
-		specRegistRepository.insertSkill(form);
+		specRegistRepository.insertLanguage(form);
+		specRegistRepository.insertOs(form);
 	}
 	
 	/**
