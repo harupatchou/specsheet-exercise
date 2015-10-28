@@ -5,12 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.management.form.SpecForm;
 import com.example.management.form.SpecRegistLicenseForm;
+import com.example.management.page.SpecDetailLicensePage;
 import com.example.management.repository.SpecRegistRepository;
 import com.example.management.repository.UserRepository;
 
@@ -26,6 +28,18 @@ public class SpecRegistService {
 	@Autowired
 	UserRepository userRepository;
 	
+	
+	/**★いまここ
+	 * 所有している資格情報を取得.
+	 * @param staffId
+	 * @author okamoto
+	 * @return 所有している資格情報
+	 */
+	public List<SpecDetailLicensePage> licensefindByStaffId(String staffId){
+		List<SpecDetailLicensePage> page = specRegistRepository.licensefindByStaffId(staffId);
+		System.out.println("さーびすのPAGE　=　"+page);
+		return page;
+	}
 //	/**
 //	 * スペックシート登録画面に初期表示するための情報を取得する.
 //	 * @author okamoto

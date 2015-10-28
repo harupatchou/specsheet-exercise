@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="../../js/spec/regist/LicenseColumnNumChange.js"></script>
 <script src="/js/spec/SpecSheet.js"></script>
 <script src="/js/spec/windowsOpen.js"></script>
@@ -115,12 +116,6 @@
 				</tr>
 				<tr class="tallHeight">
 					<td><form:textarea path="appeal" class="appeal" rows="8" cols="109.5" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
-<%-- 					<td><form> --%>
-<!-- 						<html:textarea property="appeal"/> -->
-<!-- 						<textarea name="appeal" path="appeal" class="appeal" rows="8" cols="107" > -->
-<%-- 　						<c:out value="${spec.appeal }" /></textarea> --%>
-<%-- 					</form></td> --%>
-				
 				</tr>
 			</table>
 			
@@ -227,9 +222,10 @@
 					</tr>
 				</tbody>
 				</table>
-			<br><input type="hidden" name="lastHidden" id="lastHidden" value="1" />
+			<br>
+			<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 
-	
+	<!-- 		資格要約 -->
 <div class="inputSkill">
 <table class="speckDetailTable" id="userLicenseTable">
  <tr>

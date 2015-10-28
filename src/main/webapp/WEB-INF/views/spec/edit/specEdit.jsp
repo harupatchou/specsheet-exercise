@@ -1,7 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="../../js/spec/regist/LicenseColumnNumChange.js"></script>
 <script src="/js/spec/SpecSheet.js"></script>
 <script src="/js/spec/windowsOpen.js"></script>
 <script src="/js/lib/jquery-2.1.4.min.js"></script>
@@ -112,7 +115,7 @@
 					<th>アピールポイント</th>
 				</tr>
 				<tr class="tallHeight">
-					<td><form:textarea path="appeal" class="appeal" rows="8" cols="107"></form:textarea></td>
+					<td><form:textarea path="appeal" class="appeal" rows="8" cols="109.5" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
 				</tr>
 			</table>
 			
@@ -238,15 +241,17 @@
 				</c:forEach>
 				</table>
 			<br>
+			<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 
-			<!-- 		資格要約 -->
-			<div class="inputSkill">
-				<table class="speckDetailTable">
-					<tr>
-						<th colspan="9">資格 <input type="button" value="行追加" /> <input
-							type="button" value="最終行削除" />
-						</th>
-					</tr>
+	<!-- 		資格要約 -->
+<div class="inputSkill">
+<table class="speckDetailTable" id="userLicenseTable">
+ <tr>
+ 	<th colspan="9">資格資格
+		<input type="button" value="行追加" onclick="insertRow('userLicenseTable')" />
+		<input type="button" value="最終行削除" onclick="deleteRow2('userLicenseTable')" />
+	</th>
+</tr>
 					<tr>
 						<th>資格名</th>
 						<th>取得日</th>
@@ -255,26 +260,87 @@
 						<th>資格名</th>
 						<th>取得日</th>
 					</tr>
+					
+					
 					<tr>
-						<td>○○資格</td>
-						<td>2015/07/20</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+					<c:forEach items="${specDetailLicenseList }" var="specDetailLicenseList" varStatus="i"  >
+					${specDetailLicenseList.usersLicenceNo}　
+					<c:if test="${(i.index + 1 ) % 4 == 0 }">
 					</tr>
 					<tr>
-						<td>○○資格</td>
-						<td>2015/07/20</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+					</c:if>
+					
+						<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' value="${specDetailLicenseList.acquireDate }"/></td>
+
+						<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}">
+						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' value=""/></td>
+		                <td><form:input path='lisenceName' name='lisenceName' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' value=""/></td>
+						</c:if>
+						
+						
+						<c:if test="${(i.last && (i.count - 1 )  == 1) || (i.last && (i.count - 1 ) % 3 == 1)}">
+						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' value=""/></td>
+		                </c:if>
+
+					</c:forEach>
 					</tr>
-				</table>
-			</div>
-			<br>
-		<input type="submit" value="更新内容確認"/>
+				
+</table>
+</div>
+
+	
+	<script>
+	/**
+	 * 行追加
+	 */
+	function insertRow(id) {
+	    // テーブル取得
+	    var table = document.getElementById(id);
+	    // 行を行末に追加
+	    var row = table.insertRow(-1);
+	    // セルの挿入
+	    var cell1 = row.insertCell(-1);
+	    var cell2 = row.insertCell(-1);
+	    var cell3 = row.insertCell(-1);
+	    var cell4 = row.insertCell(-1);
+	    var cell5 = row.insertCell(-1);
+	    var cell6 = row.insertCell(-1);
+	    // ボタン用 HTML
+	    var button = '<tr><input type="button" value="行削除" onclick="deleteRow(this)" />';
+		var lisenceName = '<td><form:input path="lisenceName" name="lisenceName" /></td>';
+		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy-MM-dd" /></td></tr>';
+	    // 行数取得
+	    var row_len = table.rows.length;
+	 
+	    // セルの内容入力
+	    cell1.innerHTML =　lisenceName;
+	    cell2.innerHTML = strAcquireDate;
+	    
+	    cell3.innerHTML =　lisenceName;
+	    cell4.innerHTML = strAcquireDate;
+	    
+	    cell5.innerHTML =　lisenceName;
+	    cell6.innerHTML = strAcquireDate;
+	}
+	 
+	/**
+	 * 行削除
+	 */
+	function deleteRow2(){    // 行削除 
+		 var table = document.getElementById("userLicenseTable");
+		  var rowCnt = table.rows.length; // 行数
+		   if(rowCnt==3){alert("これ以上削除できません。");return;}
+		   table.deleteRow(-1);// 末尾行を削除
+		　　　　}
+	 
+	</script>
+	 
+	
+		<input type="submit" value="登録内容確認"/>
 		<input class="button" type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 		</form:form>
 		<%--ここから上にコンテンツを挿入 --%>

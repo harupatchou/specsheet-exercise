@@ -21,7 +21,7 @@ import com.example.management.page.SpecDetailLicensePage;
 
 
 /**
- * スペック関連リポジトリクラス.
+ * スペック詳細関連リポジトリクラス.
  * @author okamoto
  */
 @Transactional

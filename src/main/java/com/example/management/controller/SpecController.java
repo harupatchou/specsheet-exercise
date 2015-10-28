@@ -24,6 +24,7 @@ import com.example.management.logic.ExpBreakdownLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
+import com.example.management.page.SpecDetailLicensePage;
 import com.example.management.service.SpecRegistService;
 
 @Controller
@@ -75,6 +76,14 @@ public class SpecController {
 //		String test = "AP-202-0716";
 		spec = new Spec();
 		spec = specLogic.selectByStaffId(staffId);
+		
+		
+		
+		//いまここ★表示のための資格情報を取得--------------------
+		List<SpecDetailLicensePage> specDetailLicenseList = licensefindByStaffId(staffId);
+		model.addAttribute("specDetailLicenseList",specDetailLicenseList);
+		System.out.println("specDetailLicenseList = "+specDetailLicenseList);
+		//--------------------
 		
 		//specデータ無時⇒スペックシート登録へ
 		if(spec == null){
@@ -297,6 +306,19 @@ public class SpecController {
 		String staffId = specForm.getStaffId();
 		
 		specRegistService.insertUsersLicenseByStaffId(specForm,staffId);
+	}
+	
+	
+	/**★いまここ
+	 * 所有している資格情報を取得.
+	 * @param staffId
+	 * @author okamoto
+	 * @return 所有している資格情報
+	 */
+	public List<SpecDetailLicensePage> licensefindByStaffId(String staffId){
+		List<SpecDetailLicensePage> SpecDetailLicenseList = specRegistService.licensefindByStaffId(staffId);
+		System.out.println("こんとろーらのLIST　＝　"+SpecDetailLicenseList);
+		return SpecDetailLicenseList;
 	}
 	
 }
