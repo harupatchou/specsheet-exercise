@@ -41,8 +41,6 @@ public class SpecDetailController {
 			//@ModelAttribute("userLogin")LoginUserDetails loginUser,
 			/*@ModelAttribute("staffId")*/String staffId,
 			Model model){
-		//決め打ち
-//		String searchStaffId = "AP-202-0717";
 		String searchStaffId = staffId;
 
 		model.addAttribute("staffId",searchStaffId);
@@ -132,52 +130,5 @@ public class SpecDetailController {
 		
 		model.addAttribute("age", ageMap.get(spec.getAgeId()));
 	}
-	
-	/**
-	 * 最寄駅からアサイン先までの時間検索.
-	 * @param form
-	 * @param staffId
-	 * @param loginUser
-	 * @param model
-	 * @return 詳細初期画面へ
-	 *//*
-	@RequestMapping(value = "searchTime")
-	public String searchStation(StationTimeForm form,@RequestParam String staffId,
-			//@ModelAttribute("userLogin") LoginUserDetails loginUser,Model model){
-		//検索日の取得
-		Calendar cal = Calendar.getInstance();
-		String year = String.valueOf(cal.get(Calendar.YEAR));
-		String month = String.valueOf(cal.get(Calendar.MONTH) + 1);
-		String day = String.valueOf(cal.get(Calendar.DATE));
-		if(month.length() < 2){
-			month += "0" + month;
-		}
-		if(day.length() < 2){
-			day += "0" + day;
-		}
-
-		form.setUrl("http://transit.yahoo.co.jp/search/result?flatlon=&from=" +form.getNearStation() + "&tlatlon=&to=" + form.getArrivalStation() + 
-				"&via=&via=&via=&y=" + year +"&m=" + month + "&d=" + day + "&hh=08&m2=0&m1=0&type=1&ticket=ic&al=1&shin=1&ex=1&hb=1&lb=1&sr=1&s=0&expkind=1&ws=2&kw=" + form.getArrivalStation());
-		String stationHour = specDetailService.getStationHour(form);
-		model.addAttribute("stationHour", stationHour);
-		model.addAttribute("arrivalStation", form.getArrivalStation());
-		return detail(staffId,loginUser,model);
-	}*/
-
-/*	*//**
-	 * ユーザの保持資格を取得する
-	 * 
-	 * @author takumi.sato
-	 * @param staffId
-	 * @return
-	 *//*
-	public List<UsersLicense> getLicenses(String staffId) {
-		List<UsersLicense> result = usersLicenseService.findByStaffId(staffId);
-		// 3の倍数個にした方が表示が楽になるので追加する。
-		while (result != null && result.size() % 3 > 0) {
-			result.add(new UsersLicense());
-		}
-		return result;
-	}*/
 	
 }

@@ -133,8 +133,18 @@ public class SpecDetailService {
 	 * @return　スキル要約の開発関連技術
 	 */
 	public List<String> findDevelopmentRelatedTechnologyByStaffId(String staffId){
+		ArrayList<String> returnList = new ArrayList<>();
 		List<String> specDetailDevelopmentRelatedTechnologyPageList = specDetailRepository.findDevelopmentRelatedTechnologyByStaffId(staffId);
-		return specDetailDevelopmentRelatedTechnologyPageList;
+		for (String str : specDetailDevelopmentRelatedTechnologyPageList) {
+			String[] techList = str.split(",");
+			for (String techs : techList) {
+				String[] tech = techs.split("/");
+				for (String t : tech) {
+					returnList.add(t);
+				}
+			}
+		}
+		return arrayListLogic.hStrUnique(returnList);
 	}
 	
 	/**
@@ -157,9 +167,9 @@ public class SpecDetailService {
 	public List<String> findSkillsSummaryByStaffId(String staffId){
 		
 		List<String> languageList = findLanguageByStaffId(staffId);
-		List<String> osList =findOsByStaffId(staffId);
-		List<String> developmentRelatedTechnologyList =findDevelopmentRelatedTechnologyByStaffId(staffId);
-		List<String> processList =findProcessByStaffId(staffId);
+		List<String> osList = findOsByStaffId(staffId);
+		List<String> developmentRelatedTechnologyList = findDevelopmentRelatedTechnologyByStaffId(staffId);
+		List<String> processList = findProcessByStaffId(staffId);
 		
 		//それぞれの配列に格納されている、要素の数を取りだし、もっとも大きな配列を求める
 		int ECLanguage = languageList.size();
@@ -235,38 +245,40 @@ public class SpecDetailService {
 		ArrayList<String> roleList = new ArrayList<>();
 
 		try{//スペックシートに情報がない場合、nullを返す
-			Integer no = developmentExperienceList.get(0).getNo();
+			int no = developmentExperienceList.get(0).getNo();
 
 			int count = 0;
-			int count2 = 0;
+			int tempId = developmentExperienceList.get(0).getNo();
 
 			for(SpecDetailDevelopmentExperiencePage i : developmentExperienceList){
 				//プロジェクトNOとカウントが不一致のとき、リターンリストに入れて、カウントを加算
-
-				if( no == count || count2 == 0 ){
-					osNameList.add(i.getOsName());
-					languageNameList.add(i.getLanguageName());
-					otherList.add(i.getOther());
-					processNameList.add(i.getProcessName());
-					roleList.add(i.getRole());
-				}
-				if( no != count && count2 != 0 || count2 == developmentExperienceList.size() ){
+				tempId = i.getNo();
+				System.out.print(count + "周目：");
+				System.out.println(no != tempId);
+				System.out.println(i);
+				osNameList.add(i.getOsName());
+				languageNameList.add(i.getLanguageName());
+				otherList.add(i.getOther());
+				processNameList.add(i.getProcessName());
+				roleList.add(i.getRole());
+				if((count < (developmentExperienceList.size() - 1) && !developmentExperienceList.get(count).getNo()
+						.equals(developmentExperienceList.get(count + 1).getNo())) || 
+						(count == (developmentExperienceList.size() - 1))) {
 					i.setOsNameList(arrayListLogic.hStrUnique(osNameList));
 					i.setLanguageNameList(arrayListLogic.hStrUnique(languageNameList));
 					i.setOtherList(arrayListLogic.hStrUnique(otherList));
 					i.setProcessNameList(arrayListLogic.hStrUnique(processNameList));
 					i.setRoleList(arrayListLogic.hStrUnique(roleList));
 					returnList.add(i);
-					count++;
-
-					osNameList = new ArrayList<>();
-					languageNameList = new ArrayList<>();
-					otherList = new ArrayList<>();
-					processNameList = new ArrayList<>();
-					roleList = new ArrayList<>();
+					System.out.println("ADDする：" + i);
+					osNameList.clear();
+					languageNameList.clear();
+					otherList.clear();
+					processNameList.clear();
+					roleList.clear();
 				}
 				no = i.getNo();
-				count2++;
+				count++;
 			}
 
 		}catch(IndexOutOfBoundsException e){

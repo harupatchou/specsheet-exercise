@@ -203,6 +203,8 @@
 		</table><br>
 
 		<!-- 開発経験のテーブル -->
+		
+			${developmentExperience}
 		<table class="speckDetailTable">
 			<tr>
 				<th colspan="8">開発経験</th>
@@ -219,11 +221,11 @@
 				<th>担当役割</th>
 				<th>規模</th>
 			</tr>
-<c:if test="${fn:length(developmentExperience) > 0 }" >
+			<c:if test="${fn:length(developmentExperience) > 0 }" >
 				<c:forEach var="devExp" items="${developmentExperience}" varStatus="i">
 					<tr>
 						<!--　No -->
-						<td rowspan="5">${i.count}</td>
+						<td rowspan="5"><c:out value="${i.count}"/></td>
 						<!-- 開始時期 -->
 						<td rowspan="2">
 							<fmt:formatDate value="${devExp.startDate}" pattern="yyyy/MM"/>

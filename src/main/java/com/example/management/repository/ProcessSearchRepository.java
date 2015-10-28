@@ -34,6 +34,9 @@ public class ProcessSearchRepository {
 		ProcessDefine process = jdbcTemplate.queryForObject(
 					"SELECT id, name FROM process_define WHERE name=:processName", param, 
 					PROCESS_ROW_MAPPER);
+		if (process == null) {
+			
+		}
 			return process.getId();
 //		}catch (DataAccessException e){
 //			return null;
