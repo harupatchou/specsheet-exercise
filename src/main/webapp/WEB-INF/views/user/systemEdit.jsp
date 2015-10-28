@@ -25,9 +25,8 @@
 					<li><c:out value="${language.name}"/></li>
 				</c:forEach>
 			</ul>
-			<form:form action="/system/editLanguage"   name="languageForm" >
-				<p>言語追加：<input type="text" name="name" ng-model="name" required ng-maxlength="16" onKeyPress="return submitStop(event);"/>
-				<p style="color: red" ng-show="languageForm.name.$error.maxlength">16文字以内で入力してください</p>
+			<form:form action="/system/editLanguage"   name="languageForm" id="formId">
+				<p>言語追加：<input type="text" name="name" class="validate[maxSize[16]]" onKeyPress="return submitStop(event);"/>
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 		 		<input type="submit" value="言語登録" ng-disabled="languageForm.$invalid" /><br><br>
 		 	</form:form>
@@ -39,9 +38,8 @@
 					<li><c:out value="${os.osName}"/></li>
 				</c:forEach>
 			</ul>
-			<form:form action="/system/editOs" method="post" name="OsForm">
-				<p>OS追加：<input type="text" name="osName" ng-model="osName" required ng-maxlength="16" onKeyPress="return submitStop(event);"/>
-				<p style="color: red" ng-show="OsForm.osName.$error.maxlength">16文字以内で入力してください</p>
+			<form:form action="/system/editOs" method="post" name="OsForm" id="formId2">
+				<p>OS追加：<input type="text" name="osName"  class="validate[maxSize[16]]" onKeyPress="return submitStop(event);"/>
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 		 		<input type="submit" value="OS登録" ng-disabled="OsForm.$invalid" /><br><br>
 		 	</form:form>

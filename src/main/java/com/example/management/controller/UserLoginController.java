@@ -90,7 +90,7 @@ public class UserLoginController {
 	 */
 	@RequestMapping(value = "flowError")
 	public String flowError(Model model){
-		model.addAttribute("loginError", "メールアドレスまたはパスワードが違います。");
+		model.addAttribute("loginError", "スタッフIDまたはパスワードが違います。");
 		return "/user/login/login";
 	}
 	
