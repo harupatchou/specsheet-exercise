@@ -67,6 +67,7 @@ public class SpecForm {
 		private String skillOsList;
 		/**OS経験月数*/
 		private List<Integer> monthOfOsExp;
+
 		/**開発関連技術*/
 		private String relatedTech;
 		/**更新日時 */
