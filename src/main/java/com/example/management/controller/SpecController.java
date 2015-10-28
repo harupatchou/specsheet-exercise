@@ -162,14 +162,7 @@ public class SpecController {
 	 */
 	@RequestMapping(value = "/regist")
 	public String regist(Model model,SpecForm specForm) throws Exception{
-
-		//決め打ち
-//		String test = "AP-202-0716";
-//		
-//		insertExecute(test,specForm);
-		
-	    
-		insertUsersLicenseByStaffId(specForm);
+		insertExecute(specForm);
 		
 		return "spec/regist/specRegistCheck";
 	}
@@ -277,26 +270,15 @@ public class SpecController {
 	 * @return
 	 * @throws Exception
 	 */
-	private Boolean insertExecute(String staffId,SpecForm form) throws Exception {
+	private Boolean insertExecute(SpecForm form) throws Exception {
 		specLogic.insertSpec(form);
 		specRegistService.insertBreakdown(form);
 		specRegistService.insertProjectOs(form);
 		specRegistService.insertProjectLanguage(form);
 		specRegistService.insertProjectProcess(form);
-		projectLogic.insertProject(staffId,form);
+		projectLogic.insertProject(form.getStaffId() ,form);
+		specRegistService.insertUsersLicenseByStaffId(form, form.getStaffId());
 		return true;
-	}
-
-	
-	/**
-	 * スペックシート登録（資格）
-	 * @author okamoto
-	 * @param form
-	 */
-	public void insertUsersLicenseByStaffId(SpecForm specForm){
-		String staffId = specForm.getStaffId();
-		
-		specRegistService.insertUsersLicenseByStaffId(specForm,staffId);
 	}
 	
 }
