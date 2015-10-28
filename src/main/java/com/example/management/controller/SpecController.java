@@ -46,6 +46,8 @@ public class SpecController {
 	Spec spec = new Spec();
 	//IDから取得したUser情報格納
 	Users user = new Users();
+	//
+	OsDefine osDefine = new OsDefine();
 
 	
 	/**
@@ -66,17 +68,20 @@ public class SpecController {
 	 * @return 初期画面
 	 */
 	@RequestMapping(value = "/registIndex")
-	public String registIndex(Model model){
+	public String registIndex(Model model,String staffId){
 		
 		//決め打ち
-		String test = "AP-202-0716";
-		selectByStaffId(test);
+		//String test = "AP-202-0716";
+		//selectByStaffId(test);
+		selectByStaffId(staffId);
 		//情報を画面に送信
 		model.addAttribute("spec",spec);
 		model.addAttribute("user",user);
 		model.addAttribute("stateMap", enumLogic.getStateMap());
 		model.addAttribute("ageMap", enumLogic.getAgeMap());
-		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
+		model.addAttribute("osDefine",osDefine);
+//		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
+		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
 		
 		return "spec/regist/specRegist";
 	}

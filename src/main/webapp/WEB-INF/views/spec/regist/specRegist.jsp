@@ -123,10 +123,18 @@
 					<th>アピールポイント</th>
 				</tr>
 				<tr class="tallHeight">
-					<td><form:textarea path="appeal" class="appeal" rows="8" cols="107"></form:textarea></td>
+					<td><form:textarea path="appeal" class="appeal" rows="8" cols="109.5" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
+<%-- 					<td><form> --%>
+<!-- 						<html:textarea property="appeal"/> -->
+<!-- 						<textarea name="appeal" path="appeal" class="appeal" rows="8" cols="107" > -->
+<%-- 　						<c:out value="${spec.appeal }" /></textarea> --%>
+<%-- 					</form></td> --%>
+				
 				</tr>
 			</table>
 			
+
+
 			<br>
 			
 			<!--開発経験 -->

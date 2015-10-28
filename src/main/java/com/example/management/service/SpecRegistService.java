@@ -5,14 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.management.domain.Users;
 import com.example.management.form.SpecForm;
 import com.example.management.form.SpecRegistLicenseForm;
 import com.example.management.repository.SpecRegistRepository;
+import com.example.management.repository.UserRepository;
 
 /**
  * スペックシート登録を行うサービス.
@@ -23,6 +24,18 @@ import com.example.management.repository.SpecRegistRepository;
 public class SpecRegistService {
 	@Autowired
 	SpecRegistRepository specRegistRepository;
+	@Autowired
+	UserRepository userRepository;
+	
+//	/**
+//	 * スペックシート登録画面に初期表示するための情報を取得する.
+//	 * @author okamoto
+//	 * @return
+//	 */
+//	public Users test(String staffId){
+//		Users user = userRepository.findOne(staffId);
+//		return user;
+//	}
 	
 	/**
 	 * 経験内訳の登録
@@ -56,8 +69,6 @@ public class SpecRegistService {
 		specRegistRepository.insertProjectProcess(form);
 	}
 	
-
-	
 	/**
 	 * スペックシート登録（資格）
 	 * @author okamoto
@@ -75,10 +86,7 @@ public class SpecRegistService {
 		String lisenceName = null;
 		String strAcquireDate;
 		Date acquireDate = null;
-		//List<Date> acquireDateList = null;
 		for(int i = 0 ; i < strAcquireDateList.size() ; i++){
-			
-			
 			
 			SpecRegistLicenseForm specRegistLicenseForm = new SpecRegistLicenseForm();
 			
@@ -87,7 +95,6 @@ public class SpecRegistService {
 				
 				strAcquireDate = strAcquireDateList.get(i);//n番目のDateをStringにいったんいれる
 				acquireDate = sdf.parse(strAcquireDate);//Date型に変換する
-				
 				
 			} catch (ParseException e) {
 				e.printStackTrace();
