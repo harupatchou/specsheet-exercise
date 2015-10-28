@@ -15,9 +15,6 @@
 <script src="/js/lib/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="/js/lib/jquery.validationEngine.js" type="text/javascript"></script>
 <script src="/js/lib/jquery.validationEngine-ja.js" type="text/javascript"></script>
-<script src="/js/spec/regist/SpecSheet.js"></script>
-<script src="/js/spec/edit/SpecSheetEdit.js"></script>
-<script src="/js/spec/window/windowsOpen.js"></script>
 <script src="/js/spec/SpecSheetSkill.js" type="text/javascript" ></script>
 <script src="/js/spec/jkl-calendar.js" type="text/javascript" ></script>
 

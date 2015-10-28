@@ -18,13 +18,7 @@ function goBackOs(btnNo){
 	var osList=document.getElementsByName("os");
 	//その他の入力情報取得
 	var osOther=document.getElementsByName("osOther");
-	//最後のテーブルに持たせたlastHiddenの値1を取得
-	var osId = window.opener.document.getElementById("lastHidden").value;
 	var test = "os"+btnNo;
-	//proNoが最後のテーブルの値と同じであればtestの名前をosにする
-	if(parseInt(osId)==btnNo){
-		test = "os";
-	}
 	//値をvalueに入れていく
 	var value = "";
 	for(var i=0;i<osList.length;i++){
@@ -46,13 +40,7 @@ function goBackLang(btnNo){
 	var langList=document.getElementsByName("lang");
 	//その他の入力情報取得
 	var langOther=document.getElementById("langOther").value;
-	//最後のテーブルに持たせたlastHiddenの値1を取得
-	var langId = window.opener.document.getElementById("lastHidden").value;
 	var test = "lang"+btnNo;
-	//proNoが最後のテーブルの値と同じであればtestの名前をlangにする
-	if(parseInt(langId)==btnNo){
-		test = "lang";
-	}
 	//値をvalueに入れていく
 	var value = "";	
 	for(var i=0;i<langList.length;i++){
@@ -73,13 +61,7 @@ function goBackProcess(btnNo){
 	var processList=document.getElementsByName("process");
 	//その他の入力情報取得
 	var processOther=document.getElementsByName("processOther");
-	//最後のテーブルに持たせたlastHiddenの値1を取得
-	var processId = window.opener.document.getElementById("lastHidden").value;
 	var test = "process"+btnNo;
-	//proNoが最後のテーブルの値と同じであればtestの名前をprocessにする
-	if(parseInt(processId)==btnNo){
-		test = "process";
-	}
 	//値をvalueに入れていく
 	var value = "";
 	for(var i=0;i<processList.length;i++){
