@@ -236,14 +236,14 @@ public class SpecController {
 	 * @throws Exception
 	 */
 	private Boolean insertExecute(SpecForm form) throws Exception {
-//		specLogic.insertSpec(form);
-//		specRegistService.insertBreakdown(form);
+		specLogic.insertSpec(form);
+		specRegistService.insertBreakdown(form);
 		specRegistService.insertSkill(form);
-//		specRegistService.insertProjectOs(form);
-//		specRegistService.insertProjectLanguage(form);
-//		specRegistService.insertProjectProcess(form);
-//		projectLogic.insertProject(form.getStaffId() ,form);
-//		specRegistService.insertUsersLicenseByStaffId(form, form.getStaffId());
+		specRegistService.insertProjectOs(form);
+		specRegistService.insertProjectLanguage(form);
+		specRegistService.insertProjectProcess(form);
+		projectLogic.insertProject(form.getStaffId() ,form);
+		specRegistService.insertUsersLicenseByStaffId(form, form.getStaffId());
 		return true;
 	}
 	

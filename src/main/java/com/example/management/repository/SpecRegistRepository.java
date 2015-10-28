@@ -148,14 +148,36 @@ public class SpecRegistRepository {
 	}
 	
 	/**
-	 * スキル要約の登録
+	 * スキル要約(言語)の登録
 	 * @param form
 	 */
-	public void insertSkill(SpecForm form) {
-		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
-		jdbcTemplate.update("INSERT INTO project_process(staff_id, project_no, process_id) "
-				+ "VALUES (:staffId, :projectNo, :processExpNo);",
-				param);
+	public void insertLanguage(SpecForm form) {
+		SqlParameterSource param = new MapSqlParameterSource();
+		for (int i = 0; i < form.getSkillLangList().split(",").length; ++i) {
+			param = new MapSqlParameterSource().addValue("staffId", form.getStaffId())
+					.addValue("languageId", Integer.parseInt(form.getSkillLangList().split(",")[i]))
+					.addValue("expFlagInt", form.getExpFlagInt().get(i))
+					.addValue("monthOfLangExp", form.getMonthOfLangExp().get(i));
+			jdbcTemplate.update("INSERT INTO language_exp(staff_id, language_id, exp_flag, month_of_exp) "
+					+ "VALUES (:staffId, :languageId, :expFlagInt, :monthOfLangExp);",
+					param);
+		}
+	}
+	
+	/**
+	 * スキル要約(OS)の登録
+	 * @param form
+	 */
+	public void insertOs(SpecForm form) {
+		SqlParameterSource param = new MapSqlParameterSource();
+		for (int i = 0; i < form.getSkillOsList().split(",").length; ++i) {
+			param = new MapSqlParameterSource().addValue("staffId", form.getStaffId())
+					.addValue("osId", Integer.parseInt(form.getSkillOsList().split(",")[i]))
+					.addValue("monthOfLangExp", form.getMonthOfOsExp().get(i));
+			jdbcTemplate.update("INSERT INTO os_exp(staff_id, os_id, month_of_exp) "
+					+ "VALUES (:staffId, :osId, :monthOfLangExp);",
+					param);
+		}
 	}
 }
 
