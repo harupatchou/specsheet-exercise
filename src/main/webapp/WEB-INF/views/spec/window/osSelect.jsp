@@ -20,7 +20,7 @@
 </label>
 </p>
 </c:forEach>
-<p><input type="button" value="選択完了" onclick="goBackOs(${proNo});"></p>
+<p><input type="button" value="選択完了" onclick="goBackOs(${btnNo});"></p>
 </form>
 </body>
 </html>

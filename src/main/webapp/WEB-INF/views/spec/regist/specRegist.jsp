@@ -165,15 +165,15 @@
 						<th>OS</th>
 						<td>
 						<form:input path="os"/>
-						<input type="button" value="OS選択" id="btnMini"
-							onclick="return openWin('/spec/osWindow?projectNo=1')" />
+						<input type="button" value="OS選択" id="osBtn"
+							onclick="return openWin('/spec/osWindow?btnNo=1')" />
 						</td>
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
 						<form:input path="process"/>
-						<input type="button" value="担当工程" id="btnMini"
-							onclick="return openWin('/spec/processWindow?projectNo=1')" />
+						<input type="button" value="担当工程" id="proBtn"
+							onclick="return openWin('/spec/processWindow?btnNo=1')" />
 						</td>
 						
 					<!-- 担当役割 -->
@@ -189,8 +189,8 @@
 						<th>言語</th>
 						<td>
 						<form:input path="lang"/>
-						<input type="button" value="言語選択" id="btnMini"
-							onclick="return openWin('/spec/langWindow?projectNo=1')" />
+						<input type="button" value="言語選択" id="langBtn"
+							onclick="return openWin('/spec/langWindow?btnNo=1')" />
 						</td>
 						
 					<!-- チーム人数 -->

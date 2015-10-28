@@ -11,13 +11,13 @@
 </head>
 <body>
 <form>
-<h1>OS選択</h1>
+<h1>開発工程選択</h1>
 <c:forEach var="process" items="${processList}">
 <p>
 <label><input type="checkbox" name="process" value="${process.name}"><c:out value="${process.name}"/></label>
 </p>
 </c:forEach>
-<p><input type="button" value="選択完了" onclick="goBackProcess(${proNo});"></p>
+<p><input type="button" value="選択完了" onclick="goBackProcess(${btnNo});"></p>
 </form>
 </body>
 </html>

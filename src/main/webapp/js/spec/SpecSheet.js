@@ -6,6 +6,8 @@ var firstNo = 1;
 var testNo = 1;
 //hidden用
 var hiddenNo = 1;
+//ボタンの番号
+var btnNo = 1;
 
 /**
  * 初期表示時の実行
@@ -33,7 +35,6 @@ window.onload = function(){
 	
 }
 
-
 /**
  * 現在の最終行の後ろに対して、開発経験行の追加を行う
  * @param tableIdName 追加したいテーブルのId名
@@ -41,15 +42,13 @@ window.onload = function(){
  * @param
  */
 function AddDetail(addTable){
-	
-
-
 	//追加のためnoを1にする(現状番号振り分けが逆になっている)
 	no += 1;
+	//ボタンの番号を増やす
+	btnNo += 1;
 	//現状のプロジェクト番号
 	testNo = 1;
 	hiddenNo = 1;
-
 	//追加したい表示コンテンツを書き込む
 	var appendContent = 
 			"<tbody id='testTable" + no + "' class='speckDetailTable'><tr><th>No.</th><th>期間</th><th>プロジェクト概要</th><th colspan='2'>環境、ツールなど</th>" +
@@ -58,17 +57,17 @@ function AddDetail(addTable){
 			"<input type='hidden' name='projectNo' class='setProNo' value='' />" +
 			"<td rowspan='4'><input name='startDay'/><br>～<br><input name='finishDay'/></td>" +
 			"<td rowspan='4'><textarea name='overview' rows='10' cols='12' /></td><th>OS</th>" +
-			"<td><input name='os' id='os" + no + "' />" +
-			"<input type='button' value='OS選択' id='btnMini' " +
-			"onclick=\"return openWin('/spec/osWindow?projectNo="　+ no +　"')\" /></td>" +
+			"<td><input name='os' id='os" + btnNo + "' />" +
+			"<input type='button' value='OS選択' id='osBtn" + btnNo + "'" +
+			"onclick=\"return openWin('/spec/osWindow?btnNo="　+ btnNo +　"')\" /></td>" +
 			"<td rowspan='4'>" +
-			"<input name='process' id='process" + no + "' />" +
-			"<input type='button' value='担当工程' id='btnMini' " +
-			"onclick=\"return openWin('/spec/processWindow?projectNo="　+ no +　"')\" /></td>" +
+			"<input name='process' id='process" + btnNo + "' />" +
+			"<input type='button' value='担当工程' id='proBtn" + btnNo + "'" +
+			"onclick=\"return openWin('/spec/processWindow?btnNo="　+ btnNo +　"')\" /></td>" +
 			"<td rowspan='4'><textarea name='role' id='inputResponsible'></textarea></td><th>チーム</th></tr>" +
-			"<tr><th>言語</th><td><input name='lang' id='lang" + no + "' />" +
-			"<input type='button' value='言語選択' id='btnMini' " +
-			"onclick=\"return openWin('/spec/langWindow?projectNo="　+ no +　"')\" /></td>" +
+			"<tr><th>言語</th><td><input name='lang' id='lang" + btnNo + "' />" +
+			"<input type='button' value='言語選択' id='langBtn" + btnNo + "'" +
+			"onclick=\"return openWin('/spec/langWindow?btnNo="　+ btnNo +　"')\" /></td>" +
 			"<td><input name='teamNum' id='inputMini' />人</td></tr><tr><th rowspan='2'>開発関連技術</th>" +
 			"<td rowspan='2'><textarea name='other' id='inputOther'></textarea></td><th>開発全体</th></tr>" +
 			"<tr><td><input name='allNum' id='inputMini' />人</td></tr><tr><th class='tallHeight'>作業内容</th>" +
