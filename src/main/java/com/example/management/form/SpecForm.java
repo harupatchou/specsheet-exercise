@@ -1,6 +1,7 @@
 package com.example.management.form;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -60,13 +61,13 @@ public class SpecForm {
 		/**経験言語*/
 		private String skillLangList;
 		/**実務経験フラグ*/
-		private Integer expFlagInt;
+		private ArrayList<Integer> expFlagInt;
 		/**言語経験月数*/
-		private Integer monthOfLangExp; 
+		private ArrayList<Integer> monthOfLangExp; 
 		/**経験OS*/
 		private String skillOsList;
 		/**OS経験月数*/
-		private Integer monthOfOsExp;
+		private ArrayList<Integer> monthOfOsExp;
 		/**開発関連技術*/
 		private String relatedTech;
 		/**更新日時 */

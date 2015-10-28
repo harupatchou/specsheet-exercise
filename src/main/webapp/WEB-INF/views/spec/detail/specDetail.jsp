@@ -243,14 +243,14 @@
 						</td>
 						<th>OS</th>
 						<td>
-							<c:forEach var="os" items="${devExp.osName}" varStatus="j">
+							<c:forEach var="os" items="${devExp.osNameList}" varStatus="j">
 								<c:out value="${os}"/>
 								<c:if test="${j.last == false }">/</c:if>
 							</c:forEach>
 						</td>
 						<!-- 担当工程 -->
 						<td rowspan="4">
-							<c:forEach var="process" items="${devExp.processName}" varStatus="j">
+							<c:forEach var="process" items="${devExp.processNameList}" varStatus="j">
 								<c:out value="${process }"/>
 								<c:if test="${j.last == false}">
 									<br>
@@ -269,7 +269,7 @@
 					<tr>
 						<th>言語</th>
 						<td>
-							<c:forEach var="language" items="${devExp.languageName}" varStatus="j">
+							<c:forEach var="language" items="${devExp.languageNameList}" varStatus="j">
 								<c:out value="${language}"/>
 								<c:if test="${j.last == false}">/</c:if>
 							</c:forEach>

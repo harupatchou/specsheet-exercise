@@ -99,10 +99,10 @@
 					<tr>
 						<td><form:select path="skillLangList" items="${langMap}"/></td>
 						<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務</td>
-						<td><form:input path="monthOfLangExp" id="inputMini" type="text"/>ヵ月</td>
+						<td><form:input path="monthOfLangExp" id="inputMini"/>ヵ月</td>
 						<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
 						<td><form:select path="skillOsList" items="${osMap}"/><br></td>
-						<td><form:input path="monthOfOsExp" id="inputMini" type="text"/>ヵ月</td>
+						<td><form:input path="monthOfOsExp" id="inputMini"/>ヵ月</td>
 					</tr>
 				</table>
 			</div>

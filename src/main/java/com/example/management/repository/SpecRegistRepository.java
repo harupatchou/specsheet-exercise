@@ -147,27 +147,15 @@ public class SpecRegistRepository {
 		}
 	}
 	
-//	/**
-//	 * プロジェクト工程の登録
-//	 * @param form
-//	 */
-//	public void insertProjectProcess(SpecForm form) {
-//		SqlParameterSource param = new MapSqlParameterSource();
-//		String[] proNo= form.getProjectNo().split(",");
-//		String[] processList= form.getProcess().split(",");
-//		for (int i = 0; i < proNo.length; ++i) {
-//			Integer no = Integer.parseInt(proNo[i]);
-//			for (String process : processList[i].split("/")) {
-//				param = new MapSqlParameterSource()
-//						.addValue("staffId", form.getStaffId())
-//						.addValue("projectNo", no)
-//						.addValue("processExpNo", processSearchRepository.findIdByName(process));
-//				jdbcTemplate.update("INSERT INTO project_process(staff_id, project_no, process_id) "
-//						+ "VALUES (:staffId, :projectNo, :processExpNo);",
-//						param);
-//
-//			}
-//		}
-//	}
+	/**
+	 * スキル要約の登録
+	 * @param form
+	 */
+	public void insertSkill(SpecForm form) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
+		jdbcTemplate.update("INSERT INTO project_process(staff_id, project_no, process_id) "
+				+ "VALUES (:staffId, :projectNo, :processExpNo);",
+				param);
+	}
 }
 
