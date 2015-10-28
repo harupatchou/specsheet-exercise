@@ -10,6 +10,12 @@
  * Form validation engine allowing custom regex rules to be added.
  * Licensed under the MIT License
  */
+
+jQuery(document).ready(function($){
+	jQuery("#formId").validationEngine();
+});
+
+
  (function($) {
 
 	"use strict";

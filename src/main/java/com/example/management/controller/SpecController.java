@@ -159,13 +159,7 @@ public class SpecController {
 	 */
 	@RequestMapping(value = "/regist")
 	public String regist(Model model,SpecForm specForm) throws Exception{
-
-		//決め打ち
-//		String test = "AP-202-0716";
-//		
-//		insertExecute(test,specForm);
 		
-	    
 		insertUsersLicenseByStaffId(specForm);
 		
 		return "spec/regist/specRegistCheck";
@@ -183,29 +177,6 @@ public class SpecController {
 		return "spec/regist/specRegistCheck";
 	}
 	
-	
-//	/**
-//	 * 編集画面初期表示.
-//	 * @param model 
-//	 * @author kurosawa
-//	 * @return 初期画面
-//	 */
-//	@RequestMapping(value = "/editIndex")
-//	public String edit(Model model){
-//		
-//		//決め打ち
-//		String test = "AP-202-0715";
-//		selectByStaffId(test);
-//		
-//		model.addAttribute("spec",spec);
-//		model.addAttribute("user",user);
-//		model.addAttribute("projectList",projectList);
-//		model.addAttribute("stateMap", enumLogic.getStateMap());
-//		model.addAttribute("ageMap", enumLogic.getAgeMap());
-//		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
-//		
-//		return "spec/edit/specEdit";
-//	}
 	
 	/**
 	 * OS選択小窓表示

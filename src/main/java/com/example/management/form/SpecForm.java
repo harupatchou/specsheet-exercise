@@ -60,13 +60,13 @@ public class SpecForm {
 		/**経験言語*/
 		private String skillLangList;
 		/**実務経験フラグ*/
-		private Integer expFlagInt;
+		private List<Integer> expFlagInt;
 		/**言語経験月数*/
-		private Integer monthOfLangExp; 
+		private List<Integer> monthOfLangExp; 
 		/**経験OS*/
 		private String skillOsList;
 		/**OS経験月数*/
-		private Integer monthOfOsExp;
+		private List<Integer> monthOfOsExp;
 		/**開発関連技術*/
 		private String relatedTech;
 		/**更新日時 */

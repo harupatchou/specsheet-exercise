@@ -54,7 +54,8 @@ function AddSkill(userSkillTable,langMap,osMap){
 		"<tr class='deleteFlag'>" +
 		"	<td><select name='skillLangList'>" + finishLangList +
 		"	</select></td>" +
-		"	<td><input type='checkbox' name='expFlagInt' id='check' value='0'/>実務</td>" +
+		"	<td><input type='checkbox' name='expFlagInt' id='check' value='0'/>実務" +
+		"		<input type='checkbox' name='expFlagInt' id='check' value='1'/>実務外</td>" +
 		"	<td><input type='text' name='monthOfLangExp' id='inputMini'/>ヵ月</td>" +
 		"	<td><input type='text' name='relatedTech'/></td>" +
 		"	<td><select name='skillOsList'>" + finishOsList + 
