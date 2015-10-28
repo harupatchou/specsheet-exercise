@@ -3,7 +3,7 @@ var no = 1;
 //最初の行のプロジェクト番号
 var firstNo = 1;
 //現状のプロジェクトの番号
-var testNo = 1;
+var projectNo = 1;
 //hidden用
 var hiddenNo = 1;
 //ボタンの番号
@@ -33,6 +33,23 @@ window.onload = function(){
 		$(this).val(over);
 	});
 	
+	$(".firstOs").each(function(){
+		$(this).attr("id","os"+btnNo)
+		btnNo+=1;
+	});
+	btnNo=1;
+	$(".firstLang").each(function(){
+		$(this).attr("id","lang"+btnNo)
+		btnNo+=1;
+	});
+	btnNo=1;
+	$(".firstProcess").each(function(){
+		$(this).attr("id","process"+btnNo)
+		btnNo+=1;
+	});
+	btnNo=1;
+	firstSetProNo();
+	
 }
 
 /**
@@ -47,7 +64,7 @@ function AddDetail(addTable){
 	//ボタンの番号を増やす
 	btnNo += 1;
 	//現状のプロジェクト番号
-	testNo = 1;
+	projectNo = 1;
 	hiddenNo = 1;
 	//追加したい表示コンテンツを書き込む
 	var appendContent = 
@@ -97,10 +114,11 @@ function DeleteDetail(testTable){
 				$(this).attr('id', 'lastNo').value(1);
 			}
 		});	
+		projectNo=1;
 		setProNo();
 	} else {
 		firstNo=1;
-		testNo=1;
+		projectNo=1;
 		hiddenNo=1;
 		no-=1;
 		setProNo();
@@ -120,8 +138,8 @@ function setProNo(){
 	});
 	
 	$(".proNo").each(function(){
-		$(this).text(testNo)
-		testNo+=1;
+		$(this).text(projectNo)
+		projectNo+=1;
 	});
 	//最後のプロジェクトにはno（プロジェクト数のカウントしているカラム）を割り振る
 	$("#lastNo").text(no)
@@ -129,4 +147,26 @@ function setProNo(){
 	$("#projectNo").attr("value",no)
 	
 }
-9
+
+/**
+ * 初期表示時に開発経験行の番号の自動采配を行う。
+ * @param proNo プロジェクト番号を受けとり、采配して返す 
+ * 
+*/
+function firstSetProNo(){
+	//ボタンを押すたび、番号の割り振り
+	$(".setProNo").each(function(){
+		$(this).attr("value",String(hiddenNo))
+		hiddenNo+=1;
+	});
+	
+	$(".proNo").each(function(index){
+		$(this).text(projectNo)
+		projectNo+=1;
+		no=index+1;
+		btnNo=index+1;
+	});
+	
+	hiddenNo=1;
+	projectNo=1;
+}
