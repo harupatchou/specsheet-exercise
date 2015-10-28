@@ -150,6 +150,9 @@ public class SpecController {
 	public String regist(Model model,SpecForm specForm) throws Exception{
 		insertExecute(specForm);
 		
+//		insertUsersLicenseByStaffId(specForm);
+
+		
 		return "spec/regist/specRegistCheck";
 	}
 	
@@ -164,7 +167,6 @@ public class SpecController {
 	public String resistCheck(Model model,SpecForm specForm){
 		return "spec/regist/specRegistCheck";
 	}
-	
 	/**
 	 * OS選択小窓表示
 	 * @param model

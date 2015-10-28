@@ -19,7 +19,7 @@ INSERT INTO os_define VALUES('1','Windows');
 INSERT INTO os_define VALUES('2','Linux');
 INSERT INTO os_define VALUES('3','Mac');
 */
-INSERT INTO os_define VALUES('0','その他');
+INSERT INTO os_define VALUES('1','その他');
 INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Windows');
 INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Linux');
 INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Mac');

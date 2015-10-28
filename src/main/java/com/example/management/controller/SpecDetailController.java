@@ -34,29 +34,11 @@ public class SpecDetailController {
 	
 	/**
 	 * 詳細画面を表示する.
-	 * @return 詳細画面
-	 */
-	@RequestMapping
-	public String detail(//@Param("searchStaffId")String searchStaffId,
-			//@ModelAttribute("userLogin")LoginUserDetails loginUser,
-			/*@ModelAttribute("staffId")*/String staffId,
-			Model model){
-		String searchStaffId = staffId;
-
-		model.addAttribute("staffId",searchStaffId);
-		String move = findByStaffId(searchStaffId,model);
-		
-		return move;
-	}
-	
-	/**
 	 * スペックシート(スタッフID）詳細情報を取得.
-	 * @param staffId スタッフID
-	 * @param model 
 	 * @return  スペックシート（スタッフID）詳細情報
 	 */
-	@RequestMapping(value = "findByStaffId"/*, method = RequestMethod.POST*/)
-	public String findByStaffId(String staffId,Model model){
+	@RequestMapping
+	public String detail(String staffId,Model model){
 		//1件のSpec型、スペックシート情報が返ってくる
 		Spec spec = specDetailService.findSpecByStaffId(staffId);
 		
@@ -88,10 +70,6 @@ public class SpecDetailController {
 		
 		//開発経験欄の情報を取得
 		List<SpecDetailDevelopmentExperiencePage> developmentExperience = specDetailService.findDevelopmentExperienceByStaffId(staffId);
-		if(developmentExperience == null){
-			model.addAttribute("errorMessage","検索されたスタッフIDは見つかりません");
-			return "/spec/detail/specDetailError";
-		}
 		model.addAttribute("developmentExperience",developmentExperience);
 
 		return "/spec/detail/specDetail";

@@ -106,7 +106,7 @@ public class SpecDetailRepository {
 	};
 		
 	public static final RowMapper<String> SPECDETAILOS_ROW_MAPPER = (rs,i) -> {
-		 String osName = rs.getString("os_name");
+		 String osName = rs.getString("oe_os_name");
 		
 		return new String(osName);
 	};
@@ -269,7 +269,7 @@ public class SpecDetailRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
 		try{
 			List<String> specDetailOsPageList = jdbcTemplate.query(
-					"SELECT DISTINCT os_name "
+					"SELECT DISTINCT os_name AS oe_os_name"
 					+ " FROM os_exp oe "
 					+ " LEFT OUTER JOIN os_define od ON oe.os_id = od.os_id "
 					+ " WHERE staff_id = :staffId",
@@ -277,6 +277,7 @@ public class SpecDetailRepository {
 					SPECDETAILOS_ROW_MAPPER);
 			return specDetailOsPageList;	
 		}catch(DataAccessException eOs){
+			System.out.println("OSはnullちゃん");
 			return null;
 		}
 	}
