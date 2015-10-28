@@ -15,16 +15,9 @@
 <script src="/js/lib/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="/js/lib/jquery.validationEngine.js" type="text/javascript"></script>
 <script src="/js/lib/jquery.validationEngine-ja.js" type="text/javascript"></script>
-<script src="/js/spec/SpecSheet.js"></script>
-<script src="/js/spec/windowsOpen.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
 <script src="/js/spec/SpecSheetSkill.js" type="text/javascript" ></script>
 <script src="/js/spec/jkl-calendar.js" type="text/javascript" ></script>
-
-<script>
-jQuery(document).ready(function($){
-	jQuery("#formId").validationEngine();
-});
-</script>
 
 <title>spec管理</title>
 </head>

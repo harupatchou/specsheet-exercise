@@ -106,7 +106,7 @@ public class SpecDetailRepository {
 	};
 		
 	public static final RowMapper<String> SPECDETAILOS_ROW_MAPPER = (rs,i) -> {
-		 String osName = rs.getString("os_name");
+		 String osName = rs.getString("oe_os_name");
 		
 		return new String(osName);
 	};
@@ -122,28 +122,6 @@ public class SpecDetailRepository {
 		
 		return new String(other);
 	};
-	
-	
-	
-	
-	
-//	/**
-//	 * スペックシートデータ全件取得.
-//	 * @return スペックシートデータ全件
-//	 */
-//	public List<Spec> findAll(){
-//		List<Spec> specList = jdbcTemplate.query(
-//				"SELECT s.staff_id , u.name, s.age_id, s.sex, s.state_flag, s.all_exp,"
-//				+ " ld.name AS lang_name, a.age_range, s.comment, s.update_date "
-//				+ "FROM spec s "
-//				+ "LEFT OUTER JOIN users u ON s.staff_id=u.staff_id "
-//				+ "LEFT OUTER JOIN age a ON s.age_id=a.id "
-//				+ "LEFT OUTER JOIN language_exp le ON s.staff_id=le.staff_id "
-//				+ "LEFT OUTER JOIN language_define ld ON le.no=ld.id "
-//				+ "ORDER BY u.name" ,
-//				SPEC_ROW_MAPPER);
-//		return specList;
-//	}
 
 	/**
 	 * スペックシートデータ1件取得(Spec).
@@ -246,11 +224,11 @@ public class SpecDetailRepository {
 					"SELECT  p.no, start_date, finish_date, overview, od.os_name AS os_name, "
 					+ " ld.name AS language_name, p.other , pd.name AS process_name, role, team_num, all_num, content  "
 					+ " FROM project p "
-					+ " LEFT OUTER JOIN language_exp    le ON p.staff_id  =    le.staff_id "
-					+ " LEFT OUTER JOIN language_define ld ON le.language_id = ld.id "
-					+ " LEFT OUTER JOIN os_exp    oe ON p.staff_id = oe.staff_id "
-					+ " LEFT OUTER JOIN os_define od ON oe.os_id = od.os_id "
-					+ " LEFT OUTER JOIN project_process pp ON p.staff_id = pp.staff_id "
+					+ " LEFT OUTER JOIN project_language    le ON p.no  =    le.project_no "
+					+ " LEFT OUTER JOIN language_define ld ON le.language_exp_no = ld.id "
+					+ " LEFT OUTER JOIN project_os    oe ON p.no = oe.project_no "
+					+ " LEFT OUTER JOIN os_define od ON oe.os_exp_no = od.os_id "
+					+ " LEFT OUTER JOIN project_process pp ON p.no = pp.project_no "
 					+ " LEFT OUTER JOIN process_define pd ON pp.process_id = pd.id "
 					+ " WHERE p.staff_id = :staffId",
 					param,
@@ -291,7 +269,7 @@ public class SpecDetailRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
 		try{
 			List<String> specDetailOsPageList = jdbcTemplate.query(
-					"SELECT DISTINCT os_name "
+					"SELECT DISTINCT os_name AS oe_os_name"
 					+ " FROM os_exp oe "
 					+ " LEFT OUTER JOIN os_define od ON oe.os_id = od.os_id "
 					+ " WHERE staff_id = :staffId",
@@ -299,6 +277,7 @@ public class SpecDetailRepository {
 					SPECDETAILOS_ROW_MAPPER);
 			return specDetailOsPageList;	
 		}catch(DataAccessException eOs){
+			System.out.println("OSはnullちゃん");
 			return null;
 		}
 	}
@@ -311,14 +290,14 @@ public class SpecDetailRepository {
 	 */
 	public List<String> findDevelopmentRelatedTechnologyByStaffId(String staffId){
 		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
-	try{
-		List<String> specDetailDevelopmentRelatedTechnologyList = jdbcTemplate.query(
-				"SELECT DISTINCT other "
-				+ "FROM project  "
-				+ "WHERE staff_id = :staffId",
+		try{
+			List<String> specDetailDevelopmentRelatedTechnologyList = jdbcTemplate.query(
+					"SELECT DISTINCT other "
+					+ "FROM project "
+					+ "WHERE staff_id = :staffId",
 				param,
 				SPECDETAILSKILLSSUMMARYPAGE_ROW_MAPPER);
-		return specDetailDevelopmentRelatedTechnologyList;
+			return specDetailDevelopmentRelatedTechnologyList;
 	}catch(DataAccessException eDevelopmentRelatedTechnology){
 		return null;
 	}

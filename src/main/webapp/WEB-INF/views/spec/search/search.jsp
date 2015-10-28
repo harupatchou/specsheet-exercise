@@ -9,35 +9,16 @@
 		
 <%--ここから下にコンテンツを挿入 --%>
 
-<html ng-app xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../css/specSystem.css">
-<link rel="stylesheet" href="../css/specDetail.css">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-<title>スペックシート検索画面</title>
-</head>
-<body>
-<div id="headerArea">
-		<span id="heading" style="color: white">スペックシート検索画面</span><br>
-<%-- 		<c:out value="${userLogin.name}" />さんログイン中<br> --%>
-		</div>	
-	<%-- 	<form name="SystemForm"  novalidate>
-			<input type="hidden" name="name" ng-model="name" ng-maxlength="16"> <input
-			type="hidden" name="allExp" ng-model="allExp" required>
-		</form> --%>
-		<form:form modelAttribute="specSearchForm" action="/search/searchSpec" name="SystemForm">
-		<p>氏：<form:input path="firstName" ng-init="firstName='${searchData.firstName}'" ng-model="firstName" ng-maxlength="16"/>
-		<span ng-cloak style="color: red" ng-show="SystemForm.firstName.$error.maxlength">16文字以内で入力してください</span></p>
-		<p>名：<form:input path="lastName" ng-init="lastName='${searchData.lastName}'" ng-model="lastName" ng-maxlength="16"/>
-		<span ng-cloak style="color: red" ng-show="SystemForm.lastName.$error.maxlength">16文字以内で入力してください</span></p>
-		<p>状況：<form:select path="stateFlag" items="${stateMap}"/> 
-		
-		</p>
+
+		<form:form modelAttribute="specSearchForm" action="/search/searchSpec" name="SystemForm" id="formId">
+
+		<p>氏：<form:input path="firstName" value="${searchData.firstName}" class="validate[maxSize[16]]"/></p>
+		<p>名：<form:input path="lastName" value="${searchData.lastName}" class="validate[maxSize[16]]"/>
+		<p>状況：<form:select path="stateFlag" items="${stateMap}"/> </p>
 	 	<p>言語：
 		<form:select path="lang1">
 			<c:forEach var="lang" items="${languageList}" varStatus="langStatus">
-			<c:if test="${lang.id == 0}">
+			<c:if test="${lang.id == 1}">
 				<option value="null" selected="selected">---</option>
 			</c:if>
 			<c:if test="${lang.id == searchData.lang1}">
@@ -50,7 +31,7 @@
 		</form:select>
 		<form:select path="lang2">
 			<c:forEach var="lang2" items="${languageList}" varStatus="langStatus">
-			<c:if test="${lang2.id == 0}">
+			<c:if test="${lang2.id == 1}">
 				<option value="null" selected="selected">---</option>
 			</c:if>
 			<c:if test="${lang2.id == searchData.lang2}">
@@ -63,7 +44,7 @@
 		</form:select>
 		<form:select path="lang3">
 			<c:forEach var="lang3" items="${languageList}" varStatus="langStatus">
-			<c:if test="${lang3.id == 0}">
+			<c:if test="${lang3.id == 1}">
 				<option value="null" selected="selected">---</option>
 			</c:if>
 			<c:if test="${lang3.id == searchData.lang3}">
@@ -76,15 +57,11 @@
 		</form:select>
 		</p>
 		<p>開発関連技術：
-		<form:input path="tech1" ng-init="tech1='${searchData.tech1}'" ng-model="tech1" ng-maxlength="1024"/>
-		<span ng-cloak style="color: red" ng-show="SystemForm.techFirst.$error.maxlength">1024文字以内で入力してください</span>
-		<form:input path="tech2" ng-init="tech2='${searchData.tech2}'" ng-model="tech2" ng-maxlength="1024"/>
-		<span ng-cloak style="color: red" ng-show="SystemForm.techSecond.$error.maxlength">1024文字以内で入力してください</span>
-		<form:input path="tech3" ng-init="tech3='${searchData.tech3}'" ng-model="tech3" ng-maxlength="1024"/>
-		<span ng-cloak style="color: red" ng-show="SystemForm.techThird.$error.maxlength">1024文字以内で入力してください</span>
+		<form:input path="tech1" value="${searchData.tech1}" class="validate[maxSize[1024]]"/>
+		<form:input path="tech2" value="${searchData.tech2}" class="validate[maxSize[1024]]"/>
+		<form:input path="tech3" value="${searchData.tech3}" class="validate[maxSize[1024]]"/>
 		</p>
-		<p>IT全体経験：<form:input path="allExp" ng-init="allExp='${searchData.allExp}'" ng-model="allExp" ng-pattern="/^[0-9]+$/"/>ヵ月以上	
-		<span ng-cloak style="color: red" ng-show="SystemForm.allExp.$error.pattern">数値を入力してください</span></p>
+		<p>IT全体経験：<form:input path="allExp" value="${searchData.allExp}" class="validate[custom[number]]"/>ヵ月以上	
 		
 		<p>年齢：<form:select path="id" items="${ageMap}"/>
 		
@@ -126,7 +103,7 @@
 					</td>
 				</c:if>
 				<c:if test="${spec.updateDate != null}">
-					<td><a href="/detail/?serchStaffId=${spec.staffId}"><c:out value="${spec.fullName}"/></a></td>
+					<td><a href="/detail/?staffId=${spec.staffId}"><c:out value="${spec.fullName}"/></a></td>
 					<td><c:out value="${spec.state}"/></td>
 					<td>
 						<c:forEach var="lang" items="${spec.langList}" varStatus="langStatus">

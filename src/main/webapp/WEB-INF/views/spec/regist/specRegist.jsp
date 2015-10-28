@@ -5,8 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="../../js/spec/regist/LicenseColumnNumChange.js"></script>
-<script src="/js/spec/SpecSheet.js"></script>
-<script src="/js/spec/windowsOpen.js"></script>
+<script src="/js/spec/regist/SpecSheet.js"></script>
+<script src="/js/spec/window/windowsOpen.js"></script>
 <script src="/js/lib/jquery-2.1.4.min.js"></script>
 <c:import url="/WEB-INF/views/common/layout.jsp">
 	<c:param name="content">
@@ -99,11 +99,12 @@
 					</tr>
 					<tr>
 						<td><form:select path="skillLangList" items="${langMap}"/></td>
-						<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務</td>
+						<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務
+							<form:checkbox path="expFlagInt" id="check" value="1"/>実務外</td>
 						<td><form:input path="monthOfLangExp" id="inputMini" type="text"/>ヵ月</td>
 						<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
 						<td><form:select path="skillOsList" items="${osMap}"/><br></td>
-						<td><form:input path="monthOfOsExp" id="inputMini" type="text"/>ヵ月</td>
+						<td><form:input path="monthOfOsExp" id="inputMini"/>ヵ月</td>
 					</tr>
 				</table>
 			</div>
@@ -150,7 +151,7 @@
 					</tr>
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
-						<td rowspan="5" id="lastNo">1</td>
+						<td rowspan="5" id="lastNo" class="proNo">1</td>
 						<form:input type="hidden" path="projectNo" value="1"/>
 					<!-- 開発時期 -->
 						<td rowspan="4">
@@ -167,16 +168,16 @@
 					<!-- OS -->
 						<th>OS</th>
 						<td>
-						<form:input path="os"/>
-						<input type="button" value="OS選択" id="btnMini"
-							onclick="return openWin('/spec/osWindow?projectNo=1')" />
+						<form:input path="os" class="firstOs"/>
+						<input type="button" value="OS選択" id="osBtn"
+							onclick="return openWin('/spec/osWindow?btnNo=1')" />
 						</td>
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<form:input path="process"/>
-						<input type="button" value="担当工程" id="btnMini"
-							onclick="return openWin('/spec/processWindow?projectNo=1')" />
+						<form:input path="process" class="firstProcess"/>
+						<input type="button" value="担当工程" id="proBtn"
+							onclick="return openWin('/spec/processWindow?btnNo=1')" />
 						</td>
 						
 					<!-- 担当役割 -->
@@ -191,9 +192,9 @@
 					<!-- 言語 -->
 						<th>言語</th>
 						<td>
-						<form:input path="lang"/>
-						<input type="button" value="言語選択" id="btnMini"
-							onclick="return openWin('/spec/langWindow?projectNo=1')" />
+						<form:input path="lang" class="firstLang"/>
+						<input type="button" value="言語選択" id="langBtn"
+							onclick="return openWin('/spec/langWindow?btnNo=1')" />
 						</td>
 						
 					<!-- チーム人数 -->
@@ -248,7 +249,7 @@
 							<tr class="sInputTr"></tr>
 						</c:if>
 						<td><form:input path='lisenceName' name='lisenceName' /></td>
-		<td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' /></td>
+		<td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' /></td>
 						<c:if test="${i.index%3==2}">
 						</tr>
 						</c:if>
@@ -276,7 +277,7 @@
 	    // ボタン用 HTML
 	    var button = '<tr><input type="button" value="行削除" onclick="deleteRow(this)" />';
 		var lisenceName = '<td><form:input path="lisenceName" name="lisenceName" /></td>';
-		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy-MM-dd" /></td></tr>';
+		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy/MM/dd" /></td></tr>';
 	    // 行数取得
 	    var row_len = table.rows.length;
 	 

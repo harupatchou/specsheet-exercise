@@ -59,6 +59,15 @@ public class SpecRegistService {
 	}
 	
 	/**
+	 * スキル要約の登録
+	 * @param form
+	 */
+	public void insertSkill(SpecForm form) {
+		specRegistRepository.insertLanguage(form);
+		specRegistRepository.insertOs(form);
+	}
+	
+	/**
 	 * プロジェクトOSの登録
 	 * @param form
 	 */

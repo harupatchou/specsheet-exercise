@@ -13,15 +13,12 @@ function openWin(url) {
  * 
  * 
  */
-function goBackOs(proNo,te){
+function goBackOs(btnNo){
+	//選択したosの名前を取得
 	var osList=document.getElementsByName("os");
-	//最後のテーブルに持たせたlastHiddenの値1を取得
-	var osId = window.opener.document.getElementById("lastHidden").value;
-	var test = "os"+proNo;
-	//proNoが最後のテーブルの値と同じであればtestの名前をosにする
-	if(parseInt(osId)==proNo){
-		test = "os";
-	}
+	//その他の入力情報取得
+	var osOther=document.getElementsByName("osOther");
+	var test = "os"+btnNo;
 	//値をvalueに入れていく
 	var value = "";
 	for(var i=0;i<osList.length;i++){
@@ -38,15 +35,12 @@ function goBackOs(proNo,te){
  * 
  * 
  */
-function goBackLang(proNo){
+function goBackLang(btnNo){
+	//選択したlangの名前を取得
 	var langList=document.getElementsByName("lang");
-	//最後のテーブルに持たせたlastHiddenの値1を取得
-	var langId = window.opener.document.getElementById("lastHidden").value;
-	var test = "lang"+proNo;
-	//proNoが最後のテーブルの値と同じであればtestの名前をlangにする
-	if(parseInt(langId)==proNo){
-		test = "lang";
-	}
+	//その他の入力情報取得
+	var langOther=document.getElementById("langOther").value;
+	var test = "lang"+btnNo;
 	//値をvalueに入れていく
 	var value = "";	
 	for(var i=0;i<langList.length;i++){
@@ -54,7 +48,7 @@ function goBackLang(proNo){
 			value+=(langList[i].value)+"/";
 		}
 	value = value.substr( 0 , (value.length-1) );
-	window.opener.document.getElementById(test).value=value;
+	window.opener.document.getElementById(test).value=value
 	window.close();
 }
 
@@ -62,15 +56,12 @@ function goBackLang(proNo){
  * process選択時の作業
  * @param proNo
  */
-function goBackProcess(proNo){
+function goBackProcess(btnNo){
+	//選択したprocessの名前を取得
 	var processList=document.getElementsByName("process");
-	//最後のテーブルに持たせたlastHiddenの値1を取得
-	var processId = window.opener.document.getElementById("lastHidden").value;
-	var test = "process"+proNo;
-	//proNoが最後のテーブルの値と同じであればtestの名前をprocessにする
-	if(parseInt(processId)==proNo){
-		test = "process";
-	}
+	//その他の入力情報取得
+	var processOther=document.getElementsByName("processOther");
+	var test = "process"+btnNo;
 	//値をvalueに入れていく
 	var value = "";
 	for(var i=0;i<processList.length;i++){

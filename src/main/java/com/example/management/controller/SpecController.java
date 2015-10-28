@@ -72,8 +72,6 @@ public class SpecController {
 	 */
 	@RequestMapping(value = "/index")
 	public String Index(String staffId,Model model){
-		//決め打ち
-//		String test = "AP-202-0716";
 		spec = new Spec();
 		spec = specLogic.selectByStaffId(staffId);
 		
@@ -85,50 +83,38 @@ public class SpecController {
 		System.out.println("specDetailLicenseList = "+specDetailLicenseList);
 		//--------------------
 		
-		//specデータ無時⇒スペックシート登録へ
-		if(spec == null){
+		//言語一覧を取得してMAPに格納
+		setLangMap(model);
+		//OS一覧を取得してMAPに格納
+		setOsMap(model);
 		
+		/** specデータ無時⇒スペックシート登録へ  */
+		if(spec == null){
 			selectByStaffId(staffId);
 			//情報を画面に送信
 			model.addAttribute("spec",spec);
 			model.addAttribute("user",user);
 			model.addAttribute("stateMap", enumLogic.getStateMap());
 			model.addAttribute("ageMap", enumLogic.getAgeMap());
-		
-			//言語関連
-
-			//言語一覧を取得してMAPに格納
-			setLangMap(model);
-		
-			//OS一覧を取得してMAPに格納
-			setOsMap(model);
-
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
-		
+			
 			return "spec/regist/specRegist";
+			
+		}else{
+		/** specデータ無時⇒スペックシート編集画面へ */
+			selectByStaffId(staffId);
+			//情報を画面に送信
+			model.addAttribute("spec",spec);
+			model.addAttribute("user",user);
+			model.addAttribute("stateMap", enumLogic.getStateMap());
+			model.addAttribute("ageMap", enumLogic.getAgeMap());
+			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
+			//所持しているprojectを取得
+			model.addAttribute("projectList",projectList);
+			
+			return "spec/edit/specEdit";
+			
 		}
-		
-		//specデータ有時⇒スペックシート編集へ
-		selectByStaffId(staffId);
-		
-		//言語一覧を取得してMAPに格納
-		setLangMap(model);
-	
-		//OS一覧を取得してMAPに格納
-		setOsMap(model);
-		
-
-		model.addAttribute("spec",spec);
-		model.addAttribute("user",user);
-		model.addAttribute("projectList",projectList);
-		model.addAttribute("stateMap", enumLogic.getStateMap());
-		model.addAttribute("ageMap", enumLogic.getAgeMap());
-		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
-		
-		return "spec/edit/specEdit";
-		
-
-		
 	}
 
 
@@ -171,14 +157,10 @@ public class SpecController {
 	 */
 	@RequestMapping(value = "/regist")
 	public String regist(Model model,SpecForm specForm) throws Exception{
-
-		//決め打ち
-//		String test = "AP-202-0716";
-//		
-//		insertExecute(test,specForm);
+		insertExecute(specForm);
 		
-	    
-		insertUsersLicenseByStaffId(specForm);
+//		insertUsersLicenseByStaffId(specForm);
+
 		
 		return "spec/regist/specRegistCheck";
 	}
@@ -194,40 +176,15 @@ public class SpecController {
 	public String resistCheck(Model model,SpecForm specForm){
 		return "spec/regist/specRegistCheck";
 	}
-	
-	
-//	/**
-//	 * 編集画面初期表示.
-//	 * @param model 
-//	 * @author kurosawa
-//	 * @return 初期画面
-//	 */
-//	@RequestMapping(value = "/editIndex")
-//	public String edit(Model model){
-//		
-//		//決め打ち
-//		String test = "AP-202-0715";
-//		selectByStaffId(test);
-//		
-//		model.addAttribute("spec",spec);
-//		model.addAttribute("user",user);
-//		model.addAttribute("projectList",projectList);
-//		model.addAttribute("stateMap", enumLogic.getStateMap());
-//		model.addAttribute("ageMap", enumLogic.getAgeMap());
-//		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
-//		
-//		return "spec/edit/specEdit";
-//	}
-	
 	/**
 	 * OS選択小窓表示
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/osWindow")
-	public String osWindow(Model model,String projectNo,SpecForm s){
+	public String osWindow(Model model,String btnNo){
 		List<OsDefine> osList = projectLogic.getOS();
-		model.addAttribute("proNo",projectNo);
+		model.addAttribute("btnNo",btnNo);
 		model.addAttribute("osList",osList);
 		return "spec/window/osSelect";
 	}
@@ -238,9 +195,9 @@ public class SpecController {
 	 * @return
 	 */
 	@RequestMapping(value = "/langWindow")
-	public String langWindow(Model model,String projectNo){
+	public String langWindow(Model model,String btnNo){
 		List<LanguageDefine> langList = projectLogic.getLang();
-		model.addAttribute("proNo",projectNo);
+		model.addAttribute("btnNo",btnNo);
 		model.addAttribute("langList",langList);
 		return "spec/window/langSelect";
 	}
@@ -252,13 +209,12 @@ public class SpecController {
 	 * @return
 	 */
 	@RequestMapping(value = "/processWindow")
-	public String processWindow(Model model,String projectNo){
+	public String processWindow(Model model,String btnNo){
 		List<ProcessDefine> processList = projectLogic.getProcess();
-		model.addAttribute("proNo",projectNo);
+		model.addAttribute("btnNo",btnNo);
 		model.addAttribute("processList",processList);
 		return "spec/window/processSelect";
 	}
-	
 	
 	/**
 	 * spec情報取得のためのメソッド
@@ -271,41 +227,33 @@ public class SpecController {
 		
 		user = new User();
 		projectList = new ArrayList<Project>();
+		
 		//データの取得
-
 		user = userLogic.selectByStaffId(staffId);
 		projectList = projectLogic.selectByStaffId(staffId);
+		
 		return true;
+		
 	}
 	
 	
 	/**
-	 * spec情報取得のためのメソッド
+	 * project情報の登録処理
 	 * @param res
-	 * @author kurosawa
+	 * @author honma
 	 * @return
 	 * @throws Exception
 	 */
-	private Boolean insertExecute(String staffId,SpecForm form) throws Exception {
+	private Boolean insertExecute(SpecForm form) throws Exception {
 		specLogic.insertSpec(form);
 		specRegistService.insertBreakdown(form);
+		specRegistService.insertSkill(form);
 		specRegistService.insertProjectOs(form);
 		specRegistService.insertProjectLanguage(form);
 		specRegistService.insertProjectProcess(form);
-		projectLogic.insertProject(staffId,form);
+		projectLogic.insertProject(form.getStaffId() ,form);
+		specRegistService.insertUsersLicenseByStaffId(form, form.getStaffId());
 		return true;
-	}
-
-	
-	/**
-	 * スペックシート登録（資格）
-	 * @author okamoto
-	 * @param form
-	 */
-	public void insertUsersLicenseByStaffId(SpecForm specForm){
-		String staffId = specForm.getStaffId();
-		
-		specRegistService.insertUsersLicenseByStaffId(specForm,staffId);
 	}
 	
 	

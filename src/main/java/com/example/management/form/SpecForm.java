@@ -34,9 +34,9 @@ public class SpecForm {
 		/**IT全体経験(月数換算)*/
 		private Integer allExp;
 		/**IT全体経験年*/
-		private Integer allExpYear;
+		private Integer allExpYear = 0;
 		/**IT全体経験月*/
-		private Integer allExpMonth;
+		private Integer allExpMonth = 0;
 		/**経験月数insert用*/
 		private Integer monthOfExp;
 		/**サーバ・NW経験年*/
@@ -60,13 +60,14 @@ public class SpecForm {
 		/**経験言語*/
 		private String skillLangList;
 		/**実務経験フラグ*/
-		private Integer expFlagInt;
+		private List<Integer> expFlagInt;
 		/**言語経験月数*/
-		private Integer monthOfLangExp; 
+		private List<Integer> monthOfLangExp; 
 		/**経験OS*/
 		private String skillOsList;
 		/**OS経験月数*/
-		private Integer monthOfOsExp;
+		private List<Integer> monthOfOsExp;
+
 		/**開発関連技術*/
 		private String relatedTech;
 		/**更新日時 */
@@ -113,6 +114,8 @@ public class SpecForm {
 		private String langOther;
 		/**開発環境その他*/
 		private String processOther;
+		/**ボタン番号*/
+		private String btnNo;
 		
 	//資格情報
 		/**資格名*//*

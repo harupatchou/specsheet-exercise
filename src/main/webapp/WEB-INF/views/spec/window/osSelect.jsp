@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<script src="/js/spec/windowsOpen.js"></script>
+<script src="/js/spec/window/windowsOpen.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 </label>
 </p>
 </c:forEach>
-<p><input type="button" value="選択完了" onclick="goBackOs(${proNo});"></p>
+<p><input type="button" value="選択完了" onclick="goBackOs(${btnNo});"></p>
 </form>
 </body>
 </html>
