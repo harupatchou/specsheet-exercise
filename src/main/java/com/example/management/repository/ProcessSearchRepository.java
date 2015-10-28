@@ -26,7 +26,7 @@ public class ProcessSearchRepository {
 	/**
 	 * 経験内訳1件取得(ExpBreakdownPage).
 	 * @param staffId スタッフID
-	 * @return 1件の経験内訳、ない場合はnullを返す
+	 * @return 1件の経験内訳、ない場合は0を返す
 	 */
 	public Integer findIdByName(String processName) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("processName", processName);
@@ -35,7 +35,7 @@ public class ProcessSearchRepository {
 					"SELECT id, name FROM process_define WHERE name=:processName", param, 
 					PROCESS_ROW_MAPPER);
 		if (process == null) {
-			
+			return 1;
 		}
 			return process.getId();
 //		}catch (DataAccessException e){
