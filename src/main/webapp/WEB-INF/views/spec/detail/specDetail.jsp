@@ -28,11 +28,11 @@
 		
 		<div>
 		<div class="menu-button"></div>
-			<div class="menu-button"><input type="button" value="未実装★ファイル出力"/></div>
+			<div class="menu-button"><input type="button" value="ファイル出力"/></div>
 			<div class="menu-button"><input type="submit" value="印刷" onclick="PrintScript();"/></div>
-			<div class="menu-button"><input type="button" value="編集（コントローラがまだ決め打ち）" onclick="location.href='/spec/registIndex/?staffId=${staffId}'"/></div>
+			<div class="menu-button"><input type="button" value="編集" onclick="location.href='/spec/registIndex/?staffId=${staffId}'"/></div>
 			<c:if test="${userLogin.authorityId == 2}">
-			<div class="menu-button"><input type="submit" value="未実装★退職者登録" onclick="location.href='/specDelete/?staffId=${staffId}'"/></div>
+			<div class="menu-button"><input type="submit" value="退職者登録" onclick="location.href='/specDelete/?staffId=${staffId}'"/></div>
 			</c:if>
 			
 			<div class="menu-button">
@@ -43,7 +43,7 @@
 			<c:if test="${spec.staffId == null }">
 			<input type="hidden" name="staffId" value="${userLogin.staffId }" />
 			</c:if>
-			<div class="menu-button"><input type="submit" value="未実装★パスワード初期化"/></div>
+			<div class="menu-button"><input type="submit" value="パスワード初期化"/></div>
 	 		<div class="menu-button"><input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/></div>
 	 		<div class="menu-button"><input type="button" value="ログアウト" onclick="location.href='/userLogout'" ></div>
 	 		</form:form>

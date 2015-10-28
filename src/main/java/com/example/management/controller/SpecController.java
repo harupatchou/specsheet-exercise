@@ -50,6 +50,7 @@ public class SpecController {
 	User user = new User();
 	//IDから取得したProject情報格納
 	List<Project> projectList = new ArrayList<Project>();
+
 	
 	/**
 	 * SpecEditForm初期化
@@ -107,6 +108,7 @@ public class SpecController {
 		//OS一覧を取得してMAPに格納
 		setOsMap(model);
 		
+
 		model.addAttribute("spec",spec);
 		model.addAttribute("user",user);
 		model.addAttribute("projectList",projectList);
@@ -116,6 +118,7 @@ public class SpecController {
 		
 		return "spec/edit/specEdit";
 		
+
 		
 	}
 
