@@ -633,8 +633,14 @@
 					case "minSize":
 						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._minSize);
 						break;
+					case "minNumberSize":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._minNumberSize);
+						break;
 					case "maxSize":
 						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._maxSize);
+						break;
+					case "maxNumberSize":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._maxNumberSize);
 						break;
 					case "min":
 						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._min);
@@ -926,6 +932,8 @@
 			 "ajax": "custom-error",
 			 "minSize": "range-underflow",
 			 "maxSize": "range-overflow",
+			 "minNumberSize": "range-underflow",
+			 "maxNumberSize": "range-overflow",
 			 "min": "range-underflow",
 			 "max": "range-overflow",
 			 "past": "type-mismatch",
@@ -1128,6 +1136,20 @@
 				return rule.alertText + max + rule.alertText2;
 			}
 		},
+		
+		/**
+		 *数値文字数チェック 
+		 *@author ueno
+		 */
+		_maxNumberSize: function(field, rules, i, options) {
+			var max = rules[i + 1];
+			var len = field.val().length;
+
+			if (len > max) {
+				var rule = options.allrules.maxNumberSize;
+				return rule.alertText + max + rule.alertText2;
+			}
+		},
 		/**
 		* Check the minimum size (in characters)
 		*
@@ -1144,6 +1166,20 @@
 
 			if (len < min) {
 				var rule = options.allrules.minSize;
+				return rule.alertText + min + rule.alertText2;
+			}
+		},
+		
+		/**
+		 *数値文字数チェック 
+		 *@author ueno
+		 */
+		_minNumberSize: function(field, rules, i, options) {
+			var min = rules[i + 1];
+			var len = field.val().length;
+
+			if (len < min) {
+				var rule = options.allrules.minNumberSize;
 				return rule.alertText + min + rule.alertText2;
 			}
 		},

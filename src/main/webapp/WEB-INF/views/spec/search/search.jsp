@@ -37,7 +37,7 @@
 	 	<p>言語：
 		<form:select path="lang1">
 			<c:forEach var="lang" items="${languageList}" varStatus="langStatus">
-			<c:if test="${lang.id == 0}">
+			<c:if test="${lang.id == 1}">
 				<option value="null" selected="selected">---</option>
 			</c:if>
 			<c:if test="${lang.id == searchData.lang1}">
@@ -50,7 +50,7 @@
 		</form:select>
 		<form:select path="lang2">
 			<c:forEach var="lang2" items="${languageList}" varStatus="langStatus">
-			<c:if test="${lang2.id == 0}">
+			<c:if test="${lang2.id == 1}">
 				<option value="null" selected="selected">---</option>
 			</c:if>
 			<c:if test="${lang2.id == searchData.lang2}">
@@ -63,7 +63,7 @@
 		</form:select>
 		<form:select path="lang3">
 			<c:forEach var="lang3" items="${languageList}" varStatus="langStatus">
-			<c:if test="${lang3.id == 0}">
+			<c:if test="${lang3.id == 1}">
 				<option value="null" selected="selected">---</option>
 			</c:if>
 			<c:if test="${lang3.id == searchData.lang3}">
