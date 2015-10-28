@@ -71,12 +71,15 @@ public class SpecController {
 	 */
 	@RequestMapping(value = "/index")
 	public String Index(String staffId,Model model){
-		//決め打ち
-//		String test = "AP-202-0716";
 		spec = new Spec();
 		spec = specLogic.selectByStaffId(staffId);
 		
-		//specデータ無時⇒スペックシート登録へ
+		/**
+		 * specデータ無時⇒スペックシート登録へ
+		 * @param model 
+		 * @author kurosawa
+		 * @return 初期画面
+		 */
 		if(spec == null){
 		
 			selectByStaffId(staffId);
@@ -99,7 +102,12 @@ public class SpecController {
 			return "spec/regist/specRegist";
 		}
 		
-		//specデータ有時⇒スペックシート編集へ
+		/**
+		 * specデータ無時⇒スペックシート編集画面へ
+		 * @param model 
+		 * @author kurosawa
+		 * @return 初期画面
+		 */
 		selectByStaffId(staffId);
 		
 		//言語一覧を取得してMAPに格納
@@ -209,9 +217,9 @@ public class SpecController {
 	 * @return
 	 */
 	@RequestMapping(value = "/osWindow")
-	public String osWindow(Model model,String projectNo,SpecForm s){
+	public String osWindow(Model model,String btnNo){
 		List<OsDefine> osList = projectLogic.getOS();
-		model.addAttribute("proNo",projectNo);
+		model.addAttribute("btnNo",btnNo);
 		model.addAttribute("osList",osList);
 		return "spec/window/osSelect";
 	}
@@ -222,9 +230,9 @@ public class SpecController {
 	 * @return
 	 */
 	@RequestMapping(value = "/langWindow")
-	public String langWindow(Model model,String projectNo){
+	public String langWindow(Model model,String btnNo){
 		List<LanguageDefine> langList = projectLogic.getLang();
-		model.addAttribute("proNo",projectNo);
+		model.addAttribute("btnNo",btnNo);
 		model.addAttribute("langList",langList);
 		return "spec/window/langSelect";
 	}
@@ -236,13 +244,12 @@ public class SpecController {
 	 * @return
 	 */
 	@RequestMapping(value = "/processWindow")
-	public String processWindow(Model model,String projectNo){
+	public String processWindow(Model model,String btnNo){
 		List<ProcessDefine> processList = projectLogic.getProcess();
-		model.addAttribute("proNo",projectNo);
+		model.addAttribute("btnNo",btnNo);
 		model.addAttribute("processList",processList);
 		return "spec/window/processSelect";
 	}
-	
 	
 	/**
 	 * spec情報取得のためのメソッド
