@@ -74,60 +74,38 @@ public class SpecController {
 		spec = new Spec();
 		spec = specLogic.selectByStaffId(staffId);
 		
-		/**
-		 * specデータ無時⇒スペックシート登録へ
-		 * @param model 
-		 * @author kurosawa
-		 * @return 初期画面
-		 */
-		if(spec == null){
+		//言語一覧を取得してMAPに格納
+		setLangMap(model);
+		//OS一覧を取得してMAPに格納
+		setOsMap(model);
 		
+		/** specデータ無時⇒スペックシート登録へ  */
+		if(spec == null){
 			selectByStaffId(staffId);
 			//情報を画面に送信
 			model.addAttribute("spec",spec);
 			model.addAttribute("user",user);
 			model.addAttribute("stateMap", enumLogic.getStateMap());
 			model.addAttribute("ageMap", enumLogic.getAgeMap());
-		
-			//言語関連
-
-			//言語一覧を取得してMAPに格納
-			setLangMap(model);
-		
-			//OS一覧を取得してMAPに格納
-			setOsMap(model);
-
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
-		
+			
 			return "spec/regist/specRegist";
+			
+		}else{
+		/** specデータ無時⇒スペックシート編集画面へ */
+			selectByStaffId(staffId);
+			//情報を画面に送信
+			model.addAttribute("spec",spec);
+			model.addAttribute("user",user);
+			model.addAttribute("stateMap", enumLogic.getStateMap());
+			model.addAttribute("ageMap", enumLogic.getAgeMap());
+			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
+			//所持しているprojectを取得
+			model.addAttribute("projectList",projectList);
+			
+			return "spec/edit/specEdit";
+			
 		}
-		
-		/**
-		 * specデータ無時⇒スペックシート編集画面へ
-		 * @param model 
-		 * @author kurosawa
-		 * @return 初期画面
-		 */
-		selectByStaffId(staffId);
-		
-		//言語一覧を取得してMAPに格納
-		setLangMap(model);
-	
-		//OS一覧を取得してMAPに格納
-		setOsMap(model);
-		
-
-		model.addAttribute("spec",spec);
-		model.addAttribute("user",user);
-		model.addAttribute("projectList",projectList);
-		model.addAttribute("stateMap", enumLogic.getStateMap());
-		model.addAttribute("ageMap", enumLogic.getAgeMap());
-		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
-		
-		return "spec/edit/specEdit";
-		
-
-		
 	}
 
 
@@ -187,30 +165,6 @@ public class SpecController {
 		return "spec/regist/specRegistCheck";
 	}
 	
-	
-//	/**
-//	 * 編集画面初期表示.
-//	 * @param model 
-//	 * @author kurosawa
-//	 * @return 初期画面
-//	 */
-//	@RequestMapping(value = "/editIndex")
-//	public String edit(Model model){
-//		
-//		//決め打ち
-//		String test = "AP-202-0715";
-//		selectByStaffId(test);
-//		
-//		model.addAttribute("spec",spec);
-//		model.addAttribute("user",user);
-//		model.addAttribute("projectList",projectList);
-//		model.addAttribute("stateMap", enumLogic.getStateMap());
-//		model.addAttribute("ageMap", enumLogic.getAgeMap());
-//		model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(test));
-//		
-//		return "spec/edit/specEdit";
-//	}
-	
 	/**
 	 * OS選択小窓表示
 	 * @param model
@@ -262,18 +216,20 @@ public class SpecController {
 		
 		user = new User();
 		projectList = new ArrayList<Project>();
+		
 		//データの取得
-
 		user = userLogic.selectByStaffId(staffId);
 		projectList = projectLogic.selectByStaffId(staffId);
+		
 		return true;
+		
 	}
 	
 	
 	/**
-	 * spec情報取得のためのメソッド
+	 * project情報の登録処理
 	 * @param res
-	 * @author kurosawa
+	 * @author honma
 	 * @return
 	 * @throws Exception
 	 */
