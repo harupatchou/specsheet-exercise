@@ -27,7 +27,6 @@
 					</c:if>
 				</form:select>
 			</p>
-		 	<%-- <p>スタッフID：<form:input path="staffId" class="validate[required,maxSize[16]]"/></p> --%>
 		 	<p>
 		 		スタッフID:
 		 		<form:select path="staffIdFirst">
@@ -39,8 +38,8 @@
 						<option value="NW" selected>NW</option>
 					</c:if>
 		 		</form:select>
-		 		-<form:input path="staffIdSecond" class="validate[required,custom[number],minSize[3],maxSize[3]]" size="4"/>
-		 		-<form:input path="staffIdThird" class="validate[required,custom[number],minSize[4],maxSize[4]]" xlsize="4"/>
+		 		-<form:input path="staffIdSecond" class="validate[required,custom[number],minNumberSize[3],maxNumberSize[3]]" size="4"/>
+		 		-<form:input path="staffIdThird" class="validate[required,custom[number],minNumberSize[4],maxNumberSize[4]]" size="4"/>
 		 	</p>
 	 		<p>権限：
 	 			<form:select path="authorityId">

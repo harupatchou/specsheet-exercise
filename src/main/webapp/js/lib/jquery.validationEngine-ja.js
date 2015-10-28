@@ -26,7 +26,12 @@
                 "minSize": {
                     "regex": "none",
                     "alertText": "* ",
-                    "alertText2": "文字の数値で入力してください"
+                    "alertText2": "文字以上にしてください"
+                },
+                "minNumberSize": {
+                    "regex": "none",
+                    "alertText": "* ",
+                    "alertText2": "文字の数値にしてください"
                 },
 				"groupRequired": {
                     "regex": "none",
@@ -35,17 +40,22 @@
                 "maxSize": {
                     "regex": "none",
                     "alertText": "* ",
-                    "alertText2": "文字の数値で入力してください"
+                    "alertText2": "文字以下にしてください"
+                },
+                "maxNumberSize": {
+                    "regex": "none",
+                    "alertText": "* ",
+                    "alertText2": "文字の数値にしてください"
                 },
                 "min": {
                     "regex": "none",
                     "alertText": "* ",
-                    "alertText2": " 以上の数値にしてください"
+                    "alertText2": " 文字の数値にしてください"
                 },
                 "max": {
                     "regex": "none",
                     "alertText": "* ",
-                    "alertText2": " 以下の数値にしてください"
+                    "alertText2": " 文字の数値にしてください"
                 },
                 "past": {
                     "regex": "none",
