@@ -15,6 +15,10 @@ jQuery(document).ready(function($){
 	jQuery("#formId").validationEngine();
 });
 
+jQuery(document).ready(function($){
+	jQuery("#formId2").validationEngine();
+});
+
 
  (function($) {
 

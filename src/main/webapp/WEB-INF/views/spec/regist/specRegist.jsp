@@ -253,7 +253,7 @@
 							<tr class="sInputTr"></tr>
 						</c:if>
 						<td><form:input path='lisenceName' name='lisenceName' /></td>
-		<td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' /></td>
+		<td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' /></td>
 						<c:if test="${i.index%3==2}">
 						</tr>
 						</c:if>
@@ -281,7 +281,7 @@
 	    // ボタン用 HTML
 	    var button = '<tr><input type="button" value="行削除" onclick="deleteRow(this)" />';
 		var lisenceName = '<td><form:input path="lisenceName" name="lisenceName" /></td>';
-		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy-MM-dd" /></td></tr>';
+		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy/MM/dd" /></td></tr>';
 	    // 行数取得
 	    var row_len = table.rows.length;
 	 
