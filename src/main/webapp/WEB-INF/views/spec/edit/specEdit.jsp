@@ -198,14 +198,14 @@
 					<!-- OS -->
 						<th>OS</th>
 						<td>
-						<form:input path="os" class="firstOs"/>
+						<form:input path="os" class="firstOs" value="${osEditList[i.index]}"/>
 						<input type="button" value="OS選択" id="btnMini"
 							onclick="return openWin('/spec/osWindow?btnNo=${(i.index+1)}')" />
 						</td>
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<form:input path="process" class="firstProcess"/>
+						<form:input path="process" class="firstProcess" value="${processEditList[i.index]}"/>
 						<input type="button" value="担当工程" id="btnMini"
 							onclick="return openWin('/spec/processWindow?btnNo=${(i.index+1)}')" />
 						</td>
@@ -223,7 +223,7 @@
 					<!-- 言語 -->
 						<th>言語</th>
 						<td>
-						<form:input path="lang" class="firstLang"/>
+						<form:input path="lang" class="firstLang" value="${langEditList[i.index]}"/>
 						<input type="button" value="言語選択" id="btnMini"
 							onclick="return openWin('/spec/langWindow?btnNo=${(i.index+1)}')" />
 						</td>
