@@ -24,7 +24,6 @@ import com.example.management.logic.ExpBreakdownLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
-import com.example.management.repository.ProjectRepository;
 import com.example.management.service.SpecRegistService;
 
 @Controller
@@ -44,8 +43,6 @@ public class SpecController {
 	private ExpBreakdownLogic expBreakdownLogic;
 	@Autowired
 	private SpecRegistService specRegistService;
-	@Autowired
-	private ProjectRepository projectSelectRepository;
 	
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
@@ -117,7 +114,12 @@ public class SpecController {
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
 			//所持しているprojectを取得
 			model.addAttribute("projectList",projectList);
-			
+			//所持しているプロジェクトごとのOSを取得
+			model.addAttribute("osEditList",osEditList);
+			//所持しているプロジェクトごとのOSを取得
+			model.addAttribute("langEditList",langEditList);
+			//所持しているプロジェクトごとのOSを取得
+			model.addAttribute("processEditList",processEditList);
 			
 			return "spec/edit/specEdit";
 			
