@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/css/specDetail.css">
 <link rel="stylesheet" href="/css/specSystem.css">
+<link rel="stylesheet" href="/css/print.css">
 <link rel="stylesheet" href="/css/validationEngine.jquery.css ">
 <script src="/js/lib/angular.min.js" type="text/javascript"></script>
 <script src="/js/lib/jquery-2.1.4.min.js" type="text/javascript"></script>
@@ -23,13 +24,13 @@
 </head>
 <body>
 
-<header>
+<header class="printDemo noPrint">
 	<c:import url="/WEB-INF/views/common/header.jsp" charEncoding="UTF-8"/>
 </header>
 <article>
 	${param.content}
 </article>
-<footer>
+<footer class="printDemo noPrint">
 	<c:import url="/WEB-INF/views/common/fotter.jsp" charEncoding="UTF-8"/>
 </footer>
 

@@ -325,30 +325,7 @@ public class SpecDetailRepository {
 	}
 }
 	
-	/**
-	 * ★まだ使ってない状態です
-	 * パスワードの初期化.
-	 * @author okamoto
-	 * @param staffId
-	 * @return パスワード初期化告知画面
-	 */
-	static final String PASSWORD = "boost2000";
-	public String passwordInitializationByStaffId (String staffId) {
-		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
-		try{
-			//★sql動作確認できたらここに入れる
-		}catch (DataAccessException epasswordInitialization){
-			return null;
-		}
-		
-		jdbcTemplate.update(
-				"UPDATE users SET password = ' " +PASSWORD+ " ' "
-						+ "WHERE staff_id = :staffId ",
-				param
-				);
-		
-		return "★パスを初期化したことを告知する画面URL";
-	}
+
 	
 	
 	

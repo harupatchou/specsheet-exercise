@@ -23,6 +23,10 @@ import com.example.management.form.UserRegistForm;
 @Transactional
 @Repository
 public class UserRepository {
+	
+	static final String PASSWORD = "boost2000";//パスワード初期化に使用
+	static final int RETIREE = 2;//退職者フラグを立てるときに使用
+	
 	public static final RowMapper<User> USER_ROW_MAPPER = (rs, i) -> {
 		String staffId = rs.getString("staff_id");
 		String sex = rs.getString("sex");
@@ -102,4 +106,44 @@ public class UserRepository {
 					+ "last_Phonetic=:lastPhonetic, authority_id=:authorityId WHERE staff_id=:tempStaffId", param);	
 		}
 	}
+	
+	/**
+	 * パスワードの初期化処理.
+	 * @author okamoto
+	 * @param staffId
+	 * @return 指定したスタッフIDが存在するならばtrue、なければfalseを返す
+	 */
+	public boolean passwordInitializationCompletion (String staffId) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId",  staffId);
+		try {
+			jdbcTemplate.update(
+					"UPDATE users SET password = '"+PASSWORD+"' WHERE staff_id = :staffId ",
+					param);
+			return true;
+		} catch(DataAccessException e) {
+			System.err.println(e);
+			return false;
+		}
+	}
+	
+	/**
+	 * 退職者登録処理.
+	 * @author okamoto
+	 * @param staffId
+	 * @return 指定したスタッフIDが存在するならばtrue、なければfalseを返す 
+	 */
+	public boolean retiree (String staffId) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
+		try{
+			jdbcTemplate.update(
+					"UPDATE spec SET state_flag = "+RETIREE+" WHERE staff_id = :staffId ", 
+					param);
+			return true;
+		}catch (DataAccessException e){
+			System.err.println(e);
+			return false;
+		}
+		
+	}
+	
 }
