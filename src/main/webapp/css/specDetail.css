@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+body{  
+    margin: 20;  
+    padding: 120px 0 50px 0;  
+}  
+* html body{  
+    overflow: hidden;  
+}   
+
+#appeal {
+    resize: none;
+}
+
+textarea {
+	resize: none;
+}
+
+[ng:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+display: none !important;
+}
+
