@@ -5,6 +5,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="/js/spec/edit/SpecSheetEdit.js"></script>
+<script src="/js/spec/regist/LicenseColumnNumChange.js"></script>
+<script src="/js/spec/SpecSheet.js"></script>
+<script src="/js/spec/windowsOpen.js"></script>
+
+<script src="/js/lib/jquery-2.1.4.min.js"></script>
 <c:import url="/WEB-INF/views/common/layout.jsp">
 	<c:param name="content">
 
@@ -114,15 +119,90 @@
 						<th>開発関連技術</th>
 						<th colspan="2">環境(OS等)</th>
 					</tr>
-					<tr>
-						<td><form:select path="skillLangList" items="${langMap}"/></td>
-						<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務
-							<form:checkbox path="expFlagInt" id="check" value="1"/>実務外</td>
-						<td><form:input path="monthOfLangExp" id="inputMini" type="text"/>ヵ月</td>
-						<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
-						<td><form:select path="skillOsList" items="${osMap}"/><br></td>
-						<td><form:input path="monthOfOsExp" id="inputMini" type="text"/>ヵ月</td>
+					
+					<c:if test="${skillsSummary.size() == 0}">
+						<tr>
+							<td><form:select path="skillLangList" items="${langMap}"/></td>
+							<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務
+								<form:checkbox path="expFlagInt" id="check" value="1"/>実務外</td>
+							<td><form:input path="monthOfLangExp" id="inputMini" type="text"/>ヵ月</td>
+							<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
+							<td><form:select path="skillOsList" items="${osMap}"/><br></td>
+							<td><form:input path="monthOfOsExp" id="inputMini" type="text"/>ヵ月</td>
+						</tr>
+					</c:if>
+					
+					
+					
+					<c:if test="${skillsSummary.size() != 0}">
+						<c:forEach var="skill" items="${skillsSummary}">
+						<tr>
+						
+						<%--         経験言語                   --%>
+						
+						<td>
+						<form:select path="skillLangList">
+							<c:forEach var="langKey" items="${langMap.keySet()}">
+								<c:choose>
+									<c:when test="${langMap.get(langKey).equals(skill.language)}">
+										<option value="${langKey}" selected="selected"><c:out value="${langMap.get(langKey)}"/></option>
+									</c:when>
+									<c:otherwise>
+										<option value="${langKey}"><c:out value="${langMap.get(langKey)}"/></option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</form:select>
+						</td>
+						
+						<%--         実務経験フラグ                --%>
+						
+						<td>
+						<c:if test="${skill.expFlag == null}">
+								<form:checkbox path="expFlagInt" id="check" value="0" checked="checked"/>実務
+								<form:checkbox path="expFlagInt" id="check" value="1"/>実務外
+						</c:if>
+						<c:if test="${skill.expFlag == 0}">
+								<form:checkbox path="expFlagInt" id="check" value="0" checked="checked"/>実務
+								<form:checkbox path="expFlagInt" id="check" value="1"/>実務外
+						</c:if>
+						<c:if test="${skill.expFlag == 1}">
+								<form:checkbox path="expFlagInt" id="check" value="0"/>実務
+								<form:checkbox path="expFlagInt" id="check" value="1"  checked="checked"/>実務外
+						</c:if>
+						</td>
+						
+						<%--         言語経験月数                      --%>
+						
+						<td><form:input path="monthOfLangExp" value = "${skill.monthOfLangExp}" id="inputMini" type="text"/>ヵ月</td>
+						
+						<%--         開発関連技術               --%>
+						
+						<td><form:input path="relatedTech" value="${skill.relatedTech}"/></td>
+						
+						<%--         経験OS            --%>
+						
+						<td>
+						<form:select path="skillOsList">
+							<c:forEach var="osKey" items="${osMap.keySet()}">
+								<c:choose>
+									<c:when test="${osMap.get(osKey).equals(skill.os)}">
+										<option value="${osKey}" selected="selected"><c:out value="${osMap.get(osKey)}"/></option>
+									</c:when>
+									<c:otherwise>
+										<option value="${osKey}"><c:out value="${osMap.get(osKey)}"/></option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</form:select>
+						<br></td>
+						
+						<%--         OS経験月数            --%>
+						
+						<td><form:input path="monthOfOsExp" value="${skill.monthOfOsExp}"  id="inputMini" type="text"/>ヵ月</td>
 					</tr>
+					</c:forEach>
+					</c:if>
 				</table>
 			</div>
 			<br>
@@ -308,8 +388,6 @@
 				
 </table>
 </div>
-
-	
 	<script>
 	/**
 	 * 行追加
@@ -355,6 +433,8 @@
 		　　　　}
 	 
 	</script>
+	
+
 	 
 	
 		<input type="submit" value="登録内容確認"/>

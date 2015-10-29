@@ -8,6 +8,7 @@ import com.example.management.domain.Spec;
 import com.example.management.form.SpecForm;
 import com.example.management.security.AdminUserLoginDetails;
 import com.example.management.security.UserLoginDetails;
+import com.example.management.page.SpecEditSkillsSummaryChildPage;
 
 @Component
 public interface SpecLogic {
@@ -19,5 +20,8 @@ public interface SpecLogic {
     public void insertSpec(SpecForm form, 
 			@AuthenticationPrincipal UserLoginDetails user, 
 			@AuthenticationPrincipal AdminUserLoginDetails admin);
+    
+    //SpecEditSkillsSummaryPageの要素から最長のリストの長さを取得
+    public Integer maxLength(SpecEditSkillsSummaryChildPage skillsSummary);
 
 }

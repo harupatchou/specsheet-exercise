@@ -1,5 +1,7 @@
 package com.example.management.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.management.domain.LanguageDefine;
+import com.example.management.domain.LanguageExp;
 
 @Transactional
 @Repository
@@ -21,6 +24,17 @@ public class LanguageSearchRepository {
 		String langName = rs.getString("name");
 		
 		return new LanguageDefine(langId, langName);
+	};
+	
+	public static final RowMapper<LanguageExp> LANGUAGEEXP_ROW_MAPPER = (rs,i) -> {
+		String staffId = rs.getString("staff_id");
+		Integer no = rs.getInt("no");
+		Integer languageId = rs.getInt("language_id");
+		String other = rs.getString("other");
+		Integer expFlag = rs.getInt("exp_flag");
+		Integer monthOfExp = rs.getInt("month_of_exp");
+		
+		return new LanguageExp(staffId,no,languageId,other,expFlag,monthOfExp);
 	};
 	
 	/**
@@ -39,5 +53,18 @@ public class LanguageSearchRepository {
 //			return null;
 //		}
 	}
+	
+	/**
+	 * 経験言語情報取得.
+	 * @author ueno
+	 * @return 経験言語情報
+	 */
+	public List<LanguageExp> findByStaffId(String staffId){
+		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
+		List<LanguageExp> languageExpList =jdbcTemplate.query("SELECT * FROM language_exp WHERE staff_id=:staffId", param, LANGUAGEEXP_ROW_MAPPER);
+		return languageExpList;
+	}
+	
+
 
 }
