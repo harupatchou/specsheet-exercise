@@ -22,15 +22,16 @@ import com.example.management.domain.Project;
 import com.example.management.domain.Spec;
 import com.example.management.domain.User;
 import com.example.management.form.SpecForm;
+import com.example.management.logic.DevelopLogic;
 import com.example.management.logic.EnumLogic;
 import com.example.management.logic.ExpBreakdownLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
 import com.example.management.page.SpecDetailLicensePage;
+import com.example.management.page.SpecEditSkillsSummaryPage;
 import com.example.management.security.AdminUserLoginDetails;
 import com.example.management.security.UserLoginDetails;
-import com.example.management.page.SpecEditSkillsSummaryPage;
 import com.example.management.service.SpecRegistService;
 
 @Controller
@@ -51,6 +52,8 @@ public class SpecController {
 	private ExpBreakdownLogic expBreakdownLogic;
 	@Autowired
 	private SpecRegistService specRegistService;
+	@Autowired
+	private DevelopLogic developLogic;
 	
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
@@ -195,6 +198,7 @@ public class SpecController {
 	@RequestMapping(value = "/confirm")
 	public String confirm(Model model, SpecForm form) {
 		model.addAttribute("submitForm", form);
+		model.addAttribute("devPage", developLogic.hGenerateDevPage(form));
 		
 		return "spec/regist/specRegistConfirm";
 	}
