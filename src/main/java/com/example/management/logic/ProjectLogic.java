@@ -37,5 +37,14 @@ public interface ProjectLogic {
 	
 	//process選択用値取得
 	public List<ProcessDefine> getProcess();
-
+	
+	//edit時、削除処理
+	public void deleteAll(String staffId);
+	
+	/*//startDate変換
+	public List<String> changeStartDateStr(List<Project> projectList);
+	
+	//finishDate変換
+	public List<String> changeFinishDateStr(AtList<Project> projectList);*/
+	
 }

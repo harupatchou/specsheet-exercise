@@ -17,6 +17,7 @@ import com.example.management.logic.ProjectLogic;
 import com.example.management.page.ProjectLanguagePage;
 import com.example.management.page.ProjectOsPage;
 import com.example.management.page.ProjectProcessPage;
+import com.example.management.service.DeleteService;
 import com.example.management.service.LanguageDefineService;
 import com.example.management.service.OsDefineService;
 import com.example.management.service.ProcessDefineService;
@@ -33,6 +34,8 @@ public class ProjectLogicImpl implements ProjectLogic{
 	private LanguageDefineService languageDefineService;
 	@Autowired
 	private ProcessDefineService processDefineService;
+	@Autowired
+	private DeleteService deleteService;
 
 	@Override
 	public Boolean insertProject(String staffId, SpecForm specForm) throws Exception {
@@ -215,8 +218,40 @@ public class ProjectLogicImpl implements ProjectLogic{
 			
 		return strList;
 	}
+
+	@Override
+	public void deleteAll(String staffId) {
+		deleteService.delete(staffId);
+	}
 	
+/*	private List<String> changeStartDateStr(List<Project> proList) {
+		//開発経験のDate型の開始日時をString型リストにつめる
+		List<String> startDateStrList = new ArrayList<String>();
+		//Date型のデータを変換したデータを一時保存するStringカラム
+		String startDateStr = "";
+		for (Project proDate : projectList){
+			startDateStr = new SimpleDateFormat("yyyy/MM/dd").format(proDate.getStartDate());
+			startDateStrList.add(startDateStr);
+			startDateStr = "";
+		}
+		
+		return startDateStrList;
+	}
 	
+	private List<String> changeFinishDateStr(List<Project> proList) {
+		//開発経験のDate型の終了日時をString型リストにつめる
+		List<String> finishDateStrList = new ArrayList<String>();
+		//Date型のデータを変換したデータを一時保存するStringカラム
+		String finishDateStr = "";
+		
+		for (Project proDate : projectList){
+			finishDateStr = new SimpleDateFormat("yyyy/MM/dd").format(proDate.getFinishDate());
+			finishDateStrList.add(finishDateStr);
+			finishDateStr = "";
+		}
+		
+		return finishDateStrList;
+	}*/
 
 	
 	

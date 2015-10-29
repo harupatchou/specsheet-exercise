@@ -93,12 +93,12 @@
 					<td><c:out value="${spec.fullName}"/></td>
 					<td colspan="6" align="center">※スペックシート未登録※</td>
 					<td>
-						<form:form action="/userEdit/select?id=${spec.staffId}" method="post">
+						<form:form action="/userEdit/select?staffId=${spec.staffId}">
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 							<input type="submit" name="form" value="ユーザー編集" />
 						</form:form>
-						<form:form >
-							<input type="submit" name="form" value="スペック編集" disabled="disabled"/>
+						<form:form action="/spec/index?staffId=${spec.staffId}" >
+							<input type="submit" name="form" value="スペック新規登録" />
 						</form:form>
 					</td>
 				</c:if>
@@ -132,7 +132,7 @@
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 							<input type="submit" name="form" value="ユーザー編集" />
 						</form:form>
-						<form:form action="/specedit/editFlow?staffId=${spec.staffId}" method="post">
+						<form:form action="/spec/index?staffId=${spec.staffId}" >
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 							<input type="submit" name="form" value="スペック編集" />
 						</form:form>

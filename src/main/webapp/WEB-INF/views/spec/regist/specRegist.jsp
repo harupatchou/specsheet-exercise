@@ -4,13 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="../../js/spec/regist/LicenseColumnNumChange.js"></script>
 <script src="/js/spec/regist/SpecSheet.js"></script>
-<script src="/js/spec/window/windowsOpen.js"></script>
-<script src="/js/lib/jquery-2.1.4.min.js"></script>
 <c:import url="/WEB-INF/views/common/layout.jsp">
 	<c:param name="content">
-
 
 		<%--ここから下にコンテンツを挿入 --%>
 		<form:form modelAttribute="specForm" action="/spec/regist"
