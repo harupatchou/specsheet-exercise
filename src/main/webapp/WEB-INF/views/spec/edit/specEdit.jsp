@@ -4,7 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- <script src="/js/spec/edit/LicenseColumnNumEdit.js"></script> -->
+<script src="/js/spec/regist/LicenseColumnNumChange.js"></script>
+<script src="/js/spec/SpecSheet.js"></script>
+<script src="/js/spec/windowsOpen.js"></script>
+
+<script src="/js/lib/jquery-2.1.4.min.js"></script>
 <c:import url="/WEB-INF/views/common/layout.jsp">
 	<c:param name="content">
 
@@ -170,7 +174,7 @@
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
 						<c:if test="${i.last}">
-							<td rowspan="5" id="lastNo" class="proNo" ></td>
+							<td rowspan="5" id="lastNo" class="proNo"></td>
 							<form:input type="hidden" path="projectNo" value="${i.index+1}"/>
 							<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 						</c:if>
@@ -194,14 +198,14 @@
 					<!-- OS -->
 						<th>OS</th>
 						<td>
-						<form:input path="os" class="firstOs" value="${osEditList[(i.index)]}" />
+						<form:input path="os" class="firstOs"/>
 						<input type="button" value="OS選択" id="btnMini"
 							onclick="return openWin('/spec/osWindow?btnNo=${(i.index+1)}')" />
 						</td>
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<form:input path="process" class="firstProcess" value="${processEditList[(i.index)]}" />
+						<form:input path="process" class="firstProcess"/>
 						<input type="button" value="担当工程" id="btnMini"
 							onclick="return openWin('/spec/processWindow?btnNo=${(i.index+1)}')" />
 						</td>
@@ -219,7 +223,7 @@
 					<!-- 言語 -->
 						<th>言語</th>
 						<td>
-						<form:input path="lang" class="firstLang" value="${langEditList[(i.index)]}" />
+						<form:input path="lang" class="firstLang"/>
 						<input type="button" value="言語選択" id="btnMini"
 							onclick="return openWin('/spec/langWindow?btnNo=${(i.index+1)}')" />
 						</td>
@@ -310,18 +314,12 @@
 </table>
 </div>
 
-		<input type="submit" value="登録内容確認"/>
-		<input class="button" type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
-		</form:form>
-		<%--ここから上にコンテンツを挿入 --%>
-
-	</c:param>
-</c:import>
-<script>
-/**
- *  行追加
- */
-function insertRow(id) {
+	
+	<script>
+	/**
+	 * 行追加
+	 */
+	function insertRow(id) {
 	    // テーブル取得
 	    var table = document.getElementById(id);
 	    // 行を行末に追加
@@ -360,4 +358,14 @@ function insertRow(id) {
 		   if(rowCnt==3){alert("これ以上削除できません。");return;}
 		   table.deleteRow(-1);// 末尾行を削除
 		　　　　}
-</script>
+	 
+	</script>
+	 
+	
+		<input type="submit" value="登録内容確認"/>
+		<input class="button" type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
+		</form:form>
+		<%--ここから上にコンテンツを挿入 --%>
+
+	</c:param>
+</c:import>
