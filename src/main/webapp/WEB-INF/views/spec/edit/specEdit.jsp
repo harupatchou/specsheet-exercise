@@ -213,7 +213,7 @@
 					<th>アピールポイント</th>
 				</tr>
 				<tr class="tallHeight">
-					<td><form:textarea path="appeal" class="appeal" rows="8" cols="109.5" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
+					<td><form:textarea path="appeal" class="appeal" rows="8" cols="107" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
 				</tr>
 			</table>
 			
@@ -259,9 +259,9 @@
 						</c:if>
 					<!-- 開発時期 -->
 						<td rowspan="4">
-						<form:input path="startDay" value="${startDate[i.index]}"/><br>
+						<form:input path="startDay" value="${startDate[i.index]}" size="8"/><br>
 						～<br>
-						<form:input path="finishDay" value="${finishDate[i.index]}" />
+						<form:input path="finishDay" value="${finishDate[i.index]}" size="8"/>
 						</td>
 						
 					<!-- プロジェクト概要 -->
@@ -273,21 +273,21 @@
 					<!-- OS -->
 						<th>OS</th>
 						<td>
-						<form:input path="os" class="firstOs" value="${osEditList[i.index]}"/>
+						<form:input path="os" class="firstOs" value="${osEditList[i.index]}" size="30"/>
 						<input type="button" value="OS選択" id="btnMini"
 							onclick="return openWin('/spec/osWindow?btnNo=${(i.index+1)}')" />
 						</td>
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<form:input path="process" class="firstProcess" value="${processEditList[i.index]}"/>
+						<form:input path="process" class="firstProcess" value="${processEditList[i.index]}" size="28"/>
 						<input type="button" value="担当工程" id="btnMini"
 							onclick="return openWin('/spec/processWindow?btnNo=${(i.index+1)}')" />
 						</td>
 						
 					<!-- 担当役割 -->
 						<td rowspan="4">
-						<form:textarea path="role" id="inputResponsible" class="role" />
+						<form:textarea path="role" id="inputResponsible" class="role" rows="10" cols="12"/>
 						<input type="hidden" id="roleHidden${i.index}" value="${project.role}"/>
 						</td>
 			
@@ -298,7 +298,7 @@
 					<!-- 言語 -->
 						<th>言語</th>
 						<td>
-						<form:input path="lang" class="firstLang" value="${langEditList[i.index]}"/>
+						<form:input path="lang" class="firstLang" value="${langEditList[i.index]}" size="30"/>
 						<input type="button" value="言語選択" id="btnMini"
 							onclick="return openWin('/spec/langWindow?btnNo=${(i.index+1)}')" />
 						</td>
@@ -311,7 +311,7 @@
 					<!-- 開発関連技術 -->
 						<th rowspan="2">開発関連技術</th>
 						<td rowspan="2">
-						<form:textarea path="other" id="inputOther" class="other" />
+						<form:textarea path="other" id="inputOther" class="other" rows="4" cols="24"/>
 						<input type="hidden" id="otherHidden${i.index}" value="${project.other}" />
 						</td>
 						<th>開発全体</th>
@@ -322,7 +322,7 @@
 					<tr>
 						<th class="tallHeight">作業内容</th>
 						<td colspan="7">
-						<form:textarea path="content" id="inputWorkDetail" class="content" />
+						<form:textarea path="content" id="inputWorkDetail" class="content" rows="12" cols="94" />
 						<input type="hidden" id="contentHidden${i.index}" value="${project.content}"/>
 						</td>
 					</tr>
@@ -368,7 +368,7 @@
 					</c:if>
 					
 						<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }"/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate' value="${specDetailLicenseList.acquireDate }"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate' value="${licenseDate[i.index] }"/></td>
 
 						<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}">
 						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>

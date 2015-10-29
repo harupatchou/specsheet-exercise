@@ -17,7 +17,7 @@ function goBackOs(btnNo){
 	//選択したosの名前を取得
 	var osList=document.getElementsByName("os");
 	//その他の入力情報取得
-	var osOther=document.getElementsByName("osOther");
+	var osOther=document.getElementById("osOther").value;
 	var test = "os"+btnNo;
 	//値をvalueに入れていく
 	var value = "";
@@ -59,8 +59,6 @@ function goBackLang(btnNo){
 function goBackProcess(btnNo){
 	//選択したprocessの名前を取得
 	var processList=document.getElementsByName("process");
-	//その他の入力情報取得
-	var processOther=document.getElementsByName("processOther");
 	var test = "process"+btnNo;
 	//値をvalueに入れていく
 	var value = "";

@@ -112,7 +112,7 @@
 					<th>アピールポイント</th>
 				</tr>
 				<tr class="tallHeight">
-					<td><form:textarea path="appeal" class="appeal" rows="8" cols="109.5" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
+					<td><form:textarea path="appeal" class="appeal" rows="8" cols="107" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
 				</tr>
 			</table>
 			
@@ -151,9 +151,9 @@
 						<form:input type="hidden" path="projectNo" value="1"/>
 					<!-- 開発時期 -->
 						<td rowspan="4">
-						<form:input path="startDay"/><br>
+						<form:input path="startDay" size="8"/><br>
 						～<br>
-						<form:input path="finishDay"/><br>
+						<form:input path="finishDay" size="8"/><br>
 						</td>
 						
 					<!-- プロジェクト概要 -->
@@ -164,21 +164,21 @@
 					<!-- OS -->
 						<th>OS</th>
 						<td>
-						<form:input path="os" class="firstOs"/>
+						<form:input path="os" class="firstOs" size="30"/>
 						<input type="button" value="OS選択" id="osBtn"
 							onclick="return openWin('/spec/osWindow?btnNo=1')" />
 						</td>
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<form:input path="process" class="firstProcess"/>
+						<form:input path="process" class="firstProcess" size="28"/>
 						<input type="button" value="担当工程" id="proBtn"
 							onclick="return openWin('/spec/processWindow?btnNo=1')" />
 						</td>
 						
 					<!-- 担当役割 -->
 						<td rowspan="4">
-						<form:textarea path="role" id="inputResponsible"></form:textarea>
+						<form:textarea path="role" id="inputResponsible" rows="10" cols="12"></form:textarea>
 						</td>
 			
 						<th>チーム</th>
@@ -188,7 +188,7 @@
 					<!-- 言語 -->
 						<th>言語</th>
 						<td>
-						<form:input path="lang" class="firstLang"/>
+						<form:input path="lang" class="firstLang" size="30"/>
 						<input type="button" value="言語選択" id="langBtn"
 							onclick="return openWin('/spec/langWindow?btnNo=1')" />
 						</td>
@@ -200,7 +200,7 @@
 					<tr>
 					<!-- 開発関連技術 -->
 						<th rowspan="2">開発関連技術</th>
-						<td rowspan="2"><form:textarea path="other" id="inputOther"></form:textarea></td>
+						<td rowspan="2"><form:textarea path="other" id="inputOther" rows="4" cols="24"></form:textarea></td>
 						<th>開発全体</th>
 					</tr>
 					<tr>
@@ -208,7 +208,7 @@
 					</tr>
 					<tr>
 						<th class="tallHeight">作業内容</th>
-						<td colspan="7"><form:textarea path="content" id="inputWorkDetail"></form:textarea></td>
+						<td colspan="7"><form:textarea path="content" id="inputWorkDetail" rows="12" cols="94"></form:textarea></td>
 					</tr>
 					<tr>
 						<th colspan="9">

@@ -16,7 +16,7 @@
 <p>
 <label>
 <input type="checkbox" name="os" value="${os.osName}"><c:out value="${os.osName}"/>
-<c:if test="${os.osName.equals('その他')}"><input type="text" name="osOther"></c:if>
+<c:if test="${os.osName.equals('その他')}"><input type="text" name="osOther" id="osOther"></c:if>
 </label>
 </p>
 </c:forEach>
