@@ -222,13 +222,13 @@ public class SpecDetailRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
 			List<SpecDetailDevelopmentExperiencePage> specDetailDevelopmentExperiencePageList = jdbcTemplate.query(
 					"SELECT  p.no, start_date, finish_date, overview, od.os_name AS os_name, "
-					+ " ld.name AS language_name, p.other , pd.name AS process_name, role, team_num, all_num, content  "
-					+ " FROM project p "
-					+ " LEFT OUTER JOIN project_language    le ON p.no  =    le.project_no "
+					+ " ld.name AS language_name, p.other , pd.name AS process_name, role, team_num, "
+					+ "all_num, content FROM project p "
+					+ " LEFT OUTER JOIN project_language le ON p.no = le.project_no AND p.staff_id = le.staff_id"
 					+ " LEFT OUTER JOIN language_define ld ON le.language_exp_no = ld.id "
-					+ " LEFT OUTER JOIN project_os    oe ON p.no = oe.project_no "
+					+ " LEFT OUTER JOIN project_os    oe ON p.no = oe.project_no AND p.staff_id = oe.staff_id"
 					+ " LEFT OUTER JOIN os_define od ON oe.os_exp_no = od.os_id "
-					+ " LEFT OUTER JOIN project_process pp ON p.no = pp.project_no "
+					+ " LEFT OUTER JOIN project_process pp ON p.no = pp.project_no AND p.staff_id = pp.staff_id"
 					+ " LEFT OUTER JOIN process_define pd ON pp.process_id = pd.id "
 					+ " WHERE p.staff_id = :staffId ORDER BY p.no",
 					param,
