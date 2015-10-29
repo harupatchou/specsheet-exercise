@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.management.domain.LanguageDefine;
 import com.example.management.domain.OsDefine;
@@ -33,6 +34,7 @@ import com.example.management.service.SpecRegistService;
 @Controller
 @Transactional
 @RequestMapping(value = "/spec")
+@SessionAttributes("submitForm")
 public class SpecController {
 	
 	@Autowired
@@ -70,8 +72,7 @@ public class SpecController {
 	public SpecForm initForm() {
 		SpecForm specForm = new SpecForm();
 		return specForm;
-	}
-	
+	}	
 	
 	/**
 	 * 登録画面初期表示.
@@ -170,6 +171,17 @@ public class SpecController {
 		model.addAttribute("osMap",osMap);
 	}
 	
+	/**
+	 * 登録確認画面.
+	 * @param model 
+	 * @return 登録完了画面 
+	 */
+	@RequestMapping(value = "/confirm")
+	public String confirm(Model model, SpecForm form) {
+		model.addAttribute("submitForm", form);
+		
+		return "spec/regist/specRegistConfirm";
+	}
 	
 	/**
 	 * 登録処理.
@@ -179,13 +191,21 @@ public class SpecController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/regist")
-	public String regist(Model model,SpecForm specForm, 
+	public String regist(Model model, @ModelAttribute("submitForm") SpecForm specForm, 
 			@AuthenticationPrincipal UserLoginDetails user, 
-			@AuthenticationPrincipal AdminUserLoginDetails admin) throws Exception{
+			@AuthenticationPrincipal AdminUserLoginDetails admin) throws Exception {
 		insertExecute(specForm, user, admin);
 		
-//		insertUsersLicenseByStaffId(specForm);
-
+		return "redirect:/spec/commit";
+	}
+	
+	/**
+	 * 登録確定処理.
+	 * @param model 
+	 * @return 登録完了画面 
+	 */
+	@RequestMapping(value = "/commit")
+	public String commit(Model model,SpecForm specForm) {
 		
 		return "spec/regist/specRegistCheck";
 	}

@@ -13,7 +13,7 @@
 
 
 		<%--ここから下にコンテンツを挿入 --%>
-		<form:form modelAttribute="specForm" action="/spec/regist"
+		<form:form modelAttribute="specForm" action="/spec/confirm"
 			name="SpecForm" id="calId">
 			<h1 id="title">スペックシート登録</h1>
 			<!-- 名前 -->

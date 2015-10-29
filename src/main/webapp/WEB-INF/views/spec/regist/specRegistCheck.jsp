@@ -14,7 +14,7 @@
 <!-- 		<input type="submit" value="登録"/> -->
 
 <%-- 		</form:form> --%>
-<h1>登録しました</h1>
+<h1>登録完了しました</h1>
 <input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
 		<%--ここから上にコンテンツを挿入 --%>
 
