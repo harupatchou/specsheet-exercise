@@ -230,7 +230,7 @@ public class SpecDetailRepository {
 					+ " LEFT OUTER JOIN os_define od ON oe.os_exp_no = od.os_id "
 					+ " LEFT OUTER JOIN project_process pp ON p.no = pp.project_no "
 					+ " LEFT OUTER JOIN process_define pd ON pp.process_id = pd.id "
-					+ " WHERE p.staff_id = :staffId",
+					+ " WHERE p.staff_id = :staffId ORDER BY p.no",
 					param,
 					SPECDETAILDEVELOPMENTEXPERIENCEPAGE_ROW_MAPPER);
 			return specDetailDevelopmentExperiencePageList;

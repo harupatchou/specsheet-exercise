@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -25,6 +26,8 @@ import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
 import com.example.management.page.SpecDetailLicensePage;
+import com.example.management.security.AdminUserLoginDetails;
+import com.example.management.security.UserLoginDetails;
 import com.example.management.service.SpecRegistService;
 
 @Controller
@@ -173,8 +176,10 @@ public class SpecController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/regist")
-	public String regist(Model model,SpecForm specForm) throws Exception{
-		insertExecute(specForm);
+	public String regist(Model model,SpecForm specForm, 
+			@AuthenticationPrincipal UserLoginDetails user, 
+			@AuthenticationPrincipal AdminUserLoginDetails admin) throws Exception{
+		insertExecute(specForm, user, admin);
 		
 //		insertUsersLicenseByStaffId(specForm);
 
@@ -286,8 +291,10 @@ public class SpecController {
 	 * @return
 	 * @throws Exception
 	 */
-	private Boolean insertExecute(SpecForm form) throws Exception {
-		specLogic.insertSpec(form);
+	private Boolean insertExecute(SpecForm form, 
+			@AuthenticationPrincipal UserLoginDetails user, 
+			@AuthenticationPrincipal AdminUserLoginDetails admin) throws Exception {
+		specLogic.insertSpec(form, user, admin);
 		specRegistService.insertBreakdown(form);
 		specRegistService.insertSkill(form);
 		specRegistService.insertProjectOs(form);
