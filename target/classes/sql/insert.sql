@@ -17,6 +17,8 @@ INSERT INTO age VALUES('8','50代後半');
 INSERT INTO os_define VALUES('1','Windows');
 INSERT INTO os_define VALUES('2','Linux');
 INSERT INTO os_define VALUES('3','Mac');
+INSERT INTO os_define VALUES('4','Android');
+INSERT INTO os_define VALUES('5','iOS');
 INSERT INTO os_define VALUES('100','その他');
 
 
@@ -57,41 +59,71 @@ INSERT INTO users VALUES('AP-202-0736','女','鈴木','綾夏','スズキ','ア�
 INSERT INTO users VALUES('AP-000-0000','男','大矢','修嗣','オオヤ','ナオツギ',2,'boost2000');
 
 -- プロジェクトテーブル
-INSERT INTO project VALUES('AP-202-0715',1,'2015-02-01','2015-08-01','プロジェクト概要','5','20','PG','開発','eclipse');
-INSERT INTO project VALUES('AP-202-0715',2,'2015-02-02','2015-08-02','プロジェクトやったよー','6','21','テスター','テスト','junit');
-INSERT INTO project VALUES('AP-202-0715',3,'2015-02-03','2015-08-03','プロジェクトだよー','7','22','PG','IT','padedosa');
-INSERT INTO project VALUES('AP-202-0736',1,'2015-02-03','2015-08-03','プロジェクト概要','7','22','PG','実装','teraterm');
-INSERT INTO project VALUES('AP-202-0736',2,'2014-09-04','2015-01-04','プロジェクト概要','8','23','PM/SE','UT','remoteconect');
-INSERT INTO project VALUES('AP-202-0736',3,'2013-02-05','2014-08-05','プロジェクト概要','9','24','PG','IT','padedosa');
+INSERT INTO project VALUES('AP-202-0715',1,'2015/05/01','2015/06/01','【社内研修】Ec-Site','4','4','テスター/PG','開発/テスト','eclipse/junit');
+INSERT INTO project VALUES('AP-202-0715',2,'2015/04/01','2015/05/01','【新人研修】書籍管理システム','3','3','PG','開発','eclipse');
+INSERT INTO project VALUES('AP-202-0717',1,'2015/10/01','2015/11/01','【現場】テスト','20','20','テスター','テスト','eclipse/junit');
+INSERT INTO project VALUES('AP-202-0717',2,'2015/04/01','2015/09/30','【社内研修】Ec-Site','4','4','PG','開発','eclipse');
+INSERT INTO project VALUES('AP-202-0736',1,'2015/02/03','2015/08/03','【現場】環境構築','10','10','PG/テスター','実装/テスト','teraterm');
+INSERT INTO project VALUES('AP-202-0736',2,'2014/09/04','2015/01/04','【社内研修】食べログサイト','3','3','PM/SE','UT','remoteconect');
+INSERT INTO project VALUES('AP-202-0736',3,'2013/02/05','2014/08/05','【新人研修】サーブレットにおける書籍管理システム','1','1','PG','IT','padedosa');
 
 
 -- プロジェクト担当工程テーブル（工藤のデータ）
 INSERT INTO project_process VALUES('AP-202-0715','1','4');
 INSERT INTO project_process VALUES('AP-202-0715','1','5');
+INSERT INTO project_process VALUES('AP-202-0715','2','3');
 INSERT INTO project_process VALUES('AP-202-0715','2','4');
 INSERT INTO project_process VALUES('AP-202-0715','2','5');
-INSERT INTO project_process VALUES('AP-202-0715','3','5');
-INSERT INTO project_process VALUES('AP-202-0715','3','6');
+INSERT INTO project_process VALUES('AP-202-0717','1','5');
+INSERT INTO project_process VALUES('AP-202-0717','2','3');
+INSERT INTO project_process VALUES('AP-202-0717','2','4');
+INSERT INTO project_process VALUES('AP-202-0717','2','5');
+INSERT INTO project_process VALUES('AP-202-0736','1','4');
+INSERT INTO project_process VALUES('AP-202-0736','1','5');
+INSERT INTO project_process VALUES('AP-202-0736','2','3');
+INSERT INTO project_process VALUES('AP-202-0736','2','4');
+INSERT INTO project_process VALUES('AP-202-0736','2','5');
+INSERT INTO project_process VALUES('AP-202-0736','3','1');
+INSERT INTO project_process VALUES('AP-202-0736','3','2');
 
 
 -- プロジェクト言語テーブル（工藤）
 INSERT INTO project_language VALUES('AP-202-0715','1','1');
 INSERT INTO project_language VALUES('AP-202-0715','1','2');
-INSERT INTO project_language VALUES('AP-202-0715','2','1');
-INSERT INTO project_language VALUES('AP-202-0715','2','2');
-INSERT INTO project_language VALUES('AP-202-0715','3','2');
-INSERT INTO project_language VALUES('AP-202-0715','3','4');
+INSERT INTO project_language VALUES('AP-202-0715','2','3');
+INSERT INTO project_language VALUES('AP-202-0715','2','4');
+INSERT INTO project_language VALUES('AP-202-0717','1','1');
+INSERT INTO project_language VALUES('AP-202-0717','1','2');
+INSERT INTO project_language VALUES('AP-202-0717','2','3');
+INSERT INTO project_language VALUES('AP-202-0717','2','4');
+INSERT INTO project_language VALUES('AP-202-0717','2','5');
+INSERT INTO project_language VALUES('AP-202-0717','2','6');
+INSERT INTO project_language VALUES('AP-202-0736','1','2');
+INSERT INTO project_language VALUES('AP-202-0736','1','4');
+INSERT INTO project_language VALUES('AP-202-0736','2','3');
+INSERT INTO project_language VALUES('AP-202-0736','2','4');
+INSERT INTO project_language VALUES('AP-202-0736','2','6');
+INSERT INTO project_language VALUES('AP-202-0736','3','1');
 
 -- 取得資格テーブル（鈴木さんのデータ）
-INSERT INTO users_license VALUES('AP-202-0736','1','HTML5プロフェッショナル認定資格レベル1','2014-07-06');
+INSERT INTO users_license VALUES('AP-202-0736','1','HTML5プロフェッショナル認定資格レベル1','2014/07/06');
+INSERT INTO users_license VALUES('AP-202-0736','2','基本情報試験','2013/07/06');
 
 -- プロジェクトOSテーブル（工藤のデータ）
 INSERT INTO project_os VALUES('AP-202-0715','1','1');
 INSERT INTO project_os VALUES('AP-202-0715','1','2');
 INSERT INTO project_os VALUES('AP-202-0715','2','2');
 INSERT INTO project_os VALUES('AP-202-0715','2','3');
-INSERT INTO project_os VALUES('AP-202-0715','3','1');
-INSERT INTO project_os VALUES('AP-202-0715','3','3');
+INSERT INTO project_os VALUES('AP-202-0715','2','4');
+INSERT INTO project_os VALUES('AP-202-0717','1','1');
+INSERT INTO project_os VALUES('AP-202-0717','2','1');
+INSERT INTO project_os VALUES('AP-202-0717','2','3');
+INSERT INTO project_os VALUES('AP-202-0717','2','4');
+INSERT INTO project_os VALUES('AP-202-0736','1','1');
+INSERT INTO project_os VALUES('AP-202-0736','1','2');
+INSERT INTO project_os VALUES('AP-202-0736','2','2');
+INSERT INTO project_os VALUES('AP-202-0736','2','3');
+INSERT INTO project_os VALUES('AP-202-0736','3','4');
 
 --OS経験テーブル
 INSERT INTO os_exp VALUES('AP-202-0715',1,1,Null,4);
@@ -102,13 +134,13 @@ INSERT INTO os_exp VALUES('AP-202-0717',1,1,Null,9);
 INSERT INTO os_exp VALUES('AP-202-0717',2,2,Null,4);
 
 --言語経験テーブル
-INSERT INTO language_exp VALUES('AP-202-0715',1,1,Null,Null,4);
-INSERT INTO language_exp VALUES('AP-202-0715',2,2,Null,Null,4);
-INSERT INTO language_exp VALUES('AP-202-0736',1,1,Null,Null,29);
-INSERT INTO language_exp VALUES('AP-202-0736',2,5,Null,Null,15);
-INSERT INTO language_exp VALUES('AP-202-0717',1,1,Null,Null,9);
-INSERT INTO language_exp VALUES('AP-202-0717',2,2,Null,Null,10);
-INSERT INTO language_exp VALUES('AP-202-0717',3,5,Null,Null,25);
+INSERT INTO language_exp VALUES('AP-202-0715',1,1,Null,1,4);
+INSERT INTO language_exp VALUES('AP-202-0715',2,2,Null,1,4);
+INSERT INTO language_exp VALUES('AP-202-0736',1,1,Null,1,29);
+INSERT INTO language_exp VALUES('AP-202-0736',2,5,Null,1,15);
+INSERT INTO language_exp VALUES('AP-202-0717',1,1,Null,0,9);
+INSERT INTO language_exp VALUES('AP-202-0717',2,2,Null,1,10);
+INSERT INTO language_exp VALUES('AP-202-0717',3,5,Null,0,25);
 
 --経験内訳テーブル
 INSERT INTO exp_breakdown VALUES('AP-202-0715',2,4);
@@ -120,10 +152,10 @@ INSERT INTO exp_breakdown VALUES('AP-202-0717',4,2);
 
 
 -- スペックテーブル
-INSERT INTO spec VALUES('AP-202-0715',1,0,2,'Spring','アピールポイント','渋谷','誤字修正',1, 2,'2015-09-01','更新者名16文字');
-INSERT INTO spec VALUES('AP-202-0736',1,0,2,'Ajax','アピールポイント','新宿','経歴追加',0, 2,'2015-09-01','更新者名16文字');
-INSERT INTO spec VALUES('AP-202-0717',1,0,2,'JavaScript','アピールポイント','池袋','初版作成',0, 4,'2015-09-01','更新者名16文字');
-INSERT INTO spec VALUES('AP-000-0000',1,0,44,'Spring','アピールポイント','渋谷','誤字修正',3, 6,'2015-09-01','更新者名16文字');
+INSERT INTO spec VALUES('AP-202-0715',1,0,2,'Spring','アピールポイント1','渋谷','誤字修正',1, 2,'2015/09/01','更新者名16文字');
+INSERT INTO spec VALUES('AP-202-0736',1,0,2,'Ajax','アピールポイント2','新宿','経歴追加',0, 2,'2015/09/01','更新者名16文字');
+INSERT INTO spec VALUES('AP-202-0717',1,0,2,'JavaScript','アピールポイント3','池袋','初版作成',0, 4,'2015/09/01','更新者名16文字');
+INSERT INTO spec VALUES('AP-000-0000',1,0,44,'Spring','アピールポイントMaster','渋谷','誤字修正',3, 6,'2015/09/01','更新者名16文字');
 
 
 

@@ -85,13 +85,6 @@ public class SpecController {
 		spec = new Spec();
 		spec = specLogic.selectByStaffId(staffId);
 		
-		
-		
-		//表示のための資格情報を取得　okamoto--------------------
-		List<SpecDetailLicensePage> specDetailLicenseList = licensefindByStaffId(staffId);
-		model.addAttribute("specDetailLicenseList",specDetailLicenseList);
-		//--------------------
-		
 		//言語一覧を取得してMAPに格納
 		setLangMap(model);
 		//OS一覧を取得してMAPに格納
@@ -117,27 +110,36 @@ public class SpecController {
 			selectByStaffId(staffId);
 			//所持している言語、OS、開発環境を取得
 			selectByWindow(staffId);
+			//表示のための資格情報を取得　okamoto--------------------------------------------------------------------
+			List<SpecDetailLicensePage> specDetailLicenseList = licensefindByStaffId(staffId);
 			
+			if(specDetailLicenseList.size()!=0){
+				List<String> licenseDate = changeLicenseDateStr(specDetailLicenseList);
+				//資格情報送信
+				model.addAttribute("licenseDate",licenseDate);
+			}
+			//------------------------------------------------------------------------------------------------
+		
 			List<String> startDate = changeStartDateStr(projectList);
 			List<String> finishDate = changeFinishDateStr(projectList);
 			
 			//情報を画面に送信
-			
-			System.out.println(spec);
 			
 			model.addAttribute("spec",spec);
 			model.addAttribute("user",user);
 			model.addAttribute("stateMap", enumLogic.getStateMap());
 			model.addAttribute("ageMap", enumLogic.getAgeMap());
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
-			//所持しているprojectを取得
+			//所持しているprojectを送信
 			model.addAttribute("projectList",projectList);
-			//所持しているプロジェクトごとのOSを取得
+			//所持しているプロジェクトごとのOSを送信
 			model.addAttribute("osEditList",osEditList);
-			//所持しているプロジェクトごとのOSを取得
+			//所持しているプロジェクトごとのOSを送信
 			model.addAttribute("langEditList",langEditList);
-			//所持しているプロジェクトごとのOSを取得
+			//所持しているプロジェクトごとのOSを送信
 			model.addAttribute("processEditList",processEditList);
+			//所持している資格情報送信
+			model.addAttribute("specDetailLicenseList",specDetailLicenseList);
 			//変換した開始日時送信
 			model.addAttribute("startDate",startDate);
 			//変換した終了日時送信
@@ -374,6 +376,21 @@ public class SpecController {
 		}
 		
 		return finishDateStrList;
+	}
+	
+	private List<String> changeLicenseDateStr(List<SpecDetailLicensePage> specDetailLicenseList) {
+		//開発経験のDate型の終了日時をString型リストにつめる
+		List<String> licenseDateStrList = new ArrayList<String>();
+		//Date型のデータを変換したデータを一時保存するStringカラム
+		String licenseDateStr = "";
+		
+		for (SpecDetailLicensePage licenseDate : specDetailLicenseList){
+			licenseDateStr = new SimpleDateFormat("yyyy/MM/dd").format(licenseDate.getAcquireDate());
+			licenseDateStrList.add(licenseDateStr);
+			licenseDateStr = "";
+		}
+		
+		return licenseDateStrList;
 	}
 	
 }

@@ -72,23 +72,23 @@ function AddDetail(addTable){
 			"<th>担当工程</th><th>担当役割</th><th>規模</th></tr>" +
 			"</th></tr><tr class='InputTr'><td rowspan='5' class='proNo' >"+firstNo+"</td>" +
 			"<input type='hidden' name='projectNo' class='setProNo' value='' />" +
-			"<td rowspan='4'><input name='startDay'/><br>～<br><input name='finishDay'/></td>" +
+			"<td rowspan='4'><input name='startDay' size='8'/><br>～<br><input name='finishDay' size='8'/></td>" +
 			"<td rowspan='4'><textarea name='overview' rows='10' cols='12' /></td><th>OS</th>" +
-			"<td><input name='os' id='os" + btnNo + "' />" +
+			"<td><input name='os' id='os" + btnNo + "' size='30'/>" +
 			"<input type='button' value='OS選択' id='osBtn" + btnNo + "'" +
 			"onclick=\"return openWin('/spec/osWindow?btnNo="　+ btnNo +　"')\" /></td>" +
 			"<td rowspan='4'>" +
-			"<input name='process' id='process" + btnNo + "' />" +
+			"<input name='process' id='process" + btnNo + "' size='28'/>" +
 			"<input type='button' value='担当工程' id='proBtn" + btnNo + "'" +
 			"onclick=\"return openWin('/spec/processWindow?btnNo="　+ btnNo +　"')\" /></td>" +
-			"<td rowspan='4'><textarea name='role' id='inputResponsible'></textarea></td><th>チーム</th></tr>" +
-			"<tr><th>言語</th><td><input name='lang' id='lang" + btnNo + "' />" +
+			"<td rowspan='4'><textarea name='role' id='inputResponsible' rows='10' cols='12'></textarea></td><th>チーム</th></tr>" +
+			"<tr><th>言語</th><td><input name='lang' id='lang" + btnNo + "' size='30'/>" +
 			"<input type='button' value='言語選択' id='langBtn" + btnNo + "'" +
 			"onclick=\"return openWin('/spec/langWindow?btnNo="　+ btnNo +　"')\" /></td>" +
 			"<td><input name='teamNum' id='inputMini' />人</td></tr><tr><th rowspan='2'>開発関連技術</th>" +
-			"<td rowspan='2'><textarea name='other' id='inputOther'></textarea></td><th>開発全体</th></tr>" +
+			"<td rowspan='2'><textarea name='other' id='inputOther' rows='4' cols='24'></textarea></td><th>開発全体</th></tr>" +
 			"<tr><td><input name='allNum' id='inputMini' />人</td></tr><tr><th class='tallHeight'>作業内容</th>" +
-			"<td colspan='6'><textarea name='content' id='inputWorkDetail'></textarea></td></tr>" +
+			"<td colspan='6'><textarea name='content' id='inputWorkDetail' rows='12' cols='94'></textarea></td></tr>" +
 			"<tr><th colspan='9'>この開発経験を削除 " +
 			"<input type='button' value='行削除' id='deleteAdd' onclick='DeleteDetail(\"testTable"+no+"\")' />" +
 			"<tr><td></td></tr></tbody>";

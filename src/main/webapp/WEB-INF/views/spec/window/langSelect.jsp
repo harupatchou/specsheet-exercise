@@ -16,7 +16,7 @@
 <p>
 <label>
 <input type="checkbox" name="lang" value="${lang.name}"><c:out value="${lang.name}"/>
-<c:if test="${lang.name.equals('その他')}"><input type="text" name="langOther" id="langOther" value=""/></c:if>
+<c:if test="${lang.name.equals('その他')}"><input type="text" name="langOther" id="langOther"/></c:if>
 </label>
 </p>
 </c:forEach>
