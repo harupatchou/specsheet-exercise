@@ -148,6 +148,7 @@
                 "validate2fields": {
                     "alertText": "* 『HELLO』と入力してください"
                 }
+                
             };
             
         }

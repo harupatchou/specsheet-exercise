@@ -10,14 +10,14 @@
 
 		<%--ここから下にコンテンツを挿入 --%>
 		<form:form modelAttribute="specForm" action="/spec/edit"
-			name="SpecForm">
+			name="SpecForm" id="formId">
 			<h1 id="title">スペックシート編集</h1>
 			<!-- 名前 -->
-			<p>姓：<form:input path="firstName" value="${user.firstName}" /></p>
-			<p>名：<form:input path="lastName" value="${user.lastName}" /></p>
+			<p>姓：<form:input path="firstName" value="${user.firstName}" class="validate[required,maxSize[16]]"/></p>
+			<p>名：<form:input path="lastName" value="${user.lastName}" class="validate[required,maxSize[16]]"/></p>
 			<!-- 勤務状況 -->
 			<p>状況：
-			<form:select path="stateFlag">
+			<form:select path="stateFlag" class="validate[required]">
 				<c:forEach var="stateKey" items="${stateMap.keySet()}">
 					<c:choose>
 						<c:when test="${stateKey == spec.stateFlag}">
@@ -33,18 +33,18 @@
 			</p>
 			<!-- コメント -->
 			<p>編集時のコメント：
-			<form:textarea path="comment" value="${spec.comment}" placeholder="(例)初期登録" />
+			<form:textarea path="comment" value="${spec.comment}" placeholder="(例)初期登録" class="validate[maxSize[1024]]"/>
 			</p>
 
 			<!-- 基本情報 -->
 			<table class="speckDetailTable formMini">
 				<tr>
 					<th>スタッフID</th>
-					<td><form:input path="staffId" value="${user.staffId}" /></td>
+					<td><form:input path="staffId" value="${user.staffId}" class="validate[required,maxSize[16]]"/></td>
 
 					<th>年齢</th>
 					<td>
-					<form:select path="ageFlag">
+					<form:select path="ageFlag"  class="validate[required]">
 						<c:forEach var="ageKey" items="${ageMap.keySet()}">
 							<c:choose>
 								<c:when test="${ageKey == spec.ageId}">
@@ -61,7 +61,7 @@
 					<td><c:out value="${user.sex}" /></td>
 
 					<th>最寄駅</th>
-					<td><form:input id="inputMini" path="nearestStation" value="${spec.nearestStation}" />駅</td>
+					<td><form:input id="inputMini" path="nearestStation" value="${spec.nearestStation}" class="validate[required,maxSize[16]]"/>駅</td>
 
 					<th>稼働開始日</th>
 					<td>応相談</td>
@@ -75,27 +75,27 @@
 				<tr>
 					<th rowspan="2">IT全体経験</th>
 					<td rowspan="2" colspan="2">
-					<form:input id="inputMini" path="allExpYear"   value="${spec.year}"/>年
-					<form:input id="inputMini" path="allExpMonth"  value="${spec.month}"/>ヵ月</td> 
+					<form:input id="inputMini" path="allExpYear"   value="${spec.year}" class="validate[custom[number]]"/>年
+					<form:input id="inputMini" path="allExpMonth"  value="${spec.month}" class="validate[custom[number],max[12]]"/>ヵ月</td> 
 					<th rowspan="2">内訳</th>
 					<th>サーバ・NW経験</th>
 					<td colspan="2">
-					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${breakdown.serverNetworkExpYear}"/>年
-					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${breakdown.serverNetworkExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini"  path="serverNetworkExpYear"  value="${breakdown.serverNetworkExpYear}" class="validate[custom[number]]"/>年
+					<form:input id="inputMini"  path="serverNetworkExpMonth"  value="${breakdown.serverNetworkExpMonth}" class="validate[custom[number],max[12]]"/>ヵ月</td> 
 					<th>SE経験</th>
 	 				<td colspan="2">
-	 				<form:input id="inputMini" path="seExpYear" value="${breakdown.seExpYear}"/>年
-	 				<form:input id="inputMini" path="seExpMonth" value="${breakdown.seExpMonth}"/>ヵ月</td> 
+	 				<form:input id="inputMini" path="seExpYear" value="${breakdown.seExpYear}" class="validate[custom[number]]"/>年
+	 				<form:input id="inputMini" path="seExpMonth" value="${breakdown.seExpMonth}" class="validate[custom[number],max[12]]"/>ヵ月</td> 
 				</tr>
 				<tr>
 					<th>システム開発経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="developmentExpYear"  value="${breakdown.developmentExpYear}"/>年
-					<form:input id="inputMini" path="developmentExpMonth"  value="${breakdown.developmentExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="developmentExpYear"  value="${breakdown.developmentExpYear}" class="validate[custom[number]]"/>年
+					<form:input id="inputMini" path="developmentExpMonth"  value="${breakdown.developmentExpMonth}" class="validate[custom[number],max[12]]"/>ヵ月</td> 
 					<th>PG・作業員経験</th>
 					<td colspan="2">
-					<form:input id="inputMini" path="pgOperatorExpYear" value="${breakdown.pgOperatorExpYear}"/>年
-					<form:input id="inputMini" path="pgOperatorExpMonth" value="${breakdown.pgOperatorExpMonth}"/>ヵ月</td> 
+					<form:input id="inputMini" path="pgOperatorExpYear" value="${breakdown.pgOperatorExpYear}" class="validate[custom[number]]"/>年
+					<form:input id="inputMini" path="pgOperatorExpMonth" value="${breakdown.pgOperatorExpMonth}" class="validate[custom[number],max[12]]"/>ヵ月</td> 
 				</tr>
 			</table>
 
@@ -118,10 +118,10 @@
 						<td><form:select path="skillLangList" items="${langMap}"/></td>
 						<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務
 							<form:checkbox path="expFlagInt" id="check" value="1"/>実務外</td>
-						<td><form:input path="monthOfLangExp" id="inputMini" type="text"/>ヵ月</td>
+						<td><form:input path="monthOfLangExp" id="inputMini" type="text" class="validate[custom[number]]"/>ヵ月</td>
 						<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
 						<td><form:select path="skillOsList" items="${osMap}"/><br></td>
-						<td><form:input path="monthOfOsExp" id="inputMini" type="text"/>ヵ月</td>
+						<td><form:input path="monthOfOsExp" id="inputMini" type="text" class="validate[custom[number]]"/>ヵ月</td>
 					</tr>
 				</table>
 			</div>
@@ -133,7 +133,7 @@
 					<th>アピールポイント</th>
 				</tr>
 				<tr class="tallHeight">
-					<td><form:textarea path="appeal" class="appeal" rows="8" cols="109.5" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
+					<td><form:textarea path="appeal" class="validate[maxSize[1024]] appeal" rows="8" cols="109.5" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
 				</tr>
 			</table>
 			
@@ -179,14 +179,14 @@
 						</c:if>
 					<!-- 開発時期 -->
 						<td rowspan="4">
-						<form:input path="startDay" value="${startDate[i.index]}"/><br>
+						<form:input path="startDay" value="${startDate[i.index]}" class="validate[required,custom[date],future[1900/01/01],past[NOW]]"/><br>
 						～<br>
-						<form:input path="finishDay" value="${finishDate[i.index]}" />
+						<form:input path="finishDay" value="${finishDate[i.index]}" class="validate[required,custom[date],future[1900/01/01],past[NOW]]"/>
 						</td>
 						
 					<!-- プロジェクト概要 -->
 						<td rowspan="4">
-						<form:textarea path="overview" class="overview" rows="10" cols="12" />
+						<form:textarea path="overview" rows="10" cols="12" class="overview validate[required,maxSize[64]]"/>
 						<input type="hidden" id="overviewHidden${i.index}" value="${project.overview}"/>
 						</td>
 						
@@ -208,7 +208,7 @@
 					<!-- 担当役割 -->
 						<td rowspan="4">
 						<form:textarea path="role" id="inputResponsible" class="role" />
-						<input type="hidden" id="roleHidden${i.index}" value="${project.role}"/>
+						<input type="hidden" id="roleHidden${i.index}" value="${project.role}" class="validate[required,maxSize[128]]"/>
 						</td>
 			
 						<th>チーム</th>
@@ -224,7 +224,7 @@
 						</td>
 						
 					<!-- チーム人数 -->
-						<td><form:input path="teamNum" id="inputMini" value="${project.teamNum}"/>人</td>
+						<td><form:input path="teamNum" id="inputMini" value="${project.teamNum}" class="validate[required,custom[number],maxSize[16]]"/>人</td>
 					</tr>
 					
 					<tr>
@@ -232,17 +232,17 @@
 						<th rowspan="2">開発関連技術</th>
 						<td rowspan="2">
 						<form:textarea path="other" id="inputOther" class="other" />
-						<input type="hidden" id="otherHidden${i.index}" value="${project.other}" />
+						<input type="hidden" id="otherHidden${i.index}" value="${project.other}" class="validate[required,maxSize[256]]"/>
 						</td>
 						<th>開発全体</th>
 					</tr>
 					<tr>
-						<td><form:input path="allNum" id="inputMini" value="${project.allNum}"/>人</td>
+						<td><form:input path="allNum" id="inputMini" value="${project.allNum}" class="validate[required,custom[number],maxSize[16]]"/>人</td>
 					</tr>
 					<tr>
 						<th class="tallHeight">作業内容</th>
 						<td colspan="7">
-						<form:textarea path="content" id="inputWorkDetail" class="content" />
+						<form:textarea path="content" id="inputWorkDetail" class="content　validate[required,maxSize[1024]]"/>
 						<input type="hidden" id="contentHidden${i.index}" value="${project.content}"/>
 						</td>
 					</tr>
@@ -287,20 +287,20 @@
 					<tr>
 					</c:if>
 					
-						<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }"/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${specDetailLicenseList.acquireDate }"/></td>
+						<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }" class="validate[maxSize[32]]"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${specDetailLicenseList.acquireDate }" class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
 
 						<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}">
-						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
-		                <td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
+						<td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""  class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+		                <td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""  class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
 						</c:if>
 						
 						
 						<c:if test="${(i.last && (i.count - 1 )  == 1) || (i.last && (i.count - 1 ) % 3 == 1)}">
-						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
+						<td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""  class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
 		                </c:if>
 
 					</c:forEach>
@@ -328,8 +328,8 @@
 	    var cell6 = row.insertCell(-1);
 	    // ボタン用 HTML
 	    var button = '<tr><input type="button" value="行削除" onclick="deleteRow(this)" />';
-		var lisenceName = '<td><form:input path="lisenceName" name="lisenceName" /></td>';
-		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy-MM-dd" /></td></tr>';
+		var lisenceName = '<td><form:input path="lisenceName" name="lisenceName"  class="validate[maxSize[32]]"/></td>';
+		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy-MM-dd"  class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td></tr>';
 	    // 行数取得
 	    var row_len = table.rows.length;
 	 
