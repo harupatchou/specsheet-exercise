@@ -47,7 +47,7 @@ public class ProjectRepository {
 	public List<ProjectOsPage> findProjectOs(String staffId){
 			SqlParameterSource param = new MapSqlParameterSource().addValue("staff_id", staffId);
 			List<ProjectOsPage> osList = jdbcTemplate.query("select p.no,(select od.os_name from os_define od where od.os_id = po.os_exp_no) "
-					+ "from project p inner join project_os po on p.no = po.project_no "
+					+ "from project p left outer join project_os po on p.no = po.project_no and p.staff_id = po.staff_id "
 					+ "where p.staff_id =:staff_id order by p.no"
 					, param, ProjectOsPage_RM);
 			return osList;
@@ -61,7 +61,7 @@ public class ProjectRepository {
 	public List<ProjectLanguagePage> findProjectLang(String staffId){
 			SqlParameterSource param = new MapSqlParameterSource().addValue("staff_id", staffId);
 			List<ProjectLanguagePage> langList = jdbcTemplate.query("select p.no,(select ld.name from language_define ld where ld.id = pl.language_exp_no) "
-					+ "from project p inner join project_language pl on p.no = pl.project_no "
+					+ "from project p left outer join project_language pl on p.no = pl.project_no and p.staff_id = pl.staff_id "
 					+ "where p.staff_id =:staff_id order by p.no"
 					, param, ProjectLangPage_RM);
 			return langList;
@@ -75,7 +75,7 @@ public class ProjectRepository {
 	public List<ProjectProcessPage> findProjectProcess(String staffId){
 			SqlParameterSource param = new MapSqlParameterSource().addValue("staff_id", staffId);
 			List<ProjectProcessPage> processList = jdbcTemplate.query("select p.no,(select pd.name from process_define pd where pd.id = pp.process_id) "
-					+ "from project p inner join project_process pp on p.no = pp.project_no "
+					+ "from project p left outer join project_process pp on p.no = pp.project_no and p.staff_id = pp.staff_id "
 					+ "where p.staff_id =:staff_id order by p.no"
 					, param, ProjectProcessPage_RM);
 			return processList;

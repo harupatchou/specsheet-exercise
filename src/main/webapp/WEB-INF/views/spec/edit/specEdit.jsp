@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="/js/spec/edit/SpecSheetEdit.js"></script>
 <script src="/js/spec/regist/LicenseColumnNumChange.js"></script>
 <script src="/js/spec/SpecSheet.js"></script>
 <script src="/js/spec/windowsOpen.js"></script>
@@ -11,7 +12,6 @@
 <script src="/js/lib/jquery-2.1.4.min.js"></script>
 <c:import url="/WEB-INF/views/common/layout.jsp">
 	<c:param name="content">
-
 
 		<%--ここから下にコンテンツを挿入 --%>
 		<form:form modelAttribute="specForm" action="/spec/edit"
@@ -119,15 +119,90 @@
 						<th>開発関連技術</th>
 						<th colspan="2">環境(OS等)</th>
 					</tr>
-					<tr>
-						<td><form:select path="skillLangList" items="${langMap}"/></td>
-						<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務
-							<form:checkbox path="expFlagInt" id="check" value="1"/>実務外</td>
-						<td><form:input path="monthOfLangExp" id="inputMini" type="text"/>ヵ月</td>
-						<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
-						<td><form:select path="skillOsList" items="${osMap}"/><br></td>
-						<td><form:input path="monthOfOsExp" id="inputMini" type="text"/>ヵ月</td>
+					
+					<c:if test="${skillsSummary.size() == 0}">
+						<tr>
+							<td><form:select path="skillLangList" items="${langMap}"/></td>
+							<td><form:checkbox path="expFlagInt" id="check" value="0"/>実務
+								<form:checkbox path="expFlagInt" id="check" value="1"/>実務外</td>
+							<td><form:input path="monthOfLangExp" id="inputMini" type="text"/>ヵ月</td>
+							<td><form:input path="relatedTech" value="${spec.relatedTech}"/></td>
+							<td><form:select path="skillOsList" items="${osMap}"/><br></td>
+							<td><form:input path="monthOfOsExp" id="inputMini" type="text"/>ヵ月</td>
+						</tr>
+					</c:if>
+					
+					
+					
+					<c:if test="${skillsSummary.size() != 0}">
+						<c:forEach var="skill" items="${skillsSummary}">
+						<tr>
+						
+						<%--         経験言語                   --%>
+						
+						<td>
+						<form:select path="skillLangList">
+							<c:forEach var="langKey" items="${langMap.keySet()}">
+								<c:choose>
+									<c:when test="${langMap.get(langKey).equals(skill.language)}">
+										<option value="${langKey}" selected="selected"><c:out value="${langMap.get(langKey)}"/></option>
+									</c:when>
+									<c:otherwise>
+										<option value="${langKey}"><c:out value="${langMap.get(langKey)}"/></option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</form:select>
+						</td>
+						
+						<%--         実務経験フラグ                --%>
+						
+						<td>
+						<c:if test="${skill.expFlag == null}">
+								<form:checkbox path="expFlagInt" id="check" value="0" checked="checked"/>実務
+								<form:checkbox path="expFlagInt" id="check" value="1"/>実務外
+						</c:if>
+						<c:if test="${skill.expFlag == 0}">
+								<form:checkbox path="expFlagInt" id="check" value="0" checked="checked"/>実務
+								<form:checkbox path="expFlagInt" id="check" value="1"/>実務外
+						</c:if>
+						<c:if test="${skill.expFlag == 1}">
+								<form:checkbox path="expFlagInt" id="check" value="0"/>実務
+								<form:checkbox path="expFlagInt" id="check" value="1"  checked="checked"/>実務外
+						</c:if>
+						</td>
+						
+						<%--         言語経験月数                      --%>
+						
+						<td><form:input path="monthOfLangExp" value = "${skill.monthOfLangExp}" id="inputMini" type="text"/>ヵ月</td>
+						
+						<%--         開発関連技術               --%>
+						
+						<td><form:input path="relatedTech" value="${skill.relatedTech}"/></td>
+						
+						<%--         経験OS            --%>
+						
+						<td>
+						<form:select path="skillOsList">
+							<c:forEach var="osKey" items="${osMap.keySet()}">
+								<c:choose>
+									<c:when test="${osMap.get(osKey).equals(skill.os)}">
+										<option value="${osKey}" selected="selected"><c:out value="${osMap.get(osKey)}"/></option>
+									</c:when>
+									<c:otherwise>
+										<option value="${osKey}"><c:out value="${osMap.get(osKey)}"/></option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</form:select>
+						<br></td>
+						
+						<%--         OS経験月数            --%>
+						
+						<td><form:input path="monthOfOsExp" value="${skill.monthOfOsExp}"  id="inputMini" type="text"/>ヵ月</td>
 					</tr>
+					</c:forEach>
+					</c:if>
 				</table>
 			</div>
 			<br>
@@ -161,7 +236,7 @@
 			<!--繰り返し -->
 				<table id="speckTable" class="speckDetailTable">
 				<c:forEach var="project" items="${projectList}" varStatus="i">
-					<tbody id="testTable" class="speckDetailTable">
+					<tbody id="testTable${i.index+1}" class="speckDetailTable">
 					<tr>
 						<th>No.</th>
 						<th>期間</th>
@@ -184,9 +259,9 @@
 						</c:if>
 					<!-- 開発時期 -->
 						<td rowspan="4">
-						<form:input path="startDay" value="${project.startDate}"/><br>
+						<form:input path="startDay" value="${startDate[i.index]}"/><br>
 						～<br>
-						<form:input path="finishDay" value="${project.finishDate}" />
+						<form:input path="finishDay" value="${finishDate[i.index]}" />
 						</td>
 						
 					<!-- プロジェクト概要 -->
@@ -255,7 +330,7 @@
 						<th colspan="9">
 						この開発経験を削除 
 						<input type="button" value="行削除" id="deleteAdd" 
-						onclick="DeleteDetail('testTable')" />
+						onclick="DeleteDetail('testTable${i.index+1}')" />
 						<c:if test="${i.last}">
 						</c:if>
 						</th>
@@ -293,19 +368,19 @@
 					</c:if>
 					
 						<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }"/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${specDetailLicenseList.acquireDate }"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate' value="${specDetailLicenseList.acquireDate }"/></td>
 
 						<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}">
 						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate' placeholder='yyyy/MM/dd' value=""/></td>
 		                <td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate' placeholder='yyyy/MM/dd' value=""/></td>
 						</c:if>
 						
 						
 						<c:if test="${(i.last && (i.count - 1 )  == 1) || (i.last && (i.count - 1 ) % 3 == 1)}">
-						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
+						<td><form:input path='lisenceName' name='lisenceName' placeholder='yyyy/MM/dd' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate' value=""/></td>
 		                </c:if>
 
 					</c:forEach>
@@ -313,8 +388,6 @@
 				
 </table>
 </div>
-
-	
 	<script>
 	/**
 	 * 行追加
@@ -334,7 +407,7 @@
 	    // ボタン用 HTML
 	    var button = '<tr><input type="button" value="行削除" onclick="deleteRow(this)" />';
 		var lisenceName = '<td><form:input path="lisenceName" name="lisenceName" /></td>';
-		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy-MM-dd" /></td></tr>';
+		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy/MM/dd" /></td></tr>';
 	    // 行数取得
 	    var row_len = table.rows.length;
 	 
@@ -360,6 +433,8 @@
 		　　　　}
 	 
 	</script>
+	
+
 	 
 	
 		<input type="submit" value="登録内容確認"/>

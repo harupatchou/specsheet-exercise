@@ -1,5 +1,6 @@
 package com.example.management.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,6 +30,7 @@ import com.example.management.logic.UserLogic;
 import com.example.management.page.SpecDetailLicensePage;
 import com.example.management.security.AdminUserLoginDetails;
 import com.example.management.security.UserLoginDetails;
+import com.example.management.page.SpecEditSkillsSummaryPage;
 import com.example.management.service.SpecRegistService;
 
 @Controller
@@ -112,16 +114,22 @@ public class SpecController {
 			return "spec/regist/specRegist";
 			
 		}else{
-		/** specデータ無時⇒スペックシート編集画面へ */
+		/** specデータ有時⇒スペックシート編集画面へ */
 			
 			selectByStaffId(staffId);
 			//所持している言語、OS、開発環境を取得
 			selectByWindow(staffId);
 			
+			List<String> startDate = changeStartDateStr(projectList);
+			List<String> finishDate = changeFinishDateStr(projectList);
+			
 			//情報を画面に送信
 			
-			System.out.println(spec);
+			//スキル要約欄の言語・開発関連技術・OS・業務工程の情報取得
+			List<SpecEditSkillsSummaryPage> skillsSummary = specRegistService.setSkillsSummary(staffId);
+			model.addAttribute("skillsSummary",skillsSummary);
 			
+			//情報を画面に送信
 			model.addAttribute("spec",spec);
 			model.addAttribute("user",user);
 			model.addAttribute("stateMap", enumLogic.getStateMap());
@@ -135,12 +143,15 @@ public class SpecController {
 			model.addAttribute("langEditList",langEditList);
 			//所持しているプロジェクトごとのOSを取得
 			model.addAttribute("processEditList",processEditList);
+			//変換した開始日時送信
+			model.addAttribute("startDate",startDate);
+			//変換した終了日時送信
+			model.addAttribute("finishDate",finishDate);
 			
 			return "spec/edit/specEdit";
 			
 		}
 	}
-
 
 	/**
 	 * 言語一覧をMAPに格納
@@ -210,6 +221,26 @@ public class SpecController {
 		return "spec/regist/specRegistCheck";
 	}
 	
+	/**
+	 * 更新処理.（削除後インサート）
+	 * @param model 
+	 * @author kurosawa
+	 * @return 登録画面
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "/edit")
+	public String edit(Model model,SpecForm specForm,String staffId,
+			@AuthenticationPrincipal UserLoginDetails user, 
+			@AuthenticationPrincipal AdminUserLoginDetails admin) throws Exception{
+		
+		projectLogic.deleteAll(staffId);
+		
+		insertExecute(specForm, user, admin);
+		
+//		insertUsersLicenseByStaffId(specForm);
+
+		return "spec/regist/specRegistCheck";
+	}
 	
 	/**
 	 * 登録内容確認.
@@ -338,6 +369,35 @@ public class SpecController {
 	public List<SpecDetailLicensePage> licensefindByStaffId(String staffId){
 		List<SpecDetailLicensePage> SpecDetailLicenseList = specRegistService.licensefindByStaffId(staffId);
 		return SpecDetailLicenseList;
+	}
+	
+	private List<String> changeStartDateStr(List<Project> proList) {
+		//開発経験のDate型の開始日時をString型リストにつめる
+		List<String> startDateStrList = new ArrayList<String>();
+		//Date型のデータを変換したデータを一時保存するStringカラム
+		String startDateStr = "";
+		for (Project proDate : projectList){
+			startDateStr = new SimpleDateFormat("yyyy/MM/dd").format(proDate.getStartDate());
+			startDateStrList.add(startDateStr);
+			startDateStr = "";
+		}
+		
+		return startDateStrList;
+	}
+	
+	private List<String> changeFinishDateStr(List<Project> proList) {
+		//開発経験のDate型の終了日時をString型リストにつめる
+		List<String> finishDateStrList = new ArrayList<String>();
+		//Date型のデータを変換したデータを一時保存するStringカラム
+		String finishDateStr = "";
+		
+		for (Project proDate : projectList){
+			finishDateStr = new SimpleDateFormat("yyyy/MM/dd").format(proDate.getFinishDate());
+			finishDateStrList.add(finishDateStr);
+			finishDateStr = "";
+		}
+		
+		return finishDateStrList;
 	}
 	
 }

@@ -67,7 +67,7 @@ function AddDetail(addTable){
 	hiddenNo = 1;
 	//追加したい表示コンテンツを書き込む
 	var appendContent = 
-			"<tbody id='testTable" + no + "' class='speckDetailTable'><tr><th>No.</th><th>期間</th><th>プロジェクト概要</th><th colspan='2'>環境、ツールなど</th>" +
+			"<tbody id='testTable" + btnNo + "' class='speckDetailTable'><tr><th>No.</th><th>期間</th><th>プロジェクト概要</th><th colspan='2'>環境、ツールなど</th>" +
 			"<th>担当工程</th><th>担当役割</th><th>規模</th></tr>" +
 			"</th></tr><tr class='InputTr'><td rowspan='5' class='proNo' >"+firstNo+"</td>" +
 			"<input type='hidden' name='projectNo' class='setProNo' value='' />" +
@@ -89,7 +89,7 @@ function AddDetail(addTable){
 			"<tr><td><input name='allNum' id='inputMini' />人</td></tr><tr><th class='tallHeight'>作業内容</th>" +
 			"<td colspan='6'><textarea name='content' id='inputWorkDetail'></textarea></td></tr>" +
 			"<tr><th colspan='9'>この開発経験を削除 " +
-			"<input type='button' value='行削除' id='deleteAdd' onclick='DeleteDetail(\"testTable"+no+"\")' />" +
+			"<input type='button' value='行削除' id='deleteAdd' onclick='DeleteDetail(\"testTable"+btnNo+"\")' />" +
 			"<tr><td></td></tr></tbody>";
 	
 	$("#"+addTable).prepend(appendContent);
