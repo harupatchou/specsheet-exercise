@@ -205,11 +205,13 @@ public class SpecController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/edit")
-	public String edit(Model model,SpecForm specForm,String staffId) throws Exception{
+	public String edit(Model model,SpecForm specForm,String staffId,
+			@AuthenticationPrincipal UserLoginDetails user, 
+			@AuthenticationPrincipal AdminUserLoginDetails admin) throws Exception{
 		
 		projectLogic.deleteAll(staffId);
 		
-		insertExecute(specForm);
+		insertExecute(specForm, user, admin);
 		
 //		insertUsersLicenseByStaffId(specForm);
 
