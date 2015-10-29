@@ -322,7 +322,7 @@
 					<tr>
 						<th class="tallHeight">作業内容</th>
 						<td colspan="7">
-						<form:textarea path="content" id="inputWorkDetail" rows="12" cols="94" class="content　validate[required,maxSize[1024]]"/>
+						<form:textarea path="content" id="inputWorkDetail" rows="12" cols="94" class="content"/>
 						<input type="hidden" id="contentHidden${i.index}" value="${project.content}"/>
 						</td>
 					</tr>
@@ -368,7 +368,7 @@
 					</c:if>
 					
 						<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }" class="validate[maxSize[32]]"/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${specDetailLicenseList.acquireDate }" class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${licenseDate[i.index]}" class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
 
 						<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}">
 						<td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>

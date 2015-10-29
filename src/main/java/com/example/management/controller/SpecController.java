@@ -119,8 +119,11 @@ public class SpecController {
 				List<String> licenseDate = changeLicenseDateStr(specDetailLicenseList);
 				//資格情報送信
 				model.addAttribute("licenseDate",licenseDate);
+			}else{
+				model.addAttribute("licenseDate",null);
 			}
 			//------------------------------------------------------------------------------------------------
+			
 		
 			List<String> startDate = changeStartDateStr(projectList);
 			List<String> finishDate = changeFinishDateStr(projectList);

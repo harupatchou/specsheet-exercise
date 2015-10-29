@@ -61,7 +61,7 @@ INSERT INTO users VALUES('AP-000-0000','男','大矢','修嗣','オオヤ','ナ�
 -- プロジェクトテーブル
 INSERT INTO project VALUES('AP-202-0715',1,'2015/05/01','2015/06/01','【社内研修】Ec-Site','4','4','テスター/PG','開発/テスト','eclipse/junit');
 INSERT INTO project VALUES('AP-202-0715',2,'2015/04/01','2015/05/01','【新人研修】書籍管理システム','3','3','PG','開発','eclipse');
-INSERT INTO project VALUES('AP-202-0717',1,'2015/10/01','2015/11/01','【現場】テスト','20','20','テスター','テスト','eclipse/junit');
+INSERT INTO project VALUES('AP-202-0717',1,'2015/10/01','2015/10/27','【現場】テスト','20','20','テスター','テスト','eclipse/junit');
 INSERT INTO project VALUES('AP-202-0717',2,'2015/04/01','2015/09/30','【社内研修】Ec-Site','4','4','PG','開発','eclipse');
 INSERT INTO project VALUES('AP-202-0736',1,'2015/02/03','2015/08/03','【現場】環境構築','10','10','PG/テスター','実装/テスト','teraterm');
 INSERT INTO project VALUES('AP-202-0736',2,'2014/09/04','2015/01/04','【社内研修】食べログサイト','3','3','PM/SE','UT','remoteconect');
