@@ -1,7 +1,7 @@
-	/**
-	 * 行追加
-	 */
-	function insertRow(id) {
+/**
+ *  行追加
+ *//*
+function insertRow(id) {
 	    // テーブル取得
 	    var table = document.getElementById(id);
 	    // 行を行末に追加
@@ -16,7 +16,7 @@
 	    // ボタン用 HTML
 	    var button = '<tr><input type="button" value="行削除" onclick="deleteRow(this)" />';
 		var lisenceName = '<td><form:input path="lisenceName" name="lisenceName" /></td>';
-		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy/MM/dd" /></td></tr>';
+		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy-MM-dd" /></td></tr>';
 	    // 行数取得
 	    var row_len = table.rows.length;
 	 
@@ -31,12 +31,12 @@
 	    cell6.innerHTML = strAcquireDate;
 	}
 	 
-	/**
+	*//**
 	 * 行削除
-	 */
+	 *//*
 	function deleteRow2(){    // 行削除 
 		 var table = document.getElementById("userLicenseTable");
 		  var rowCnt = table.rows.length; // 行数
 		   if(rowCnt==3){alert("これ以上削除できません。");return;}
 		   table.deleteRow(-1);// 末尾行を削除
-		　　　　}
+		　　　　}*/

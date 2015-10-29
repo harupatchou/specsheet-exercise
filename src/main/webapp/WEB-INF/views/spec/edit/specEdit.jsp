@@ -4,11 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="../../js/spec/regist/LicenseColumnNumChange.js"></script>
-<script src="/js/spec/SpecSheet.js"></script>
-<script src="/js/spec/windowsOpen.js"></script>
-
-<script src="/js/lib/jquery-2.1.4.min.js"></script>
+<!-- <script src="/js/spec/edit/LicenseColumnNumEdit.js"></script> -->
 <c:import url="/WEB-INF/views/common/layout.jsp">
 	<c:param name="content">
 
@@ -184,7 +180,7 @@
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<form:input path="process" class="firstProcess"/>
+						<form:input path="process" class="firstProcess" value="${processEditList[(i.index)]}" />
 						<input type="button" value="担当工程" id="btnMini"
 							onclick="return openWin('/spec/processWindow?btnNo=${(i.index+1)}')" />
 						</td>
@@ -202,7 +198,7 @@
 					<!-- 言語 -->
 						<th>言語</th>
 						<td>
-						<form:input path="lang" class="firstLang"/>
+						<form:input path="lang" class="firstLang" value="${langEditList[(i.index)]}" />
 						<input type="button" value="言語選択" id="btnMini"
 							onclick="return openWin('/spec/langWindow?btnNo=${(i.index+1)}')" />
 						</td>
@@ -293,12 +289,18 @@
 </table>
 </div>
 
-	
-	<script>
-	/**
-	 * 行追加
-	 */
-	function insertRow(id) {
+		<input type="submit" value="登録内容確認"/>
+		<input class="button" type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
+		</form:form>
+		<%--ここから上にコンテンツを挿入 --%>
+
+	</c:param>
+</c:import>
+<script>
+/**
+ *  行追加
+ */
+function insertRow(id) {
 	    // テーブル取得
 	    var table = document.getElementById(id);
 	    // 行を行末に追加
@@ -337,14 +339,4 @@
 		   if(rowCnt==3){alert("これ以上削除できません。");return;}
 		   table.deleteRow(-1);// 末尾行を削除
 		　　　　}
-	 
-	</script>
-	 
-	
-		<input type="submit" value="登録内容確認"/>
-		<input class="button" type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/>
-		</form:form>
-		<%--ここから上にコンテンツを挿入 --%>
-
-	</c:param>
-</c:import>
+</script>
