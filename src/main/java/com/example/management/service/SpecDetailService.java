@@ -27,12 +27,6 @@ public class SpecDetailService {
 	private SpecDetailRepository specDetailRepository; 
 	@Autowired
 	private ArrayListLogic arrayListLogic;
-//	@Autowired
-//	private LanguageExpRepository languageExpRepository;
-//	
-//	public SkillPage execute(Users user) {
-//		return languageExpRepository.findByStaffId(user);
-//	}
 	
 	/**
 	 * スペックシート（スペックID)詳細取得.
@@ -192,7 +186,7 @@ public class SpecDetailService {
 			for(int lang = 0 ; lang < 2 ; lang++){
 				if(languageList.size() >= (lang + i*2 +1)){
 					SkillsSummary.add(languageList.get(lang + i*2));
-				}else{
+				} else {
 					SkillsSummary.add("");
 				}
 			}
@@ -200,7 +194,7 @@ public class SpecDetailService {
 			for(int dev = 0 ; dev < 2 ; dev++){
 				if(developmentRelatedTechnologyList.size() >= (dev + i*2 +1)){
 					SkillsSummary.add(developmentRelatedTechnologyList.get(dev + i*2));
-				}else{
+				} else {
 					SkillsSummary.add("");
 				}
 			}
@@ -208,7 +202,7 @@ public class SpecDetailService {
 			for(int os = 0 ; os < 2 ; os++){
 				if(osList.size() >= (os + i*2 +1)){
 					SkillsSummary.add(osList.get(os + i*2));
-				}else{
+				} else {
 					SkillsSummary.add("");
 				}
 			}
@@ -216,7 +210,7 @@ public class SpecDetailService {
 			for(int pro = 0 ; pro < 2 ; pro++){
 				if(processList.size() >= (pro + i*2 +1)){
 					SkillsSummary.add(processList.get(pro + i*2));
-				}else{
+				} else {
 					SkillsSummary.add("");
 				}
 			}
@@ -245,17 +239,12 @@ public class SpecDetailService {
 		ArrayList<String> roleList = new ArrayList<>();
 
 		try{//スペックシートに情報がない場合、nullを返す
-			int no = developmentExperienceList.get(0).getNo();
-
 			int count = 0;
-			int tempId = developmentExperienceList.get(0).getNo();
-
-			for(SpecDetailDevelopmentExperiencePage i : developmentExperienceList){
+			for(SpecDetailDevelopmentExperiencePage i : developmentExperienceList) {
 				//プロジェクトNOとカウントが不一致のとき、リターンリストに入れて、カウントを加算
-				tempId = i.getNo();
-				System.out.print(count + "周目：");
-				System.out.println(no != tempId);
-				System.out.println(i);
+//				System.out.print(count + "周目：");
+//				System.out.println(no != tempId);
+//				System.out.println(i);
 				osNameList.add(i.getOsName());
 				languageNameList.add(i.getLanguageName());
 				otherList.add(i.getOther());
@@ -270,14 +259,13 @@ public class SpecDetailService {
 					i.setProcessNameList(arrayListLogic.hStrUnique(processNameList));
 					i.setRoleList(arrayListLogic.hStrUnique(roleList));
 					returnList.add(i);
-					System.out.println("ADDする：" + i);
+//					System.out.println("ADDする：" + i);
 					osNameList.clear();
 					languageNameList.clear();
 					otherList.clear();
 					processNameList.clear();
 					roleList.clear();
 				}
-				no = i.getNo();
 				count++;
 			}
 
