@@ -11,6 +11,7 @@
 		<%--ここから下にコンテンツを挿入 --%>
 		<form:form modelAttribute="specForm" action="/spec/confirm"
 			name="SpecForm" id="calId">
+
 			<h1 id="title">スペックシート登録</h1>
 			<!-- 名前 -->
 			<p>姓：<form:input path="firstName" value="${user.firstName}" /></p>
