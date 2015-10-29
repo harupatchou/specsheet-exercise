@@ -131,6 +131,10 @@
 			<artifactId>ant-junit</artifactId>
 			<version>1.9.3</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-client</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

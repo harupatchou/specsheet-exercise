@@ -3,24 +3,11 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>スペックシート詳細画面</title>
-<link rel="stylesheet" href="../css/specSystem.css">
-<link rel="stylesheet" href="../css/specDetail.css">
-<link rel="stylesheet" href="../../css/print.css">
-
-
-<script src="../../../js/spec/detail/print.js"></script>
-<!-- <script src="../js/submitStop.js"></script> -->
-<!-- <script src="../js/logoutConfirmationDialog.js"></script> -->
-</head>
-<body>
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:import url="/WEB-INF/views/common/layout.jsp">
+	<c:param name="content">
+		
+<%--ここから下にコンテンツを挿入 --%>
 <!-- <div class="printDemo noPrint"> -->
 		
 		<h3>スペックシート</h3>
@@ -142,162 +129,118 @@
 			</tr>
 		</table><br>
 
-<!-- 		<!-- 開発経験のテーブル --> -->
-<!-- 		<table class="speckDetailTable"> -->
-<!-- 			<tr> -->
-<!-- 				<th colspan="8">開発経験</th> -->
-<!-- 			</tr> -->
-
-<!-- 			<!-- 		繰り返し --> -->
-
-<!-- 			<tr> -->
-<!-- 				<th>No.</th> -->
-<!-- 				<th>期間</th> -->
-<!-- 				<th>プロジェクト概要</th> -->
-<!-- 				<th colspan="2">環境、ツールなど</th> -->
-<!-- 				<th>担当工程</th> -->
-<!-- 				<th>担当役割</th> -->
-<!-- 				<th>規模</th> -->
-<!-- 			</tr> -->
-<%-- 			<c:if test="${fn:length(developmentExperience) > 0 }" > --%>
-<%-- 				<c:forEach var="devExp" items="${developmentExperience}" varStatus="i"> --%>
-<!-- 					<tr> -->
-<!-- 						　No -->
-<%-- 						<td rowspan="5"><c:out value="${i.count}"/></td> --%>
-<!-- 						開始時期 -->
-<!-- 						<td rowspan="2"> -->
-<%-- 							<fmt:formatDate value="${devExp.startDate}" pattern="yyyy/MM"/> --%>
-<!-- 							～ -->
-<%-- 							<c:if test="${devExp.finishDate == null}"> --%>
-<!-- 								現在 -->
-<%-- 							</c:if> --%>
-<%-- 							<c:if test="${devExp.finishDate != null}"> --%>
-<%-- 								<fmt:formatDate value="${devExp.finishDate}" pattern="yyyy/MM"/> --%>
-<%-- 							</c:if> --%>
-<!-- 						</td> -->
-<!-- 						プロジェクト概要 -->
-<!-- 						<td rowspan="4"> -->
-<%-- 							<c:out value="${devExp.overview}"/> --%>
-<!-- 						</td> -->
-<!-- 						<th>OS</th> -->
-<!-- 						<td> -->
-<%-- 							<c:forEach var="os" items="${devExp.osNameList}" varStatus="j"> --%>
-<%-- 								<c:out value="${os}"/> --%>
-<%-- 								<c:if test="${j.last == false }">/</c:if> --%>
-<%-- 							</c:forEach> --%>
-<!-- 						</td> -->
-<!-- 						担当工程 -->
-<!-- 						<td rowspan="4"> -->
-<%-- 							<c:forEach var="process" items="${devExp.processNameList}" varStatus="j"> --%>
-<%-- 								<c:out value="${process }"/> --%>
-<%-- 								<c:if test="${j.last == false}"> --%>
-<!-- 									<br> -->
-<%-- 								</c:if> --%>
-<%-- 							</c:forEach> --%>
-<!-- 						</td> -->
-<!-- 						担当役割 -->
-<!-- 						<td rowspan="4"> -->
-<%-- 							<c:forEach var="role" items="${devExp.role}" varStatus="j"> --%>
-<%-- 								<c:out value="${role}"/> --%>
-<%-- 								<c:if test="${j.last == false}">/</c:if> --%>
-<%-- 							</c:forEach> --%>
-<!-- 						</td> -->
-<!-- 						<th>チーム</th> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<th>言語</th> -->
-<!-- 						<td> -->
-<%-- 							<c:forEach var="language" items="${devExp.languageNameList}" varStatus="j"> --%>
-<%-- 								<c:out value="${language}"/> --%>
-<%-- 								<c:if test="${j.last == false}">/</c:if> --%>
-<%-- 							</c:forEach> --%>
-<!-- 						</td> -->
-<!-- 						チーム人数 -->
-<!-- 						<td> -->
-<%-- 							<c:out value="${devExp.teamNum}"/> --%>
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<td rowspan="2"> -->
-<!-- 							開発期間 -->
-<%-- 							<c:if test="${devExp.period / 12 >= 1}"> --%>
-<%-- 								<fmt:formatNumber value="${devExp.period / 12}" pattern="###"/>年 --%>
-<%-- 							</c:if> --%>
-<%-- 							<c:out value="${devExp.period % 12}"/>カ月 --%>
-<!-- 						</td> -->
-<!-- 						<th rowspan="2">その他</th> -->
-<!-- 						<td rowspan="2"> -->
-<%-- 							<c:forEach var="other" items="${devExp.other}" varStatus="j"> --%>
-<%-- 								<c:out value="${other}"/> --%>
-<%-- 								<c:if test="${j.last == false}">/</c:if> --%>
-<%-- 							</c:forEach> --%>
-<!-- 						</td> -->
-<!-- 						<th>開発全体</th> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						開発全体 -->
-<!-- 						<td> -->
-<%-- 							<c:out value="${devExp.allNum}"/> --%>
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<th class="tallHeight">作業内容</th> -->
-<!-- 						<td colspan="6"> -->
-<%-- 							<c:out value="${devExp.content}"/> --%>
-							
-				
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- 				</c:forEach> --%>
-<%-- 			</c:if> --%>
-			
-<!-- 		</table><br> -->
+		<!-- 開発経験のテーブル -->
+		<table class="speckDetailTable">
+			<tr>
+				<th colspan="8">開発経験</th>
+			</tr>
+			<tr>
+				<th>No.</th>
+				<th>期間</th>
+				<th>プロジェクト概要</th>
+				<th colspan="2">環境、ツールなど</th>
+				<th>担当工程</th>
+				<th>担当役割</th>
+				<th>規模</th>
+			</tr>
+				<c:forEach var="devExp" items="${devPage.projectNo}" varStatus="i">
+					<tr>
+						　No
+						<td rowspan="5"><c:out value="${devExp}"/></td>
+						開始時期
+						<td rowspan="4">
+							<c:out value="${devPage.startDay.get(i.index)}"/><br>
+							～<br>
+							<c:if test="${devPage.finishDay.get(i.index) == null}">
+								現在
+							</c:if>
+							<c:if test="${devPage.finishDay.get(i.index) != null}">
+								<c:out value="${devPage.finishDay.get(i.index)}"/>
+							</c:if>
+						</td>
+						プロジェクト概要
+						<td rowspan="4">
+							<c:out value="${devPage.overview.get(i.index)}"/>
+						</td>
+						<th>OS</th>
+						<td>
+							<c:out value="${devPage.os.get(i.index)}"/>
+						</td>
+						担当工程
+						<td rowspan="4">
+							<c:out value="${devPage.process.get(i.index)}"/>
+						</td>
+						担当役割
+						<td rowspan="4">
+							<c:out value="${devPage.role.get(i.index)}"/>
+						</td>
+						<th>チーム</th>
+					</tr>
+					<tr>
+						<th>言語</th>
+						<td>
+							<c:out value="${devPage.lang.get(i.index)}"/>
+						</td>
+						チーム人数
+						<td>
+							<c:out value="${devPage.teamNum.get(i.index)}"/>
+						</td>
+					</tr>
+					<tr>
+						<th rowspan="2">その他</th>
+						<td rowspan="2">
+							<c:out value="${devPage.other.get(i.index)}"/>
+						</td>
+						<th>開発全体</th>
+					</tr>
+					<tr>
+						開発全体
+						<td>
+							<c:out value="${devPage.allNum.get(i.index)}"/>
+						</td>
+					</tr>
+					<tr>
+						<th class="tallHeight">作業内容</th>
+						<td colspan="6">
+							<c:out value="${devPage.content.get(i.index)}"/>
+						</td>
+					</tr>
+				</c:forEach>
+		</table><br>
 
 
-<!-- <!-- 	資格	 --> -->
-<!-- 		<table class="speckDetailTable"> -->
-<!-- 			<tr> -->
-<!-- 				<th colspan="6">資格</th> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<th>資格名</th> -->
-<!-- 				<th>取得日</th> -->
-<!-- 				<th>資格名</th> -->
-<!-- 				<th>取得日</th> -->
-<!-- 				<th>資格名</th> -->
-<!-- 				<th>取得日</th> -->
-<!-- 			</tr> -->
-			
-<!-- 			<tr> -->
-<%-- 			<c:forEach var="license" items="${specDetailLicensePageList}" varStatus="i"> --%>
-<%-- 				<c:if test="${ ( i.index +1 ) % 4 == 0 }"> --%>
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<%-- 				</c:if> --%>
-<%-- 				<td><c:out value="${license.name}"/></td> --%>
-<%-- 				<td><fmt:formatDate value="${license.acquireDate }" pattern="yyyy/MM/dd"/></td> --%>
-				
-<%-- 				<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}"> --%>
-<!-- 				<td></td> -->                              
-<!-- 				<td></td> -->                              
-<!-- 				<td></td> -->                              
-<!-- 				<td></td> -->                              
-<%-- 				</c:if> --%>                               
-						                                       
-						                                       
-<%-- 				<c:if test="${(i.last && (i.count - 1 )  = = 1) || (i.last && (i.count - 1 ) % 3 = 1)}"> --%>
-<!-- 				<td></td> -->                              
-<!-- 				<td></td> -->                              
-<%-- 				</c:if> --%>                               
-				                                               
-<%-- 			</c:forEach> --%>                              
-<!-- 			</tr> -->                                      
-<!-- 		</table> -->                                       
-	<!--PrintEnd-->	                                           
-	${submitForm}                                                    
+<!-- 	資格	 -->
+		<table class="speckDetailTable">
+			<tr>
+				<th colspan="6">資格</th>
+			</tr>
+			<tr>
+				<th>資格名</th>
+				<th>取得日</th>
+				<th>資格名</th>
+				<th>取得日</th>
+				<th>資格名</th>
+				<th>取得日</th>
+			</tr>
+			<tr>
+			<c:forEach var="license" items="${submitForm.lisenceName}" varStatus="i">
+				<c:if test="${i.count % 4 == 0 }">
+					</tr>
+					<tr>
+				</c:if>
+				<td><c:out value="${license}"/></td>
+				<td><c:out value="${submitForm.strAcquireDate[i.index]}"/></td>
+			</c:forEach>                              
+			</tr>                                      
+		</table>                                       
+	<!--PrintEnd-->                                              
 	<form:form modelAttribute="specForm" action="/spec/regist"  >
 		
 		<input type="submit" value="登録する"/>
 	</form:form>
-</body>
-</html>
+	
+	<%--ここから上にコンテンツを挿入 --%>
+
+	</c:param>
+</c:import>
+		
