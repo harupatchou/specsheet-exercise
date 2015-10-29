@@ -1,5 +1,7 @@
 package com.example.management.repository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -118,7 +120,7 @@ public class SpecDetailRepository {
 	};
 
 	public static final RowMapper<String> SPECDETAILSKILLSSUMMARYPAGE_ROW_MAPPER = (rs,i) -> {
-		String other = rs.getString("other");
+		String other = rs.getString("related_tech");
 		
 		return new String(other);
 	};
@@ -291,17 +293,18 @@ public class SpecDetailRepository {
 	public List<String> findDevelopmentRelatedTechnologyByStaffId(String staffId){
 		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
 		try{
-			List<String> specDetailDevelopmentRelatedTechnologyList = jdbcTemplate.query(
-					"SELECT DISTINCT other "
-					+ "FROM project "
+			String tech = jdbcTemplate.queryForObject(
+					"SELECT related_tech "
+					+ "FROM spec "
 					+ "WHERE staff_id = :staffId",
 				param,
 				SPECDETAILSKILLSSUMMARYPAGE_ROW_MAPPER);
-			return specDetailDevelopmentRelatedTechnologyList;
-	}catch(DataAccessException eDevelopmentRelatedTechnology){
-		return null;
+			List<String> List = new ArrayList<>(Arrays.asList(tech.split(",")));
+			return List;
+		}catch(DataAccessException eDevelopmentRelatedTechnology){
+			return null;
+		}
 	}
-}
 
 	/**
 	 * スペックシートスキル要約の業務範囲(工程)取得.

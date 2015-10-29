@@ -161,7 +161,6 @@
 		
 
 		<!-- 		スキル要約 -->
-
 		<table class="speckDetailTable">
 			<tr>
 				<th colspan="8">スキル要約</th>
