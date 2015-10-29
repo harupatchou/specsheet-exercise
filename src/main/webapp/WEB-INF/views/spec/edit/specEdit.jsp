@@ -22,7 +22,18 @@
 			<p>名：<form:input path="lastName" value="${user.lastName}" /></p>
 			<!-- 勤務状況 -->
 			<p>状況：
-			<form:select path="stateFlag" items="${stateMap}" value="${spec.stateFlag}" />
+			<form:select path="stateFlag">
+				<c:forEach var="stateKey" items="${stateMap.keySet()}">
+					<c:choose>
+						<c:when test="${stateKey == spec.stateFlag}">
+							<option value="${stateKey}" selected="selected"><c:out value="${stateMap.get(stateKey)}"/></option>
+						</c:when>
+						<c:otherwise>
+							<option value="${stateKey}"><c:out value="${stateMap.get(stateKey)}"/></option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</form:select>
 			<br>
 			</p>
 			<!-- コメント -->
@@ -38,9 +49,19 @@
 
 					<th>年齢</th>
 					<td>
-					<form:select path="ageFlag" items="${ageMap}" value="${spec.ageId}"/>
-					<br></td>
-
+					<form:select path="ageFlag">
+						<c:forEach var="ageKey" items="${ageMap.keySet()}">
+							<c:choose>
+								<c:when test="${ageKey == spec.ageId}">
+									<option value="${ageKey}" selected="selected"><c:out value="${ageMap.get(ageKey)}" /></option> 
+								</c:when> 
+ 								<c:otherwise> 
+ 									<option value="${ageKey}" ><c:out value="${ageMap.get(ageKey)}" /></option> 
+ 								</c:otherwise> 
+							</c:choose> 
+ 						</c:forEach> 
+ 					</form:select>
+ 					</td>
 					<th>性別</th>
 					<td><c:out value="${user.sex}" /></td>
 
