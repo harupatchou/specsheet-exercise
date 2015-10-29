@@ -18,7 +18,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
 <script src="/js/spec/SpecSheetSkill.js" type="text/javascript" ></script>
 <script src="/js/spec/jkl-calendar.js" type="text/javascript" ></script>
-
+<script src="/js/spec/edit/SpecSheetEdit.js"></script>
+<script src="/js/spec/regist/SpecSheet.js"></script>
+<script src="/js/spec/window/windowsOpen.js"></script>
 <title>spec管理</title>
 </head>
 <body>

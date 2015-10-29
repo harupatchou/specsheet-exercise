@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="../../js/spec/regist/LicenseColumnNumChange.js"></script>
+<script src="/js/spec/regist/LicenseColumnNumChange.js"></script>
 <script src="/js/spec/SpecSheet.js"></script>
 <script src="/js/spec/windowsOpen.js"></script>
 
@@ -22,7 +22,18 @@
 			<p>名：<form:input path="lastName" value="${user.lastName}" /></p>
 			<!-- 勤務状況 -->
 			<p>状況：
-			<form:select path="stateFlag" items="${stateMap}" value="${spec.stateFlag}" />
+			<form:select path="stateFlag">
+				<c:forEach var="stateKey" items="${stateMap.keySet()}">
+					<c:choose>
+						<c:when test="${stateKey == spec.stateFlag}">
+							<option value="${stateKey}" selected="selected"><c:out value="${stateMap.get(stateKey)}"/></option>
+						</c:when>
+						<c:otherwise>
+							<option value="${stateKey}"><c:out value="${stateMap.get(stateKey)}"/></option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</form:select>
 			<br>
 			</p>
 			<!-- コメント -->
@@ -38,9 +49,19 @@
 
 					<th>年齢</th>
 					<td>
-					<form:select path="ageFlag" items="${ageMap}" value="${spec.ageId}"/>
-					<br></td>
-
+					<form:select path="ageFlag">
+						<c:forEach var="ageKey" items="${ageMap.keySet()}">
+							<c:choose>
+								<c:when test="${ageKey == spec.ageId}">
+									<option value="${ageKey}" selected="selected"><c:out value="${ageMap.get(ageKey)}" /></option> 
+								</c:when> 
+ 								<c:otherwise> 
+ 									<option value="${ageKey}" ><c:out value="${ageMap.get(ageKey)}" /></option> 
+ 								</c:otherwise> 
+							</c:choose> 
+ 						</c:forEach> 
+ 					</form:select>
+ 					</td>
 					<th>性別</th>
 					<td><c:out value="${user.sex}" /></td>
 
@@ -153,7 +174,7 @@
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
 						<c:if test="${i.last}">
-							<td rowspan="5" id="lastNo" class="proNo" ></td>
+							<td rowspan="5" id="lastNo" class="proNo"></td>
 							<form:input type="hidden" path="projectNo" value="${i.index+1}"/>
 							<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 						</c:if>
@@ -177,14 +198,14 @@
 					<!-- OS -->
 						<th>OS</th>
 						<td>
-						<form:input path="os" class="firstOs" value="${osEditList[(i.index)]}" />
+						<form:input path="os" class="firstOs" value="${osEditList[i.index]}"/>
 						<input type="button" value="OS選択" id="btnMini"
 							onclick="return openWin('/spec/osWindow?btnNo=${(i.index+1)}')" />
 						</td>
 					
 					<!-- 担当工程 -->
 						<td rowspan="4">
-						<form:input path="process" class="firstProcess"/>
+						<form:input path="process" class="firstProcess" value="${processEditList[i.index]}"/>
 						<input type="button" value="担当工程" id="btnMini"
 							onclick="return openWin('/spec/processWindow?btnNo=${(i.index+1)}')" />
 						</td>
@@ -202,7 +223,7 @@
 					<!-- 言語 -->
 						<th>言語</th>
 						<td>
-						<form:input path="lang" class="firstLang"/>
+						<form:input path="lang" class="firstLang" value="${langEditList[i.index]}"/>
 						<input type="button" value="言語選択" id="btnMini"
 							onclick="return openWin('/spec/langWindow?btnNo=${(i.index+1)}')" />
 						</td>

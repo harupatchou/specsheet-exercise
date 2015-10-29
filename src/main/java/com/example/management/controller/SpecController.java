@@ -118,6 +118,9 @@ public class SpecController {
 			selectByWindow(staffId);
 			
 			//情報を画面に送信
+			
+			System.out.println(spec);
+			
 			model.addAttribute("spec",spec);
 			model.addAttribute("user",user);
 			model.addAttribute("stateMap", enumLogic.getStateMap());

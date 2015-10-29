@@ -13,10 +13,12 @@ INSERT INTO age VALUES('7','50代前半');
 INSERT INTO age VALUES('8','50代後半');
 
 -- OS定義テーブル
+
 INSERT INTO os_define VALUES('1','Windows');
 INSERT INTO os_define VALUES('2','Linux');
 INSERT INTO os_define VALUES('3','Mac');
 INSERT INTO os_define VALUES('100','その他');
+
 
 -- 言語定義テーブル
 INSERT INTO language_define VALUES('1','Java');
@@ -59,8 +61,8 @@ INSERT INTO project VALUES('AP-202-0715',1,'2015-02-01','2015-08-01','プロジ�
 INSERT INTO project VALUES('AP-202-0715',2,'2015-02-02','2015-08-02','プロジェクトやったよー','6','21','テスター','テスト','junit');
 INSERT INTO project VALUES('AP-202-0715',3,'2015-02-03','2015-08-03','プロジェクトだよー','7','22','PG','IT','padedosa');
 INSERT INTO project VALUES('AP-202-0736',1,'2015-02-03','2015-08-03','プロジェクト概要','7','22','PG','実装','teraterm');
-INSERT INTO project VALUES('AP-202-0736',2,'2015-02-04','2015-08-04','プロジェクト概要','8','23','PM/SE','UT','remoteconect');
-INSERT INTO project VALUES('AP-202-0736',3,'2015-02-05','2015-08-05','プロジェクト概要','9','24','PG','IT','padedosa');
+INSERT INTO project VALUES('AP-202-0736',2,'2014-09-04','2015-01-04','プロジェクト概要','8','23','PM/SE','UT','remoteconect');
+INSERT INTO project VALUES('AP-202-0736',3,'2013-02-05','2014-08-05','プロジェクト概要','9','24','PG','IT','padedosa');
 
 
 -- プロジェクト担当工程テーブル（工藤のデータ）
@@ -123,7 +125,5 @@ INSERT INTO spec VALUES('AP-202-0736',1,0,2,'Ajax','アピールポイント','�
 INSERT INTO spec VALUES('AP-202-0717',1,0,2,'JavaScript','アピールポイント','池袋','初版作成',0, 4,'2015-09-01','更新者名16文字');
 INSERT INTO spec VALUES('AP-000-0000',1,0,44,'Spring','アピールポイント','渋谷','誤字修正',3, 6,'2015-09-01','更新者名16文字');
 
--- INSERT INTO spec VALUES('AP-202-0737','1',0,0,'2','AngularJS','アピールポイント','六本木',1,1,1,'1','アピールポイント','2015-09-01','更新者名16文字');
--- INSERT INTO spec VALUES('AP-202-0738','2',0,0,'2','JUnit','アピールポイント','銀座',1,1,1,'1','更新','2015-09-01','更新者名16文字');
 
 
