@@ -13,17 +13,18 @@ INSERT INTO age VALUES('7','50代前半');
 INSERT INTO age VALUES('8','50代後半');
 
 -- OS定義テーブル
+
+INSERT INTO os_define VALUES('1','その他');
+INSERT INTO os_define VALUES('2','Windows');
+INSERT INTO os_define VALUES('3','Linux');
+INSERT INTO os_define VALUES('4','Mac');
+
 /*
-INSERT INTO os_define VALUES('0','その他');
-INSERT INTO os_define VALUES('1','Windows');
-INSERT INTO os_define VALUES('2','Linux');
-INSERT INTO os_define VALUES('3','Mac');
-*/
 INSERT INTO os_define VALUES('1','その他');
 INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Windows');
 INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Linux');
 INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Mac');
-
+*/
 
 -- 言語定義テーブル
 /*
@@ -81,10 +82,10 @@ INSERT INTO project VALUES('AP-202-0736',5,'2015-02-05','2015-08-05','プロジ�
 */
 -- プロジェクトテーブル
 INSERT INTO project VALUES('AP-202-0715',1,'2015-02-01','2015-08-01','プロジェクト概要','5','20','PG','開発','eclipse');
-INSERT INTO project VALUES('AP-202-0715',2,'2015-02-02','2015-08-02','プロジェクト概要','6','21','テスター','テスト','junit');
+INSERT INTO project VALUES('AP-202-0715',2,'2012-12-02','2014-08-22','プロジェクト概要','6','21','テスター','テスト','junit');
 INSERT INTO project VALUES('AP-202-0736',1,'2015-02-03','2015-08-03','プロジェクト概要','7','22','PG','実装','teraterm');
-INSERT INTO project VALUES('AP-202-0736',2,'2015-02-04','2015-08-04','プロジェクト概要','8','23','PM/SE','UT','remoteconect');
-INSERT INTO project VALUES('AP-202-0736',3,'2015-02-05','2015-08-05','プロジェクト概要','9','24','PG','IT','padedosa');
+INSERT INTO project VALUES('AP-202-0736',2,'2014-09-04','2015-01-04','プロジェクト概要','8','23','PM/SE','UT','remoteconect');
+INSERT INTO project VALUES('AP-202-0736',3,'2013-02-05','2014-08-05','プロジェクト概要','9','24','PG','IT','padedosa');
 
 
 -- プロジェクト担当工程テーブル（工藤のデータ）
