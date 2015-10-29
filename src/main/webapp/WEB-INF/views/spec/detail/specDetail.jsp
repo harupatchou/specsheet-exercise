@@ -67,6 +67,7 @@
 <p align="right" class="printDemo noScreen">株式会社ラクス</p>
 		<h3>スペックシート</h3>
 		<!-- 		基本情報 -->
+		
 		<table class="speckDetailTable">
 			<tr>
 				<th>スタッフID</th>

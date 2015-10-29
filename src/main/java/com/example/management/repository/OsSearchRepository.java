@@ -1,5 +1,7 @@
 package com.example.management.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.management.domain.OsDefine;
+import com.example.management.domain.OsExp;
 
 @Transactional
 @Repository
@@ -21,6 +24,15 @@ public class OsSearchRepository {
 		String osName = rs.getString("os_name");
 		
 		return new OsDefine(osId, osName);
+	};
+	
+	public static final RowMapper<OsExp> OSEXP_ROW_MAPPER = (rs, i) -> {
+		String staffId = rs.getString("staff_id");
+		Integer no = rs.getInt("no");
+		Integer osId = rs.getInt("os_id");
+		String other = rs.getString("other");
+		Integer monthOfExp = rs.getInt("month_of_exp");
+		return new OsExp(staffId,no,osId,other,monthOfExp);
 	};
 	
 	/**
@@ -38,6 +50,17 @@ public class OsSearchRepository {
 //		}catch (DataAccessException e){
 //			return null;
 //		}
+	}
+	
+	/**
+	 * 経験OS情報取得.
+	 * @author ueno
+	 * @return 経験OS情報
+	 */
+	public List<OsExp> findByStaffId(String staffId){
+		SqlParameterSource param = new MapSqlParameterSource().addValue("staffId", staffId);
+		List<OsExp> osExpList = jdbcTemplate.query("SELECT * FROM os_exp WHERE staff_id=:staffId", param, OSEXP_ROW_MAPPER);
+		return osExpList; 
 	}
 
 }

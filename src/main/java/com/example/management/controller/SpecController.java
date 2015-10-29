@@ -25,6 +25,7 @@ import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
 import com.example.management.page.SpecDetailLicensePage;
+import com.example.management.page.SpecEditSkillsSummaryPage;
 import com.example.management.service.SpecRegistService;
 
 @Controller
@@ -108,16 +109,17 @@ public class SpecController {
 			return "spec/regist/specRegist";
 			
 		}else{
-		/** specデータ無時⇒スペックシート編集画面へ */
+		/** specデータ有時⇒スペックシート編集画面へ */
 			
 			selectByStaffId(staffId);
 			//所持している言語、OS、開発環境を取得
 			selectByWindow(staffId);
 			
+			//スキル要約欄の言語・開発関連技術・OS・業務工程の情報取得
+			List<SpecEditSkillsSummaryPage> skillsSummary = specRegistService.setSkillsSummary(staffId);
+			model.addAttribute("skillsSummary",skillsSummary);
+			
 			//情報を画面に送信
-			
-			System.out.println(spec);
-			
 			model.addAttribute("spec",spec);
 			model.addAttribute("user",user);
 			model.addAttribute("stateMap", enumLogic.getStateMap());
@@ -126,6 +128,7 @@ public class SpecController {
 			//所持しているprojectを取得
 			model.addAttribute("projectList",projectList);
 			
+			System.out.println(spec);
 			
 			return "spec/edit/specEdit";
 			

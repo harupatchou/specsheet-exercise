@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.management.domain.Spec;
 import com.example.management.form.SpecForm;
+import com.example.management.page.SpecEditSkillsSummaryChildPage;
 
 @Component
 public interface SpecLogic {
@@ -14,5 +15,8 @@ public interface SpecLogic {
     
     //スペック情報の登録
     public void insertSpec(SpecForm form);
+    
+    //SpecEditSkillsSummaryPageの要素から最長のリストの長さを取得
+    public Integer maxLength(SpecEditSkillsSummaryChildPage skillsSummary);
 
 }

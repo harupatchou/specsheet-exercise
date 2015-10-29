@@ -30,6 +30,9 @@
 	    cell5.innerHTML =　lisenceName;
 	    cell6.innerHTML = strAcquireDate;
 	}
+	
+
+
 	 
 	/**
 	 * 行削除
