@@ -288,19 +288,19 @@
 					</c:if>
 					
 						<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }"/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${specDetailLicenseList.acquireDate }"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate' value="${specDetailLicenseList.acquireDate }"/></td>
 
 						<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}">
 						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate' placeholder='yyyy/MM/dd' value=""/></td>
 		                <td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate' placeholder='yyyy/MM/dd' value=""/></td>
 						</c:if>
 						
 						
 						<c:if test="${(i.last && (i.count - 1 )  == 1) || (i.last && (i.count - 1 ) % 3 == 1)}">
-						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
+						<td><form:input path='lisenceName' name='lisenceName' placeholder='yyyy/MM/dd' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate' value=""/></td>
 		                </c:if>
 
 					</c:forEach>
@@ -329,7 +329,7 @@
 	    // ボタン用 HTML
 	    var button = '<tr><input type="button" value="行削除" onclick="deleteRow(this)" />';
 		var lisenceName = '<td><form:input path="lisenceName" name="lisenceName" /></td>';
-		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy-MM-dd" /></td></tr>';
+		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy/MM/dd" /></td></tr>';
 	    // 行数取得
 	    var row_len = table.rows.length;
 	 
