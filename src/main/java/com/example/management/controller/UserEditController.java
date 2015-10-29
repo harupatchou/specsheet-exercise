@@ -106,4 +106,59 @@ public class UserEditController {
 		//flag "修正する" ⇒ 編集画面へ
 		return index(null, form, model);
 	}
+	
+	
+	/**
+	 * パスワード初期化の確認画面へ遷移.
+	 * @author okamoto
+	 * @return パスワード初期化の確認画面
+	 */
+	@RequestMapping(value ="passwordInitialization")
+	public String passwordInitialization(String staffId,Model model){
+		model.addAttribute("specStaffId",staffId);
+		return "/spec/edit/passwordInitialization";
+	}
+	
+	/**
+	 * パスワードの初期化処理を実行、パスワード変更確認画面へ遷移.
+	 * @author okamoto
+	 * @param staffId
+	 * @return 指定したスタッフIDが存在するならばパスワード変更確認画面へ遷移、なければエラー画面を返す
+	 */
+	@RequestMapping(value="passwordInitializationCompletion")
+	public String passwordInitializationCompletion(String staffId){
+		
+		boolean bool = userEditService.passwordInitializationCompletion(staffId);
+		if(bool){
+			return "/spec/edit/passwordInitializationCompletion";
+		}
+		return "/spec/edit/error";
+	}
+	
+	/**
+	 * 退職者登録の確認画面へ遷移.
+	 * @author okamoto
+	 * @return 退職者登録の確認画面
+	 */
+	@RequestMapping(value = "moveRetiree")
+	public String moveRetiree (String staffId,Model model){
+		model.addAttribute("retireeStaffId",staffId);
+		return "/spec/edit/retiree";
+	}
+	
+	/**
+	 * 退職者登録処理.
+	 * @author okamoto
+	 * @param staffId
+	 * @return 指定したスタッフIDが存在するならばtrue、なければfalseを返す 
+	 */
+	@RequestMapping(value = "retiree")
+	public String retiree (String staffId) {
+		boolean bool = userEditService.retiree(staffId);
+		if(bool){
+			return "/spec/edit/retireeCompletion";
+		}
+		return "/spec/edit/error";
+		}
+	
 }

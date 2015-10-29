@@ -5,6 +5,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	
+	<c:if test="${user.firstName  != null }">
+	<c:out value="${user.firstName}"/>さんログイン中
+	</c:if>
 <br>
 <hr id=ht>
 

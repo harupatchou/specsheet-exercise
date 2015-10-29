@@ -34,4 +34,27 @@ public class UserEditService {
 	public void update(UserEditForm form){
 		userRepository.update(form);
 	}
+	
+	/**
+	 * パスワードの初期化処理.
+	 * @author okamoto
+	 * @param staffId
+	 * @return 指定したスタッフIDが存在するならばtrue、なければfalseを返す
+	 */
+	public boolean passwordInitializationCompletion (String staffId) {
+		boolean bool = userRepository.passwordInitializationCompletion(staffId);
+		return bool;
+	}
+	
+	/**
+	 * 退職者登録処理.
+	 * @author okamoto
+	 * @param staffId
+	 * @return 指定したスタッフIDが存在するならばtrue、なければfalseを返す 
+	 */
+	public boolean retiree (String staffId) {
+		boolean bool = userRepository.retiree(staffId);
+		return bool;
+	}
+	
 }

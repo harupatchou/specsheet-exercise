@@ -3,36 +3,22 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>スペックシート詳細画面</title>
-<link rel="stylesheet" href="../css/specSystem.css">
-<link rel="stylesheet" href="../css/specDetail.css">
-<link rel="stylesheet" href="../../css/print.css">
-
-
-<script src="../../../js/spec/detail/print.js"></script>
-<!-- <script src="../js/submitStop.js"></script> -->
-<!-- <script src="../js/logoutConfirmationDialog.js"></script> -->
-</head>
-<body>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:import url="/WEB-INF/views/common/layout.jsp">
+	<c:param name="content">
+		
+<%--ここから下にコンテンツを挿入 --%>
 
 <div class="printDemo noPrint">
-		<div id="headerArea">
-		<span id="heading" style="color: white">スペックシート詳細画面</span><br>
-		<c:out value="${userLogin.name}" />さんログイン中<br>
+		<h2>スペックシート詳細画面</h2><br>
 		
 		<div>
 		<div class="menu-button"></div>
 			<div class="menu-button"><input type="button" value="ファイル出力"/></div>
-			<div class="menu-button"><input type="submit" value="印刷" onclick="PrintScript();"/></div>
-			<div class="menu-button"><input type="button" value="編集" onclick="location.href='/spec/registIndex/?staffId=${staffId}'"/></div>
-			<c:if test="${userLogin.authorityId == 2}">
-			<div class="menu-button"><input type="submit" value="退職者登録" onclick="location.href='/specDelete/?staffId=${staffId}'"/></div>
+			<div class="menu-button"><input type="button" value="印刷"  onclick="window.print();" /></div>
+			<div class="menu-button"><input type="button" value="編集" onclick="location.href='/spec/index?staffId=${spec.staffId}'"/></div>
+			<c:if test="${user.authorityId == 2}">
+			<div class="menu-button"><input type="submit" value="退職者登録" onclick="location.href='/userEdit/moveRetiree/?staffId=${spec.staffId}'"/></div>
 			</c:if>
 			
 			<div class="menu-button">
@@ -43,13 +29,12 @@
 			<c:if test="${spec.staffId == null }">
 			<input type="hidden" name="staffId" value="${userLogin.staffId }" />
 			</c:if>
-			<div class="menu-button"><input type="submit" value="パスワード初期化"/></div>
+			<div class="menu-button"><input type="button" value="パスワード初期化" onclick="location.href='/userEdit/passwordInitialization/?staffId=${spec.staffId}'"/></div>
 	 		<div class="menu-button"><input type="button" value="メニューに戻る" onclick="location.href='/flowMenu'"/></div>
 	 		<div class="menu-button"><input type="button" value="ログアウト" onclick="location.href='/userLogout'" ></div>
 	 		</form:form>
 	 		</div>
 	 	</div>
-		</div>
 <%-- 		<form:form modelAttribute="stationTimeForm" action="/detail/searchTime"> --%>
 <%-- 			<form:input path="arrivalStation" class="inputMiddle"/>駅 --%>
 <%-- 			<form:hidden path="nearStation" value="${spec.nearestStation}"/> --%>
@@ -158,8 +143,6 @@
 </c:forEach>
 
 
-		
-
 		<!-- 		スキル要約 -->
 		<table class="speckDetailTable">
 			<tr>
@@ -172,14 +155,6 @@
 				<th colspan="2">業務範囲(工程)</th>
 			</tr>
 
-<%-- 			<c:if test="${page.allContents.size() != 0}"> --%>
-<%-- 				<c:forEach var="skills" items="${page.allContents}" varStatus="status"> --%>
-<%-- 					<td width="100"><c:out value="${skills}" /></td> --%>
-<%-- 					<c:if test="${status.index % 8 == 7}"> --%>
-<!-- 			 			<tr></tr>  -->
-<%-- 					</c:if> --%>
-<%-- 				</c:forEach> --%>
-<%-- 			</c:if> --%>
 				<c:if test="${skillsSummary.size() != 0}">
 				<c:forEach var="skills" items="${skillsSummary}" varStatus="status">
 					<td width="100"><c:out value="${skills}" /></td>
@@ -304,8 +279,7 @@
 						<td colspan="6">
 							<c:out value="${devExp.content}"/>
 							
-				
-<%--　　★とりあえずの印刷改ページ処理　⇒ --%><c:if test="${i.count % 3 == 0}"><div class="always"></div></c:if>
+				<c:if test="${i.count % 3 == 0}"><div class="always"></div></c:if>
 						</td>
 					</tr>
 				</c:forEach>
@@ -356,12 +330,8 @@
 	<!--PrintEnd-->	
 	 	<br>
 		<br>
+		<%--ここから上にコンテンツを挿入 --%>
+
+	</c:param>
+</c:import>
 		
-<%-- 		<input type="button" value="編集" onclick="location.href='/specedit?staffId=${staffId}'"/> --%>
-<%-- 	<form action="/specDelete/"> --%>
-<!-- 		<input type="submit" value="退職者登録" /> -->
-<%-- 	</form> --%>
-<!-- 	<input type="button" value="パスワード初期化"/> -->
-<!-- 	 	<input type="button" value="メニューに戻る" onclick="location.href='/menu'"/> -->
-</body>
-</html>
