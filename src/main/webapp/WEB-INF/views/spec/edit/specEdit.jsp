@@ -153,7 +153,7 @@
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
 						<c:if test="${i.last}">
-							<td rowspan="5" id="lastNo" class="proNo"></td>
+							<td rowspan="5" id="lastNo" class="proNo" ></td>
 							<form:input type="hidden" path="projectNo" value="${i.index+1}"/>
 							<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 						</c:if>
@@ -177,7 +177,7 @@
 					<!-- OS -->
 						<th>OS</th>
 						<td>
-						<form:input path="os" class="firstOs"/>
+						<form:input path="os" class="firstOs" value="${osEditList[(i.index)]}" />
 						<input type="button" value="OS選択" id="btnMini"
 							onclick="return openWin('/spec/osWindow?btnNo=${(i.index+1)}')" />
 						</td>

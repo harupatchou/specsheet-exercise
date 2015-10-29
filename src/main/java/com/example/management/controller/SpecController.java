@@ -122,7 +122,12 @@ public class SpecController {
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
 			//所持しているprojectを取得
 			model.addAttribute("projectList",projectList);
-			
+			//所持しているプロジェクトごとのOSを取得
+			model.addAttribute("osEditList",osEditList);
+			//所持しているプロジェクトごとのOSを取得
+			model.addAttribute("langEditList",langEditList);
+			//所持しているプロジェクトごとのOSを取得
+			model.addAttribute("processEditList",processEditList);
 			
 			return "spec/edit/specEdit";
 			

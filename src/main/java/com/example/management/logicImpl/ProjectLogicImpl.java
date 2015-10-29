@@ -103,32 +103,33 @@ public class ProjectLogicImpl implements ProjectLogic{
 		String str = new String();
 		//プロジェクト番号を保持しておくカラム
 		Integer tempProNum = 1;
-		Integer test = 0;
-		
+		//osListの最後の値と一致したカラムが来たときの判別処理用
+		Integer lastNum = 0;
+		//
 		for (ProjectOsPage os : osList){
 			if(os.getNo()==1){
 				str += os.getOsName();
 				str +="/";
-				test+=1;
+				lastNum+=1;
 				continue;
 			}
 			if(os.getNo()!=tempProNum){
+				str = str.substring(0, str.length()-1);
 				strList.add(str);
 				str="";
 			}
 			tempProNum = os.getNo();
-			test+=1;
+			lastNum+=1;
 			if(os.getNo()==tempProNum){
 				str += os.getOsName();
 				str +="/";
 			}
-			if(test==osList.size()){
+			if(lastNum==osList.size()){
+				str = str.substring(0, str.length()-1);
 				strList.add(str);
 				str="";
 			}
 		}
-			
-			
 			
 		return strList;
 	}
@@ -137,14 +138,82 @@ public class ProjectLogicImpl implements ProjectLogic{
 	public List<String> selectLang(String staffId) {
 		//情報取得
 		List<ProjectLanguagePage> langList = projectService.findProjectLang(staffId);
-		return null;
+		//編集画面開発欄lang初期表示用StringList
+		List<String> strList = new ArrayList<String>();
+		//取得データ内のlang名を保持するカラム
+		String str = new String();
+		//プロジェクト番号を保持しておくカラム
+		Integer tempProNum = 1;
+		//langListの最後の値と一致したカラムが来たときの判別処理用
+		Integer lastNum = 0;
+		//
+		for (ProjectLanguagePage lang : langList){
+			if(lang.getNo()==1){
+				str += lang.getName();
+				str +="/";
+				lastNum+=1;
+				continue;
+			}
+			if(lang.getNo()!=tempProNum){
+				str = str.substring(0, str.length()-1);
+				strList.add(str);
+				str="";
+			}
+			tempProNum = lang.getNo();
+			lastNum+=1;
+			if(lang.getNo()==tempProNum){
+				str += lang.getName();
+				str +="/";
+			}
+			if(lastNum==langList.size()){
+				str = str.substring(0, str.length()-1);
+				strList.add(str);
+				str="";
+			}
+		}
+			
+		return strList;
 	}
 
 	@Override
 	public List<String> selectProcess(String staffId) {
 		//情報取得
 		List<ProjectProcessPage> processList = projectService.findProjectProcess(staffId);
-		return null;
+		//編集画面開発欄process初期表示用StringList
+		List<String> strList = new ArrayList<String>();
+		//取得データ内のprocess名を保持するカラム
+		String str = new String();
+		//プロジェクト番号を保持しておくカラム
+		Integer tempProNum = 1;
+		//langListの最後の値と一致したカラムが来たときの判別処理用
+		Integer lastNum = 0;
+		//
+		for (ProjectProcessPage process : processList){
+			if(process.getNo()==1){
+				str += process.getName();
+				str +="/";
+				lastNum+=1;
+				continue;
+			}
+			if(process.getNo()!=tempProNum){
+				str = str.substring(0, str.length()-1);
+				strList.add(str);
+				str="";
+			}
+			tempProNum = process.getNo();
+			lastNum+=1;
+			if(process.getNo()==tempProNum){
+				str += process.getName();
+				str +="/";
+			}
+			if(lastNum==processList.size()){
+				str = str.substring(0, str.length()-1);
+				strList.add(str);
+				str="";
+			}
+		}
+			
+		return strList;
 	}
 	
 	

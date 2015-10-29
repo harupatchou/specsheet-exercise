@@ -13,20 +13,13 @@ INSERT INTO age VALUES('7','50代前半');
 INSERT INTO age VALUES('8','50代後半');
 
 -- OS定義テーブル
-/*
-INSERT INTO os_define VALUES('0','その他');
 INSERT INTO os_define VALUES('1','Windows');
 INSERT INTO os_define VALUES('2','Linux');
 INSERT INTO os_define VALUES('3','Mac');
-*/
-INSERT INTO os_define VALUES('1','Windows');
-INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Linux');
-INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Mac');
 INSERT INTO os_define VALUES('100','その他');
 
 -- 言語定義テーブル
-/*
-INSERT INTO language_define VALUES('1','JAVA');
+INSERT INTO language_define VALUES('1','Java');
 INSERT INTO language_define VALUES('2','PHP');
 INSERT INTO language_define VALUES('3','Ruby');
 INSERT INTO language_define VALUES('4','Scala');
@@ -34,15 +27,6 @@ INSERT INTO language_define VALUES('5','JavaScript');
 INSERT INTO language_define VALUES('6','C#');
 INSERT INTO language_define VALUES('7','C++');
 INSERT INTO language_define VALUES('8','C');
-*/
-INSERT INTO language_define VALUES('1','Java');
-INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'PHP');
-INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'Ruby');
-INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'Scala');
-INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'JavaScript');
-INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'C#');
-INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'C++');
-INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'C');
 INSERT INTO language_define VALUES('100','その他');
 
 
@@ -70,14 +54,6 @@ INSERT INTO users VALUES('AP-202-0717','男','佐藤','拓海','サトウ','タ�
 INSERT INTO users VALUES('AP-202-0736','女','鈴木','綾夏','スズキ','アヤカ',1,'boost2000');
 INSERT INTO users VALUES('AP-000-0000','男','大矢','修嗣','オオヤ','ナオツギ',2,'boost2000');
 
--- プロジェクトテーブル
-/*
-INSERT INTO project VALUES('AP-202-0715',1,'2015-02-01','2015-08-01','プロジェクト概要','5','20','開発','eclipse');
-INSERT INTO project VALUES('AP-202-0715',2,'2015-02-02','2015-08-02','プロジェクト概要','6','21','テスト','junit');
-INSERT INTO project VALUES('AP-202-0736',3,'2015-02-03','2015-08-03','プロジェクト概要','7','22','実装','teraterm');
-INSERT INTO project VALUES('AP-202-0736',4,'2015-02-04','2015-08-04','プロジェクト概要','8','23','UT','remoteconect');
-INSERT INTO project VALUES('AP-202-0736',5,'2015-02-05','2015-08-05','プロジェクト概要','9','24','IT','padedosa');
-*/
 -- プロジェクトテーブル
 INSERT INTO project VALUES('AP-202-0715',1,'2015-02-01','2015-08-01','プロジェクト概要','5','20','PG','開発','eclipse');
 INSERT INTO project VALUES('AP-202-0715',2,'2015-02-02','2015-08-02','プロジェクトやったよー','6','21','テスター','テスト','junit');
