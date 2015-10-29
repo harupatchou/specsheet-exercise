@@ -203,8 +203,6 @@
 		</table><br>
 
 		<!-- 開発経験のテーブル -->
-		
-			${developmentExperience}
 		<table class="speckDetailTable">
 			<tr>
 				<th colspan="8">開発経験</th>

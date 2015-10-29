@@ -185,6 +185,9 @@ public class SpecRegistRepository {
 	public void insertLanguage(SpecForm form) {
 		SqlParameterSource param = new MapSqlParameterSource();
 		for (int i = 0; i < form.getSkillLangList().split(",").length; ++i) {
+			if (Integer.parseInt(form.getSkillLangList().split(",")[i]) == 0) {
+				continue;
+			}
 			param = new MapSqlParameterSource().addValue("staffId", form.getStaffId())
 					.addValue("languageId", Integer.parseInt(form.getSkillLangList().split(",")[i]))
 					.addValue("expFlagInt", form.getExpFlagInt().get(i))
@@ -202,6 +205,9 @@ public class SpecRegistRepository {
 	public void insertOs(SpecForm form) {
 		SqlParameterSource param = new MapSqlParameterSource();
 		for (int i = 0; i < form.getSkillOsList().split(",").length; ++i) {
+			if (Integer.parseInt(form.getSkillOsList().split(",")[i]) == 0) {
+				continue;
+			}
 			param = new MapSqlParameterSource().addValue("staffId", form.getStaffId())
 					.addValue("osId", Integer.parseInt(form.getSkillOsList().split(",")[i]))
 					.addValue("monthOfLangExp", form.getMonthOfOsExp().get(i));
