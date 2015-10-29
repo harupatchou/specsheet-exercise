@@ -20,6 +20,15 @@ public interface ProjectLogic {
 	//登録処理
     public Boolean insertProject(String staffId,SpecForm specForm) throws Exception;
     
+    //編集時初期表示os取得
+    public List<String> selectOs(String staffId);
+    
+    //編集時初期表示lang取得
+    public List<String> selectLang(String staffId);
+    
+    //編集時初期表示process取得
+    public List<String> selectProcess(String staffId);
+    
     //os選択用値取得
     public List<OsDefine> getOS();
 

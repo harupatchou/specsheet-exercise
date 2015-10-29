@@ -327,20 +327,34 @@
 				<th>取得日</th>
 				<th>資格名</th>
 				<th>取得日</th>
+				<th>資格名</th>
+				<th>取得日</th>
 			</tr>
+			
+			<tr>
 			<c:forEach var="license" items="${specDetailLicensePageList}" varStatus="i">
-				<c:if test="${i.index%2==0}">
+				<c:if test="${ ( i.index +1 ) % 4 == 0 }">
+					</tr>
 					<tr>
 				</c:if>
-				<td>
-					<c:out value="${license.name}"/>
-				</td>
-				<td>
-					<fmt:formatDate value="${license.acquireDate }" pattern="yyyy/MM/dd"/>
-				</td>
-				<c:if test="${i.index%3==2}">
+				<td><c:out value="${license.name}"/></td>
+				<td><fmt:formatDate value="${license.acquireDate }" pattern="yyyy/MM/dd"/></td>
+				
+				<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 				</c:if>
+						
+						
+				<c:if test="${(i.last && (i.count - 1 )  == 1) || (i.last && (i.count - 1 ) % 3 == 1)}">
+				<td></td>
+				<td></td>
+				</c:if>
+				
 			</c:forEach>
+			</tr>
 		</table>
 	<!--PrintEnd-->	
 	 	<br>

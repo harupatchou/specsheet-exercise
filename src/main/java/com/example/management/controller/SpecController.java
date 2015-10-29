@@ -24,6 +24,7 @@ import com.example.management.logic.ExpBreakdownLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
+import com.example.management.page.SpecDetailLicensePage;
 import com.example.management.service.SpecRegistService;
 
 @Controller
@@ -50,6 +51,12 @@ public class SpecController {
 	User user = new User();
 	//IDから取得したProject情報格納
 	List<Project> projectList = new ArrayList<Project>();
+	//編集初期表示用osList
+	List<String> osEditList = new ArrayList<String>();
+	//編集初期表示用langList
+	List<String> langEditList = new ArrayList<String>();
+	//編集初期表示用processList
+	List<String> processEditList = new ArrayList<String>();
 
 	
 	/**
@@ -74,6 +81,13 @@ public class SpecController {
 		spec = new Spec();
 		spec = specLogic.selectByStaffId(staffId);
 		
+		
+		
+		//表示のための資格情報を取得　okamoto--------------------
+		List<SpecDetailLicensePage> specDetailLicenseList = licensefindByStaffId(staffId);
+		model.addAttribute("specDetailLicenseList",specDetailLicenseList);
+		//--------------------
+		
 		//言語一覧を取得してMAPに格納
 		setLangMap(model);
 		//OS一覧を取得してMAPに格納
@@ -89,12 +103,21 @@ public class SpecController {
 			model.addAttribute("ageMap", enumLogic.getAgeMap());
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
 			
+			
+			
 			return "spec/regist/specRegist";
 			
 		}else{
 		/** specデータ無時⇒スペックシート編集画面へ */
+			
 			selectByStaffId(staffId);
+			//所持している言語、OS、開発環境を取得
+			selectByWindow(staffId);
+			
 			//情報を画面に送信
+			
+			System.out.println(spec);
+			
 			model.addAttribute("spec",spec);
 			model.addAttribute("user",user);
 			model.addAttribute("stateMap", enumLogic.getStateMap());
@@ -102,6 +125,7 @@ public class SpecController {
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
 			//所持しているprojectを取得
 			model.addAttribute("projectList",projectList);
+			
 			
 			return "spec/edit/specEdit";
 			
@@ -227,6 +251,31 @@ public class SpecController {
 		
 	}
 	
+	/**
+	 * 編集初期表示情報取得のためのメソッド
+	 * @param res
+	 * @author kurosawa
+	 * @return
+	 * @throws Exception
+	 */
+	private Boolean selectByWindow(String staffId) {
+		//編集初期表示用osList
+		osEditList = new ArrayList<String>();
+		//編集初期表示用langList
+		langEditList = new ArrayList<String>();
+		//編集初期表示用processList
+		processEditList = new ArrayList<String>();
+		
+		//データの取得
+		osEditList = projectLogic.selectOs(staffId);
+		langEditList = projectLogic.selectLang(staffId);
+		processEditList = projectLogic.selectProcess(staffId);
+		
+		return true;
+		
+	}
+	
+	
 	
 	/**
 	 * project情報の登録処理
@@ -245,6 +294,18 @@ public class SpecController {
 		projectLogic.insertProject(form.getStaffId() ,form);
 		specRegistService.insertUsersLicenseByStaffId(form, form.getStaffId());
 		return true;
+	}
+	
+	
+	/**
+	 * 所有している資格情報を取得.
+	 * @param staffId
+	 * @author okamoto
+	 * @return 所有している資格情報
+	 */
+	public List<SpecDetailLicensePage> licensefindByStaffId(String staffId){
+		List<SpecDetailLicensePage> SpecDetailLicenseList = specRegistService.licensefindByStaffId(staffId);
+		return SpecDetailLicenseList;
 	}
 	
 }

@@ -14,31 +14,14 @@ INSERT INTO age VALUES('8','50代後半');
 
 -- OS定義テーブル
 
-INSERT INTO os_define VALUES('1','その他');
-INSERT INTO os_define VALUES('2','Windows');
-INSERT INTO os_define VALUES('3','Linux');
-INSERT INTO os_define VALUES('4','Mac');
+INSERT INTO os_define VALUES('1','Windows');
+INSERT INTO os_define VALUES('2','Linux');
+INSERT INTO os_define VALUES('3','Mac');
+INSERT INTO os_define VALUES('100','その他');
 
-/*
-INSERT INTO os_define VALUES('1','その他');
-INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Windows');
-INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Linux');
-INSERT INTO os_define VALUES(nextval('os_define_os_id_seq'),'Mac');
-*/
 
 -- 言語定義テーブル
-/*
-INSERT INTO language_define VALUES('1','JAVA');
-INSERT INTO language_define VALUES('2','PHP');
-INSERT INTO language_define VALUES('3','Ruby');
-INSERT INTO language_define VALUES('4','Scala');
-INSERT INTO language_define VALUES('5','JavaScript');
-INSERT INTO language_define VALUES('6','C#');
-INSERT INTO language_define VALUES('7','C++');
-INSERT INTO language_define VALUES('8','C');
-*/
-INSERT INTO language_define VALUES('1','その他');
-INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'Java');
+INSERT INTO language_define VALUES('1','Java');
 INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'PHP');
 INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'Ruby');
 INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'Scala');
@@ -46,6 +29,7 @@ INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'JavaScript
 INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'C#');
 INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'C++');
 INSERT INTO language_define VALUES(nextval('language_define_id_seq'),'C');
+INSERT INTO language_define VALUES('100','その他');
 
 
 -- 担当工程定義テーブル
@@ -73,16 +57,13 @@ INSERT INTO users VALUES('AP-202-0736','女','鈴木','綾夏','スズキ','ア�
 INSERT INTO users VALUES('AP-000-0000','男','大矢','修嗣','オオヤ','ナオツギ',2,'boost2000');
 
 -- プロジェクトテーブル
-/*
-INSERT INTO project VALUES('AP-202-0715',1,'2015-02-01','2015-08-01','プロジェクト概要','5','20','開発','eclipse');
-INSERT INTO project VALUES('AP-202-0715',2,'2015-02-02','2015-08-02','プロジェクト概要','6','21','テスト','junit');
-INSERT INTO project VALUES('AP-202-0736',3,'2015-02-03','2015-08-03','プロジェクト概要','7','22','実装','teraterm');
-INSERT INTO project VALUES('AP-202-0736',4,'2015-02-04','2015-08-04','プロジェクト概要','8','23','UT','remoteconect');
-INSERT INTO project VALUES('AP-202-0736',5,'2015-02-05','2015-08-05','プロジェクト概要','9','24','IT','padedosa');
-*/
--- プロジェクトテーブル
 INSERT INTO project VALUES('AP-202-0715',1,'2015-02-01','2015-08-01','プロジェクト概要','5','20','PG','開発','eclipse');
+<<<<<<< HEAD
 INSERT INTO project VALUES('AP-202-0715',2,'2012-12-02','2014-08-22','プロジェクト概要','6','21','テスター','テスト','junit');
+=======
+INSERT INTO project VALUES('AP-202-0715',2,'2015-02-02','2015-08-02','プロジェクトやったよー','6','21','テスター','テスト','junit');
+INSERT INTO project VALUES('AP-202-0715',3,'2015-02-03','2015-08-03','プロジェクトだよー','7','22','PG','IT','padedosa');
+>>>>>>> develop
 INSERT INTO project VALUES('AP-202-0736',1,'2015-02-03','2015-08-03','プロジェクト概要','7','22','PG','実装','teraterm');
 INSERT INTO project VALUES('AP-202-0736',2,'2014-09-04','2015-01-04','プロジェクト概要','8','23','PM/SE','UT','remoteconect');
 INSERT INTO project VALUES('AP-202-0736',3,'2013-02-05','2014-08-05','プロジェクト概要','9','24','PG','IT','padedosa');
@@ -93,8 +74,8 @@ INSERT INTO project_process VALUES('AP-202-0715','1','4');
 INSERT INTO project_process VALUES('AP-202-0715','1','5');
 INSERT INTO project_process VALUES('AP-202-0715','2','4');
 INSERT INTO project_process VALUES('AP-202-0715','2','5');
-INSERT INTO project_process VALUES('AP-202-0715','3','4');
 INSERT INTO project_process VALUES('AP-202-0715','3','5');
+INSERT INTO project_process VALUES('AP-202-0715','3','6');
 
 
 -- プロジェクト言語テーブル（工藤）
@@ -102,8 +83,8 @@ INSERT INTO project_language VALUES('AP-202-0715','1','1');
 INSERT INTO project_language VALUES('AP-202-0715','1','2');
 INSERT INTO project_language VALUES('AP-202-0715','2','1');
 INSERT INTO project_language VALUES('AP-202-0715','2','2');
-INSERT INTO project_language VALUES('AP-202-0715','3','1');
-INSERT INTO project_language VALUES('AP-202-0715','3','3');
+INSERT INTO project_language VALUES('AP-202-0715','3','2');
+INSERT INTO project_language VALUES('AP-202-0715','3','4');
 
 -- 取得資格テーブル（鈴木さんのデータ）
 INSERT INTO users_license VALUES('AP-202-0736','1','HTML5プロフェッショナル認定資格レベル1','2014-07-06');
@@ -111,10 +92,10 @@ INSERT INTO users_license VALUES('AP-202-0736','1','HTML5プロフェッショ�
 -- プロジェクトOSテーブル（工藤のデータ）
 INSERT INTO project_os VALUES('AP-202-0715','1','1');
 INSERT INTO project_os VALUES('AP-202-0715','1','2');
-INSERT INTO project_os VALUES('AP-202-0715','2','1');
 INSERT INTO project_os VALUES('AP-202-0715','2','2');
+INSERT INTO project_os VALUES('AP-202-0715','2','3');
 INSERT INTO project_os VALUES('AP-202-0715','3','1');
-INSERT INTO project_os VALUES('AP-202-0715','3','2');
+INSERT INTO project_os VALUES('AP-202-0715','3','3');
 
 --OS経験テーブル
 INSERT INTO os_exp VALUES('AP-202-0715',1,1,Null,4);
@@ -148,7 +129,5 @@ INSERT INTO spec VALUES('AP-202-0736',1,0,2,'Ajax','アピールポイント','�
 INSERT INTO spec VALUES('AP-202-0717',1,0,2,'JavaScript','アピールポイント','池袋','初版作成',0, 4,'2015-09-01','更新者名16文字');
 INSERT INTO spec VALUES('AP-000-0000',1,0,44,'Spring','アピールポイント','渋谷','誤字修正',3, 6,'2015-09-01','更新者名16文字');
 
--- INSERT INTO spec VALUES('AP-202-0737','1',0,0,'2','AngularJS','アピールポイント','六本木',1,1,1,'1','アピールポイント','2015-09-01','更新者名16文字');
--- INSERT INTO spec VALUES('AP-202-0738','2',0,0,'2','JUnit','アピールポイント','銀座',1,1,1,'1','更新','2015-09-01','更新者名16文字');
 
 

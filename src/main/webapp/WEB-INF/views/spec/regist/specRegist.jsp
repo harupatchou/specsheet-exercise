@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="../../js/spec/regist/LicenseColumnNumChange.js"></script>
 <script src="/js/spec/regist/SpecSheet.js"></script>
 <script src="/js/spec/window/windowsOpen.js"></script>
@@ -116,12 +117,6 @@
 				</tr>
 				<tr class="tallHeight">
 					<td><form:textarea path="appeal" class="appeal" rows="8" cols="109.5" ng-init ="appeal='${spec.appeal}'" ng-model="appeal" ng-maxlength="1024"></form:textarea></td>
-<%-- 					<td><form> --%>
-<!-- 						<html:textarea property="appeal"/> -->
-<!-- 						<textarea name="appeal" path="appeal" class="appeal" rows="8" cols="107" > -->
-<%-- 　						<c:out value="${spec.appeal }" /></textarea> --%>
-<%-- 					</form></td> --%>
-				
 				</tr>
 			</table>
 			
@@ -228,9 +223,10 @@
 					</tr>
 				</tbody>
 				</table>
-			<br><input type="hidden" name="lastHidden" id="lastHidden" value="1" />
+			<br>
+			<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 
-	
+	<!-- 		資格要約 -->
 <div class="inputSkill">
 <table class="speckDetailTable" id="userLicenseTable">
  <tr>
@@ -247,18 +243,6 @@
 						<th>資格名</th>
 						<th>取得日</th>
 					</tr>
-    <c:if test="${fn:length(sLicenseList.name) > 0}">
-					<c:forEach varStatus="i" begin="0" end="${fn:length(sLicenseList.name)-1 }">
-						<c:if test="${i.index%3==0}">
-							<tr class="sInputTr"></tr>
-						</c:if>
-						<td><form:input path='lisenceName' name='lisenceName' /></td>
-		<td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' /></td>
-						<c:if test="${i.index%3==2}">
-						</tr>
-						</c:if>
-					</c:forEach>
-				</c:if>
 </table>
 </div>
 	
