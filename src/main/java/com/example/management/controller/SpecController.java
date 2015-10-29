@@ -24,6 +24,7 @@ import com.example.management.logic.ExpBreakdownLogic;
 import com.example.management.logic.ProjectLogic;
 import com.example.management.logic.SpecLogic;
 import com.example.management.logic.UserLogic;
+import com.example.management.repository.ProjectRepository;
 import com.example.management.service.SpecRegistService;
 
 @Controller
@@ -43,6 +44,8 @@ public class SpecController {
 	private ExpBreakdownLogic expBreakdownLogic;
 	@Autowired
 	private SpecRegistService specRegistService;
+	@Autowired
+	private ProjectRepository projectSelectRepository;
 	
 	//IDから取得したSpec情報格納
 	Spec spec = new Spec();
@@ -50,6 +53,12 @@ public class SpecController {
 	User user = new User();
 	//IDから取得したProject情報格納
 	List<Project> projectList = new ArrayList<Project>();
+	//編集初期表示用osList
+	List<String> osEditList = new ArrayList<String>();
+	//編集初期表示用langList
+	List<String> langEditList = new ArrayList<String>();
+	//編集初期表示用processList
+	List<String> processEditList = new ArrayList<String>();
 
 	
 	/**
@@ -89,11 +98,17 @@ public class SpecController {
 			model.addAttribute("ageMap", enumLogic.getAgeMap());
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
 			
+			
+			
 			return "spec/regist/specRegist";
 			
 		}else{
 		/** specデータ無時⇒スペックシート編集画面へ */
+			
 			selectByStaffId(staffId);
+			//所持している言語、OS、開発環境を取得
+			selectByWindow(staffId);
+			
 			//情報を画面に送信
 			model.addAttribute("spec",spec);
 			model.addAttribute("user",user);
@@ -102,6 +117,7 @@ public class SpecController {
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
 			//所持しているprojectを取得
 			model.addAttribute("projectList",projectList);
+			
 			
 			return "spec/edit/specEdit";
 			
@@ -226,6 +242,31 @@ public class SpecController {
 		return true;
 		
 	}
+	
+	/**
+	 * 編集初期表示情報取得のためのメソッド
+	 * @param res
+	 * @author kurosawa
+	 * @return
+	 * @throws Exception
+	 */
+	private Boolean selectByWindow(String staffId) {
+		//編集初期表示用osList
+		osEditList = new ArrayList<String>();
+		//編集初期表示用langList
+		langEditList = new ArrayList<String>();
+		//編集初期表示用processList
+		processEditList = new ArrayList<String>();
+		
+		//データの取得
+		osEditList = projectLogic.selectOs(staffId);
+		langEditList = projectLogic.selectLang(staffId);
+		processEditList = projectLogic.selectProcess(staffId);
+		
+		return true;
+		
+	}
+	
 	
 	
 	/**
