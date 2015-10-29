@@ -176,7 +176,6 @@ public class SpecRegistRepository {
 				+ " WHERE staff_id = :staffId ",
 				param,
 				SPECDETAILLICENSEPAGE_ROW_MAPPER);
-		System.out.println("りぽじとりのPAGE = "+page);
 		return page;
 	}
 	/**

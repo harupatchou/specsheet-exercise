@@ -249,7 +249,7 @@
 <div class="inputSkill">
 <table class="speckDetailTable" id="userLicenseTable">
  <tr>
- 	<th colspan="9">資格資格
+ 	<th colspan="9">資格
 		<input type="button" value="行追加" onclick="insertRow('userLicenseTable')" />
 		<input type="button" value="最終行削除" onclick="deleteRow2('userLicenseTable')" />
 	</th>
@@ -266,26 +266,25 @@
 					
 					<tr>
 					<c:forEach items="${specDetailLicenseList }" var="specDetailLicenseList" varStatus="i"  >
-					${specDetailLicenseList.usersLicenceNo}　
 					<c:if test="${(i.index + 1 ) % 4 == 0 }">
 					</tr>
 					<tr>
 					</c:if>
 					
 						<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }"/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' value="${specDetailLicenseList.acquireDate }"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${specDetailLicenseList.acquireDate }"/></td>
 
 						<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}">
 						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
 		                <td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
 						</c:if>
 						
 						
 						<c:if test="${(i.last && (i.count - 1 )  == 1) || (i.last && (i.count - 1 ) % 3 == 1)}">
 						<td><form:input path='lisenceName' name='lisenceName' value=""/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy-MM-dd' value=""/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value=""/></td>
 		                </c:if>
 
 					</c:forEach>

@@ -77,10 +77,9 @@ public class SpecController {
 		
 		
 		
-		//いまここ★表示のための資格情報を取得--------------------
+		//表示のための資格情報を取得　okamoto--------------------
 		List<SpecDetailLicensePage> specDetailLicenseList = licensefindByStaffId(staffId);
 		model.addAttribute("specDetailLicenseList",specDetailLicenseList);
-		System.out.println("specDetailLicenseList = "+specDetailLicenseList);
 		//--------------------
 		
 		//言語一覧を取得してMAPに格納
@@ -257,7 +256,7 @@ public class SpecController {
 	}
 	
 	
-	/**★いまここ
+	/**
 	 * 所有している資格情報を取得.
 	 * @param staffId
 	 * @author okamoto
@@ -265,7 +264,6 @@ public class SpecController {
 	 */
 	public List<SpecDetailLicensePage> licensefindByStaffId(String staffId){
 		List<SpecDetailLicensePage> SpecDetailLicenseList = specRegistService.licensefindByStaffId(staffId);
-		System.out.println("こんとろーらのLIST　＝　"+SpecDetailLicenseList);
 		return SpecDetailLicenseList;
 	}
 	

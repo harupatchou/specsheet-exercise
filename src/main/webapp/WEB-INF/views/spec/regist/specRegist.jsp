@@ -243,18 +243,6 @@
 						<th>資格名</th>
 						<th>取得日</th>
 					</tr>
-    <c:if test="${fn:length(sLicenseList.name) > 0}">
-					<c:forEach varStatus="i" begin="0" end="${fn:length(sLicenseList.name)-1 }">
-						<c:if test="${i.index%3==0}">
-							<tr class="sInputTr"></tr>
-						</c:if>
-						<td><form:input path='lisenceName' name='lisenceName' /></td>
-		<td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' /></td>
-						<c:if test="${i.index%3==2}">
-						</tr>
-						</c:if>
-					</c:forEach>
-				</c:if>
 </table>
 </div>
 	
