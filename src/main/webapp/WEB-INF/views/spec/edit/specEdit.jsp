@@ -4,14 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="/js/spec/regist/LicenseColumnNumChange.js"></script>
-<script src="/js/spec/SpecSheet.js"></script>
-<script src="/js/spec/windowsOpen.js"></script>
-
-<script src="/js/lib/jquery-2.1.4.min.js"></script>
+<script src="/js/spec/edit/SpecSheetEdit.js"></script>
 <c:import url="/WEB-INF/views/common/layout.jsp">
 	<c:param name="content">
-
 
 		<%--ここから下にコンテンツを挿入 --%>
 		<form:form modelAttribute="specForm" action="/spec/edit"
@@ -161,7 +156,7 @@
 			<!--繰り返し -->
 				<table id="speckTable" class="speckDetailTable">
 				<c:forEach var="project" items="${projectList}" varStatus="i">
-					<tbody id="testTable" class="speckDetailTable">
+					<tbody id="testTable${i.index+1}" class="speckDetailTable">
 					<tr>
 						<th>No.</th>
 						<th>期間</th>
@@ -184,9 +179,9 @@
 						</c:if>
 					<!-- 開発時期 -->
 						<td rowspan="4">
-						<form:input path="startDay" value="${project.startDate}"/><br>
+						<form:input path="startDay" value="${startDate[i.index]}"/><br>
 						～<br>
-						<form:input path="finishDay" value="${project.finishDate}" />
+						<form:input path="finishDay" value="${finishDate[i.index]}" />
 						</td>
 						
 					<!-- プロジェクト概要 -->
@@ -255,7 +250,7 @@
 						<th colspan="9">
 						この開発経験を削除 
 						<input type="button" value="行削除" id="deleteAdd" 
-						onclick="DeleteDetail('testTable')" />
+						onclick="DeleteDetail('testTable${i.index+1}')" />
 						<c:if test="${i.last}">
 						</c:if>
 						</th>
