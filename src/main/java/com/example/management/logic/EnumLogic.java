@@ -11,5 +11,8 @@ public interface EnumLogic {
 
 	/** 年代マップを取得.*/
 	public Map<Integer, String> getAgeMap();
+	
+	/** 性別マップを取得.*/
+	public Map<String, String> getSexMap();
 
 }

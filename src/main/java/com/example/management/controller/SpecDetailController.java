@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.management.common.AgeEnum;
-import com.example.management.common.sexEnum;
+import com.example.management.common.SexEnum;
 import com.example.management.domain.Spec;
 import com.example.management.domain.User;
 import com.example.management.page.SpecDetailDevelopmentExperiencePage;
@@ -84,8 +84,8 @@ public class SpecDetailController {
 	 */
 	private void sexList(Model model, User users) {
 		Map<String, String> sexMap = new LinkedHashMap<String, String>();
-		sexMap.put(sexEnum.MAN.getKey(), sexEnum.MAN.getValue());
-		sexMap.put(sexEnum.WOMAN.getKey(), sexEnum.WOMAN.getValue());
+		sexMap.put(SexEnum.MAN.getKey(), SexEnum.MAN.getValue());
+		sexMap.put(SexEnum.WOMAN.getKey(), SexEnum.WOMAN.getValue());
 		
 		model.addAttribute("sex", sexMap.get(users.getSex()));
 	}
