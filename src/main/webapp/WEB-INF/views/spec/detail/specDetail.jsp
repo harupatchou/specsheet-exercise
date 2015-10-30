@@ -13,7 +13,7 @@
 		<h2>スペックシート詳細画面</h2><br>
 		
 		<div>
-		<div class="menu-button"></div>
+		<div class="menu-button">
 			<div class="menu-button"><input type="button" value="ファイル出力"/></div>
 			<div class="menu-button"><input type="button" value="印刷"  onclick="window.print();" /></div>
 			<div class="menu-button"><input type="button" value="編集" onclick="location.href='/spec/index?staffId=${spec.staffId}'"/></div>
@@ -21,7 +21,7 @@
 			<div class="menu-button"><input type="submit" value="退職者登録" onclick="location.href='/userEdit/moveRetiree/?staffId=${spec.staffId}'"/></div>
 			</c:if>
 			
-			<div class="menu-button">
+			
 			<form:form action="/userEdit/initializationConfirmation" >
 			<c:if test="${spec.staffId != null }">
 			<input type="hidden" name="staffId" value="${spec.staffId }" />

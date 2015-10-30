@@ -19,3 +19,6 @@ textarea {
 display: none !important;
 }
 
+.menu-button{
+	display: inline;
+}
