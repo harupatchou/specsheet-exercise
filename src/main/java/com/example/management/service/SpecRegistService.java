@@ -169,7 +169,7 @@ public class SpecRegistService {
 	 */
 	public void insertUsersLicenseByStaffId(SpecForm form,String staffId){
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//指定の型にフォーマット
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");//指定の型にフォーマット
 		ArrayList<String> strAcquireDateList = (ArrayList<String>) form.getStrAcquireDate();//(2015-05-05,2015-06-06,*****)
 		ArrayList<String> lisenceNameList = (ArrayList<String>) form.getLisenceName();
 		

@@ -105,6 +105,8 @@ public class SpecController {
 			model.addAttribute("ageMap", enumLogic.getAgeMap());
 			model.addAttribute("breakdown", expBreakdownLogic.findExpBreakdownByStaffId(staffId));
 			
+			
+			
 			return "spec/regist/specRegist";
 			
 		}else{
@@ -194,17 +196,8 @@ public class SpecController {
 	 * @return 登録完了画面 
 	 */
 	@RequestMapping(value = "/confirm")
-	public String confirm(Model model, SpecForm form, 
-			@AuthenticationPrincipal UserLoginDetails user, 
-			@AuthenticationPrincipal AdminUserLoginDetails admin) {
+	public String confirm(Model model, SpecForm form) {
 		model.addAttribute("submitForm", form);
-		if (user != null) {
-			model.addAttribute("sex", user.getUser().getSex());
-		} else {
-			model.addAttribute("sex", admin.getUser().getSex());
-		}
-		model.addAttribute("age", enumLogic.getAgeMap().get(form.getAgeFlag()));
-		
 		model.addAttribute("devPage", developLogic.hGenerateDevPage(form));
 		
 		return "spec/regist/specRegistConfirm";
@@ -252,6 +245,8 @@ public class SpecController {
 		projectLogic.deleteAll(staffId);
 		
 		insertExecute(specForm, user, admin);
+		
+//		insertUsersLicenseByStaffId(specForm);
 
 		return "spec/regist/specRegistCheck";
 	}
@@ -349,6 +344,8 @@ public class SpecController {
 		return true;
 		
 	}
+	
+	
 	
 	/**
 	 * project情報の登録処理
