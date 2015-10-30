@@ -168,14 +168,15 @@ public class SpecRegistService {
 	 * @param form
 	 */
 	public void insertUsersLicenseByStaffId(SpecForm form,String staffId){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");//指定の型にフォーマット
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//指定の型にフォーマット
 		ArrayList<String> strAcquireDateList = (ArrayList<String>) form.getStrAcquireDate();//(2015-05-05,2015-06-06,*****)
 		ArrayList<String> lisenceNameList = (ArrayList<String>) form.getLisenceName();
 		
 		//空文字をリストから削除
 		strAcquireDateList.removeAll(Collections.singleton("")); 
 		lisenceNameList.removeAll(Collections.singleton(""));
-		
+
 		String lisenceName = null;
 		String strAcquireDate;
 		Date acquireDate = null;
@@ -187,6 +188,7 @@ public class SpecRegistService {
 				lisenceName = lisenceNameList.get(i);
 				
 				strAcquireDate = strAcquireDateList.get(i);//n番目のDateをStringにいったんいれる
+
 				acquireDate = sdf.parse(strAcquireDate);//Date型に変換する
 				
 			} catch (ParseException e) {
@@ -197,7 +199,6 @@ public class SpecRegistService {
 			specRegistLicenseForm.setStaffId(staffId);
 			specRegistLicenseForm.setLisenceName(lisenceName);
 			specRegistLicenseForm.setAcquireDate(acquireDate);
-			
 			specRegistRepository.insertUsersLicenseByStaffId(specRegistLicenseForm);
 			}
 		}

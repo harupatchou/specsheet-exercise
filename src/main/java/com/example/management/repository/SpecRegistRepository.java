@@ -48,7 +48,6 @@ public class SpecRegistRepository {
 	 */
 	public void insertUsersLicenseByStaffId(SpecRegistLicenseForm form){
 		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
-		
 		jdbcTemplate.update(
 				"INSERT INTO users_license (staff_id , name , acquire_date) "
 				+ "VALUES (:staffId,:lisenceName,:acquireDate) ",

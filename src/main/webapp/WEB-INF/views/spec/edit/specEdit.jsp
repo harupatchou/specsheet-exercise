@@ -66,7 +66,7 @@
 					<td><c:out value="${user.sex}" /></td>
 
 					<th>最寄駅</th>
-					<td><form:input id="inputMini" path="nearestStation" value="${spec.nearestStation}" class="validate[required,maxSize[16]]"/>駅</td>
+					<td><form:input id="inputMini" path="nearestStation" value="${spec.nearestStation}" class="validate[required,maxSize[16]]" />駅</td>
 
 					<th>稼働開始日</th>
 					<td>応相談</td>
@@ -322,8 +322,8 @@
 					<tr>
 						<th class="tallHeight">作業内容</th>
 						<td colspan="7">
-						<form:textarea path="content" id="inputWorkDetail" rows="12" cols="94" class="content　validate[required,maxSize[1024]]"/>
-						<input type="hidden" id="contentHidden${i.index}" value="${project.content}"/>
+						<form:textarea path="content" id="inputWorkDetail" rows="12" cols="94" class="content"/>
+						<input type="hidden" id="contentHidden${i.index}" value="${project.content}" class="validate[required,maxSize[1024]]" />
 						</td>
 					</tr>
 					<tr>
@@ -407,7 +407,7 @@
 	    // ボタン用 HTML
 	    var button = '<tr><input type="button" value="行削除" onclick="deleteRow(this)" />';
 		var lisenceName = '<td><form:input path="lisenceName" name="lisenceName"  class="validate[maxSize[32]]"/></td>';
-		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy-MM-dd"  class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td></tr>';
+		var strAcquireDate = '<td><form:input path="strAcquireDate" name="strAcquireDate"  placeholder="yyyy/MM/dd"  class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td></tr>';
 	    // 行数取得
 	    var row_len = table.rows.length;
 	 
