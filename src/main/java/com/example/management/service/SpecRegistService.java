@@ -56,6 +56,17 @@ public class SpecRegistService {
 		return page;
 	}
 	
+	/**
+	 * スペックシート登録確認画面スキル要約欄表示用要素取得.
+	 * スキル要約欄要素取得.
+	 * @author ueno
+	 * @return スキル要約欄要素
+	 */
+	public List<String> setSkillsSummary(SpecForm form){
+		List<String> SkillsSummary = specLogic.setRegistConfirmSkillsSummary(form);
+		return SkillsSummary;
+	}
+	
 	
 	/**
 	 * スペックシート編集画面初期表示用.

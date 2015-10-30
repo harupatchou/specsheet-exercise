@@ -200,6 +200,8 @@ public class SpecController {
 		model.addAttribute("submitForm", form);
 		model.addAttribute("devPage", developLogic.hGenerateDevPage(form));
 		
+		List<String> SkillsSummary = specRegistService.setSkillsSummary(form);
+		model.addAttribute("SkillsSummary",SkillsSummary);
 		return "spec/regist/specRegistConfirm";
 	}
 	

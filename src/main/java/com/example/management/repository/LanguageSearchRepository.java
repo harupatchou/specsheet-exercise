@@ -3,6 +3,7 @@ package com.example.management.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -65,6 +66,18 @@ public class LanguageSearchRepository {
 		return languageExpList;
 	}
 	
-
-
+	/**
+	 * IDから言語名を取得.
+	 * @author ueno
+	 * @return 言語名
+	 */
+	public String findbyId(Integer langId){
+		SqlParameterSource param = new MapSqlParameterSource().addValue("langId", langId);
+		try{
+			LanguageDefine langName = jdbcTemplate.queryForObject("SELECT * FROM language_define WHERE id=:langId", param, LANGUAGE_ROW_MAPPER);
+			return langName.getName();
+		}catch(DataAccessException e){
+			return null;
+		}
+	}
 }
