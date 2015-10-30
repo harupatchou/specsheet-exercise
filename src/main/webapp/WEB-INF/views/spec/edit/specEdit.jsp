@@ -249,12 +249,12 @@
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
 						<c:if test="${i.last}">
-							<td rowspan="5" id="lastNo" class="proNo"></td>
+							<td rowspan="6" id="lastNo" class="proNo"></td>
 							<form:input type="hidden" path="projectNo" value="${i.index+1}"/>
 							<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 						</c:if>
 						<c:if test="${!i.last}">
-							<td rowspan="5" class="proNo"></td>
+							<td rowspan="6" class="proNo"></td>
 							<form:input type="hidden" path="projectNo" value="${i.index+1}"/>
 						</c:if>
 					<!-- 開発時期 -->
@@ -327,7 +327,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th colspan="9">
+						<th colspan="8">
 						この開発経験を削除 
 						<input type="button" value="行削除" id="deleteAdd" 
 						onclick="DeleteDetail('testTable${i.index+1}')" />
@@ -372,15 +372,15 @@
 
 						<c:if test="${(i.last && (i.count - 1 ) == 0) || (i.last && (i.count - 1 ) % 3 == 0)}">
 						<td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${licenseDate[i.index]}"  class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
 		                <td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${licenseDate[i.index]}"  class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
 						</c:if>
 						
 						
 						<c:if test="${(i.last && (i.count - 1 )  == 1) || (i.last && (i.count - 1 ) % 3 == 1)}">
 						<td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>
-		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${licenseDate[i.index]}"  class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+		                <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
 		                </c:if>
 
 					</c:forEach>
