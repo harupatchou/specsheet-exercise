@@ -244,6 +244,14 @@
 						<th>資格名</th>
 						<th>取得日</th>
 					</tr>
+					<tr>
+					<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }" class="validate[maxSize[32]]"/></td>
+		            <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${licenseDate[i.index]}" class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+					<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }" class="validate[maxSize[32]]"/></td>
+		            <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${licenseDate[i.index]}" class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+					<td><form:input path='lisenceName' name='lisenceName' value="${specDetailLicenseList.name }" class="validate[maxSize[32]]"/></td>
+		            <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="${licenseDate[i.index]}" class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+					</tr>
 </table>
 </div>
 	

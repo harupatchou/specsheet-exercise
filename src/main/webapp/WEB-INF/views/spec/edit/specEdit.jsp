@@ -358,7 +358,17 @@
 						<th>資格名</th>
 						<th>取得日</th>
 					</tr>
-					
+			
+			<c:if test="${specDetailLicenseList.size() == 0}">	
+			<tr>
+				<td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>
+		        <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="" class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+				<td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>
+		        <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="" class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+				<td><form:input path='lisenceName' name='lisenceName' value="" class="validate[maxSize[32]]"/></td>
+		        <td><form:input path='strAcquireDate' name='strAcquireDate'  placeholder='yyyy/MM/dd' value="" class="validate[custom[date],future[1900/01/01],past[NOW]]"/></td>
+			</tr>
+			</c:if>
 					
 					<tr>
 					<c:forEach items="${specDetailLicenseList }" var="specDetailLicenseList" varStatus="i"  >
