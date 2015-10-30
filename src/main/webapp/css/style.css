@@ -5,13 +5,11 @@ body{
 	width:70%;
 	height:100%;
 	margin:auto;
-	font-size:17px;
 	background-color:#FDF5E6;
 }
 table,tr,th,td{
 	border: 1px solid;
 	border-collapse: collapse;
-	font-size: 20px;
 }
 th {
 	background-color: #FFDEAD;
@@ -57,7 +55,6 @@ article table{
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:15px;
 	font-weight:bold;
 	padding:3px 14px;
 	text-decoration:none;
