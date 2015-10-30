@@ -13,7 +13,6 @@ var btnNo = 1;
  * 初期表示時の実行
  */
 window.onload = function(){
-	
 	$(".firstOs").each(function(){
 		$(this).attr("id","os"+btnNo)
 		btnNo+=1;
