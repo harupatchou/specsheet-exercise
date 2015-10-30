@@ -196,12 +196,18 @@ public class SpecController {
 	 * @return 登録完了画面 
 	 */
 	@RequestMapping(value = "/confirm")
-	public String confirm(Model model, SpecForm form) {
+	public String confirm(Model model, SpecForm form, 
+			@AuthenticationPrincipal UserLoginDetails user, 
+			@AuthenticationPrincipal AdminUserLoginDetails admin) {
 		model.addAttribute("submitForm", form);
-		model.addAttribute("devPage", developLogic.hGenerateDevPage(form));
+		if (user != null) {
+			model.addAttribute("sex", user.getUser().getSex());
+		} else {
+			model.addAttribute("sex", admin.getUser().getSex());
+		}
+		model.addAttribute("age", enumLogic.getAgeMap().get(form.getAgeFlag()));
 		
-		List<String> SkillsSummary = specRegistService.setSkillsSummary(form);
-		model.addAttribute("SkillsSummary",SkillsSummary);
+		model.addAttribute("devPage", developLogic.hGenerateDevPage(form));
 		return "spec/regist/specRegistConfirm";
 	}
 	
