@@ -3,6 +3,7 @@ package com.example.management.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -62,5 +63,21 @@ public class OsSearchRepository {
 		List<OsExp> osExpList = jdbcTemplate.query("SELECT * FROM os_exp WHERE staff_id=:staffId", param, OSEXP_ROW_MAPPER);
 		return osExpList; 
 	}
+	
+	/**
+	 * IDからOS名を取得.
+	 * @author ueno
+	 * @return OS名
+	 */
+	public String findbyId(Integer osId){
+		SqlParameterSource param = new MapSqlParameterSource().addValue("osId", osId);
+		try{
+			OsDefine osName = jdbcTemplate.queryForObject("SELECT * FROM os_define WHERE os_id=:osId", param, OS_ROW_MAPPER);
+			return osName.getOsName();
+		}catch(DataAccessException e){
+			return null;
+		}
+	}
+	
 
 }

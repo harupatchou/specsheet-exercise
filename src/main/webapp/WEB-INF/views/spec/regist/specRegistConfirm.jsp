@@ -25,6 +25,8 @@
 		
 		<h3>スペックシート</h3>
 		<!-- 		基本情報 -->
+		
+		<c:out value="${SkillsSummary}"/>
 		<table class="speckDetailTable">
 			<tr>
 				<th>スタッフID</th>
@@ -111,26 +113,25 @@
 		</table><br>		
 
 		<!-- 		スキル要約 -->
-<!-- 		<table class="speckDetailTable"> -->
-<!-- 			<tr> -->
-<!-- 				<th colspan="8">スキル要約</th> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<th colspan="2">言語</th> -->
-<!-- 				<th colspan="2">開発関連技術</th> -->
-<!-- 				<th colspan="2">環境(OS等)</th> -->
-<!-- 				<th colspan="2">業務範囲(工程)</th> -->
-<!-- 			</tr> -->
-
-<%-- 				<c:if test="${skillsSummary.size() != 0}"> --%>
-<%-- 				<c:forEach var="skills" items="${skillsSummary}" varStatus="status"> --%>
-<%-- 					<td width="100"><c:out value="${skills}" /></td> --%>
-<%-- 					<c:if test="${status.index % 8 == 7}"> --%>
-<!-- 			 			<tr></tr>  -->
-<%-- 					</c:if> --%>
-<%-- 				</c:forEach> --%>
-<%-- 			</c:if> --%>
-<!-- 		</table><br> -->
+ 		<table class="speckDetailTable"> 
+ 			<tr> 
+				<th colspan="8">スキル要約</th> 
+			</tr> 
+			<tr> 
+				<th colspan="2">言語</th> 
+				<th colspan="2">開発関連技術</th> 
+				<th colspan="2">環境(OS等)</th> 
+				<th colspan="2">業務範囲(工程)</th> 
+			</tr> 
+			
+		
+				<c:forEach var="skills" items="${SkillsSummary}" varStatus="status">
+					<td width="100"><c:out value="${skills}" /></td>
+					<c:if test="${status.index % 8 == 7}">
+			 			<tr></tr> 
+					</c:if>
+				</c:forEach>
+		</table><br> 
 		
 		<!-- 		アピールポイント -->
 		<table class="speckDetailTable">

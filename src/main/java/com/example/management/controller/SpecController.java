@@ -192,7 +192,8 @@ public class SpecController {
 	@RequestMapping(value = "/confirm")
 	public String confirm(Model model, SpecForm form) {
 		model.addAttribute("submitForm", form);
-		
+		List<String> SkillsSummary = specRegistService.setSkillsSummary(form);
+		model.addAttribute("SkillsSummary",SkillsSummary);
 		return "spec/regist/specRegistConfirm";
 	}
 	
