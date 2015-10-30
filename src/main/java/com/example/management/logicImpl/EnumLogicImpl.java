@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.management.common.AgeEnum;
 import com.example.management.common.StateEnum;
+import com.example.management.common.SexEnum;
 import com.example.management.logic.EnumLogic;
 
 @Component
@@ -36,6 +37,15 @@ public class EnumLogicImpl implements EnumLogic {
 		ageMap.put(AgeEnum.LATE_FIFTIES.getKey(), AgeEnum.LATE_FIFTIES.getValue());
 		return ageMap;
 	};
+	
+	@Override
+	public Map<String, String> getSexMap() {
+		Map<String, String> sexMap = new LinkedHashMap<String, String>();
+		sexMap.put(null, "---");
+		sexMap.put(SexEnum.MAN.getKey(), SexEnum.MAN.getValue());
+		sexMap.put(SexEnum.WOMAN.getKey(), SexEnum.WOMAN.getValue());
+		return sexMap;
+	}
 	
 
 }

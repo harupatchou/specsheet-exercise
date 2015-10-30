@@ -145,9 +145,7 @@
 			</tr>
 				<c:forEach var="devExp" items="${devPage.projectNo}" varStatus="i">
 					<tr>
-						　No
 						<td rowspan="5"><c:out value="${devExp}"/></td>
-						開始時期
 						<td rowspan="4">
 							<c:out value="${devPage.startDay.get(i.index)}"/><br>
 							～<br>
@@ -158,7 +156,6 @@
 								<c:out value="${devPage.finishDay.get(i.index)}"/>
 							</c:if>
 						</td>
-						プロジェクト概要
 						<td rowspan="4">
 							<c:out value="${devPage.overview.get(i.index)}"/>
 						</td>
@@ -166,11 +163,9 @@
 						<td>
 							<c:out value="${devPage.os.get(i.index)}"/>
 						</td>
-						担当工程
 						<td rowspan="4">
 							<c:out value="${devPage.process.get(i.index)}"/>
 						</td>
-						担当役割
 						<td rowspan="4">
 							<c:out value="${devPage.role.get(i.index)}"/>
 						</td>
@@ -181,7 +176,6 @@
 						<td>
 							<c:out value="${devPage.lang.get(i.index)}"/>
 						</td>
-						チーム人数
 						<td>
 							<c:out value="${devPage.teamNum.get(i.index)}"/>
 						</td>
@@ -194,7 +188,6 @@
 						<th>開発全体</th>
 					</tr>
 					<tr>
-						開発全体
 						<td>
 							<c:out value="${devPage.allNum.get(i.index)}"/>
 						</td>
