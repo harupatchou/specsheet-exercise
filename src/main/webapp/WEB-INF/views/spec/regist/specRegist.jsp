@@ -147,7 +147,7 @@
 					</tr>
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
-						<td rowspan="5" id="lastNo" class="proNo">1</td>
+						<td rowspan="6" id="lastNo" class="proNo">1</td>
 						<form:input type="hidden" path="projectNo" value="1"/>
 					<!-- 開発時期 -->
 						<td rowspan="4">
@@ -216,7 +216,7 @@
 					</td>
 					</tr>
 					<tr>
-						<th colspan="9">
+						<th colspan="8">
 						この開発経験を削除 
 						<input type="button" value="行削除" id="deleteAdd" 
 						onclick="DeleteDetail('testTable')" />

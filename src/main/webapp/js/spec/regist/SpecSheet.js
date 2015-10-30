@@ -13,25 +13,6 @@ var btnNo = 1;
  * 初期表示時の実行
  */
 window.onload = function(){
-	$(".overview").each(function(index){
-		var over = document.getElementById("overviewHidden"+index).value;
-		$(this).val(over);
-	});
-	
-	$(".role").each(function(index){
-		var over = document.getElementById("roleHidden"+index).value;
-		$(this).val(over);
-	});
-	
-	$(".other").each(function(index){
-		var over = document.getElementById("otherHidden"+index).value;
-		$(this).val(over);
-	});
-	
-	$(".content").each(function(index){
-		var over = document.getElementById("contentHidden"+index).value;
-		$(this).val(over);
-	});
 	
 	$(".firstOs").each(function(){
 		$(this).attr("id","os"+btnNo)
@@ -70,7 +51,7 @@ function AddDetail(addTable){
 	var appendContent = 
 			"<tbody id='testTable" + no + "' class='speckDetailTable'><tr><th>No.</th><th>期間</th><th>プロジェクト概要</th><th colspan='2'>環境、ツールなど</th>" +
 			"<th>担当工程</th><th>担当役割</th><th>規模</th></tr>" +
-			"</th></tr><tr class='InputTr'><td rowspan='5' class='proNo' >"+firstNo+"</td>" +
+			"</th></tr><tr class='InputTr'><td rowspan='6' class='proNo' >"+firstNo+"</td>" +
 			"<input type='hidden' name='projectNo' class='setProNo' value='' />" +
 			"<td rowspan='4'><input name='startDay' size='8'/><br>～<br><input name='finishDay' size='8'/></td>" +
 			"<td rowspan='4'><textarea name='overview' rows='10' cols='12' /></td><th>OS</th>" +
@@ -89,7 +70,7 @@ function AddDetail(addTable){
 			"<td rowspan='2'><textarea name='other' id='inputOther' rows='4' cols='24'></textarea></td><th>開発全体</th></tr>" +
 			"<tr><td><input name='allNum' id='inputMini' />人</td></tr><tr><th class='tallHeight'>作業内容</th>" +
 			"<td colspan='6'><textarea name='content' id='inputWorkDetail' rows='12' cols='94'></textarea></td></tr>" +
-			"<tr><th colspan='9'>この開発経験を削除 " +
+			"<tr><th colspan='8'>この開発経験を削除 " +
 			"<input type='button' value='行削除' id='deleteAdd' onclick='DeleteDetail(\"testTable"+no+"\")' />" +
 			"<tr><td></td></tr></tbody>";
 	
