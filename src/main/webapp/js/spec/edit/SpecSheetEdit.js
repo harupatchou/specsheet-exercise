@@ -67,7 +67,7 @@ function AddDetail(addTable){
 	hiddenNo = 1;
 	//追加したい表示コンテンツを書き込む
 	var appendContent = 
-			"<tbody id='testTable" + btnNo + "' class='speckDetailTable'><tr><th>No.</th><th>期間</th><th>プロジェクト概要</th><th colspan='2'>環境、ツールなど</th>" +
+			"<tbody id='testTable" + no + "' class='speckDetailTable'><tr><th>No.</th><th>期間</th><th>プロジェクト概要</th><th colspan='2'>環境、ツールなど</th>" +
 			"<th>担当工程</th><th>担当役割</th><th>規模</th></tr>" +
 			"</th></tr><tr class='InputTr'><td rowspan='6' class='proNo' >"+firstNo+"</td>" +
 			"<input type='hidden' name='projectNo' class='setProNo' value='' />" +
@@ -113,6 +113,7 @@ function DeleteDetail(testTable){
 				$(this).attr('id', 'lastNo').value(1);
 			}
 		});	
+		hiddenNo=1;
 		projectNo=1;
 		setProNo();
 	} else {
@@ -143,8 +144,8 @@ function setProNo(){
 	//最後のプロジェクトにはno（プロジェクト数のカウントしているカラム）を割り振る
 	$("#lastNo").text(no)
 	//最後のプロジェクトにはno（プロジェクト数のカウントしているカラム）を割り振る
-	$("#projectNo").attr("value",no)
-	
+//	$("#projectNo").attr("value",no)
+	hiddenNo=1;
 }
 
 /**

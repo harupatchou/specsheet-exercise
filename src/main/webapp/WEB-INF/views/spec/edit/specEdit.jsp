@@ -248,14 +248,14 @@
 					</tr>
 					<tr class="InputTr">
 					<!-- プロジェクト番号 -->
-						<c:if test="${i.last}">
-							<td rowspan="6" id="lastNo" class="proNo"></td>
-							<form:input type="hidden" path="projectNo" value="${i.index+1}"/>
-							<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
-						</c:if>
 						<c:if test="${!i.last}">
 							<td rowspan="6" class="proNo"></td>
-							<form:input type="hidden" path="projectNo" value="${i.index+1}"/>
+							<form:input type="hidden" path="projectNo" class="setProNo"/>
+						</c:if>
+						<c:if test="${i.last}">
+							<td rowspan="6" id="lastNo" class="proNo"></td>
+							<form:input type="hidden" path="projectNo" class="setProNo"/>
+							<input type="hidden" name="lastHidden" id="lastHidden" value="1" />
 						</c:if>
 					<!-- 開発時期 -->
 						<td rowspan="4">
